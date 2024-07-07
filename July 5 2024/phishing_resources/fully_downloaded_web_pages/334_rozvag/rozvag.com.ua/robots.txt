@@ -1,0 +1,4 @@
+User-agent: *Allow: /
+Sitemap: https://rozvag.com.ua/sample-x5.xml
+Sitemap: https://rozvag.com.ua/ova-tools.xml
+Sitemap: https://www.rozvag.com.ua/ova-tools.xml

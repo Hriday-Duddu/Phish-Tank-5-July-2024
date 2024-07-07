@@ -1,0 +1,59 @@
+:root {
+  /* Primary palette */
+  --ocean: var(--ocean-500);
+  --ocean-120: var(--ocean-600);
+  --ocean-80: var(--ocean-400);
+  --ocean-60: var(--ocean-300);
+  --ocean-40: var(--ocean-200);
+  --ocean-30: var(--ocean-150);
+  --ocean-20: var(--ocean-100);
+  --slate: #4e5468;
+  --slate-120: #353A4A;
+  --slate-140: #1f2129;
+  --slate-80: #5f667e;
+  --slate-60: #9298ad;
+  --slate-40: #ced3e0;
+  --slate-30: #E4E7F0;
+  --slate-20: #F7F9FC;
+  --mint: #19cca3;
+  --mint-120: #139879;
+  --mint-80: #1bddb1;
+  --mint-60: #6ae6c9;
+  --mint-40: #b6f2e4;
+  --mint-20: #ebfffa;
+
+  /* Secondary palette */
+  --strawberry: #f3376b;
+  --strawberry-120: #e40e49;
+  --strawberry-80: #f56e94;
+  --strawberry-60: #faa5bd;
+  --strawberry-40: #fcdee7;
+  --strawberry-20: #fff2f6;
+  --creamsicle: #ff8730;
+  --creamsicle-120: #f46700;
+  --creamsicle-80: #ffa869;
+  --creamsicle-60: #ffbf90;
+  --creamsicle-40: #ffe1cb;
+  --creamsicle-20: #fff8f2;
+  --lavender: #9159fc;
+  --lavender-120: #73f;
+  --lavender-80: #aa81fc;
+  --lavender-60: #c3a7fc;
+  --lavender-40: #eae0fe;
+  --lavender-20: #f7f2ff;
+  --banana: #facf3f;
+  --banana-120: #deaa00;
+  --banana-80: #fbd965;
+  --banana-60: #fce28b;
+  --banana-40: #fdecb2;
+  --banana-20: #fff9e6;
+
+  /* Neutrals */
+  --black: #000;
+  --white: #fff;
+  --transparent: rgba(255, 255, 255, 0);
+
+  /* Misc */
+  --tag-bg:#E5E5E5;
+  --tag-hover:#D3E2E2;
+}

@@ -1,0 +1,1539 @@
+function console_log() {
+	// attempt to send a message to the console
+	try {
+		for(var i =0; i < arguments.length; i++) {
+			console.log(arguments[i]);
+		}
+	} catch(e) {} // fail gracefully if it does not exist
+
+}
+
+function form_branding_delete(plan, rsid, formid) {
+	if (!plan && !rsid ) {
+		alert(strFormUpgrade);
+	} else {
+		form_part_delete("branding",formid);
+	}
+}
+
+function jump(url) {
+	ac_loader_show();
+	window.location = url;
+}
+
+
+
+/*
+    CLONER FUNCTIONS
+*/
+
+function clone_1st_element(node, elem, clearInputs) {
+	return ac_dom_clone_node(node, elem, 0, clearInputs);
+}
+
+function clone_1st_div(node) {
+	return clone_1st_element(node, 'div', true);
+}
+
+function clone_1st_tr(node) {
+	return clone_1st_element(node, 'tr', false);
+}
+
+function clear_inputs(node) {
+	$J('input', node).each(function(i) {
+		var o = $J(this);
+		var t = o.attr('type');
+		if (t == 'text' || t == 'file') o.val('');
+	});
+}
+
+function clear_selects(node) {
+	$J('select', node).each(function(i) {
+		this.selectedIndex = -1;
+	});
+}
+
+function clear_areas(node) {
+	$J('textarea', node).html('');
+}
+
+function remove_element(node) {
+	var me = $J(node);
+	var dad = me.parent();
+	if ( $J("> div", dad).length > 1 ) {
+		me.remove();
+	} else {
+		clear_inputs(node);
+		clear_selects(node);
+		clear_areas(node);
+	}
+}
+/*
+    CLONER END
+*/
+
+
+
+
+function preview_template(id, isBasic) {
+	if ( !isBasic ) {
+		var preview_url = plink + '/template/' + id + '/preview_dual';
+	} else {
+		var preview_url = plink + '/admin/preview_dual.php?t=' + id;
+	}
+	window.open(preview_url ,'preview','height=812,width=1250,menubar=no,location=no,resizable=yes,scrollbars=no,status=yes');
+}
+
+
+
+
+function toggleEditor(id, action, settings) {
+	if ( action == ac_editor_is(id + 'Editor') ) return false;
+
+	ac_editor_toggle(id + 'Editor', settings);
+	$J('#' + id + 'EditorLinkOn').toggleClass("currenttab", action).toggleClass("othertab", !action);
+	$J('#' + id + 'EditorLinkOff').toggleClass("currenttab", !action).toggleClass("othertab", action);
+	$J('#' + id + 'EditorLinkDefault').toggle( action != ( ac_js_admin.htmleditor == 1 ) );
+
+	return false;
+}
+
+function setDefaultEditor(id) {
+	var isEditor = ac_editor_is(id + 'Editor');
+	if ( isEditor == ( ac_js_admin.htmleditor == 1 ) ) return false;
+	// send save command
+	// save new admin limit remotelly
+	ac.get("user.user_update_value", ['htmleditor', ( isEditor ? 1 : 0 )]);
+
+	$J('#' + id + 'EditorLinkDefault').toggle();
+	ac_js_admin.htmleditor = ( isEditor ? 1 : 0 );
+	return false;
+}
+
+
+
+
+function form_editor_personalization_push(nodes, id) {
+	for (var i = 0; i < nodes.length; i++)
+		$J('#' + id).append(nodes[i]);
+}
+
+
+
+function form_editor_insert(field, value) {
+	// only today tag should be reset
+	if ( value.match( /^%TODAY[+-]\d+%$/ ) ) {
+		value = '%TODAY*%';
+	}
+	if ( value == '%TODAY*%' ) {
+		var entered = prompt(strEnterRange, '+1');
+		if ( !entered || !entered.match( /^[-+]?\d+$/ ) ) {
+			alert(strEnterRangeInvalid);
+			return '';
+		}
+		if ( !entered.match(/^[-+].*$/) ) {
+			entered = '+' + entered;
+		}
+		value = '%TODAY' + entered + '%';
+	}
+	ac_form_insert_cursor(field, value);
+}
+
+function form_editor_defaults(prfx, format, sets) {
+	$J('#' + prfx + 'textField').val('');
+	$J('#' + prfx + 'formatField').val(format);
+	ac_form_value_set($J('#' + prfx + 'Editor').get(0), '');
+	// show appropriate editor
+	ac_editor_mime_switch(prfx, $J('#' + prfx + 'formatField').val());
+}
+
+function form_editor_update(prfx, ary, suffix) {
+	if ( typeof suffix != 'string' ) suffix = 'PersTags';
+	if(ary.format) $J('#' + prfx + 'formatField').val(ary.format);
+	$J('#' + prfx + 'textField').val(ary.text);
+	ac_form_value_set($J('#' + prfx + 'Editor').get(0), ary.html);
+
+	// show appropriate editor
+	ac_editor_mime_switch(prfx, $J('#' + prfx + 'formatField').val());
+}
+
+
+
+
+
+function export_link_build(context, ary) {
+	var link = 'export.php?action=' + context;
+	for ( var i in ary ) {
+		link += '&' + i + '=' + ary[i];
+	}
+	if ( typeof(ourflag) == 'undefined' || prompt('Go to this export URL?', link) )
+	window.location.href = link;
+}
+
+var listfilters = {};
+function list_filter(rnd) {
+	var post = ac_form_post($J("#" + "listfilter" + rnd).get(0));
+	listfilters[rnd] = post.listid;
+
+	ac.post("contact.subscriber_filter_post", {}, function(ary) {
+		list_filters_update(ary.filterid, post.listid, true);
+	});
+}
+
+function list_filters_update(filterid, listid, doContextFilters) {
+	for ( var rnd in listfilters ) {
+		if ( $J('#' + 'listFilterManager' + rnd).val(listid) ) {
+			$J('#' + 'listFilterManager' + rnd).val(listid);
+			listfilters[rnd] = listid;
+		}
+	}
+	if ( doContextFilters ) {
+		// try to change the list filter on this context page
+		if ( $J('#' + 'JSListManager').get(0) ) $J('#' + 'JSListManager').val(listid);
+		// try to run assign filterid based on context
+/*		try {
+			var v = eval(ac_action + "_list_filter = " + filterid + ";");
+		} catch (e) {
+			// do nothing, none found
+		}
+*/		// try to run assign listid based on context
+		try {
+			var v = eval(ac_action + "_listfilter = " + listid + ";");
+		} catch (e) {
+			// do nothing, none found
+		}
+		// try to run a search function based on context
+		var func = null;
+		try {
+			var func = eval(ac_action + "_list_search");
+		} catch (e) {
+			// do nothing, none found
+		}
+		if ( typeof func == "function" ) {
+			func();
+		}
+	}
+}
+
+
+function parents_list_select(all, firstIsAll) {
+	if ( all ) {
+		ac_form_select_multiple_all($J('#parentsList').get(0), firstIsAll);
+	} else {
+		ac_form_select_multiple_none($J('#parentsList').get(0));
+	}
+
+	// campaign_new - only stuff
+	if ( $J('#step2next').get(0) ) {
+		// stop the scene until the call returns
+		$J('#step2next').prop('disabled', true);
+		$J('.lists-segment-container').hide();
+	}
+
+	return false;
+}
+
+function parents_box_select(all, firstIsAll) {
+	if (all) {
+		$J(".parentsList").attr("checked", true);
+	} else {
+		$J(".parentsList").attr("checked", false);
+	}
+
+	// campaign_new - only stuff
+	if ( $J('#step2next').get(0) ) {
+		campaign_step2_checknext();
+		// stop the scene until the call returns
+		$J('#step2next').prop("disabled", true);
+		$J('.lists-segment-container').hide();
+	}
+
+	return false;
+}
+
+
+/*
+
+ACTIVE RSS
+
+*/
+
+
+function form_editor_activerss_open(type, insertObj) {
+	if ( !insertObj ) insertObj = '';
+	// set type
+	$J('#activerss4').val(type);
+	$J('#activerss2').val(insertObj);
+	// set data
+	$J('#activerssurl').val('http://');
+	$J('#activerssloop').val('10');
+	$J('#activerssall').attr("checked", true);
+	$J('#activersspreviewbox').modal("hide");
+	// open modal
+	$J('#message_activerss').modal("show");
+}
+
+function form_editor_activerss_insert() {
+	// build the code
+	var code = form_editor_activerss_build();
+	if ( code == '' ) return;
+
+	// push it into needed editor
+	ac_editor_insert($J('#activerss2').attr("value"), ( $J('#activerss4').attr("value") == 'html' ? nl2br(code) : code ));
+
+	// close the modal
+	$J('#message_activerss').modal("hide");
+}
+
+function form_editor_activerss_preview() {
+	// build the code
+	var code = form_editor_activerss_build();
+	if ( code == '' ) return;
+	if ( $J('#activerss4').attr("value") == 'html' ) code = nl2br(code);
+	// push it into preview box
+	$J('#activersspreview').val(code);
+	$J('#activersspreviewbox').toggle();
+}
+
+function form_editor_activerss_build() {
+	// what type of code to build
+	var type = $J('#activerss4').val();
+	// what url to fetch
+	var url = $J('#activerssurl').val();
+	if ( !ac_str_is_url(url) ) {
+		alert(strURLNotURL);
+		$J('#activerssurl').focus();
+		return '';
+	}
+	// how many to show
+	if ( !ac_ui_numbersonly($J('#activerssloop').get(0)) ) {
+		$J('#activerssloop').val(0);
+	}
+	var loop = $J('#activerssloop').val();
+	// what to show
+	var show = ( $J('#activerssnew').prop("checked") ? 'NEW' : 'ALL' ); // ALL/NEW
+	// what are line breaks
+	var nl = ( type == 'html' ? '<br />\n' : '\n' );
+	var code =
+		'%RSS-FEED|URL:' + url + '|SHOW:' + show + '%\n\n' + // start feed section
+		'%RSS:CHANNEL:TITLE%\n\n' + // print out title
+		'%RSS-LOOP|LIMIT:' + loop + '%\n\n' + // start item section
+		'%RSS:ITEM:DATE%\n' + // within a section
+		'%RSS:ITEM:TITLE%\n' +
+		'%RSS:ITEM:SUMMARY%\n' +
+		'%RSS:ITEM:LINK%\n\n' +
+		'%RSS-LOOP%\n\n' +
+		'%RSS-FEED%\n' // end section
+	;
+	return code;
+}
+
+function ac_editor_activerss_click() {
+	form_editor_activerss_open('html');
+}
+
+
+
+function form_editor_activerss_loop_changed() {
+	window.setTimeout(
+		function() {
+			ac_ui_numbersonly($J('#activerssloop').get(0), true);
+		},
+		100
+	);
+}
+
+
+/*
+
+PERSONALIZATION TAGS
+
+*/
+
+// global
+function perstag_openmodal(target) {
+	$J('#smtoggle').hide();
+	$J('#apps li').removeClass('inactive');
+	$J('#surveymonkey_tag').removeClass('active');
+	$J('#tabs li a:first').click();
+	if ($J('.cke_inner').is(':visible')) {
+		$J('.cke_inner').hide();
+	}
+	$J("#personalize")
+		.data("target", target)
+		.modal("show");
+};
+
+function perstag_insert(target, perstag) {
+	if ( perstag == '' ) {
+		return;
+	}
+
+	var use_designer = typeof designer != 'undefined' && typeof designer.inlineCommand != 'undefined';
+	var use_ace = typeof ace_editor != 'undefined' && typeof ace_editor.insert != 'undefined';
+	var textonly     = typeof tinyMCE == 'undefined' && typeof CKEDITOR == 'undefined' && !use_designer;
+	var code         = perstag_build(perstag, textonly);
+
+	// clear any setTimeouts running. (one is used for SurveyMonkey integration)
+	ac.stop("campaign_service_get");
+
+	if (use_designer) {
+		if (ac.browser.isIE()) {
+			//"insertHTML" command is not supported by IE (grrr). So we have to do something different here.
+			var sel = document.getSelection();
+			range = sel.getRangeAt(0);
+			range.deleteContents();
+
+			var el = document.createElement("div");
+			el.innerHTML = code;
+			el.style.display = "inline";
+			range.insertNode(el);
+
+
+			// Place cursor at end of pasted content
+			//element.focus();
+			//range.selectNodeContents(lastNode);
+
+			range.collapse(false);
+			sel.removeAllRanges();
+			sel.addRange(range);
+		} else {
+			designer.inlineCommand('insertHTML', code);
+		}
+	} else if (use_ace && $J("#tmpsource").is(":visible")) {
+		ace_editor.insert(code);
+	} else {
+		if ( !textonly ) code = nl2br(code);
+		ac_editor_insert(target, code);
+	}
+
+	$J("#personalize").modal("hide");
+};
+
+function perstag_build(val, textonly) {
+	var text = '';
+	// only today tag should be reset
+	if ( val.match( /^%TODAY[+-]\d+%$/ ) ) {
+		val = '%TODAY*%';
+	}
+	if ( val.match( /^SERVICE-SURVEYMONKEY/ ) ) {
+		var split_value = val.split("||"); // IE: survey_url_id + "||" + survey.title
+		var link_href = "%SERVICE-SURVEYMONKEY-" + split_value[1] + "%";
+		text = strSurveyText + ": " + split_value[2];
+		entered = prompt(strEnterText, text) || ''; // Coerce null to blank string if user cancels
+		if ( entered.trim() === '' ) {
+			entered = text;
+		}
+		if ( textonly ) {
+			val = entered + ' (' + strSurveyText2 + ': ' + split_value[2] + ' -- ' + link_href + ')';
+		} else {
+			val = '<a href="' + link_href + '" title="' + strSurveyText2 + ': ' + split_value[2] + '">' + entered + '</a>';
+		}
+		return val;
+	}
+	if ( val == '%CONFIRMLINK%' ) {
+		text = strConfirmLinkText;
+	} else if ( val == '%UNSUBSCRIBELINK%&ALL' ) {
+		text = strUnsubscribeAllText;
+	} else if ( val == '%UNSUBSCRIBELINK%' ) {
+		text = strUnsubscribeText;
+	} else if ( val == '%UPDATELINK%' ) {
+		text = strSubscriberUpdateText;
+	} else if ( val == '%WEBCOPY%' || val == '%WEBCOPY-NOSOCIAL%' ) {
+		text = strWebCopyText;
+	} else if ( val == '%FORWARD2FRIEND%' ) {
+		text = strForward2FriendText;
+	} else if ( val == '%SOCIALSHARE%' ) {
+		//text = strForward2FriendText; // don't prompt for anything, just use val
+	} else if ( val == '%TODAY*%' ) {
+		var entered = prompt(strEnterRange, '+1');
+		if ( !entered ) return;
+		if ( !entered.match( /^[-+]?\d+$/ ) ) {
+			alert(strEnterRangeInvalid);
+			return;
+		}
+		if ( !entered.match(/^[-+].*$/) ) {
+			entered = '+' + entered;
+		}
+		val = '%TODAY' + entered + '%';
+	}
+	if ( text !== '' ) {
+		entered = prompt(strEnterText, text) || ''; // Coerce null to blank string if user cancels
+		if ( entered.trim() === '' ) {
+			entered = text;
+		}
+		if ( textonly ) {
+			val = entered + ' <' + val + '>';
+		} else {
+			val = '<a href="' + val + '">' + entered + '</a>';
+		}
+	}
+	return val;
+}
+
+
+// Campaign Personalization
+function campaign_personalization_open(editor) {
+	perstag_openmodal(editor);
+}
+
+function campaign_personalization_insert(value, editor) {
+	perstag_insert(editor, value);
+}
+
+
+
+// general personalize open
+function form_editor_personalize_open(type, insertObj) {
+	if ( !insertObj ) insertObj = '';
+	// set type
+	$J('#personalize4').val(type);
+	$J('#personalize2').val(insertObj);
+
+	// open modal
+	$J('#message_personalize').toggle();
+}
+
+function form_editor_personalize_insert(value) {
+	if ( value == '' ) {
+		alert(strPersMissing);
+		return;
+	}
+	// close the modal
+	$J('#message_personalize').toggle();
+	// build the code
+	var code = form_editor_personalize_build(value);
+	if ( code == '' ) return;
+	// push it into needed editor
+	ac_editor_insert($J('#personalize2').attr("value"), ( $J('#personalize4').attr("value") == 'html' ? nl2br(code) : code ));
+}
+
+function form_editor_personalize_build(val) {
+	// what type of code to build
+	var type = $J('#personalize4').attr("value");
+	// now handle custom (html?) cases
+	var text = '';
+	// only today tag should be reset
+	if ( val.match( /^%TODAY[+-]\d+%$/ ) ) {
+		val = '%TODAY*%';
+	}
+	if ( val == '%CONFIRMLINK%' ) {
+		text = strConfirmLinkText;
+	} else if ( val == '%UNSUBSCRIBELINK%' ) {
+		text = strUnsubscribeText;
+	} else if ( val == '%UPDATELINK%' ) {
+		text = strSubscriberUpdateText;
+	} else if ( val == '%WEBCOPY%' ) {
+		text = strWebCopyText;
+	} else if ( val == '%FORWARD2FRIEND%' ) {
+		text = strForward2FriendText;
+	} else if ( val == '%SOCIALSHARE%' ) {
+		//text = strForward2FriendText; // don't prompt for anything, just use val
+	} else if ( val == '%TODAY*%' ) {
+		var entered = prompt(strEnterRange, '+1');
+		if ( !entered ) return;
+		if ( !entered.match( /^[-+]?\d+$/ ) ) {
+			alert(strEnterRangeInvalid);
+			return;
+		}
+		if ( !entered.match(/^[-+].*$/) ) {
+			entered = '+' + entered;
+		}
+		val = '%TODAY' + entered + '%';
+	}
+	if ( type === 'html' && text !== '' ) {
+		entered = prompt(strEnterText, text) || ''; // Coerce null to blank string if user cancels
+		if ( entered.trim() === '' ) {
+			entered = text
+		}
+		val = '<a href="' + val + '">' + entered + '</a>';
+	}
+	return val;
+}
+
+function ac_editor_personalize_click() {
+	var ed = tinyMCE.activeEditor;
+	//tinyMCE.activeEditor.execCommand('mceInsertContent', false, form_editor_personalize_build());
+	form_editor_personalize_open('html');
+}
+
+
+
+
+/*
+
+CONDITIONAL CONTENT
+
+*/
+
+function conditional_open(keyval) {
+	// reset first
+	$J("#cond_widget div.filtercontainer ul.filterblock:gt(0)").remove(); // remove all nodes but first
+	$J("#cond_widget input[name=value]").val(''); // clear out all inputs
+	$J("#cond_widget select[name=type]").val('and'); // set condition type to default "and"
+	$J("#cond_remove").hide(); // hide the "remove conditions" option
+	//var selects = $J("#cond_widget select");
+
+	if ( keyval ) {
+		$J("#cond_widget select[name=type]").val(keyval.type);
+		$J("#cond_remove").show();
+		for ( var i in keyval.conds ) {
+			var c = keyval.conds[i];
+			var obj = $J("#cond_widget div.filtercontainer ul.filterblock");
+			var operator = $J("select[name=operator]", obj).val();
+
+			if ( i > 0 ) {
+				// copy the node first
+				var node = obj.first().clone().insertAfter(obj.last());
+			} else {
+				var node = obj.first();
+			}
+			$J("select[name=field]", node).val(c.field).change();
+			$J("select[name=operator]", node).val(c.operator).change();
+			$J("input[name=value]", node).val(c.value);
+
+			if (c.field.match(/^%PLUS/)) {
+				var opt = $J(sprintf("option[value='%s']", c.field), node);
+				var plusin = designer.mv_plus_in[opt.data("internal-name")];
+
+				var html = '';
+				for (var i in plusin) {
+					if (plusin[i] == "") {
+						continue;
+					}
+					html += sprintf('<option value="%s">%s</option>', i, plusin[i]);
+				}
+
+				$J("select[name=value_select]", node).html(html).show();
+				$J("select[name=operator]", node).hide();
+				$J("input[name=value]", node).hide();
+
+				$J("select[name=value_select]", node).val(c.value);
+			} else if (c.field.match(/^%TAG/)) {
+				$J("select[name=value_select]", node).hide();
+				$J("select[name=operator]", node).hide();
+				$J("input[name=value]", node).show();
+			}
+
+			// ensure the value field is hidden when exists or not exist operator is selected
+			if (operator.match(/(?=.*VALUE-DOES)(?=.*EXIST).*/ig)) {
+				$J("input[name=value]", node).attr('disabled', true).addClass('disabled').hide();
+			} else {
+				$J("input[name=value]", node).attr('disabled', false).removeClass('disabled').show();
+			}
+		}
+	}
+
+	$J("#cond_widget").modal("show");
+}
+
+function conditional_insert(target) {
+	// if in designer, use designer's save func
+	if ( typeof designer != 'undefined' && designer.widget ) {
+		designer.widget.conditional_save();
+		return;
+	}
+
+	if(typeof target == "undefined") {
+		target = "messageEditor";
+	}
+
+	if (typeof campaign_obj == "undefined") {
+		var textonly = $J('#' + target).hasClass("text-messageEditor");
+	} else {
+		var textonly = ( campaign_is_text_based || $J('#' + target).hasClass("text-messageEditor") );
+	}
+	var conds = $J("#cond_widget div.filtercontainer ul.filterblock");
+	var type = $J("#cond_widget select[name=type]").val();
+	var ifs = [];
+
+	for ( var i = 0; i < conds.length; i++ ) {
+		var field = $J("select[name=field]", conds[i]).val();
+		var op = $J("select[name=operator]", conds[i]).val();
+		var val = $J("input[name=value]", conds[i]).val();
+		var field_type = "";
+		if ( typeof($J("select[name=field] option:selected", conds[i]).data('type')) != "undefined" ) {
+			field_type = $J("select[name=field] option:selected", conds[i]).data('type');
+		}
+		field = '$' + field.replace(/%/g, '').replace(/-/g, '_');
+		val = val.replace(/%/g, '~PERCENT~');
+		var orig_val = val;
+		val = "'" + val.replace(/'/g, '\\\'') + "'";
+		if ( op.indexOf('CONTAINS') != -1 ) {
+			var expr = 'in_string(' + val + ', ' + field + ')';
+			if ( op == 'DCONTAINS' ) expr = '!' + expr;
+		} else if (field == "$TAG_EXISTS") {
+			var expr = 'in_array(' + val + ', $TAGS)';
+		} else if (field == "$TAG_DOESNT_EXIST") {
+			var expr = '!in_array(' + val + ', $TAGS)';
+		} else if ( field_type == 'checkbox' || field_type == 'listbox' ) {
+			var expr = field + " " + op + " '||" + orig_val + "||'";
+		} else if (op === 'VALUE-DOES-EXIST' || op === 'VALUE-DOESNT-EXIST') {
+			expr = '!empty(' + field + ')';
+			if (op === 'VALUE-DOESNT-EXIST') {
+				expr = 'empty(' + field + ')';
+			}
+		} else {
+			var expr = field + ' ' + op + ' ' + val;
+		}
+		ifs.push(expr);
+	}
+	var conn = type == 'and' ? ' && ' : ' || ';
+
+	if ( !textonly ) {
+		var code =
+			'%IF ' + ifs.join(conn) + '%<br />\n' + editorConditionalText + '<br />\n%ELSE%<br />\n' + editorConditionalElseText + '<br />\n%/IF%<br />\n'
+		;
+	} else {
+		var code =
+			'%IF ' + ifs.join(conn) + '%\n' + editorConditionalText + '\n%ELSE%\n' + editorConditionalElseText + '\n%/IF%\n'
+		;
+	}
+	//if ( textonly ) code = nl2br(code);
+	// push it into needed editor
+	ac_editor_insert(target, code);
+	$J("#cond_widget").modal("hide");
+}
+
+function conditional_remove() {
+	return designer.widget.conditional_remove();
+}
+
+
+// Conditional
+function campaign_conditional_open() {
+	var keyval = false;
+	conditional_open(keyval);
+	$J('#cond_save').html(jsInsert);
+	$J('#cond_remove').hide();
+}
+
+function campaign_conditional_insert() {
+	conditional_insert();
+}
+
+
+
+
+
+/*
+
+TEMPLATES
+
+*/
+
+
+function form_editor_template_open(type, insertObj) {
+	if ( !insertObj ) insertObj = '';
+	// set type
+	$J('#editortemplate2').val(insertObj);
+	$J('#editortemplate4').val(type);
+	// set data
+	$J('#templateinsert').val(0);
+	$J('#editortemplatebutton').attr("disabled", true);
+	$J('#templateinsert').val(0);
+
+	// switch the template type
+	if(type == "html") {
+		$J('#templateinserthtml').show();
+		$J('#templateinserttext').hide();
+	} else if(type == "text") {
+	 	$J('#templateinserthtml').hide();
+		$J('#templateinserttext').show();
+	}
+
+	// open modal
+	$J('#message_template').modal("show");
+}
+
+function main_search(text) {
+	if (text != '') {
+		window.location.href = ac_js_site.p_link + sprintf('/app/contacts/?q=%s', text);
+	}
+}
+
+function help_search(text) {
+	if ( ac_str_trim(text) == '' ) return;
+	window.location.href = sprintf(help_search_url, text);
+}
+
+function status_click(statusid) {
+	ac.get("status.status_clicked", [statusid], function(data) {
+		if ( !data.tstamp_clicked ) {
+			status_decrement();
+		}
+	});
+}
+
+function status_decrement() {
+	var oldcnt = parseInt($J('#statuses_count').html(), 10);
+	if ( isNaN(oldcnt) ) return;
+	var newcnt = oldcnt - 1;
+	$J('#statuses_count').html(newcnt);
+	if ( newcnt == 0 ) $J('#statuses_count').remove();
+}
+
+function status_remove(statusid) {
+	ac.get("status.status_removed", [statusid], function(data) {
+		if ( !data.tstamp_clicked ) {
+			status_decrement();
+		}
+		$J('#status_row_' + data.id).remove();
+		var oldcnt = parseInt($J(".avatar .statuses_count").html(), 10);
+		if ( !oldcnt ) return;
+		var newcnt = oldcnt - 1;
+		$J(".avatar .statuses_count").html(newcnt);
+		$J(".ac-account-dropdown-alerts .ac_count").html(newcnt);
+		if ( !newcnt ) {
+			$J("#statusesModal").modal('hide');
+			$J(".ac-account-dropdown-alerts").remove();
+			$J(".avatar .statuses_count").remove();
+			$J(".actmenu_nav").css('paddingLeft', '12px');
+		}
+	});
+	return false;
+}
+
+function form_list_addmodal() {
+	$J("#form_list_addmodal_div").modal('show');
+}
+function form_add() {
+	if ($J("#add_name").val() == "") {
+		alert(strFormNameMissing);
+		return false;
+	}
+
+	if (!$J('#add_list').val()) {
+		alert(strFormListMissing);
+		return false;
+	}
+
+	window.location.href = sprintf("%s/admin/main.php?action=form_edit&new=1&listid=%s&name=%s", plink, $J("#add_list").val(), encodeURIComponent($J("#add_name").val()));
+}
+
+function form_tab_highlight(tabs, listid) {
+	// tabs looks like: ["sub", 0]. 0 is the <li> index we want to highlight
+	$J("#form_tabs").removeClass("active");
+	$J("#form_tabs_" + tabs[0]).attr("class", "active");
+	form_pill_highlight(tabs, listid);
+}
+
+function form_pill_highlight(tabs) {
+	$J("#form_pills_" + tabs[0]).show();
+	$J("#form_pills_" + tabs[0] + " li").removeClass("active");
+	$J($J("#form_pills_" + tabs[0] + " li").get(tabs[1])).addClass("active");
+}
+
+
+
+/*
+
+CAMPAIGN MESSAGE PAGES (REGULAR, TEXT, SPLITTEXT, SPLITMESSAGE ALL NEED ACCESS TO THESE FUNCTIONS)
+
+*/
+
+function campaign_personalization_surveymonkey_disconnect() {
+	if ( !confirm(jsAreYouSure) ) return;
+	ac.get("service.service_surveymonkey_logout", {}, function() {
+		campaign_personalization_service_get(6);
+	});
+}
+
+function campaign_personalization_service_get(service_id) {
+	ac.get("service.service_get", [service_id], function(ary) {
+		campaign_service_get_cb(ary);
+	});
+}
+
+function campaign_service_get_cb(ary) {
+	if (typeof(ary.data) != "undefined") {
+		if (typeof(ary.data[ac_user_id]) != "undefined" && typeof(ary.data[ac_user_id].oauth_token) != "undefined") {
+			// connected - there is a token saved already
+			surveymonkey_access_token = ary.data[ac_user_id].oauth_token;
+			$J("#message_personalize_surveymonkey_unconfirmed").hide();
+			$J("#message_personalize_surveymonkey_confirmed").show();
+			if (typeof(ary.data[ac_user_id].surveys) == "undefined" || ary.data[ac_user_id].surveys.length == 0) {
+				// re-fetch survey data
+				campaign_surveymonkey_get_surveys();
+			}
+			else {
+				// display cached survey data
+				var survey_selects = $J("#message_personalize_surveymonkey_confirmed select");
+				var survey_select = survey_selects[0]; // first one in the div
+				campaign_surveymonkey_display_surveys(ary.data[ac_user_id].surveys, survey_select, "option");
+			}
+		}
+		else {
+			// not connected to surveymonkey at all (no oauth token)
+			// re-check every few seconds
+			ac.wait(5.0, "campaign_service_get", function() {
+				// FIXME: 6 is the magic number (!) for surveymonkey
+				campaign_personalization_service_get(6);
+			});
+			$J("#message_personalize_surveymonkey_unconfirmed").show();
+			$J("#message_personalize_surveymonkey_confirmed").hide();
+		}
+	}
+	// this is surveymonkey-specific right now; might need to change that one day if other services are checked
+	ac_ui_api_callback();
+}
+
+function campaign_surveymonkey_get_surveys() {
+	if (!surveymonkey_access_token) return;
+	ac_ui_api_call(jsLoading);
+	ac.get("service.service_surveymonkey_get_surveys", [ surveymonkey_access_token ], function(ary) {
+		campaign_surveymonkey_get_surveys_cb(ary);
+	});
+}
+
+function campaign_surveymonkey_get_surveys_cb(ary) {
+	ac_ui_api_callback();
+	if (ary.succeeded && ary.succeeded == "1") {
+		//ac_result_show(ary.message);
+		if (typeof(ary.surveys) != "undefined") {
+			if (ary.surveys.length) {
+				// display fetched survey data
+				var survey_selects = $J("#message_personalize_surveymonkey_confirmed select");
+				var survey_select = survey_selects[0]; // first one in the div
+				campaign_surveymonkey_display_surveys(ary.surveys, survey_select, "option");
+			}
+			else {
+				$J("#message_personalize_surveymonkey_surveys").hide();
+				$J("#message_personalize_surveymonkey_confirmed0").show();
+			}
+		}
+	}
+	else {
+		//ac_error_show(ary.message);
+	}
+}
+
+function campaign_surveymonkey_display_surveys(surveys, parent, element) {
+	//$J("#message_personalize_surveymonkey_surveys").show();
+	$J("#message_personalize_surveymonkey_confirmed0").hide();
+
+	var htmlcode = "";
+
+	for (var i = 0; i < surveys.length; i++) {
+		var survey = surveys[i];
+		survey_url = "";
+		if (typeof(survey.url) != "undefined") {
+			var survey_url = survey.url;
+		}
+		survey_url_id = "";
+		if (typeof(survey.url_id) != "undefined") {
+			var survey_url_id = survey.url_id;
+		}
+
+		htmlcode = htmlcode + "<li class=''><a class='ac_popover-menu-item' href='#' data-value='SERVICE-SURVEYMONKEY||" + ac.str.escape_html(survey_url_id) + "||" + ac.str.escape_html(survey.title) + "'>" + ac.str.escape_html(survey.title) + "</a></li>";
+	}
+
+	$J("#message_personalize_surveymonkey_surveys .popover-menu").html(htmlcode);
+
+}
+
+function folder_add(page) {
+	var name = ac.str.trim($J('#folderAddModal .campaignfolder input[type=text]').val());
+	var color = '000000';
+	if ($J('#folderAddModal .folder_color_picker').length > 0) color = $J("#folderAddModal .folder_color_picker li.selected").attr("data-color");
+	if ( name == '' ) {
+		alert(strSideMenuFolderEmptyAlert);
+		$J('#folderAddModal .campaignfolder input[type=text]').focus();
+		return;
+	}
+	ac.post(
+		'folder.folder_insert_post',
+		{
+			folder : name,
+			color: color
+		},
+		function (ary) {
+			if ( ary.succeeded ) {
+
+				// save this folder
+				folders.push(ary);
+
+				// add this folder to all campaigns
+				var campaignlist = $J(page == 'campaign' ? "#campaign_list li.campaignrow" : "#campaign-list-items .campaign-list-row");
+				for ( var i = 0; i < campaignlist.length; i++ ) {
+					var c = campaignlist[i];
+					var cid = c.id.replace('campaignrow_', '');
+					var li =
+					'<li><label><input type="checkbox" name="folder' + ary.id + '" onclick="if(this.checked) campaign_folder_add(' + ary.id + ',' + cid + ');else campaign_folder_remove(' + ary.id + ',' + cid + ');"><span>' + ac.str.escape_html(ac.str.shorten(ary.folder, 18)) + '</span></label></li>'
+					;
+					$J("ul.folders", c).append(li);
+				}
+
+
+				//add this new folder to the popover
+				var popoverli = ' 	<li class="ac_popover-list-item"> ';
+				popoverli += '			<a data-value="' + ary.id + '" class="ac_popover-menu-item" href="#">';
+				popoverli += 				ac.str.escape_html(ac.str.shorten(ary.folder, 15));
+				popoverli += ' 			</a>';
+				popoverli += ' 		</li>';
+
+
+
+				// hide the add modal
+				$J('#folderAddModal').modal('hide');
+				$J('#folderAddModal .campaignfolder input[type=text]').val('');
+
+				// Fire the 'didAddFolder' event so consumers of the folder
+				// data can appropriately react
+				$J('#folderAddModal').trigger({
+					type: 'didAddLabel',
+					id: ary.id,
+				});
+
+				ac_result_show(ary.message);
+			} else {
+				ac_error_show(ary.message);
+				$J("#folderAddModal .modal-body").notification({ type: 'error', text: ary.message, persist: false});
+			}
+		}
+	);
+}
+
+function folder_edit_select(color) {
+	$J('#folderEditModal .folder_color_picker li[data-color="' + color + '"]').trigger('click');
+}
+
+function folder_edit(page) {
+	var id = folder_edit_id,
+		color = undefined;
+	var name = ac.str.trim($J('#folderEditModal .campaignfolder input[type=text]').val());
+	if ( name == '' ) {
+		alert(strSideMenuFolderEmptyAlert);
+		$J('#folderEditModal .campaignfolder input[type=text]').focus();
+		return;
+	}
+	if ($J('#folderEditModal .folder_color_picker').length > 0) color = $J("#folderEditModal .folder_color_picker li.selected").attr("data-color");
+	ac.post(
+		'folder.folder_update_post',
+		{
+			id: id,
+			folder : name,
+			color : color
+		},
+		function (ary) {
+			if ( ary.succeeded ) {
+				// save this folder
+				for ( var i = 0; i < folders.length; i++ ) {
+					if ( folders[i].id == id ) {
+						folders[i].folder = name;
+						break;
+					}
+				}
+
+				// update this folder in all campaigns
+				var campaignlist = $J(page == 'campaign' ? "#campaign_list li.campaignrow" : ".campaign-list-row");
+				for ( var i = 0; i < campaignlist.length; i++ ) {
+					var c = campaignlist[i];
+					var cid = c.id.replace('campaignrow_', '');
+					var checked = $J("ul.folders input[name=folder" + ary.id + "]", c).is(':checked');
+					var cstr = checked ? 'checked="checked"' : '';
+					var li = '<li><label><input type="checkbox" name="folder' + ary.id + '" ' + cstr + ' onclick="if(this.checked) campaign_folder_add(' + ary.id + ',' + cid + ');else campaign_folder_remove(' + ary.id + ',' + cid + ');"><span>' + ac.str.escape_html(ac.str.shorten(ary.folder, 18)) + '</span></label></li>'
+					;
+					$J("ul.folders input[name=folder" + ary.id + "]", c).parents("li").first().replaceWith(li);
+				}
+
+				if ( page == 'campaign' ) {
+					// update folder row
+					var li = '';
+					li += '		<li id="folder_' + ary.id + '" class="folder folder-name">';
+					li += '			<a href="#" class="ac_side-menu-icon folder" onclick="campaign_list_clear();campaign_folder_id=' + ary.id + ';$J(\'.menu_section .icon\').removeClass(\'active\');$J(this).addClass(\'active\');campaign_list_search();return false;">';
+					li += '				<i class="ac-icon-folder"></i>';
+					li += ac.str.escape_html(ac.str.shorten(ary.folder, 18));
+					li += '				<span class="ac_count_campaign alert campaign" style="' + ( campaign_screen == 'series' ? 'display:none;' : '' ) + '">0</span>';
+					li += '				<span class="ac_count_series alert series" style="' + ( campaign_screen != 'series' ? 'display:none;' : '' ) + '">0</span>';
+					li += '			</a>';
+					li += '			<span class="folder-delete ac-icon-trash" onclick="folder_delete_id=' + ary.id + ';$J(\'#folderDeleteModal\').modal(\'show\');return false;"></span>';
+					li += '		</li>';
+					$J('#folder_' + ary.id).replaceWith(li);
+
+					$J("li.folder-name").droppable({
+						activeClass: "ac-drag-active",
+						hoverClass: "ac-drag-hover",
+						accept: ":not(.ui-sortable-helper)",
+						drop: function( event, ui ) {
+							var fid = parseInt(this.id.replace('folder_', ''), 10);
+							var cid = parseInt(ui.draggable.attr('id').replace('campaignrow_', '').replace('seriesrow_', ''), 10);
+							campaign_folder_add(fid, cid);
+						}
+					});
+					$J(".bulk-folder-dropdown li[data-value=" + ary.id + "]").html(ac.str.escape_html(ary.folder));
+				} else if ( page == 'report' ) {
+					// add folder row
+					var li = '';
+					li += '		<li id="folder_' + ary.id + '" class="folder-name">';
+					li += '			<div class="folderdelete" style="display:none;"><a href="#" data-folderid="' + ary.id + '" rel="tip" data-placement="below" data-original-title="' + jsDelete + '" class="folder-delete">X</a></div>';
+					li += '			<a href="#/folder/' + ary.id + '" data-folderid="' + ary.id + '" class="icon folder"><i class="ac-icon-folder"></i>' + ac.str.escape_html(ac.str.shorten(ary.folder, 18)) + '</a>';
+					li += '		</li>';
+					$J('#folder_' + ary.id).replaceWith(li);
+					$J('#page_title, #breadcrumbs li:last-child a').html(sprintf(reports.str.folder.title_view, ac.str.escape_html(ary.folder)));
+					$J('#folder-campaign h2').html(sprintf(reports.str.folder.title_campaigns, ac.str.escape_html(ary.folder)));
+					$J('#folder-series h2').html(sprintf(reports.str.folder.title_series, ac.str.escape_html(ary.folder)));
+				} else if ( page == 'series_list' ) {
+					$J('#folder_' + ary.id)
+						.find('.folder-text').html(ac.str.escape_html(ac.str.shorten(ary.folder, 18)))
+						.end()
+						.find('.series_folder_icon').css('border-color', '#' + ary.color)
+						.end()
+						.find('.edit-label').attr('onclick',
+							'folder_edit_id=' + ary.id
+							+ ';$J(\'#folderEditModal input[type=text]\').val(\''
+							+ ary.folder
+							+ '\');$J(\'#folderEditModal\').modal(\'show\');'
+							+ 'folder_edit_select(this);return false;');
+
+					$J('.seriesrow ul.folders li[data-id="' + ary.id + '"]')
+						.css({ 'border-color': '#' + ary.color, 'color': '#' + ary.color })
+						.find('.folder-name').html(ac.str.escape_html(ac.str.shorten(ary.folder, 30)));
+					$J('.seriesrow ul.folders li[data-id="' + ary.id + '"] .ac_popover-menu-item i')
+						.css({'color': '#' + ary.color});
+					$J('.series_editoptions ul li.ac_popover-list-item a[data-value="' + ary.id + '"]')
+						.html(ac.str.escape_html(ac.str.shorten(ary.folder, 18)));
+				}
+
+				// hide the add modal
+				$J('#folderEditModal').modal('hide');
+				$J('#folderEditModal .campaignfolder input[type=text]').val('');
+
+				ac_result_show(ary.message);
+			} else {
+				ac_error_show(ary.message);
+				$J("#folderEditModal .modal-body").notification({ type: 'error', text: ary.message, persist: false});
+			}
+		}
+	);
+}
+
+function folder_delete() {
+	var id = folder_edit_id;
+	ac.get(
+		'folder.folder_delete',
+		[ id ],
+		function (ary) {
+			if ( ary.succeeded ) {
+				$J("#folder_" + id).remove();
+				//delete from the popover here
+				$J('a[data-value=' + id + ']').remove();
+				$J('#folderDeleteModal').modal('hide');
+
+				//delete from the rows here
+				if ($J('#series_list').length > 0) {
+					$J('#series_list tr.seriesrow ul.folders').each(function() {
+						$J(this).find('li[data-id="' + id + '"]').remove();
+						if ($J(this).find('li:visible').length == 0) {
+							$J(this).siblings('.no-folders').show();
+						}
+					});
+				}
+
+				//TODO: delete from label filter here, after TR's future labels PRs merge
+
+
+				ac_result_show(ary.message);
+			} else {
+				ac_error_show(ary.message);
+			}
+		}
+	);
+}
+
+function folder_add_open(type) {
+	$J("#folderAddModal").modal('show');
+	$J('#folderAddModal .campaignfolder input[type=text]').focus();
+}
+
+function stream_build(stream, ttippos, campaignId){
+    var placement = 'above';
+    if (ttippos) {
+        placement = ttippos;
+    }
+    var r = '';
+    for (var i = 0; i < stream.length; i++) {
+        var item = stream[i];
+        var str_title = item.type == 2 ? item.user : item.email;
+        if (item.type == 1) { // subscribe
+            str_title = sprintf(strStreamSubscribe, item.email);
+        } else if (item.type == 2) { // twitter
+            str_title = sprintf(strStreamTwitter, item.user);
+        } else if (item.type == 3) { // facebook
+            str_title = sprintf(strStreamFacebook, item.email);
+        } else if (item.type == 4) { // unsubscribe
+            str_title = sprintf(strStreamUnsubscribe, item.email);
+        } else if (item.type == 5 || item.type == 10) { // open or read (open is for sparkline, read is for avatars)
+            str_title = sprintf(strStreamOpen, item.email);
+        } else if (item.type == 6) { // click
+            str_title = sprintf(strStreamClick, item.email);
+        } else if (item.type == 7) { // forward
+            str_title = sprintf(strStreamForward, item.email);
+        } else if (item.type == 8) { // update
+            str_title = sprintf(strStreamUpdate, item.email);
+        }
+		    if (item.type == 2 && item.user_realname == '') { // twitter
+            r += '<a href="' + plink + '/report/#/campaign/' + campaignId + '/social' + '" target="_blank" data-placement="' + placement + '" rel="tip" title="' + str_title + '"><img src="' + plink + '/admin/images/gravatar_default.gif' + '" alt="" /></a>';
+        } else if (item.type == 2 && item.user_realname != '') { // twitter
+            r += '<a href="' + plink + '/report/#/campaign/' + campaignId + '/social' + '" target="_blank" data-placement="' + placement + '" rel="tip" title="' + str_title + '"><img src="' + item.pic + '" alt="" /></a>';
+        } else {
+            r += '<a href="' + plink + '/app/contacts/' + item.id + '" data-placement="' + placement + '" rel="tip" title="' + str_title + '" target="_blank"><img src="' + item.screenshot + '" height="25" alt="" /></a>';
+        }
+    }
+    return r;
+}
+
+
+function toggle_reply_to() {
+	$J("#replyfield").toggle();
+}
+
+
+function toggle_pers_dealtitle() {
+	$J('#dealtitle-pers-menu').toggle();
+}
+
+function toggle_pers_dealtitle_update() {
+	$J('#dealtitle-update-pers-menu').toggle();
+}
+
+function toggle_pers_dealtasktitle() {
+	$J('#dealtasktitle-pers-menu').toggle();
+}
+
+function insert_pers_dealtitle(tag) {
+	var val = $J('#new_deal_title').val();
+	val = val + " " + tag;
+	$J("#new_deal_title").val(val);
+	close_pers_dealtitle();
+}
+
+function insert_pers_dealtitle_update(tag) {
+	var val = $J('#new_deal_title_update').val();
+	val = val + " " + tag;
+	$J("#new_deal_title_update").val(val);
+	close_pers_dealtitle_update();
+}
+
+function insert_pers_dealtasktitle(tag) {
+	var val = $J('#new_deal_task_title').val();
+	val = val + " " + tag;
+	$J("#new_deal_task_title").val(val);
+	close_pers_dealtask();
+}
+
+function close_pers_dealtitle() {
+	$J('#dealtitle-pers-menu').hide();
+}
+
+function close_pers_dealtitle_update() {
+	$J('#dealtitle-update-pers-menu').hide();
+}
+
+function close_pers_dealtask() {
+	$J('#dealtasktitle-pers-menu').hide();
+}
+
+function close_pers_from(input) {
+	$J('#from-pers-menu-' + input).hide();
+	$J('#from' + input + '_remove').hide();
+}
+
+function toggle_pers_subject()
+{
+    $J('#pers-menu-subject').toggle();
+    $J('#from-pers-menu-name').hide();
+    $J('#from-pers-menu-email').hide();
+}
+
+
+function toggle_pers_from(input) {
+	var inactive = $J('#from' + input + '_input').hasClass('inactive');
+	$J('#from-pers-menu-' + input).toggle();
+	$J('#pers-menu-subject').hide();
+	if (inactive == true) {
+		//They already have personalization set up.
+		//So we need to show the "remove personalization" button,
+		//and pre-populate the dropdown menu with their preselected perstag.
+		$J('#from' + input + '_remove').show();
+		var perstag = $J("input[name=from" + input + "perstag").val();
+		$J(".pers_from_" + input + "_select .popover-menu li").each( function() {
+			if ( perstag == $J("a", this).data("value") ) {
+				cfield_name = $J("a", this).html();
+				$J(".pers_from_" + input + "_select a span").html(cfield_name);
+				$J(this).addClass("active");
+			} else {
+				$J(this).removeClass("active");
+			}
+		});
+	} else {
+		$J('#from' + input + '_remove').hide();
+	}
+}
+
+function update_from_value(target) {
+	var value = $J("input[name=" + target + "_display]").val();
+	if ( target == "fromname" && pers_fromname == false ) {
+		$J("input[name=" + target + "]").val(value);
+	}
+	if ( target == "fromemail" && pers_fromemail == false ) {
+		$J("input[name=" + target + "]").val(value);
+	}
+}
+
+function open_pers_from(target) {
+	var inactive = $J('#from' + input + '_input').hasClass('inactive');
+	$J('#from-pers-menu-' + input).toggle();
+	if (inactive == true) {
+		$J('#from' + input + '_remove').show();
+	} else {
+		$J('#from' + input + '_remove').hide();
+	}
+}
+
+function compile_from_pers(target, toggle) {
+	if ( target == "fromname" ) {
+		var perstag = $J("input[name=fromnameperstag]").val();
+		if ( !perstag || perstag == "" ) {
+			alert(campaign_str_choosefield);
+			return false;
+		}
+		cfield_name = perstag;
+		$J(".pers_from_name_select .popover-menu li").each( function() {
+			if ( perstag == $J("a", this).data("value") ) {
+				cfield_name = $J("a", this).html();
+			}
+		});
+		var default_from_name = $J("input[name=default_from_name]").val();
+		if ( !default_from_name || default_from_name == "" ) {
+			alert(campaign_str_typename);
+			return false;
+		}
+		var value = default_from_name + "|" + perstag;
+		var display_value = sprintf(campaign_str_displayvalue, cfield_name, default_from_name);
+		$J("input[name=fromname_display]").val(display_value);
+		$J("input[name=fromname_display]").attr("readonly", true);
+		$J("input[name=fromname_display]").addClass("inactive");
+		$J("input[name=fromname]").val(value);
+		$J("input[name=fromname_display]").attr("data-placement", "above");
+		$J("input[name=fromname_display]").attr("data-original-title", display_value);
+		$J("input[name=fromname_display]").twipsy("enable");
+		$J("#PersFromName").hide();
+		pers_fromname = true;
+		if (toggle) {
+			toggle_pers_from('name');
+		}
+
+	} else if ( target == "fromemail" ) {
+		var perstag = $J("input[name=fromemailperstag]").val();
+		if ( !perstag || perstag == "" ) {
+			alert(campaign_str_choosefield);
+			return false;
+		}
+		cfield_email = perstag;
+		$J(".pers_from_email_select .popover-menu li").each( function() {
+			if ( perstag == $J("a", this).data("value") ) {
+				cfield_email = $J("a", this).html();
+			}
+		});
+		var default_from_email = $J("input[name=default_from_email]").val();
+		if ( !default_from_email || !ac_str_email(default_from_email) ) {
+			alert(campaign_str_typeemail);
+			return false;
+		}
+		var value = default_from_email + "|" + perstag;
+		var display_value = sprintf(campaign_str_displayvalue, cfield_email, default_from_email);
+		$J("input[name=fromemail_display]").val(display_value);
+		$J("input[name=fromemail_display]").attr("readonly", true);
+		$J("input[name=fromemail_display]").addClass("inactive");
+		$J("input[name=fromemail]").val(value);
+		$J("input[name=fromemail_display]").attr("data-placement", "above");
+		$J("input[name=fromemail_display]").attr("data-original-title", display_value);
+		$J("input[name=fromemail_display]").twipsy("enable");
+		$J("#PersFromEmail").hide();
+		pers_fromemail = true;
+		if (toggle) {
+			toggle_pers_from('email');
+		}
+	} else if(target == 'subject') {
+        var perstag = $J("input[name=subjectperstag]").val();
+        if ( !perstag || perstag == "" ) {
+            alert(campaign_str_choosefield);
+            return false;
+        }
+        cfield_name = perstag;
+        $J(".pers_subject_select .popover-menu li").each( function() {
+            if ( perstag == $J("a", this).data("value") ) {
+                cfield_name = $J("a", this).html();
+            }
+        });
+
+        if($J("input[name=subject]").val())
+        {
+            $J("input[name=subject]").val($J("input[name=subject]").val() + perstag);
+        } else if($J("input#template_name").val()) {
+            $J("input#template_name").val($J("input#template_name").val() + perstag);
+        } else if($J("input#nameField").val()) {
+            $J("input#nameField").val($J("input#nameField").val() + perstag);
+            $J("input#nameField").trigger("change");
+        } else {
+			$J("input[name=subject]").val($J("input[name=subject]").val() + perstag);
+		}
+
+    }
+
+}
+
+function remove_from_pers(target) {
+	if ( target == "fromname" ) {
+		$J("input[name=fromname]").val($J("input[name=default_from_name]").val());
+		$J("input[name=fromname_display]").val($J("input[name=default_from_name]").val());
+		$J("input[name=fromname_display]").attr("readonly", false);
+		$J("input[name=fromname_display]").removeAttr("data-placement");
+		$J("input[name=fromname_display]").removeAttr("data-original-title");
+		$J("input[name=fromname_display]").twipsy("disable");
+		$J("input[name=fromname_display]").removeClass("inactive");
+		$J("#PersFromName").hide();
+		pers_fromname = false;
+		toggle_pers_from('name');
+	} else if ( target == "fromemail" ) {
+		$J("input[name=fromemail]").val($J("input[name=default_from_email]").val());
+		$J("input[name=fromemail_display]").val($J("input[name=default_from_email]").val());
+		$J("input[name=fromemail_display]").attr("readonly", false);
+		$J("input[name=fromemail_display]").removeAttr("data-placement");
+		$J("input[name=fromemail_display]").removeAttr("data-original-title");
+		$J("input[name=fromemail_display]").twipsy("disable");
+		$J("input[name=fromemail_display]").removeClass("inactive");
+		$J("#PersFromEmail").hide();
+		pers_fromemail = false;
+		toggle_pers_from('email');
+	}
+	$J("#personalize_from").modal("hide");
+}
+
+/**
+ * Maps symbols from php format string to momentjs
+ *
+ * http://php.net/manual/en/function.strftime.php
+ * http://momentjs.com/docs/#/displaying/format/
+ */
+var formatMap = {
+	'%a': 'ddd',
+	'%A': 'dddd',
+	'%d': 'DD',
+	'%e': 'D',
+	'%j': 'DDDD',
+	'%u': 'E',
+	'%w': 'e',
+
+	// Week of year. Php has three distinct options depending on where you want 
+	// to start counting weeks. Momentjs does net specify beyond "Week of year"
+	'%U': 'w',
+	'%V': 'w',
+	'%W': 'w',
+
+	'%b': 'MMM',
+	'%B': 'MMMM',
+	'%h': 'MMM',
+	'%m': 'MM',
+
+	'%g': 'YY',
+	'%G': 'YYYY',
+	'%y': 'YY',
+	'%Y': 'YYYY',
+
+	'%H': 'HH',
+	'%k': 'H',
+	'%I': 'hh',
+	'%l': 'h',
+
+	'%M': 'mm',
+	'%p': 'A',
+	'%P': 'a',
+	'%r': 'hh:mm:ss A',
+	'%R': 'HH:mm',
+	'%S': 'ss',
+	'%T': 'HH:mm:ss',
+
+	'%z': 'ZZ',
+	'%D': 'MM/DD/YY',
+	'%F': 'YYYY-MM-DD',
+	'%s': 'X',
+
+	'%t': '	', // Tab character
+	'%%': '%', // Literal percentage
+
+	'%X': 'LTS',	// Preferred time representation based on locale
+	'%c': 'llll',	// Preferred date and time stamp based on locale
+
+	// Unsupported
+	'%C': '', // 2 digit century
+	'%Z': '', // Timezone abbreviation
+	'%n': '', // Newline character
+};
+
+/**
+ * Identifies characters to be replaced
+ */
+var formatEx = /%[aAdejuwUVWbBhmCgGyYHkIlMpPrRSTXzZcDFsxnt%]/g;
+
+/**
+ * @param String phpFormat The php strftime format to convert to momentjs
+ * @return String The momentjs format
+ *
+ * Convert a php strftime format string to momentjs
+ * The function is copied from ember-app/app/utils/convert-php-strftime-format-to-moment.js
+ * We need to keep the two functions in hosted and ember-app identical to
+ * format timestamps consistently across the platform.
+ */
+function convertPhpStrftimeFormatToMoment(phpFormat) {
+	if (!phpFormat) {
+		return '';
+	}
+
+	return phpFormat.replace(formatEx, function (phpStr) {
+		return formatMap[phpStr];
+	});
+}
+
+/**
+ * On keypress, and after a delay, fetch a list of contact tags 
+ * filtered by the value entered into the text input field
+ * 
+ * @param {*} target   The jQuery object input field where the tag value was entered
+ * @return object
+ */
+function fetchAvailableTags(target) {
+	// If an autocomplete instance exists on the target and the instance is disabled, re-enable the instance
+	if (target.autocomplete("instance") && target.autocomplete("option", "disabled")) {
+		target.autocomplete("option", "disabled", false);
+	}
+	
+	target.on('change input', function(e) {
+		var value = e.target.value;
+
+		if ((value || '').trim()) {
+			target.autocomplete({
+				minLength: 1,
+				delay: 250,
+				source: function(request, response) {
+					$J.ajax({
+						url: plink + '/api/2/tags/list',
+						type: 'GET',
+						dataType: 'json',
+						data: {
+							limit: 20,
+							term: value
+						},
+						success: function(data) {
+							response(data);
+						},
+						fail: function(message) {
+							console.error('Unable to fetch tags: ', message);
+						}
+					});
+				}
+			});
+		}
+	});
+}

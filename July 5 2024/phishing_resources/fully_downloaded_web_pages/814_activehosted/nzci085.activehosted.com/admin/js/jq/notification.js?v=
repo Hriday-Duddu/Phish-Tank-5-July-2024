@@ -1,0 +1,56 @@
+//
+// Notification
+// Usage: $J('#your-container').notification({text: 'Successfully sent', type: 'success'})
+//
+// Docs:
+// 
+// type: string (success, error, warning, notice)
+// text: string (alert text)
+// persist: boolean (should the alert remain on screen)
+// delay: int (time in milliseconds for the alert to disappear if persistant is set to true)
+
+(function($){
+	$.fn.notification = function( options ) {
+	
+		var _this = this;
+			
+		// Default options
+		var settings = $.extend({
+			text: "Supply some text for your notification.",
+			type: "success",
+			persist: true,
+			delay: 5000
+		}, options );
+
+		var template = '<div class="notify ' + settings.type + ' ">' + settings.text + '</div>';
+
+		var existing = $("> div.notify." + settings.type, _this);
+		if ( existing.length ) {
+			existing
+				//.removeClass()
+				//.addClass('notify')
+				//.addClass(settings.type)
+				.html(settings.text)
+			;
+			var timeout = existing.data('notify-timeout');
+			if ( timeout ) {
+				clearTimeout(timeout);
+				timeout = false;
+			}
+		} else {
+			existing = $(template);
+			_this.prepend(existing);
+		}
+
+		if (settings.persist != true) {
+			var timeout = setTimeout(function() {
+				_this.find('.notify').animate({ opacity: 0}, 500, function() {
+					_this.find('.notify').remove();
+					clearTimeout(timeout);
+				});
+			}, settings.delay);
+			existing.data('notify-timeout', timeout);
+		}
+	
+	};
+})(jQuery);

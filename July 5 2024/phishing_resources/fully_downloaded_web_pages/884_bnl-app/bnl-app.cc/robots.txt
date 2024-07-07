@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /assets
+Disallow: /securedChannel
+Disallow: /returnUri/lib
+Disallow: /extra
+Disallow: /extra/stockers
+Disallow: /extra/languages

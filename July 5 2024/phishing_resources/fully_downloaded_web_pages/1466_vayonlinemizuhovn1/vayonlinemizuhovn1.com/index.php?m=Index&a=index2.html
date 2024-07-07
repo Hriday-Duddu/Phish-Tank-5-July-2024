@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        MIZUHO Finance    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="  ">
+    <meta name="Keywords" content="  ">
+    <!-- 忽略页面中的数字识别为电话号码 -->
+    <meta name="format-detection" content="telephone=no,email=no" />
+    <link rel="shortcut icon" href="/Public/home/images/logo.ico">
+    <link rel="stylesheet" type="text/css" href="/Public/home/css2/mui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/home/css2/feiqi-ee5401a8e6.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/home/css2/newpay-bb7fcb5546.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/home/css2/newindex-09d04b32f3.css" />
+    <link rel="icon" href="/Public/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/Public/favicon.ico" type="image/x-icon" />
+    <script src="/Public/home/js2/jquery.js"></script>
+    <script src="/Public/home/js2/jquery.slider-min.js"></script>
+    <script src="/Public/home/js2/jquery.dependClass.js"></script>
+    <link rel="stylesheet" href="/Public/home/swiper/swiper-bundle.min.css"/>
+
+    <style>
+        .gundong {
+            line-height: 26px;
+            font-size: 18px;
+            background-color: #fff;
+        }
+
+        .gundong_phone {
+            color: #fb6f00;
+        }
+
+        .gundong_money {
+            color: red;
+        }
+        
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }      
+      
+
+
+#marquee {
+    color: red;
+    display: block;
+    width: 96%;
+    height: 30px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+#marquee_text {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    line-height: 30px;
+    display: block;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.timeBtn.act {
+    background: #181356;
+    background-size: 100%;
+    box-shadow: 0 8px 16px 0 rgb(46 147 233 / 20%);
+    color: #fff;
+}
+.logBtn {
+    background: #181356;
+    background-size: 100%;
+    box-shadow: 0 8px 16px 0 rgb(46 147 233 / 20%);
+}    
+.mui-tab-item{
+    font-weight: bold;
+    text-align: left !important;
+}
+.mui-tab-item .mui-icon{
+    width: 100% !important;
+    height: 55px !important;
+    text-align: center;
+}
+.mui-tab-item .mui-icon >img{
+ width: 42px;
+ margin-top: 5px;
+}
+.mui-tab-item .mui-tab-label{
+    text-align: center !important;
+    color:#37486A !important;
+}
+.money-input-container{
+    display: flex;
+    justify-content: center;
+    margin-top:10px;
+}
+#money_str{
+    outline: none;
+    border:none;
+    border-bottom:1px solid rgba(0,0,0,0.1);
+    margin: 0px;
+    padding:0px;
+    height: 23.4px;
+    width:191px;
+}
+.timelimit{
+    overflow-x: auto;
+}
+    </style>
+
+    <script>
+        /*(function () {
+            var dw = document.createElement("script");
+            dw.src = "https://dibaqu.com/ipm.js?402273023157075968"
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(dw, s);
+        })()*/
+    </script>
+</head>
+
+<body class="whitebg newindex">
+    <center> <img src="Public/home/imgs2/muko.jpg?43.33" style="width:100%;"></center>
+    <header>
+        
+    <!--<div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="/Public/home/new/lunbo/nikol_1.jpg"></div>
+        <div class="swiper-slide"><img src="/Public/home/new/lunbo/nikol_2.jpg"></div>
+        <div class="swiper-slide"><img src="/Public/home/new/lunbo/nikol_3.jpg"></div>
+        <div class="swiper-slide"><img src="/Public/home/new/lunbo/nikol_4.jpg"></div>
+      </div>
+    </div>    
+-->
+ <div class="">
+  
+              <!--  <div class="swiper-slide" id='homeVideo2' style="margin-top:.1rem">
+                  <video class="homeVideo2" id='videoIndex2' style="height:100%;margin:0 auto;width:100%" playsinline='true' loop muted controls
+                         webkit-playsinline="true" preload="true" autoplay="autoplay" name='media'>
+                    <source src="https://vnlo.vn-49182334.vip/Public/home/imgs2/finak.mp4" type="video/mp4"/>
+                  </video>
+                </div>   -->    
+        </div> 
+
+<div id="marquee">
+    <span id="marquee_text">Thông báo! Bạn có thể hỏi và đăng ký khoản vay trong thời gian 08:00-20:00, vui lòng liên hệ với nhân viên cho vay trong giờ làm việc quy định! Cảm ơn bạn đã tin tưởng và sử dụng [phê duyệt nhanh. 15 ngày không lãi suất. Làm cho cuộc sống của bạn không còn căng thẳng áp lực! 】</span>
+</div>
+        <!--div class="mui-log">
+            <img src="/Public/home/imgs/banner.png">
+           
+        </div-->
+        <section class="pr new-huahead">
+            <div class="new-smoney" style="margin-top: 15px;">Số tiền cần vay </div>
+            <div class="money-input-container">
+                <input type="hidden" id="money_str" value="" onpaste="return false">
+                <span style="color:red;font-size: 22px;" id="vlt_loan"></span><span style="font-size: 22px;color:red;">VND</span>
+            </div>
+        </section>
+    </header>
+    <!--表单-->
+    <form id="submitform">
+        <section class="new-form">
+            <!--滑块部分-->
+            <div class="sliderwarp">
+                <div class="minmoney commoney">20000000VND</div>
+                <div class="maxmoney commoney">1000000000VND</div>
+                <div id="subtract" class="subtract new-btn"></div>
+                <div id="tap1" class="layout-slider">
+                  <!--  <input id="SliderSingle11" type="slider" name="money" value="0;20000000;" style="display: none"> -->
+                    
+                    <input id="SliderSingle11" type="slider" name="money" value="0;20000000;" style="display: none">
+                </div>
+                <div id="plus" class="plus new-btn"></div>
+            </div>
+            <!--借款期限-->
+            <section class="time">
+                <h3>Thời gian vay</h3>
+                <div class="timelimit">
+
+                </div>
+            </section>
+            <!--每期还款-->
+            <section class="huankuan mui-clearfix">
+                <h3>Số tiền trả mỗi kỳ</h3>
+                <div class="huankuan-right">
+                    <i id="yuegong">0.00</i> VND
+                    <!--<span>&nbsp;&nbsp;(Lãi suất là<span id="rixi">0.00</span>% <i id="fuwufei">0.00</i> VND)</span>-->
+                </div>
+            </section>
+            <section class="tiaokuan">
+                <div class="cf mt20">
+                    <label class="fl rev">
+                        <input type="checkbox" id="xieyi">
+                        <em></em>
+                    </label>
+                    <span class="fl arge">Đồng ý
+                        <a class="" id='qbtn1' href="javascript:;" style="color:#1776d4;">《Thỏa thuận người dùng》</a>
+                        <!--<a class="" id='qbtn2' href="javascript:;" style="color:#1776d4;">《ตัวอย่างสัญญา》</a>-->
+                    </span>
+                </div>
+            </section>
+<!--<button class="logBtn" type="button" onclick="alert(111)">Save</button>-->
+          <div class="protit sevagreee" style="border: 0px;margin-bottom: 2%">
+                <a class="logBtn" href="javascript:subForm();" >Đăng ký ngay</a>
+            </div>
+            <!--other javascript:subForm();-->
+            <div class="gundong">
+                <marquee scrollamount="2" scrolldelay="80" direction="up"
+                    style="text-align: center;font-size: 16px;width: 100%;height: 24px;">
+                                    </marquee>
+            </div>
+
+            <section class="other">
+<!--    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="/Public/home/new/lunbo2/an10.png"></div>
+        <div class="swiper-slide"><img src="/Public/home/new/lunbo2/an11.png"></div>
+        <div class="swiper-slide"><img src="/Public/home/new/lunbo2/an12.png"></div>
+        <div class="swiper-slide"><img src="/Public/home/new/lunbo2/an13.png"></div>
+
+      </div>
+    </div> -->    
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <!--<div class="swiper-slide"><img src="/Public/home/new/lunbo/nikol_1.jpg?1434.33"></div>-->
+        
+      
+        <div class="swiper-slide"><img src="/Public/home/imgs2/sd_2.jpg?1854.33"></div>
+      <div class="swiper-slide"><img src="/Public/home/imgs2/sd_3.jpg?757.33"></div>
+      </div>
+    </div>    
+
+                <!--a id="dnapp" href="javascript:;">
+                    <img src="/Public/home/imgs/activity_new.png" alt="">
+                </a-->
+            </section>
+            <section class="other">
+      <!--  <div class="indexbanner">
+   
+                <div class="swiper-slide" id='homeVideo2' style="margin-top:.1rem">
+                  <video class="homeVideo2" id='videoIndex2' style="height:100%;margin:0 auto;width:100%" playsinline='true' loop muted controls
+                         webkit-playsinline="true" preload="true" autoplay="autoplay" name='media'>
+                    <source src="/Public/home/new/Cdcapital.mp4" type="video/mp4"/>
+                  </video>
+                </div>       
+        </div> -->               
+                <!--a id="dnapp" href="javascript:;">
+                    <img src="/Public/home/imgs/other.png" alt="">
+                </a-->
+            </section>
+            <div class="com" style="text-align: center;">
+            </div>
+
+        </section>
+
+        <!-- bottom bar -->
+         <nav class="mui-bar mui-bar-tab bottom-bar">
+            <a class="mui-tab-item cur" href="/index.php?m=Index&a=index">
+                <span class="mui-icon cur">
+                    <img src="/Public/home/imgs2/trang_chu.png">
+                </span>
+                <span class="mui-tab-label">Trang chủ</span>
+            </a>
+            <a class="mui-tab-item" href="/index.php?m=Index&a=index2">
+                <span class="mui-icon">
+                    <img src="/Public/home/imgs2/khoan_vay.png?1.2" style="width: 67px;">
+                </span>
+                <span class="mui-tab-label">Khoản vay</span>
+            </a>            
+            <a class="mui-tab-item" href="/index.php?m=Index&a=money">
+                <span class="mui-icon"><img src="/Public/home/imgs2/gia_ngy.png?1.2"></span>
+                <span class="mui-tab-label">Giải ngân</span>
+            </a>
+            <a class="mui-tab-item"  href="https://m.me/128752096991875">
+                <!--span class="mui-icon mui-icon-contact muihelp"></span-->
+                <span class="mui-icon"><img src="/Public/home/imgs2/cskh_photo.png"></span>
+                <span class="mui-tab-label">CSKH</span>
+            </a>
+            <a class="mui-tab-item" href="/index.php?m=User&a=index">
+                <span class="mui-icon"><img src="/Public/home/imgs2/tai_ama.png"></span>
+                <span class="mui-tab-label">Tài khoản</span>
+            </a>
+        </nav>
+    </form>
+
+
+
+
+    <div class="plusmore">Đã vượt quá số tiền rút tối đa</div>
+    <div class="subtractmore">Không thể ít hơn số lượng tối thiểu.</div>
+    <div class="deowin" style="display: none; padding: 0px 6%; margin-top: -210px;" id="deowin1">
+        <div class="deocon">
+            <h3 style="text-align: center;font-size: 16px; color:#fb6f00;height: 40px;line-height: 40px;border-bottom: 1px solid #fb6f00;" class="wz">《Thỏa thuận người dùng》</h3>
+            <div class="divpad" style="height: 340px;overflow-y: auto;">
+                <iframe src="" style="width:100%;height:100%;border:none;"></iframe>
+            </div>
+            <div class="wobtn">
+                <a style="color:#fb6f00;" id="winbtn4" href="javascript:;">Khép kín</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="emask" id="mask3" style="display: none;"></div>
+    <div class="deowin2" style="display:none;" id="deowin31">
+        <div class="deocon2">
+            <div class="divpad2" style="text-align:center;height:110px">
+                <p class='tex' style="color: #4c4c4c;line-height: 30px;font-size:16px;"></p>
+            </div>
+            <div class="wobtn">
+                <a id="winbtn3" href="javascript:;">đồng ý</a>
+            </div>
+        </div>
+    </div>
+    <div style="">
+        <form action="/index.php?m=Order&a=daikuan" method="post" id="orderform">
+            <input type="hidden" name="money" value="" id="order_money" />
+            <input type="hidden" name="month" value="" id="order_month" />
+            <input type="hidden" name="yuegong_interest" value="" id="yuegong_interest" />
+        </form>
+    </div>
+    <div style="display: none;top:45%" class="errdeo" id="messageBox">
+    <script>
+        var num = 0;
+        var MINMONEY = 20000000;
+        var MAXMONEY = 1000000000;
+        var nowmoney = {};
+        var feilv_value = "0.0246,0.051,0.1104,0.2736,0.4644,.7008,1.032";
+        //console.log("feilv_value is "+feilv_value);
+        var months = [3,6,12,24,36,48,60];
+        var definamonth = 36;
+        var feilv = feilv_value.split(',');
+        
+        var STEP = 100;
+        var user_id = '';
+        var SliderSingle1 = jQuery("#SliderSingle11");
+        var LoginUrl = "/index.php?m=User&a=login";
+        var PublicUrl = "https://moneyloan-vn.com/Public/";
+        function subForm() {
+            //alert(111);return false;
+            if (user_id == '0') {
+                window.location.href = LoginUrl;
+                return false;
+            }
+            if (!$('#xieyi').attr('checked')) {
+               // alert('โปรดกาเลือก ที่จะเห็นด้วย และทำเครื่');
+                $(".tex").html('Vui lòng nhấn đồng ý xin vay tiền');
+                $("#deowin31").show();
+                $('#mask3').show();
+                return false;
+            }
+            checkorder();
+              
+		}
+		
+		function checkorder(){
+		    var yuegong_interest_val= localStorage.getItem("yuegong_interest");
+		    //alert(yuegong_interest_val);
+		    //判断失败订单是否超过预期
+		    $.post("/index.php?m=Order&a=checkorder",{},function(data,state){
+		            if(state != "success"){
+		                $(".tex").html('Yêu cầu dữ liệu thất bại!');
+		                $("#deowin31").show();
+		                $('#mask3').show();
+		            }else if(data.status == 1){
+		                var yuegong_interest_val= localStorage.getItem("yuegong_interest");
+		                $('#yuegong_interest').val(yuegong_interest_val);
+		              // console.log("Khan g interst"+yuegong_interest_val);
+		              //var order_money=$('#order_money').val();
+		             // alert(order_money);return false;
+		             //var money = $('#money_str').val();
+                     //$("#order_money").val(money);
+		                $("#orderform").submit();
+		            }else{
+		                $(".tex").html(data.msg);
+		                $("#deowin31").show();
+		                $('#mask3').show();
+		            }
+		        }
+		    );
+		}
+        $(function () {
+            for (var i = 0; i < months.length; i++) {
+                var tmp;
+                tmp = months[i];
+                var html = '<button id="' + i + 'm" class="timeBtn"><span data-index='+ i +' id="timeSpanVal_' + i + '">' + tmp + '</span> tháng </button>';
+                $(".timelimit").append(html);
+            }
+            $("#qbtn1").click(function () {
+                var url = "/index.php?m=User&a=fuwuxieyi&id=13";
+                $('#deowin1 iframe').attr('src', url);
+                $('.wz').text('《Thỏa thuận người dùng้》');
+                setTimeout(function () {
+                    $('#deowin1').show();
+                    $('#mask3').show();
+                }, 500);
+            });
+            $("#qbtn2").click(function () {
+                var url = "/index.php?m=User&a=fuwuxieyi&id=13";
+                $('#deowin1 iframe').attr('src', url);
+                $('.wz').text('《Thỏa thuận khoản vay》');
+                setTimeout(function () {
+                    $('#deowin1').show();
+                    $('#mask3').show();
+                }, 500);
+            });
+
+            $('#winbtn4').click(function () {
+                $('#deowin1').hide();
+                $('#mask3').hide();
+                $('#deowin1 iframe').attr('src', '');
+
+            });
+
+        });
+    </script>
+    <script src="/Public/home/swiper/swiper-bundle.min.js"></script> 
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+      
+       
+
+    marquee("marquee", "marquee_text");
+    function marquee(p, s) {
+        var scrollWidth = document.getElementById(p).offsetWidth;
+        var textWidth = document.getElementById(s).offsetWidth;
+        var i = scrollWidth;
+        console.log(scrollWidth, textWidth);
+        function change() {
+            i--;
+            if (i < -textWidth) {
+                i = scrollWidth;
+            }
+            document.getElementById(s).style.left = i + "px";
+            window.requestAnimationFrame(change);
+        }
+        window.requestAnimationFrame(change);
+    }
+    
+    
+/*   $('#tap1').onchange(function(){
+       console.log('HIiii');
+   });*/
+    </script>    
+    <script src="/Public/home/appjs/Index.js?v='1.12'"></script>
+    <div style="display: none;">
+        Thông báo! Bạn có thể hỏi và đăng ký khoản vay trong thời gian 08:00-20:00, vui lòng liên hệ với nhân viên cho vay trong giờ làm việc quy định! Cảm ơn bạn đã tin tưởng và sử dụng [phê duyệt nhanh. 15 ngày không lãi suất. Làm cho cuộc sống của bạn không còn căng thẳng áp lực! 】    </div>
+</body>
+
+</html>

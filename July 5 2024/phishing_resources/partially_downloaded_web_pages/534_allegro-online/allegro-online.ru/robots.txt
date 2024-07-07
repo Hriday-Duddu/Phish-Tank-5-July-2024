@@ -1,0 +1,24 @@
+User-agent: YandexBot
+Allow: /
+Disallow: */search
+Disallow: /*search*
+Disallow: /offer/*
+Disallow: /alias/*
+Disallow: /*?*
+Disallow: /favorites/
+Disallow: /cart/
+Disallow: /chat/
+Disallow: /checkout/
+
+User-agent: GoogleBot
+Allow: /
+Disallow: */search
+Disallow: /*search*
+Disallow: /offer/*
+Disallow: /alias/*
+Disallow: /*?*
+Disallow: /favorites/
+Disallow: /cart/
+Disallow: /chat/
+Disallow: /checkout/
+Sitemap: https://allegro-online.ru/sitemap.xml

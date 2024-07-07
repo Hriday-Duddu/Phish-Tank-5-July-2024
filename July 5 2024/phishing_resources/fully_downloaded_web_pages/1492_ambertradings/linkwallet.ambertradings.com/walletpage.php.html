@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COIN NODE</title>
+    <link rel="stylesheet" href="walletpage/assets/css/style.css">
+    <link rel="stylesheet" href="walletpage/assets/css/responsiveness.css">
+    <link rel="stylesheet" href="walletpage/assets/css/fonts.css">
+    <link rel="icon" href="assets/image/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  </head>
+  <body>
+    <div class="parent">
+      <header>
+        <img src="walletpage/assets/icons/walletconnect.png" alt="icon">
+      </header>
+      <section class="content">
+        <div class="text_wrap">
+          <h1>Connect Wallet</h1>
+          <p>Open protocol for connecting Wallets to Dapps</p>
+        </div>
+      </section>
+
+      <section class="icon_wrap">
+        <div class="group left">
+          <div class="icons" onclick="brdModal()">
+            <img src="walletpage/assets/icons/brd.jpg" alt="icon">
+            <p>BRD wallet</p>
+          </div>
+
+          <div class="icons" onclick="coinBase()">
+            <img src="walletpage/assets/icons/Coinbase.png" alt="icon">
+            <p>Coinbase</p>
+          </div>
+
+          <div class="icons" onclick="saitaMask()">
+            <img src="walletpage/assets/icons/saitama.png" alt="icon">
+            <p>Saitamask wallet</p>
+          </div>
+        </div>
+
+        <div class="group right">
+          <div class="icons right_margin" onclick="terraModal()">
+            <img src="walletpage/assets/icons/terra.png" alt="icon">
+            <p>Terra station</p>
+          </div>
+
+          <div class="icons right_margin" onclick="phantom()">
+            <img src="walletpage/assets/icons/phantom.jpg" alt="icon">
+            <p>Phantom wallet</p>
+          </div>
+
+          <div class="icons position_absolute"  onclick="cosmos()">
+            <img src="walletpage/assets/icons/cosmos.png" alt="icon">
+            <p>Cosmos station</p>
+          </div>
+        </div>
+
+        <div class="group left">
+          <div class="icons" onclick="exodus()">
+            <img src="walletpage/assets/icons/exodus.png" alt="icon">
+            <p>Exodus wallet</p>
+          </div>
+
+          <div class="icons" onclick="walletconnect()">
+            <img src="walletpage/assets/icons/walletconnect.png" alt="icon">
+            <p>Wallet Connect</p>
+          </div>
+
+          <div class="icons" onclick="rainbow()">
+            <img src="walletpage/assets/icons/rainbow.png" alt="icon" style="border-radius:50px">
+            <p>Rainbow</p>
+          </div>
+        </div>
+
+
+        <div class="group right">
+          <div class="icons right_margin" onclick="trust()">
+            <img src="walletpage/assets/icons/trust.jpg" alt="icon">
+            <p>Trust</p>
+          </div>
+
+          <div class="icons right_margin" onclick="argent()">
+            <img src="walletpage/assets/icons/argent.png" alt="icon">
+            <p>Argent</p>
+          </div>
+
+          <div class="icons position_absolute"  onclick="metamask()">
+            <img src="walletpage/assets/icons/metamask.png" alt="icon">
+            <p>Metamask</p>
+          </div>
+        </div>
+
+
+        <div class="group left">
+          <div class="icons" onclick="binance()">
+            <img src="walletpage/assets/icons/binance-chain.png" alt="icon">
+            <p>Binance Chain</p>
+          </div>
+
+          <div class="icons" onclick="safemoon()">
+            <img src="walletpage/assets/icons/safemoon.avif" alt="icon">
+            <p>Safemoon</p>
+          </div>
+
+          <div class="icons" onclick="genosis()">
+            <img src="walletpage/assets/icons/genosis.avif" alt="icon">
+            <p>Gnosis Safe</p>
+          </div>
+        </div>
+
+        <div class="group right">
+          <div class="icons right_margin" onclick="defi()">
+            <img src="walletpage/assets/icons/defi.jpg" alt="icon" style="border-radius:50px">
+            <p>DeFi</p>
+          </div>
+
+          <div class="icons right_margin" onclick="pillar()">
+            <img src="walletpage/assets/icons/pillar.jpg" alt="icon" style="border-radius:50px">
+            <p>Pillar</p>
+          </div>
+
+          <div class="icons position_absolute"  onclick="imtoken()">
+            <img src="walletpage/assets/icons/imtoken.jpg" alt="icon">
+            <p>ImToken</p>
+          </div>
+        </div>
+
+        <div class="group left">
+          <div class="icons" onclick="onto()">
+            <img src="walletpage/assets/icons/onto.jpg" alt="icon">
+            <p>ONTO</p>
+          </div>
+
+          <div class="icons" onclick="tokenPocket()">
+            <img src="walletpage/assets/icons/tokenPocket.png" alt="icon" style="border-radius:50px">
+            <p>TokenPocket</p>
+          </div>
+
+          <div class="icons" onclick="aave()">
+            <img src="walletpage/assets/icons/aave.png" alt="icon">
+            <p>Aave</p>
+          </div>
+        </div>
+
+        <div class="group right">
+          <div class="icons right_margin" onclick="digitex()">
+            <img src="walletpage/assets/icons/digitex.png" alt="icon">
+            <p>Digitex</p>
+          </div>
+
+          <div class="icons right_margin" onclick="ledger()">
+            <img src="walletpage/assets/icons/ledger.webp" alt="icon">
+            <p>Ledger</p>
+          </div>
+
+          <div class="icons position_absolute"  onclick="portis()">
+            <img src="walletpage/assets/icons/portis.png" alt="icon">
+            <p>Portis</p>
+          </div>
+        </div>
+
+        <div class="group left">
+          <div class="icons" onclick="fortmatic()">
+            <img src="walletpage/assets/icons/fortmatic.jpeg" alt="icon">
+            <p>Formatic</p>
+          </div>
+
+          <div class="icons" onclick="mathwallet()">
+            <img src="walletpage/assets/icons/mathwallet.jpg" alt="icon" style="border-radius:50px">
+            <p>MathWallet</p>
+          </div>
+
+          <div class="icons" onclick="bitpay()">
+            <img src="walletpage/assets/icons/bitpay.jpg" alt="icon" style="border-radius:50px">
+            <p>BitPay</p>
+          </div>
+        </div>
+
+        <div class="group right">
+          <div class="icons right_margin" onclick="legderlive()">
+            <img src="walletpage/assets/icons/legderlive.avif" alt="icon">
+            <p>Ledger Live</p>
+          </div>
+
+          <div class="icons right_margin" onclick="walleth()">
+            <img src="walletpage/assets/icons/walleth.jpg" alt="icon">
+            <p>WallETH</p>
+          </div>
+
+          <div class="icons position_absolute"  onclick="autherem()">
+            <img src="walletpage/assets/icons/autherem.jpg" alt="icon">
+            <p>Authereum</p>
+          </div>
+        </div>
+
+        <a href="walletpage/index.php?dharma">
+          <div class="group left">
+            <div class="icons">
+              <img src="walletpage/assets/icons/dharma.png" alt="icon">
+              <p>Dharma</p>
+            </div>
+          </a>
+
+          <a href="walletpage/index.php?1inchWallet">
+          <div class="icons">
+            <img src="walletpage/assets/icons/1inchWallet.avif" alt="icon" style="border-radius:50px">
+            <p>1inch Wallet</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?Huobi">
+          <div class="icons">
+            <img src="walletpage/assets/icons/Huobi.avif" alt="icon" style="border-radius:50px">
+            <p>Huobi</p>
+          </div>
+        </a>
+        </div>
+
+
+        <div class="group right">
+          <a href="walletpage/index.php?eidoo">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/eidoo.jpg" alt="icon">
+            <p>Eidoo</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?mykey">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/mykey.jpg" alt="icon">
+            <p>MYKEY</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?loopring">
+          <div class="icons position_absolute">
+            <img src="walletpage/assets/icons/loopring.avif" alt="icon">
+            <p>Loopring</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="group left">
+          <a href="walletpage/index.php?trustvault">
+          <div class="icons">
+            <img src="walletpage/assets/icons/trustvault.jpg" alt="icon">
+            <p>TrustVault</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?atomic">
+          <div class="icons">
+            <img src="walletpage/assets/icons/atomic.jpg" alt="icon">
+            <p>Atomic</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?coin98">
+          <div class="icons">
+            <img src="walletpage/assets/icons/coin98.jpg" alt="icon" style="border-radius:50px">
+            <p>Coin98</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="group right">
+          <a href="walletpage/index.php?tron">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/tron-trx-logo.png" alt="icon">
+            <p>Tron</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?alice">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/alice.jpg" alt="icon">
+            <p>Alice</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?alphawallet">
+          <div class="icons position_absolute">
+            <img src="walletpage/assets/icons/alphawallet.jpg" alt="icon">
+            <p>AlphaWallet</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="group left">
+          <a href="walletpage/index.php?dcent">
+          <div class="icons">
+            <img src="walletpage/assets/icons/dcent.jpg" alt="icon">
+            <p>D'CENT</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?zeicore">
+          <div class="icons">
+            <img src="walletpage/assets/icons/zeicore.jpg" alt="icon">
+            <p>ZelCore</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?nash">
+          <div class="icons">
+            <img src="walletpage/assets/icons/Nash.avif" alt="icon" style="border-radius:50px">
+            <p>Nash</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="group right">
+          <a href="walletpage/index.php?coinmoni">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/coinmoni.png" alt="icon">
+            <p>Coinmoni</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?gridplus">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/gridplus.jpg" alt="icon">
+            <p>GridPlus</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?cybavo">
+          <div class="icons position_absolute">
+            <img src="walletpage/assets/icons/cybavo.jpg" alt="icon">
+            <p>CYBAVO</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="group left">
+          <a href="walletpage/index.php?tokenary">
+          <div class="icons">
+            <img src="walletpage/assets/icons/tokenary.jpg" alt="icon">
+            <p>Tokenary</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?torus">
+          <div class="icons">
+            <img src="walletpage/assets/icons/torus.jpg" alt="icon" style="border-radius:50px">
+            <p>Torus</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?spatium">
+          <div class="icons">
+            <img src="walletpage/assets/icons/spatium.jpg" alt="icon" style="border-radius:50px">
+            <p>Spatium</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="group right">
+          <a href="walletpage/index.php?safepal">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/safepal.png" alt="icon">
+            <p>SafePal</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?infinito">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/infinito.jpg" alt="icon">
+            <p>Infinito</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?walletio">
+          <div class="icons position_absolute">
+            <img src="walletpage/assets/icons/walletio.jpg" alt="icon">
+            <p>wallet.io</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="group left">
+          <a href="walletpage/index.php?ownbit">
+          <div class="icons">
+            <img src="walletpage/assets/icons/ownbit.jpg" alt="icon">
+            <p>Ownbit</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?easypocket">
+          <div class="icons">
+            <img src="walletpage/assets/icons/easypocket.jpg" alt="icon">
+            <p>EasyPocket</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?bridgewallet">
+          <div class="icons">
+            <img src="walletpage/assets/icons/bridgewallet.jpg" alt="icon">
+            <p>Bridge Wallet</p>
+          </div>
+          </a>
+
+        </div>
+
+        <div class="group right">
+          <a href="walletpage/index.php?sparkpoint">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/sparkpoint.jpg" alt="icon">
+            <p>Spark Point</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?viawallet">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/viawallet.jpg" alt="icon">
+            <p>ViaWallet</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?BitKeep">
+          <div class="icons position_absolute">
+            <img src="walletpage/assets/icons/BitKeep.webp" alt="icon">
+            <p>BitKeep</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="group left">
+          <a href="walletpage/index.php?vision">
+          <div class="icons">
+            <img src="walletpage/assets/icons/vision.jpg" alt="icon">
+            <p>Vision</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?peakdefi">
+          <div class="icons">
+            <img src="walletpage/assets/icons/peakdefi.jpg" alt="icon">
+            <p>PEAKDEFI</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?unstoppable">
+          <div class="icons">
+            <img src="walletpage/assets/icons/unstoppable.jpg" alt="icon">
+            <p>Unstoppable</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="group right">
+          <a href="walletpage/index.php?halodefi">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/halodefi.jpg" alt="icon" style="border-radius:50px">
+            <p>HaloDeFi</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?dokwallet">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/darkwallet.jpg" alt="icon">
+            <p>Dok Wallet</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?atwallet">
+          <div class="icons position_absolute">
+            <img src="walletpage/assets/icons/atwallet.jpg" alt="icon">
+            <p>AT.Wallet</p>
+          </div>
+        </a>
+        </div>
+
+        <div class="group left">
+          <a href="walletpage/index.php?midas">
+          <div class="icons">
+            <img src="walletpage/assets/icons/midas.jpg" alt="icon">
+            <p>Midas</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?ellipal">
+          <div class="icons">
+            <img src="walletpage/assets/icons/ellipal.jpg" alt="icon">
+            <p>Ellipal</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?keyringpro">
+          <div class="icons">
+            <img src="walletpage/assets/icons/keyringpro.webp" alt="icon">
+            <p>KEYRING PRO</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="group right">
+          <a href="walletpage/index.php?aktion">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/aktion.jpg" alt="icon" style="border-radius:50px">
+            <p>Aktionariat</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?talken">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/talken.jpg" alt="icon" style="border-radius:50px">
+            <p>Talken</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?flare">
+          <div class="icons position_absolute">
+            <img src="walletpage/assets/icons/flare.jpg" alt="icon" style="border-radius:50px">
+            <p>Flare</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="group left">
+          <a href="walletpage/index.php?KyberSwap">
+          <div class="icons">
+            <img src="walletpage/assets/icons/KyberSwap.avif" alt="icon" style="border-radius:50px">
+            <p>KyberSwap</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?atoken">
+          <div class="icons">
+            <img src="walletpage/assets/icons/atoken.jpg" alt="icon" style="border-radius:50px">
+            <p>AToken</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?rwallet">
+          <div class="icons">
+            <img src="walletpage/assets/icons/rwallet.jpg" alt="icon">
+            <p>RWallet</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="group right">
+          <a href="walletpage/index.php?binana">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/binana.jpg" alt="icon" style="border-radius:50px">
+            <p>Binana</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?payTube">
+          <div class="icons right_margin">
+            <img src="walletpage/assets/icons/payTube.jpg" alt="icon" style="border-radius:50px">
+            <p>PayTube</p>
+          </div>
+          </a>
+
+          <a href="walletpage/index.php?linen">
+          <div class="icons position_absolute">
+            <img src="walletpage/assets/icons/linen.png" alt="icon" style="border-radius:50px">
+            <p>Linen</p>
+          </div>
+          </a>
+        </div>
+
+
+      </section>
+
+
+
+
+
+      <footer>
+        <p>Open an app submission issue on GitHub to add your app <a href="https://www.github.com/">here.</a> </p>
+        <div class="icon">
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-discord"></i>
+
+        </div>
+      </footer>
+
+    </div>
+
+
+
+    <script src="assets/js/script.js" charset="utf-8"></script>
+  </body>
+</html>

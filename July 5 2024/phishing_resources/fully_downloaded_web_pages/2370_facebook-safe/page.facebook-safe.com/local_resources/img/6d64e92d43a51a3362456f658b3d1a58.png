@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <title>Your all-in-one social tool - Your title</title>
+        <base href="https://bio.panel-jefa.com/">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        
+                
+        
+                    <link rel="canonical" href="https://bio.panel-jefa.com/" />
+        
+        
+        <link rel="alternate" href="https://bio.panel-jefa.com/" hreflang="x-default" />
+        
+        
+        <link href="https://bio.panel-jefa.com/themes/altum/assets/css/bootstrap.min.css?v=4400" id="css_theme_style" rel="stylesheet" media="screen,print">
+                    <link href="https://bio.panel-jefa.com/themes/altum/assets/css/custom.css?v=4400" rel="stylesheet" media="screen,print">
+        
+        <link rel="stylesheet" href="https://bio.panel-jefa.com/themes/altum/assets/css/libraries/aos.min.css">
+
+        
+            </head>
+
+    <body class="index  " data-theme-style="light">
+                                        
+        
+        
+
+    <div class="modal fade" id="ad_blocker_detector_modal"  tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h5 class="modal-title">
+                            <i class="fas fa-fw fa-sm fa-eye text-dark mr-2"></i>
+                            Ad blocker detected                        </h5>
+
+                                                <button type="button" class="close" data-dismiss="modal" title="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                                            </div>
+
+                    <p class="text-muted">We serve ads so we can keep our website running. Please disable your ad blockers.</p>
+
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-block btn-primary" onClick="event.preventDefault();window.location.reload();">I've disabled the ad blocker</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+                    
+        <div class="container">
+            
+<nav id="navbar" class="navbar navbar-main navbar-expand-lg navbar-light mb-6 index-highly-rounded border border-gray-100 mt-4">
+    <div class="container">
+        <a
+                class="navbar-brand"
+                href="https://bio.panel-jefa.com/"
+                data-logo
+                data-light-value="Your title"
+                data-light-class=""
+                data-light-tag="span"
+                data-dark-value="Your title"
+                data-dark-class=""
+                data-dark-tag="span"
+        >
+                            Your title                    </a>
+
+        <button class="btn navbar-custom-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#main_navbar" aria-controls="main_navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-fw fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="main_navbar">
+            <ul class="navbar-nav">
+
+                
+                                    <li class="nav-item"><a class="nav-link" href="https://bio.panel-jefa.com/tools">Tools</a></li>
+                
+                
+                
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="btn btn-sm btn-outline-primary" href="https://bio.panel-jefa.com/login"><i class="fas fa-fw fa-sm fa-sign-in-alt"></i> Sign in</a>
+                    </li>
+
+                    
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+        </div>
+
+        
+        <main class="altum-animate altum-animate-fill-none altum-animate-fade-in">
+            
+<div class="index-container">
+    <div class="container index-container-content">
+        
+        <div class="row">
+            <div class="col">
+                <div class="text-left">
+                    <div data-aos="fade-up">
+                        <span class="badge badge-light">
+                            <i class="fas fa-fw fa-star fa-sm text-warning"></i><i class="fas fa-fw fa-star fa-sm text-warning"></i><i class="fas fa-fw fa-star fa-sm text-warning"></i><i class="fas fa-fw fa-star fa-sm text-warning"></i><i class="fas fa-fw fa-star fa-sm text-warning"></i>
+                            Loved by 100+ creators                        </span>
+                    </div>
+                    <h1 class="index-header mb-4" data-aos="fade-up" data-aos-delay="100">Do everything with one platform.</h1>
+                    <p class="index-subheader mb-5" data-aos="fade-up" data-aos-delay="200">🔗 Short links &nbsp;&nbsp;&nbsp; 📱 Bio pages &nbsp;&nbsp;&nbsp; 🤳 QR codes &nbsp;&nbsp;&nbsp; 👤 Share Vcards &nbsp;&nbsp;&nbsp; 📃 Transfer files &nbsp;&nbsp;&nbsp; 🧑‍💻 Host HTML Sites</p>
+
+                    <div class="d-flex flex-column flex-lg-row">
+                        
+                                                                                            </div>
+                </div>
+            </div>
+
+            <div class="d-none d-lg-block col">
+                <img src="https://bio.panel-jefa.com/themes/altum/assets/images/hero.png" class="index-image" loading="lazy" />
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container mt-8">
+        <div class="card index-highly-rounded border-0" data-aos="fade-up">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto col-lg-5 mb-4 mb-lg-0">
+                        <img src="https://bio.panel-jefa.com/themes/altum/assets/images/index/bio-link.jpg" class="index-card-image index-highly-rounded" loading="lazy" />
+                    </div>
+                    <div class="col">
+                        <div class="bg-primary-100 p-3 w-fit-content rounded">
+                            <i class="fas fa-fw fa-users fa-lg text-primary"></i>
+                        </div>
+
+                        <h2 class="mt-3">Bio link pages</h2>
+                        <p class="h6 mt-2">Create your own unique & highly customizable bio link page with ease.</p>
+
+                        <ul class="list-style-none mt-4">
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                                <div>Custom colors & branding</div>
+                            </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                                <div>Tons of ready-to-use components</div>
+                            </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                                <div>SEO settings</div>
+                            </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                                <div>Password protection, sensitive content warning</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-8">
+        <div class="card index-highly-rounded border-0" data-aos="fade-up">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto col-lg-5 mb-4 mb-lg-0">
+                        <img src="https://bio.panel-jefa.com/themes/altum/assets/images/index/short-link.png" class="index-card-image index-highly-rounded" loading="lazy" />
+                    </div>
+                    <div class="col">
+                        <div class="bg-primary-100 p-3 w-fit-content rounded">
+                            <i class="fas fa-fw fa-link fa-lg text-primary"></i>
+                        </div>
+
+                        <h2 class="mt-3">Shortened links</h2>
+                        <p class="h6 mt-2">Yes! You can use our service as a shortener as well.</p>
+
+                        <ul class="list-style-none mt-4">
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                                <div>Scheduling & expiration limits</div>
+                            </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                                <div>Country, device & language targeting</div>
+                            </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                                <div>A/B Rotation</div>
+                            </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                                <div>Password protection, sensitive content warning</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-8">
+        <div class="card index-highly-rounded border-0" data-aos="fade-up">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto col-lg-5 mb-4 mb-lg-0">
+                        <img src="https://bio.panel-jefa.com/themes/altum/assets/images/index/qr-code.jpg" class="index-card-image index-highly-rounded" loading="lazy" />
+                    </div>
+                    <div class="col">
+                        <div class="bg-primary-100 p-3 w-fit-content rounded">
+                            <i class="fas fa-fw fa-qrcode fa-lg text-primary"></i>
+                        </div>
+
+                        <h2 class="mt-3">QR Codes</h2>
+                        <p class="h6 mt-2">Fully featured QR code generator system with easy to use templates.</p>
+
+                        <ul class="list-style-none mt-4">
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                                <div>Custom colors with gradients</div>
+                            </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                                <div>Custom logo</div>
+                            </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                                <div>Multiple QR shapes to choose from</div>
+                            </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                                <div>Vcard, WiFi, Calendar, Location..etc templates</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container mt-8">
+    <div class="card index-highly-rounded border-0" data-aos="fade-up">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-auto col-lg-5 mb-4 mb-lg-0">
+                    <img src="https://bio.panel-jefa.com/themes/altum/assets/images/index/analytics.jpg" class="index-card-image index-highly-rounded" loading="lazy" />
+                </div>
+                <div class="col">
+                    <div class="bg-primary-100 p-3 w-fit-content rounded">
+                        <i class="fas fa-fw fa-chart-bar fa-lg text-primary"></i>
+                    </div>
+
+                    <h2 class="mt-3">Built-in analytics</h2>
+                    <p class="h6 mt-2">Easy to understand, yet detailed and comprehensive analytics for all your links. GDPR, CCPA and PECR compliant.</p>
+
+                    <ul class="list-style-none mt-4">
+                        <li class="d-flex align-items-center mb-2">
+                            <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                            <div>Countries & cities</div>
+                        </li>
+                        <li class="d-flex align-items-center mb-2">
+                            <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                            <div>Referrers & UTMs</div>
+                        </li>
+                        <li class="d-flex align-items-center mb-2">
+                            <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                            <div>Devices & operating systems</div>
+                        </li>
+                        <li class="d-flex align-items-center mb-2">
+                            <i class="fas fa-fw fa-sm fa-check-circle text-success mr-3"></i>
+                            <div>Browsers, Languages</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-8">
+    <div class="row">
+                    <div class="col-12 col-lg-4 mb-5 icon-zoom-animation" data-aos="fade-up" data-aos-delay="100">
+                <div class="card index-highly-rounded border-0 d-flex flex-column justify-content-between h-100">
+                    <div class="card-body">
+                        <div class="mb-3 p-3 index-highly-rounded" style="background: #ecfdf5;">
+                            <i class="fas fa-fw fa-lg fa-file mr-3" style="color: #10b981;"></i>
+                            <span class="h5">File links</span>
+                        </div>
+
+                        <span class="text-muted">Generate dynamic, advanced & downloadable links to files.</span>
+                    </div>
+                </div>
+            </div>
+        
+                    <div class="col-12 col-lg-4 mb-5 icon-zoom-animation" data-aos="fade-up" data-aos-delay="200">
+                <div class="card index-highly-rounded border-0 d-flex flex-column justify-content-between h-100">
+                    <div class="card-body">
+                        <div class="mb-3 p-3 index-highly-rounded" style="background: #ecfeff;">
+                            <i class="fas fa-fw fa-lg fa-id-card mr-3" style="color: #06b6d4;"></i>
+                            <span class="h5">Vcard links</span>
+                        </div>
+
+                        <span class="text-muted">Create dynamic digital contact cards, tracked & downloadable.</span>
+                    </div>
+                </div>
+            </div>
+        
+                    <div class="col-12 col-lg-4 mb-5 icon-zoom-animation" data-aos="fade-up" data-aos-delay="300">
+                <div class="card index-highly-rounded border-0 d-flex flex-column justify-content-between h-100">
+                    <div class="card-body">
+                        <div class="mb-3 p-3 index-highly-rounded" style="background: #eef2ff;">
+                            <i class="fas fa-fw fa-lg fa-calendar mr-3" style="color: #6366f1;"></i>
+                            <span class="h5">Event links</span>
+                        </div>
+
+                        <span class="text-muted">Dynamically create downloadable & tracked calendar files.</span>
+                    </div>
+                </div>
+            </div>
+        
+                    <div class="col-12 col-lg-4 mb-5 icon-zoom-animation" data-aos="fade-up" data-aos-delay="400">
+                <div class="card index-highly-rounded border-0 d-flex flex-column justify-content-between h-100">
+                    <div class="card-body">
+                        <div class="mb-3 p-3 index-highly-rounded" style="background: #eef2ff;">
+                            <i class="fas fa-fw fa-lg fa-screwdriver-wrench mr-3" style="color: #06b6d4;"></i>
+                            <span class="h5">Tools</span>
+                        </div>
+
+                        <span class="text-muted">We are also offering you a set of 140 amount of useful web tools as a bonus.</span>
+                    </div>
+                </div>
+            </div>
+        
+                    <div class="col-12 col-lg-4 mb-5 icon-zoom-animation" data-aos="fade-up" data-aos-delay="500">
+                <div class="card index-highly-rounded border-0 d-flex flex-column justify-content-between h-100">
+                    <div class="card-body">
+                        <div class="mb-3 p-3 index-highly-rounded" style="background: #faf5ff;">
+                            <i class="fas fa-fw fa-lg fa-globe mr-3" style="color: #a855f7;"></i>
+                            <span class="h5">Custom domains</span>
+                        </div>
+
+                        <span class="text-muted">Connect your own domain or use our predefined ones.</span>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="col-12 col-lg-4 mb-5 icon-zoom-animation" data-aos="fade-up" data-aos-delay="600">
+            <div class="card index-highly-rounded border-0 d-flex flex-column justify-content-between h-100">
+                <div class="card-body">
+                    <div class="mb-3 p-3 index-highly-rounded" style="background: #fdf4ff;">
+                        <i class="fas fa-fw fa-lg fa-project-diagram mr-3" style="color: #d946ef;"></i>
+                        <span class="h5">Projects</span>
+                    </div>
+
+                    <span class="text-muted">Easiest way to categorize your managed resources.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-8">
+    <div class="card py-4 index-highly-rounded border-0 bg-gray-900">
+        <div class="card-body">
+            <div class="row justify-content-between">
+                <div class="col-12 col-lg-3 mb-4 mb-lg-0">
+                    <div class="text-center d-flex flex-column">
+                        <span class="font-weight-bold text-muted mb-3">Links</span>
+                        <span class="h1 text-gradient-primary" style="--gradient-one: var(--purple); --gradient-two: var(--pink);">28+</span>
+                    </div>
+                </div>
+
+                                    <div class="col-12 col-lg-3 mb-4 mb-lg-0">
+                        <div class="text-center d-flex flex-column">
+                            <span class="font-weight-bold text-muted mb-3">QR Codes</span>
+                            <span class="h1 text-gradient-primary" style="--gradient-one: var(--teal); --gradient-two: var(--blue);">0+</span>
+                        </div>
+                    </div>
+                
+                <div class="col-12 col-lg-3 mb-4 mb-lg-0">
+                    <div class="text-center d-flex flex-column">
+                        <span class="font-weight-bold text-muted mb-3">Tracked pageviews</span>
+                        <span class="h1 text-gradient-primary" style="--gradient-one: var(--blue); --gradient-two: var(--purple);">150,092+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-8">
+    <div class="card py-4 border-0">
+        <div class="card-body">
+            <div class="text-center mb-4">
+                <h2>Tracking pixels</h2>
+                <p class="text-muted">All the links easily integrate with any of the following pixel providers.</p>
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-center">
+                                    <div class="bg-gray-100 index-highly-rounded w-fit-content p-3 m-4 icon-zoom-animation" data-toggle="tooltip" title="Facebook">
+                        <span title="Facebook"><i class="fab fa-facebook fa-fw fa-xl mx-1" style="color: #1877f2"></i></span>
+                    </div>
+                                    <div class="bg-gray-100 index-highly-rounded w-fit-content p-3 m-4 icon-zoom-animation" data-toggle="tooltip" title="Google Analytics">
+                        <span title="Google Analytics"><i class="fab fa-google fa-fw fa-xl mx-1" style="color: #4285f4"></i></span>
+                    </div>
+                                    <div class="bg-gray-100 index-highly-rounded w-fit-content p-3 m-4 icon-zoom-animation" data-toggle="tooltip" title="Google Tag Manager">
+                        <span title="Google Tag Manager"><i class="fab fa-google fa-fw fa-xl mx-1" style="color: #34a853"></i></span>
+                    </div>
+                                    <div class="bg-gray-100 index-highly-rounded w-fit-content p-3 m-4 icon-zoom-animation" data-toggle="tooltip" title="LinkedIn">
+                        <span title="LinkedIn"><i class="fab fa-linkedin fa-fw fa-xl mx-1" style="color: #0077b5"></i></span>
+                    </div>
+                                    <div class="bg-gray-100 index-highly-rounded w-fit-content p-3 m-4 icon-zoom-animation" data-toggle="tooltip" title="Pinterest">
+                        <span title="Pinterest"><i class="fab fa-pinterest fa-fw fa-xl mx-1" style="color: #e60023"></i></span>
+                    </div>
+                                    <div class="bg-gray-100 index-highly-rounded w-fit-content p-3 m-4 icon-zoom-animation" data-toggle="tooltip" title="X">
+                        <span title="X"><i class="fab fa-x-twitter fa-fw fa-xl mx-1" style="color: #1da1f2"></i></span>
+                    </div>
+                                    <div class="bg-gray-100 index-highly-rounded w-fit-content p-3 m-4 icon-zoom-animation" data-toggle="tooltip" title="Quora">
+                        <span title="Quora"><i class="fab fa-quora fa-fw fa-xl mx-1" style="color: #a82400"></i></span>
+                    </div>
+                                    <div class="bg-gray-100 index-highly-rounded w-fit-content p-3 m-4 icon-zoom-animation" data-toggle="tooltip" title="TikTok">
+                        <span title="TikTok"><i class="fab fa-tiktok fa-fw fa-xl mx-1" style="color: #ff0050"></i></span>
+                    </div>
+                                    <div class="bg-gray-100 index-highly-rounded w-fit-content p-3 m-4 icon-zoom-animation" data-toggle="tooltip" title="Snapchat">
+                        <span title="Snapchat"><i class="fab fa-snapchat fa-fw fa-xl mx-1" style="color: #ffed00"></i></span>
+                    </div>
+                            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+        </main>
+
+        
+
+        <div class="container d-print-none">
+            <footer class="footer app-footer">
+                
+<div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
+    <div class="mb-3 mb-lg-0">
+        <a
+            class="h5 footer-heading"
+            href="https://bio.panel-jefa.com/"
+            data-logo
+            data-light-value="Your title"
+            data-light-class="mb-2"
+            data-light-tag="span"
+            data-dark-value="Your title"
+            data-dark-class="mb-2"
+            data-dark-tag="span"
+        >
+                            <span class="mb-2">Your title</span>
+                    </a>
+        <div class="text-muted">Copyright © 2024 Your title.</div>
+    </div>
+
+    <div class="d-flex flex-column flex-lg-row">
+        
+        
+                    <div class="mb-2 ml-lg-3">
+                <button type="button" id="switch_theme_style" class="btn btn-link text-decoration-none p-0" data-toggle="tooltip" title="Switch to Dark Mode" data-title-theme-style-light="Switch to Light Mode" data-title-theme-style-dark="Switch to Dark Mode">
+                    <span data-theme-style="light" class=""><i class="fas fa-fw fa-sm fa-sun mr-1"></i> Light</span>
+                    <span data-theme-style="dark" class="d-none"><i class="fas fa-fw fa-sm fa-moon mr-1"></i> Dark</span>
+                </button>
+            </div>
+
+                        </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-lg mb-3 mb-lg-0">
+        <ul class="list-style-none d-flex flex-column flex-lg-row flex-wrap m-0">
+                            <li class="mb-2 mr-lg-3"><a href="https://bio.panel-jefa.com/blog">Blog</a></li>
+            
+            
+            
+            
+            
+                                                <li class="mb-2 mr-lg-3"><a href="https://altumco.de/66biolinks" target="_blank">Built with 66biolinks</a></li>
+                                    <li class="mb-2 mr-lg-3"><a href="https://altumcode.com/" target="_blank">Software by AltumCode</a></li>
+                                    </ul>
+    </div>
+
+
+    <div class="col-12 col-lg-auto">
+        <div class="d-flex flex-wrap">
+                                                                                                                                                                                                                                                                                </div>
+    </div>
+</div>
+            </footer>
+        </div>
+
+        
+        
+<input type="hidden" name="global_site_url" value="https://bio.panel-jefa.com/" />
+<input type="hidden" name="global_url" value="https://bio.panel-jefa.com/" />
+<input type="hidden" name="global_token" value="d24ec52d240bfc6991be42afea79e5ab" />
+<input type="hidden" name="global_number_decimal_point" value="." />
+<input type="hidden" name="global_number_thousands_separator" value="," />
+
+<script>
+    /* Some global variables */
+    window.altum = {};
+    let global_token = document.querySelector('input[name="global_token"]').value;
+    let site_url = document.querySelector('input[name="global_site_url"]').value;
+    let url = document.querySelector('input[name="global_url"]').value;
+    let decimal_point = document.querySelector('[name="global_number_decimal_point"]').value;
+    let thousands_separator = document.querySelector('[name="global_number_thousands_separator"]').value;
+</script>
+
+                    <script src="https://bio.panel-jefa.com/themes/altum/assets/js/libraries/jquery.min.js?v=4400"></script>
+                    <script src="https://bio.panel-jefa.com/themes/altum/assets/js/libraries/popper.min.js?v=4400"></script>
+                    <script src="https://bio.panel-jefa.com/themes/altum/assets/js/libraries/bootstrap.min.js?v=4400"></script>
+                    <script src="https://bio.panel-jefa.com/themes/altum/assets/js/custom.js?v=4400"></script>
+                    <script src="https://bio.panel-jefa.com/themes/altum/assets/js/libraries/fontawesome.min.js?v=4400"></script>
+                    <script src="https://bio.panel-jefa.com/themes/altum/assets/js/libraries/fontawesome-solid.min.js?v=4400"></script>
+                    <script src="https://bio.panel-jefa.com/themes/altum/assets/js/libraries/fontawesome-brands.min.js?v=4400"></script>
+        
+        <script src="https://bio.panel-jefa.com/themes/altum/assets/js/libraries/aos.min.js"></script>
+
+<script>
+    AOS.init({
+        delay: 100,
+        duration: 600
+    });
+</script>
+<script>
+    document.querySelector('#switch_theme_style').addEventListener('click', event => {
+        let theme_style = document.querySelector('body[data-theme-style]').getAttribute('data-theme-style');
+        let new_theme_style = theme_style == 'light' ? 'dark' : 'light';
+
+        /* Set a cookie with the new theme style */
+        set_cookie('theme_style', new_theme_style, 30, "\/");
+
+        /* Change the css and button on the page */
+        let css = document.querySelector(`#css_theme_style`);
+
+        document.querySelector(`body[data-theme-style]`).setAttribute('data-theme-style', new_theme_style);
+
+        switch(new_theme_style) {
+            case 'dark':
+                css.setAttribute('href', "https:\/\/bio.panel-jefa.com\/themes\/altum\/assets\/css\/bootstrap-dark.min.css?v=4400");
+                document.body.classList.add('cc--darkmode');
+                break;
+
+            case 'light':
+                css.setAttribute('href', "https:\/\/bio.panel-jefa.com\/themes\/altum\/assets\/css\/bootstrap.min.css?v=4400");
+                document.body.classList.remove('cc--darkmode');
+                break;
+        }
+
+        /* Refresh the logo/title */
+        document.querySelectorAll('[data-logo]').forEach(element => {
+            let new_brand_value = element.getAttribute(`data-${new_theme_style}-value`);
+            let new_brand_class = element.getAttribute(`data-${new_theme_style}-class`);
+            let new_brand_tag = element.getAttribute(`data-${new_theme_style}-tag`)
+            let new_brand_html = new_brand_tag == 'img' ? `<img src="${new_brand_value}" class="${new_brand_class}" alt="Website Logo" />` : `<${new_brand_tag} class="${new_brand_class}">${new_brand_value}</${new_brand_tag}>`;
+            element.innerHTML = new_brand_html;
+        });
+
+
+        document.querySelector(`#switch_theme_style`).setAttribute('data-original-title', document.querySelector(`#switch_theme_style`).getAttribute(`data-title-theme-style-${theme_style}`));
+        document.querySelector(`#switch_theme_style [data-theme-style="${new_theme_style}"]`).classList.remove('d-none');
+        document.querySelector(`#switch_theme_style [data-theme-style="${theme_style}"]`).classList.add('d-none');
+        $(`#switch_theme_style`).tooltip('hide').tooltip('show');
+
+        event.preventDefault();
+    });
+</script>
+    <script>
+        let my_ads = document.createElement("div");
+        my_ads.className = "textads banner-ads banner_ads ad-unit ad-zone ad-space adsbox";
+        my_ads.style.height = "1px";
+
+        document.body.appendChild(my_ads);
+
+        let x_width = my_ads.offsetHeight;
+        let msg = document.getElementById("msg");
+
+        if(x_width) {
+            /* A L T U M C O D E */
+        } else {
+            setTimeout(() => {
+                $('#ad_blocker_detector_modal').modal('show');
+            }, 5 * 1000);
+        }
+    </script>
+        </body>
+</html>

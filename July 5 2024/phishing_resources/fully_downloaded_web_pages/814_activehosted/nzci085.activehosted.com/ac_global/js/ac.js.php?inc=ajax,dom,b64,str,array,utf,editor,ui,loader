@@ -1,0 +1,3313 @@
+// ac.js
+// Loading...
+
+// ajax.js
+
+var ac_ajax_debug = true;
+
+function ac_ajax_request_object() {
+    var hreq;
+
+    try {
+        hreq = new XMLHttpRequest();
+    } catch (e) {
+		hreq = null;
+    }
+
+    return hreq;
+}
+
+function ac_ajax_call_url(url, post, cb) {
+    var hreq = ac_ajax_request_object();
+
+    if (hreq !== null) {
+        hreq.onreadystatechange = function() {
+            try {
+                ac_ajax_handle(hreq, cb);
+            } catch (e) {}
+        };
+	    var method = ( post === null ? 'GET' : 'POST' );
+	    var postType = typeof(post);
+	    if ( post !== null ) {
+		    if ( postType == 'array' || postType == 'object' ) {
+		    	var postArr = new Array();
+		        for ( var i in post ) {
+				    var postType = typeof(post[i]);
+				    if ( postType == 'array' || postType == 'object' ) {
+				        for ( var j in post[i] ) {
+				    		if ( typeof(post[i][j]) != 'function' ) {
+			            		postArr.push(i + '[' + ( j == 'undefined' ? '' : j ) + ']=' + encodeURIComponent(post[i][j]));
+				    		}
+				        }
+				    } else if ( postType != 'function' ) {
+		            	postArr.push(i + '=' + encodeURIComponent(post[i]));
+				    }
+			    }
+			    post = postArr.join('&');
+		    }
+	    }
+        hreq.open(method, url, true);
+        hreq.setRequestHeader("X-XSRF-TOKEN", getCSRFToken());
+        if ( post !== null ) {
+        	hreq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        }
+        hreq.send(post);
+    }
+}
+
+function ac_ajax_proxy_call_url(base, url, post, cb) {
+	if (post !== null)
+		ac_ajax_call_url(base + "/ac_global/functions/ajax_proxy.php?post=1&url=" + ac_b64_encode(url), post, cb);
+	else
+		ac_ajax_call_url(base + "/ac_global/functions/ajax_proxy.php?url=" + ac_b64_encode(url), post, cb);
+}
+
+function ac_ajax_proxy_call_cb(base, url, func, cb) {
+    if (url.match(/\?/))
+        url = url + "&f=" + func;
+    else
+        url = url + "?f=" + func;
+
+    url += "&rand=" + ac_b64_encode(Math.random().toString());
+
+    if (arguments.length > 3) {
+        for (var i = 4; i < arguments.length; i++)
+            url += "&p[]=" + encodeURIComponent(arguments[i]);
+    }
+
+    ac_ajax_proxy_call_url(base, url, null, cb);
+}
+
+function ac_ajax_call(url, func) {
+    if (arguments.length < 3)
+        ac_ajax_call_cb(ac_str_url(url), func, null);
+    else {
+        ac_ajax_call_cb(ac_str_url(url), func, null, ac_ary_last(arguments, 2));
+    }
+}
+
+function ac_ajax_call_cb(url, func, cb) {
+    if (func) {
+        if (url.match(/\?/))
+            url = url + "&f=" + func;
+        else
+            url = url + "?f=" + func;
+    }
+
+    url += "&rand=" + ac_b64_encode(Math.random().toString());
+
+    if (arguments.length > 3) {
+        for (var i = 3; i < arguments.length; i++)
+            url += "&p[]=" + encodeURIComponent(arguments[i]);
+    }
+
+   if ( cb === null ) cb = function(){};
+   ac_ajax_call_url(url, null, cb);
+}
+
+function ac_ajax_post_cb(url, func, cb, post) {
+    if (func) {
+        if (url.match(/\?/))
+            url = url + "&f=" + func;
+        else
+            url = url + "?f=" + func;
+        }
+
+    url += "&rand=" + ac_b64_encode(Math.random().toString());
+
+   if ( cb === null ) cb = function(){};
+   ac_ajax_call_url(url, post, cb);
+}
+
+function ac_ajax_handle(hreq, cb) {
+    if (hreq !== null) {
+        if (hreq.readyState == 4) {
+            if (hreq.status == 200) {
+                try {
+                    var xml = hreq.responseXML;
+					if (xml !== null && xml.documentElement !== null) {
+						if (cb === null)
+							cb = eval("cb_" + xml.documentElement.nodeName);
+
+						if (typeof cb == "function")
+							cb(xml.documentElement, hreq.responseText);
+					} else {
+						if ( hreq.responseText != '' ) {
+							if (typeof ac_ajax_handle_text == 'function')
+								ac_ajax_handle_text(hreq.responseText);
+						}
+					}
+					/*
+					var rootNode = ( xml !== null ? xml.documentElement : null );
+					if (cb === null && rootNode) {
+						cb = eval("cb_" + rootNode.nodeName);
+					}
+					if (typeof cb == "function")
+						cb(rootNode, hreq.responseText);
+					*/
+                } catch (e) {
+					alert(e);
+                }
+            }
+        }
+    }
+}
+
+function ac_ajax_cb(cbf) {
+	return function(xml, text) {
+		window.t_xml  = xml;
+		window.t_text = text;
+		var ary       = ac_dom_read_node(xml, null);
+		window.t_ary  = ary;
+
+		cbf(ary);
+	}
+}
+// dom.js
+
+function ac_dom_compstyle(elem) {
+	if (document.defaultView && document.defaultView.getComputedStyle)
+		return document.defaultView.getComputedStyle(elem);
+	else if (elem.currentStyle)
+		return elem.currentStyle;
+	else
+		return null;
+}
+
+function ac_dom_showif(id, cond) {
+	if (cond)
+		$(id).show();
+	else
+		$(id).hide();
+}
+
+function ac_dom_hideif(id, cond) {
+	if (cond)
+		$(id).hide();
+	else
+		$(id).show();
+}
+
+function ac_dom_read(tag, filter) {
+    return ac_dom_read_node(document.getElementsByTagName(tag).Items(0), filter);
+}
+
+function ac_dom_read_node(node, filter) {
+	if (typeof(filter) != 'function') filter = null;
+    var ary = new Array();
+    var cnode = null;
+    if ( !node ) return null;
+
+    for (var i = 0; i < node.childNodes.length; i++) {
+        cnode = node.childNodes[i];
+
+        switch (cnode.nodeType) {
+            case 3:     // TEXT_NODE
+                ary["__text"] = cnode.nodeValue;
+                break;
+            case 4:     // CDATA_SECTION_NODE
+                ary["__cdata"] = cnode.nodeValue;
+                break;
+            case 1:     // ELEMENT_NODE
+                if (ac_dom_isnull(cnode.firstChild)) {
+					var idx = cnode.nodeName.toLowerCase();
+
+					if (ary[idx] === undefined || (typeof(ary[idx]) != "string" && typeof(ary[idx]) != "array" && typeof(ary[idx]) != "object"))
+						ary[idx] = "";
+					else {
+						if (typeof(ary[idx]) == "string") {
+							var tmp = ary[idx];
+							ary[idx] = new Array();
+							ary[idx].push(tmp);
+						}
+						ary[idx].push("");
+					}
+				} else if (ac_dom_istext(cnode.firstChild)) {
+					var idx = cnode.nodeName.toLowerCase();
+					var nodedata = ( cnode.textContent !== undefined ? cnode.textContent : cnode.firstChild.nodeValue );
+
+					nodedata = nodedata.replace(/__--acenc:endcdata--__/, "]]>", nodedata);
+					if (nodedata.match(/^-?[0-9]+$/) && !nodedata.match(/0+[0-9]+$/))
+						nodedata = parseInt(nodedata, 10);
+
+					if (ary[idx] === undefined || (typeof(ary[idx]) != "string" && typeof(ary[idx]) != "array" && typeof(ary[idx]) != "object"))
+						ary[idx] = (filter === null) ? nodedata : filter(nodedata);
+					else {
+						if (typeof(ary[idx]) == "string") {
+							var tmp = ary[idx];
+							ary[idx] = new Array();
+							ary[idx].push(tmp);
+						} else if (typeof(ary[idx]) != "array" && typeof(ary[idx]) != "object") {
+							alert(typeof(ary[idx]));
+							//continue;
+						}
+						ary[idx].push((filter === null) ? nodedata : filter(nodedata));
+					}
+				} else {
+                    var idx = cnode.nodeName.toLowerCase();
+
+					if (ary[idx] === undefined || (typeof(ary[idx]) != "string" && typeof(ary[idx]) != "array" && typeof(ary[idx]) != "object")) {
+                        ary[idx] = new Array();
+					}
+
+					ary[idx].push(ac_dom_read_node(cnode, filter));
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    return ary;
+}
+
+function ac_dom_istext(node) {
+    return node.nodeType == 3 || node.nodeType == 4;    // TEXT_NODE || CDATA_SECTION_NODE
+}
+
+function ac_dom_isnull(node) {
+    return node === null;
+}
+
+function ac_dom_toggle_display(id, val) {
+	var disp = $(id).style.display;
+
+	if (disp != "none")
+		$(id).style.display = "none";
+	else
+		$(id).style.display = ( typeof val == "undefined" ? "" : val );
+}
+
+/*
+function ac_dom_toggle_display(id, val) {
+    var node = document.getElementById(id);
+
+    if (val.match(/table(-row|-cell)?/) && navigator.userAgent.match(/MSIE [567]/))
+        val = "block";
+
+    if (node !== null)
+        node.style.display = (node.style.display == val) ? "none" : val;
+}
+*/
+
+function ac_dom_display_block(id) {
+	$(id).style.display = "block";
+}
+function ac_dom_display_inlineblock(id) {
+	$(id).style.display = "inline-block";
+}
+function ac_dom_display_none(id) {
+	$(id).style.display = "none";
+}
+
+function ac_dom_toggle_class(id, className1, className2) {
+	var node = document.getElementById(id);
+	if ( !node ) return;
+	node.className = ( node.className == className1 ? className2 : className1 );
+}
+
+// We don't recurse to the child nodes here; this function itself is a
+// shallow foreach.
+
+function ac_dom_foreach_node(node, fun) {
+    while (node !== null) {
+        fun(node);
+        node = node.nextSibling;
+    }
+}
+
+// The idea here is to take an HTML collection and walk through it, as
+// opposed to an actual node.  (You would use foreach_item, for example,
+// with the result of a call to document.getElementsByTagName().)
+
+function ac_dom_foreach_item(coll, fun) {
+    for (var i = 0; i < coll.length; i++)
+        fun(coll[i]);
+}
+
+function ac_dom_foreach_child(obj, fun) {
+	for (var i = 0; i < obj.childNodes.length; i++)
+		fun(obj.childNodes[i]);
+}
+
+// Useful for removing all children at once, which isn't a standard
+// DOM function but does come up from time to time.
+
+function ac_dom_remove_children(node) {
+	var filter = null;
+
+	if (arguments.length > 1) {
+		// they passed a filter function
+		filter = arguments[1];
+	}
+
+    for (var i = node.childNodes.length - 1; i >= 0; i--) {
+		if (typeof filter != "function")
+			node.removeChild(node.childNodes[i]);
+		else if (filter(node.childNodes[i]))
+			node.removeChild(node.childNodes[i]);
+	}
+}
+
+function ac_dom_append_childtext(node, text) {
+    node.appendChild(document.createTextNode(text));
+}
+
+// Create a new <option> element.
+
+function ac_dom_new_option(val, label) {
+    var opt = document.createElement("option");
+    opt.value = val;
+    opt.appendChild(document.createTextNode(label));
+    return opt;
+}
+
+/*
+try {
+    function $(id) {
+        if (typeof id == 'string')
+            return document.getElementById(id);
+        return id;
+    }
+} catch (e) {}
+*/
+
+
+// ASSIGN WINDOW.ONLOAD FUNCTIONS HERE
+function ac_dom_onload_hook(func) {
+	var oldonload = window.onload;
+	if ( typeof window.onload != 'function' ) {
+		window.onload = func;
+	} else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+
+// ASSIGN WINDOW.UNLOAD FUNCTIONS HERE
+function ac_dom_unload_hook(func) {
+	var oldunload = window.onbeforeunload;
+	if ( typeof window.onbeforeunload != 'function' ) {
+		window.onbeforeunload = func;
+	} else {
+		window.onbeforeunload = function() {
+			oldunload();
+			func();
+		}
+	}
+}
+
+// ASSIGN DOCUMENT.ONCLICK FUNCTIONS HERE
+function ac_dom_onclick_hook(func) {
+	var oldonclick = document.onclick;
+	if ( typeof document.onclick != 'function' ) {
+		document.onclick = func;
+	} else {
+		document.onclick = function(e) {
+			oldonclick(e);
+			func(e);
+		}
+	}
+}
+
+function ac_dom_hook(func1, func2) {
+	//var oldfunc = func1;
+	eval('var oldfunc = ' + func1 + ';');
+	if ( typeof oldfunc != 'function' ) {
+		eval(func1 + ' = func2;');
+		//func1 = func2;
+	} else {
+		eval(func1 + ' = function() { oldfunc(); func2(); }');
+		/*func1 = function() {
+			oldfunc();
+			func2();
+		}*/
+	}
+}
+
+function ac_dom_find_posX(obj) {
+	var curleft = 0;
+	if ( obj.offsetParent )
+		while ( 1 ) {
+			curleft += obj.offsetLeft;
+			if ( !obj.offsetParent ) break;
+			obj = obj.offsetParent;
+		}
+	else if ( obj.x )
+		curleft += obj.x;
+	return curleft;
+}
+
+function ac_dom_find_posY(obj) {
+	var curtop = 0;
+	if ( obj.offsetParent )
+	while ( 1 ) {
+		curtop += obj.offsetTop;
+		if ( !obj.offsetParent ) break;
+		obj = obj.offsetParent;
+	}
+	else if(obj.y)
+		curtop += obj.y;
+	return curtop;
+}
+
+
+// clones an element of a parent object
+// has an option to clear out inputs
+// (convenient for dynamic "add more" actions)
+// usage: x($('tableID'), 'tr', false, 1) === in table #tableID clone second row ( tr[1] ), don't clean inputs
+function ac_dom_clone_node(node, elem, elementIndex, clearInputs) {
+    if ( !elementIndex ) elementIndex = 0;
+	var original = node.getElementsByTagName(elem)[elementIndex];
+    var new_node = original.cloneNode(true);
+    if ( clearInputs ) {
+	    var newinput = new_node.getElementsByTagName('input');
+	    for ( var i = 0; i < newinput.length; i++ ) {
+	        if (newinput[i].type == 'text' || newinput[i].type == 'file') newinput[i].value = '';
+	    }
+	    var newarea = new_node.getElementsByTagName('textarea');
+	    for ( var i = 0; i < newarea.length; i++ ) {
+	        newarea[i].value = '';
+	    }
+    }
+    node.appendChild(new_node);
+    return new_node;
+}
+
+function ac_dom_liveedit_toggle(div) {
+	ac_dom_toggle_display(div, 'inline');
+	ac_dom_toggle_display(div + "_contain", 'inline');
+}
+
+function ac_dom_liveedit_showform(div) {
+	$(div).style.display = "none";
+	$(div + "_contain").style.display = "inline";
+}
+
+function ac_dom_liveedit_showtext(div) {
+	$(div).style.display = "inline";
+	$(div + "_contain").style.display = "none";
+}
+
+function ac_dom_unhighlight(id, cls) {
+	var ctext = "";
+	var spans = $(id).select("span." + cls);
+	var par   = null;
+
+	for (var i = 0; i < spans.length; i++) {
+		ctext = spans[i].firstChild;
+		par   = spans[i].parentNode;
+
+		par.replaceChild(ctext, spans[i]);
+	}
+}
+
+function ac_dom_keypress_doif(e, ch, cb) {
+	var kcode;
+
+	if (window.event)
+		kcode = window.event.keyCode;
+	else
+		kcode = e.keyCode;
+
+	if (kcode == ch)
+		cb();
+}
+
+function ac_dom_keypress(e, cb) {
+	var kcode;
+
+	if (window.event)
+		kcode = window.event.keyCode;
+	else
+		kcode = e.keyCode;
+
+	cb(kcode);
+}
+
+// Examine each of the text subnodes in node for matches in the terms array.  If
+// any are found, replace them with some fancy highlights.
+
+function ac_dom_highlight(node, terms, full) {
+	switch (node.nodeType) {
+		case 3:
+		case 4:
+			node.nodeValue = ac_dom_highlight_text(node.nodeValue, terms, full);
+			break;
+
+		case 1:
+			for (var i = 0; i < node.childNodes.length; i++) {
+				if (node.nodeName != "SCRIPT" && node.nodeName != "TEXTAREA")	// to skip liveedit elements
+					ac_dom_highlight(node.childNodes[i], terms, full);
+			}
+			break;
+	}
+}
+
+function ac_dom_highlight_replace(node, terms, cls) {
+	node.innerHTML = node.innerHTML.replace(/___:::([a-zA-Z0-9!_-]+):::___/gi, ac_dom_highlight_replace_cb(cls));
+}
+
+function ac_dom_highlight_cb(def) {
+	if (def === null) {
+		return function(m) {
+			return sprintf("___:::%s:::___", ac_b64_encode(m));
+		}
+	} else {
+		return function(m) {
+			return sprintf("___:::%s:::___", ac_b64_encode(m + ",,," + def));
+		}
+	}
+}
+
+function ac_dom_highlight_replace_cb(cls) {
+	return function(full, m) {
+		return sprintf("<span class='%s'>%s</span>", cls, ac_b64_decode(m));
+	}
+}
+
+function ac_dom_highlight_definition_cb(cls) {
+	return function(full, m) {
+		m       = ac_b64_decode(m);
+		var ary = m.split(",,,");
+
+		if (ary.length != 2)
+			return m;
+
+		return sprintf("<span class='%s' onmouseover='ac_tooltip_show(\"%s\", 200, \"\", true)' onmouseout='ac_tooltip_hide()'>%s</span>", cls, ac_b64_encode(ary[1]), ac_str_htmlescape(ary[0]));
+	}
+}
+
+function ac_dom_highlight_text(text, terms, full, sens) {
+	for (var i in terms) {
+		if (typeof terms[i] != "string")
+			continue;
+
+		if (full)
+			text = text.replace(new RegExp(sprintf("\\b(%s)\\b", i), "gim"), ac_dom_highlight_cb(terms[i]));
+		else
+			text = text.replace(new RegExp(sprintf("\\b(%s)\\b", i), "gim"), ac_dom_highlight_cb(null));
+	}
+	for (var i in sens) {
+		if (typeof sens[i] != "string")
+			continue;
+
+		if (full)
+			text = text.replace(new RegExp(sprintf("\\b(%s)\\b", i), "gm"), ac_dom_highlight_cb(terms[i]));
+		else
+			text = text.replace(new RegExp(sprintf("\\b(%s)\\b", i), "gm"), ac_dom_highlight_cb(null));
+	}
+	return text;
+}
+
+function ac_dom_highlight_definition(node, terms, cls) {
+	node.innerHTML = node.innerHTML.replace(/___:::([a-zA-Z0-9!_-]+):::___/gi, ac_dom_highlight_definition_cb(cls));
+}
+
+function ac_dom_emptynode(node, props) {
+	if ( !props ) props = { };
+	var obj = Builder.node(node, props);
+	obj.innerHTML = '&nbsp;';
+	return obj;
+}
+
+function ac_dom_textarea_insertatcursor(elem, str) {
+	// Adapted from http://www.scottklarr.com/topic/425/how-to-insert-text-into-a-textarea-where-the-cursor-is/
+	var epos = elem.scrollTop;
+	var pos = 0;
+	var br = ((elem.selectionStart || elem.selectionStart == '0') ? "ff" : (document.selection ? "ie" : false ));
+
+	if (br == "ie") { elem.focus();
+		var range = document.selection.createRange();
+		range.moveStart ('character', -elem.value.length);
+		pos = range.text.length;
+	} else if (br == "ff") {
+		pos = elem.selectionStart;
+	}
+
+	var front = (elem.value).substring(0,pos);
+	var back = (elem.value).substring(pos, elem.value.length);
+	elem.value = front + str + back;
+	pos = pos + str.length;
+
+	if (br == "ie") {
+		elem.focus();
+		var range = document.selection.createRange();
+		range.moveStart ('character', -elem.value.length);
+		range.moveStart ('character', pos);
+		range.moveEnd ('character', 0);
+		range.select();
+	} else if (br == "ff") {
+		elem.selectionStart = pos;
+		elem.selectionEnd = pos;
+		elem.focus();
+	}
+
+	elem.scrollTop = epos;
+}
+
+
+/*
+	usage:
+	document.onclick = ac_dom_clickcheck;
+*/
+var ac_dom_clickers = {};
+
+function ac_dom_clicker_add(divId, clickers) {
+	if ( !clickers ) return;
+	//if ( !clickers || !clickers.length ) return;
+	ac_dom_clickers[divId] = clickers;
+}
+
+function ac_dom_clicker_remove(whichOne, runIt) {
+	if ( !whichOne ) {
+		if ( runIt ) {
+			for ( var i in ac_dom_clickers ) {
+				var c = ac_dom_clickers[i];
+				// for every link that could be clicked to open this div
+				var clkObj = $(i);
+				if ( !clkObj ) continue;
+				c();
+			}
+		}
+		ac_dom_clickers = {};
+	} else {
+		if ( typeof ac_dom_clickers[whichOne] == 'undefined' ) return;
+		var c = ac_dom_clickers[whichOne];
+		if ( runIt ) {
+			for ( var j in c ) {
+				// for every link that could be clicked to open this div
+				var clkObj = $(whichOne);
+				if ( !clkObj ) return;
+				c[j]();
+			}
+		}
+		delete ac_dom_clickers[whichOne];
+	}
+}
+
+function ac_dom_clickcheck(e) {
+	var target = ( e && e.target ) || ( event && event.srcElement );
+	// loop through all available divs for hidding
+	for ( var i in ac_dom_clickers ) {
+		// find the div object
+		var domObj = $(i);
+		if ( !domObj ) continue;
+		// loop through all links that let you open it
+		// (if they click one of these, it should exit)
+		var shouldBremoved = true;
+		var c = ac_dom_clickers[i];
+		for ( var j in c ) {
+			// for every link that could be clicked to open this div
+			var clkObj = $(j);
+			if ( !clkObj ) continue;
+			//if ( target == clkObj ) continue;
+			// if clicked outside, run the function to hide it
+			if ( !ac_dom_parent_exists(clkObj, target) ) {
+				c[j]();
+			} else {
+				var shouldBremoved = false;
+			}
+		}
+		if ( shouldBremoved ) ac_dom_clicker_remove(i, false);
+	}
+}
+
+function ac_dom_parent_exists(what, where) {
+	if ( what == where ) return true;
+	while ( where.parentNode ) {
+		if ( where == what ) {
+			return true;
+		}
+		where = where.parentNode;
+	}
+	return false;
+}
+
+function ac_dom_radiochoice(classname) {
+	var ary = $$("input." + classname);
+
+	for (var i = 0; i < ary.length; i++) {
+		if (ary[i].checked)
+			return ary[i].value;
+	}
+
+	return null;
+}
+
+function ac_dom_radiotitle(classname) {
+	var ary = $$("input." + classname);
+
+	for (var i = 0; i < ary.length; i++) {
+		if (ary[i].checked)
+			return ary[i].title;
+	}
+
+	return null;
+}
+
+function ac_dom_radioset(classname, value) {
+	var ary = $$("input." + classname);
+
+	for (var i = 0; i < ary.length; i++) {
+		if (ary[i].value == value) {
+			ary[i].checked = true;
+			return;
+		}
+	}
+}
+
+function ac_dom_radioclear(classname) {
+	var ary = $$("input." + classname);
+
+	for (var i = 0; i < ary.length; i++) {
+		ary[i].checked = false;
+	}
+}
+
+function ac_dom_boxchoice(classname) {
+	var ary  = $$("input." + classname);
+	var rval = [];
+
+	for (var i = 0; i < ary.length; i++) {
+		if (ary[i].checked)
+			rval.push(ary[i].value);
+	}
+
+	return rval;
+}
+
+function ac_dom_boxset(classname, values) {
+	var ary  = $$("input." + classname);
+	if (typeof values.length == 'undefined') values = ac_array_values(values);
+
+	for (var i = 0; i < ary.length; i++) {
+		if (ac_array_indexof(values, ary[i].value) >= 0)
+			ary[i].checked = true;
+	}
+}
+
+function ac_dom_boxclear(classname) {
+	var ary  = $$("input." + classname);
+
+	for (var i = 0; i < ary.length; i++) {
+		ary[i].checked = false;
+	}
+}
+
+function ac_dom_boxempty(classname) {
+	var ary = ac_dom_boxchoice(classname);
+	return ary.length == 0;
+}
+
+/*
+function ac_dom_clickcheck_parent(what, where) {
+	while ( where.parentNode ) {
+		if ( where == what ) {
+			return false;
+		}
+		where = where.parentNode;
+	}
+	return true;
+}
+*/
+// b64.js
+
+var ac_b64_dec = {
+    'A':  0, 'B':  1, 'C':  2, 'D':  3, 'E':  4, 'F':  5, 'G':  6, 'H':  7,
+    'I':  8, 'J':  9, 'K': 10, 'L': 11, 'M': 12, 'N': 13, 'O': 14, 'P': 15,
+    'Q': 16, 'R': 17, 'S': 18, 'T': 19, 'U': 20, 'V': 21, 'W': 22, 'X': 23,
+    'Y': 24, 'Z': 25, 'a': 26, 'b': 27, 'c': 28, 'd': 29, 'e': 30, 'f': 31,
+    'g': 32, 'h': 33, 'i': 34, 'j': 35, 'k': 36, 'l': 37, 'm': 38, 'n': 39,
+    'o': 40, 'p': 41, 'q': 42, 'r': 43, 's': 44, 't': 45, 'u': 46, 'v': 47,
+    'w': 48, 'x': 49, 'y': 50, 'z': 51, '0': 52, '1': 53, '2': 54, '3': 55,
+    '4': 56, '5': 57, '6': 58, '7': 59, '8': 60, '9': 61, '-': 62, '!': 63,
+    '=': 0
+};
+
+var ac_b64_enc = {
+     0: 'A',  1: 'B',  2: 'C',  3: 'D',  4: 'E',  5: 'F',  6: 'G',  7: 'H',
+     8: 'I',  9: 'J', 10: 'K', 11: 'L', 12: 'M', 13: 'N', 14: 'O', 15: 'P',
+    16: 'Q', 17: 'R', 18: 'S', 19: 'T', 20: 'U', 21: 'V', 22: 'W', 23: 'X',
+    24: 'Y', 25: 'Z', 26: 'a', 27: 'b', 28: 'c', 29: 'd', 30: 'e', 31: 'f',
+    32: 'g', 33: 'h', 34: 'i', 35: 'j', 36: 'k', 37: 'l', 38: 'm', 39: 'n',
+    40: 'o', 41: 'p', 42: 'q', 43: 'r', 44: 's', 45: 't', 46: 'u', 47: 'v',
+    48: 'w', 49: 'x', 50: 'y', 51: 'z', 52: '0', 53: '1', 54: '2', 55: '3',
+    56: '4', 57: '5', 58: '6', 59: '7', 60: '8', 61: '9', 62: '-', 63: '!'
+};
+
+function ac_b64_elshift(m, i, sh) {
+    return (m.charCodeAt(i) << sh) & 63;
+}
+
+function ac_b64_ershift(m, i, sh) {
+    return (m.charCodeAt(i) >> sh) & 63;
+}
+
+// Base-64 encode a string, essentially by taking a 3-character block
+// and turning it into a 4-character block using the base-64 alphabet.
+// If less than 3 characters exist in the last block, the equal sign is
+// used as padding (2 equal signs if only 1 character, 1 equal sign if 2
+// characters).
+
+function ac_b64_encode(message, uriencode) {
+    var out = "";
+    var buf0;
+    var buf1;
+    var buf2;
+    var buf3;
+    var i;
+
+    if ( typeof(uriencode) != null && uriencode ) {
+        message = encodeURIComponent(message);
+    }
+
+    for (i = 0; i < message.length; i += 3) {
+        buf0 = ac_b64_enc[ac_b64_ershift(message, i+0, 2)];
+        buf2 = "_";
+        buf3 = "_";
+
+        if ((i+1) < message.length)
+            buf1 = ac_b64_enc[ac_b64_elshift(message, i+0, 4) | ac_b64_ershift(message, i+1, 4)];
+        else
+            buf1 = ac_b64_enc[ac_b64_elshift(message, i+0, 4)];
+
+        if ((i+2) < message.length) {
+            buf2 = ac_b64_enc[ac_b64_elshift(message, i+1, 2) | ac_b64_ershift(message, i+2, 6)];
+            buf3 = ac_b64_enc[ac_b64_elshift(message, i+2, 0)];
+        } else if ((i+1) < message.length)
+            buf2 = ac_b64_enc[ac_b64_elshift(message, i+1, 2)];
+
+        out += buf0 + buf1 + buf2 + buf3;
+    }
+
+    return out;
+}
+
+function ac_b64_dlshift(c, sh) {
+    return (ac_b64_dec[c] << sh) & 255;
+}
+
+function ac_b64_drshift(c, sh) {
+    return (ac_b64_dec[c] >> sh) & 255;
+}
+
+function ac_b64_decode(message, uridecode) {
+    var out = "";
+    var i;
+
+    // All base-64 blocks are multiples of four characters.  Try it:
+    // encode a one-letter string.  You'll get four characters
+    // in return.  If that's not the case with this message, then it's
+    // not really base-64 encoded (or not encoded correctly).
+
+    if ((message.length % 4) != 0)
+        return message;
+
+    // Each block of four encoded characters can be decoded to, at most,
+    // three unencoded ones.  (Which makes sense: 4 * 6bits = 24bits,
+    // and 3 * 8bits = 24bits.)  The bits in base-64 are encoded
+    // left-to-right, that is, starting with the high-order bit and
+    // moving to the low-order bit.  Each number we consider has a bit
+    // mask of 255 applied, so only (low-order) 8 bits are considered at
+    // any given moment.
+
+    // The equal sign is considered "padding" in an encoded string, but
+    // they also represent the end marker.  A block of four bytes with
+    // two equal signs on the end is a signal that only one character is
+    // encoded; with one equal sign, two characters encoded.  No equal
+    // sign is necessary if the initial string's length was a multiple
+    // of 3.
+
+    for (i = 0; i < message.length; i += 4) {
+        out += String.fromCharCode(ac_b64_dlshift(message.charAt(i+0), 2) | ac_b64_drshift(message.charAt(i+1), 4)); if (message.charAt(i+2) == '_') break;
+        out += String.fromCharCode(ac_b64_dlshift(message.charAt(i+1), 4) | ac_b64_drshift(message.charAt(i+2), 2)); if (message.charAt(i+3) == '_') break;
+        out += String.fromCharCode(ac_b64_dlshift(message.charAt(i+2), 6) | ac_b64_drshift(message.charAt(i+3), 0));
+    }
+    
+    if ( typeof(uridecode) != null && uridecode ) {
+        out = decodeURIComponent(out);
+    }
+
+    return out;
+}
+// str.js
+
+/*
+function ac_str_trim(str) {
+    return str.replace(/^\s*(\S+)\s*$/, "$1");
+}
+*/
+function ac_str_trim(str, chars) {
+	return ac_str_ltrim(ac_str_rtrim(str, chars), chars);
+}
+
+function ac_str_ltrim(str, chars) {
+	str += '';
+	//remove whitespace and unicode zero width characters
+	chars = chars || "\\s\\u200B-\\u200D\\uFEFF";
+	return str.replace(new RegExp("^[" + chars + "]+", "g"), "");
+}
+
+function ac_str_rtrim(str, chars) {
+	str += '';
+	//remove whitespace and unicode zero width characters
+	chars = chars || "\\s\\u200B-\\u200D\\uFEFF";
+	return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
+}
+
+function ac_str_repeat(str, times) {
+	var out = "";
+
+	while (times--)
+		out += str;
+
+	return out;
+}
+
+function ac_str_shorten(text, chars, partial) {
+	var partial = partial || false;
+	if ( !chars || chars == 0 ) return text;
+    var textLength = text.length;
+    text += ' ';
+    text = text.substr(0, chars);
+    var lastSpacePos = text.lastIndexOf(' ');
+    if (!partial) {
+    	if ( lastSpacePos != -1 )
+        	text = text.substr(0, lastSpacePos);
+    }
+    if ( textLength > text.length )
+        text += '...';
+
+    return text;
+}
+
+function ac_str_middleshorten(text, front_chars, back_chars) {
+	if ( !front_chars || front_chars == 0 ) return text;
+	if ( !back_chars || back_chars == 0 ) return text;
+	if ( text.length < front_chars + back_chars ) return text;
+    var front = text.substr(0, front_chars);
+    var back  = text.substr(text.length - back_chars, back_chars);
+    return front + '...' + back;
+}
+
+
+function ac_str_array(str) {
+    var ary = new Array();
+
+    for (var i = 0; i < str.length; i++) {
+        if (str[i] == '&') {
+            var tmp = "";
+            while (i < str.length) {
+                tmp += str[i++];
+                if (str[i-1] == ';')
+                    break;
+            }
+
+            ary.push(tmp);
+        } else {
+            ary.push(str[i]);
+        }
+    }
+
+    return ary;
+}
+
+/**
+ * Checks if an element
+ *
+ * @param {array} ary The array you want to find an item in
+ * @param {*} val The value to look for in the array
+ * @returns {boolean}
+ */
+function ac_array_has(ary, val) {
+    var i;
+    for (i = 0; i < ary.length; i++) {
+        if (ary[i] == val)
+            return true;
+    }
+
+    return false;
+}
+
+function ac_array_extract(str) {
+    var ary = new Array();
+    var tmp = str.split("||");
+
+    for (var i = 0; i < tmp.length; i++) {
+        var ent = tmp[i].split("=", 2);
+        ary[ent[0]] = ent[1];
+    }
+
+    return ary;
+}
+
+function ac_str_array_len(ary) {
+    for (var i = 0, c = 0; i < ary.length; i++)
+        c += ary[i].length;
+    return c;
+}
+
+function ac_str_array_substr(ary, off, len) {
+    var tmp = "";
+    for (var i = off; i < ary.length; i++) {
+        if (i >= len)
+            break;
+        tmp += ary[i];
+    }
+
+    return tmp;
+}
+
+function ac_str_url(rel) {
+    var ary = rel.split("/");
+    var url = window.location.href.replace(/\/[^\/]*$/, "");
+
+    for (var i = 0; i < ary.length; i++) {
+        if (ary[i] == "..")
+            url = url.replace(/\/[^\/]*$/, "");
+        else
+            url += "/" + ary[i];
+    }
+
+    return url;
+}
+
+function ac_ary_last(ary, begin) {
+    var nary = new Array();
+
+    for (var i = begin, j = 0; i < ary.length; i++, j++) {
+        nary[j] = ary[i];
+    }
+
+    return nary;
+}
+
+function ac_str_rand_password(len) {
+	var out = "";
+
+	while (len--) {
+		out += ac_str_rand_passchar();
+	}
+
+	return out;
+}
+
+function ac_str_rand_passchar() {
+	var floor = Math.floor(Math.random() * 10.0);
+	var chr;
+
+	if (floor > 6) {
+		chr = Math.floor(Math.random() * 10.0);
+		chr = chr.toString();
+	} else {
+		var off = Math.floor(Math.random() * 100.0) % 26;
+		chr = "a".charCodeAt(0) + off;
+		chr = String.fromCharCode(chr);
+	}
+
+	return chr;
+}
+
+function ac_sprintf(fmt, args) {
+    var out;
+    var argi;
+
+    out     = "";
+    argi    = 0;
+
+    for (var i = 0; i < fmt.length; i++) {
+        var fmtc = fmt.charAt(i);
+        switch (fmtc) {
+            case "\\":
+                i++;
+                break;
+            case "%":
+                if (argi < args.length) {
+                    fmtc = fmt.charAt(i+1);
+                    out += ac_sprintf_spec(fmtc, args[argi]);
+                    i++;
+                    argi++;
+                } else {
+                    out += fmtc;
+                }
+                break;
+            default:
+                out += fmtc;
+                break;
+        }
+    }
+
+    return out;
+}
+
+function ac_sprintf_spec(ch, arg) {
+    switch (ch) {
+        case "d":
+        case "f":
+            return arg.toString();
+        case "s":
+        default:
+            return arg;
+    }
+
+    return "";
+}
+
+
+/*
+ * This is the function that actually highlights a text string by
+ * adding HTML tags before and after all occurrences of the search
+ * term. You can pass your own tags if you'd like, or if the
+ * highlightStartTag or highlightEndTag parameters are omitted or
+ * are empty strings then the default <font> tags will be used.
+ */
+function ac_str_highlight(bodyText, searchTerm, highlightStartTag, highlightEndTag)
+{
+  // the highlightStartTag and highlightEndTag parameters are optional
+  if ((!highlightStartTag) || (!highlightEndTag)) {
+    highlightStartTag = "<font style='color:blue; background-color:yellow;'>";
+    highlightEndTag = "</font>";
+  }
+
+  // find all occurences of the search term in the given text,
+  // and add some "highlight" tags to them (we're not using a
+  // regular expression search, because we want to filter out
+  // matches that occur within HTML tags and script blocks, so
+  // we have to do a little extra validation)
+  var newText = "";
+  var i = -1;
+  var lcSearchTerm = searchTerm.toLowerCase();
+  var lcBodyText = bodyText.toLowerCase();
+
+  while (bodyText.length > 0) {
+    i = lcBodyText.indexOf(lcSearchTerm, i+1);
+    if (i < 0) {
+      newText += bodyText;
+      bodyText = "";
+    } else {
+      // skip anything inside an HTML tag
+      if (bodyText.lastIndexOf(">", i) >= bodyText.lastIndexOf("<", i)) {
+        if (
+	      // skip anything inside a <script> block
+          (lcBodyText.lastIndexOf("/script>", i) >= lcBodyText.lastIndexOf("<script", i))
+        ||
+    	  // skip anything inside a <style> block
+          (lcBodyText.lastIndexOf("/style>", i) >= lcBodyText.lastIndexOf("<style", i))
+        ) {
+          newText += bodyText.substring(0, i) + highlightStartTag + bodyText.substr(i, searchTerm.length) + highlightEndTag;
+          bodyText = bodyText.substr(i + searchTerm.length);
+          lcBodyText = bodyText.toLowerCase();
+          i = -1;
+        }
+      }
+    }
+  }
+
+  return newText;
+}
+
+
+/*
+ * This is sort of a wrapper function to the ac_str_highlight function.
+ * It takes the searchText that you pass, optionally splits it into
+ * separate words, transforms the text and returns it.
+ * Only the "bodyText" and "searchText" parameters are required; all other parameters
+ * are optional and can be omitted.
+ */
+function ac_str_highlight_phrase(bodyText, searchText, treatAsPhrase, customColorIndex)
+{
+  // if the treatAsPhrase parameter is true, then we should search for
+  // the entire phrase that was entered; otherwise, we will split the
+  // search string so that each word is searched for and highlighted
+  // individually
+  if (treatAsPhrase) {
+    var searchArray = [searchText];
+  } else {
+    var searchArray = searchText.split(" ");
+    if ( searchArray.length == 1 ) {
+      var treatAsPhrase = true;
+    }
+  }
+
+  var colors = [ 'yellow', '#99FF99', '#FFCCFF', '#CC99FF', '#99CCFF', '#FFCC99', '#CCCCFF', '#66CCFF' ];
+  for (var i = 0; i < searchArray.length; i++) {
+    // choose color
+    if (!customColorIndex && customColorIndex != 0) {
+      if (treatAsPhrase) {
+        var colorIndex = 0;
+      } else {
+        var colorIndex = ( i % 7 ) + 1;
+      }
+    } else {
+      colorIndex = customColorIndex;
+    }
+    var color = colors[colorIndex];
+    highlightStartTag = '<font class="__highlight" style="background-color: ' + color + ';">';
+    highlightEndTag = '</font>';
+    bodyText = ac_str_highlight(bodyText, searchArray[i], highlightStartTag, highlightEndTag);
+  }
+
+  return bodyText;
+}
+
+
+
+/*
+var __ac_highlight_tags = [];
+var __ac_highlight_tag = '';
+var __ac_highlight_i = 0;
+
+function ac_str_highlight(str, terms, tag) {
+	if ( tag == null || tag == undefined )
+		var tag = '<b style="color: #000; background-color: #%s;">%s</b>';
+	var orig = str;
+	var colors = [ 'ff0', '0ff', 'f0f' ];
+	var i = 0;
+	if ( terms.length == 0 || ( terms.length == 1 && ac_str_trim(terms[0]) == '' ) ) return str;
+	__ac_highlight_tags = [];
+	for ( var i = 0; i < terms.length; i++ ) {
+		// choose color
+		var colorIndex = i % 3;
+		var color = colors[colorIndex];
+		if ( terms[i].length > 1 ) {
+			// escape term
+			var q = preg_quote(terms[i]);
+			// If there are tags, we need to stay outside them
+			__ac_highlight_tag = tag;
+			__ac_highlight_i = i;
+			if ( !str.match(/<.+>/) ) {
+				// text
+				str = str.replace(
+					/(\b + q + \b)/ig,
+					function(m) {
+						alert(m);return m;
+						var found = sprintf(__ac_highlight_tag, __ac_highlight_i, m[1]);
+						var r = ac_b64_encode(found);
+						__ac_highlight_tags[r] = found;
+						return r;
+					}
+				);
+			} else {
+				// html
+				str = str.replace(
+					/(?<=>)([^<]+)?(\b/ + q + /\b)/ig,
+					function(m) {
+						var found = m[1] + sprintf(__ac_highlight_tag, __ac_highlight_i, m[2]);
+						var r = ac_b64_encode(found);
+						__ac_highlight_tags[r] = found;
+						return r;
+					}
+				);
+			}
+		}
+	}
+	// do final replacements
+	if ( __ac_highlight_tags.length > 0 ) {
+		str = str.replace(ac_array_keys(__ac_highlight_tags), ac_array_values(__ac_highlight_tags));
+	}
+	return str;
+}
+*/
+
+function nl2br(str) {
+	if ( typeof(str) == "string" )
+		return str.replace(/(\r\n)|(\n\r)|\r|\n/g,'<br />'); // '
+	else
+		return str;
+}
+
+function br2nl(str) {
+	if ( typeof(str) == "string" )
+		return str.replace(/<br\s*\/?>/ig, "\n"); // '
+	else
+		return str;
+}
+
+function preg_quote( str ) {
+	// Quote regular expression characters
+	//
+	// +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_preg_quote/
+	// +       version: 801.2320
+	// +   original by: booeyOH
+	// +   improved by: Ates Goral (http://magnetiq.com)
+	// *     example 1: preg_quote("$40");
+	// *     returns 1: "\\\$40"
+	// *     example 2: preg_quote("*RRRING* Hello?");
+	// *     returns 2: "\\*RRRING\\* Hello\\?"
+	// *     example 3: preg_quote("\\.+*?[^]$(){}=!<>|:");
+	// *     returns 3: "\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:"
+
+	return str.replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
+}
+
+function ac_str_urlsafe(str, delim) {
+	if ( !delim ) delim = '-';
+	// strip all tags first
+	str = strip_tags(str);
+	// encode escaped octets
+	str = str.replace(/%([a-fA-F0-9][a-fA-F0-9])/, '-=-$1-=-');
+	// remove percent signs
+	str = str.replace('%', '');
+	// decode found octets
+	str = str.replace(/-=-([a-fA-F0-9][a-fA-F0-9])-=-/g, '%$1');
+	// do your best to mask all weird chars
+	str = ac_str_remove_accents(str);
+	// if string is in utf8
+	if ( ac_utf_check(str) ) {
+		// encode string for usage in url
+		str = ac_utf_uri_encode(str, 200);
+	}
+	// paths should be lowercased
+	str = str.toLowerCase();
+	// remove all entities,
+	str = str.replace(/&.+?;/g, '');
+	// harmfull chars,
+	str = str.replace(/[^%a-z0-9 _-]/g, '');
+	// whitespaces
+	str = str.replace(/\s+/g, delim);
+	// and other...
+	str = str.replace(/-+/g, delim);
+	str = ac_str_trim(str, delim);
+	// return clean string
+	return str;
+}
+
+
+
+function ac_str_remove_accents(string) {
+	// if none found, return the string right away
+	if ( !string.match(/[\u80-\uff]/) ) {
+		return string;
+	}
+	if ( ac_utf_check(string) ) {
+		// if string is in utf8
+		var chars = new Array();
+		chars[((195 << 6) | 128).toString()] = 'A';
+		chars[((195 << 6) | 129).toString()] = 'A';
+		chars[((195 << 6) | 130).toString()] = 'A';
+		chars[((195 << 6) | 131).toString()] = 'A';
+		chars[((195 << 6) | 132).toString()] = 'A';
+		chars[((195 << 6) | 133).toString()] = 'A';
+		chars[((195 << 6) | 135).toString()] = 'C';
+		chars[((195 << 6) | 136).toString()] = 'E';
+		chars[((195 << 6) | 137).toString()] = 'E';
+		chars[((195 << 6) | 138).toString()] = 'E';
+		chars[((195 << 6) | 139).toString()] = 'E';
+		chars[((195 << 6) | 140).toString()] = 'I';
+		chars[((195 << 6) | 141).toString()] = 'I';
+		chars[((195 << 6) | 142).toString()] = 'I';
+		chars[((195 << 6) | 143).toString()] = 'I';
+		chars[((195 << 6) | 145).toString()] = 'N';
+		chars[((195 << 6) | 146).toString()] = 'O';
+		chars[((195 << 6) | 147).toString()] = 'O';
+		chars[((195 << 6) | 148).toString()] = 'O';
+		chars[((195 << 6) | 149).toString()] = 'O';
+		chars[((195 << 6) | 150).toString()] = 'O';
+		chars[((195 << 6) | 153).toString()] = 'U';
+		chars[((195 << 6) | 154).toString()] = 'U';
+		chars[((195 << 6) | 155).toString()] = 'U';
+		chars[((195 << 6) | 156).toString()] = 'U';
+		chars[((195 << 6) | 157).toString()] = 'Y';
+		chars[((195 << 6) | 159).toString()] = 's';
+		chars[((195 << 6) | 160).toString()] = 'a';
+		chars[((195 << 6) | 161).toString()] = 'a';
+		chars[((195 << 6) | 162).toString()] = 'a';
+		chars[((195 << 6) | 163).toString()] = 'a';
+		chars[((195 << 6) | 164).toString()] = 'a';
+		chars[((195 << 6) | 165).toString()] = 'a';
+		chars[((195 << 6) | 167).toString()] = 'c';
+		chars[((195 << 6) | 168).toString()] = 'e';
+		chars[((195 << 6) | 169).toString()] = 'e';
+		chars[((195 << 6) | 170).toString()] = 'e';
+		chars[((195 << 6) | 171).toString()] = 'e';
+		chars[((195 << 6) | 172).toString()] = 'i';
+		chars[((195 << 6) | 173).toString()] = 'i';
+		chars[((195 << 6) | 174).toString()] = 'i';
+		chars[((195 << 6) | 175).toString()] = 'i';
+		chars[((195 << 6) | 177).toString()] = 'n';
+		chars[((195 << 6) | 178).toString()] = 'o';
+		chars[((195 << 6) | 179).toString()] = 'o';
+		chars[((195 << 6) | 180).toString()] = 'o';
+		chars[((195 << 6) | 181).toString()] = 'o';
+		chars[((195 << 6) | 182).toString()] = 'o';
+		chars[((195 << 6) | 182).toString()] = 'o';
+		chars[((195 << 6) | 185).toString()] = 'u';
+		chars[((195 << 6) | 186).toString()] = 'u';
+		chars[((195 << 6) | 187).toString()] = 'u';
+		chars[((195 << 6) | 188).toString()] = 'u';
+		chars[((195 << 6) | 189).toString()] = 'y';
+		chars[((195 << 6) | 191).toString()] = 'y';
+		chars[((196 << 6) | 128).toString()] = 'A';
+		chars[((196 << 6) | 129).toString()] = 'a';
+		chars[((196 << 6) | 130).toString()] = 'A';
+		chars[((196 << 6) | 131).toString()] = 'a';
+		chars[((196 << 6) | 132).toString()] = 'A';
+		chars[((196 << 6) | 133).toString()] = 'a';
+		chars[((196 << 6) | 134).toString()] = 'C';
+		chars[((196 << 6) | 135).toString()] = 'c';
+		chars[((196 << 6) | 136).toString()] = 'C';
+		chars[((196 << 6) | 137).toString()] = 'c';
+		chars[((196 << 6) | 138).toString()] = 'C';
+		chars[((196 << 6) | 139).toString()] = 'c';
+		chars[((196 << 6) | 140).toString()] = 'C';
+		chars[((196 << 6) | 141).toString()] = 'c';
+		chars[((196 << 6) | 142).toString()] = 'D';
+		chars[((196 << 6) | 143).toString()] = 'd';
+		chars[((196 << 6) | 144).toString()] = 'D';
+		chars[((196 << 6) | 145).toString()] = 'd';
+		chars[((196 << 6) | 146).toString()] = 'E';
+		chars[((196 << 6) | 147).toString()] = 'e';
+		chars[((196 << 6) | 148).toString()] = 'E';
+		chars[((196 << 6) | 149).toString()] = 'e';
+		chars[((196 << 6) | 150).toString()] = 'E';
+		chars[((196 << 6) | 151).toString()] = 'e';
+		chars[((196 << 6) | 152).toString()] = 'E';
+		chars[((196 << 6) | 153).toString()] = 'e';
+		chars[((196 << 6) | 154).toString()] = 'E';
+		chars[((196 << 6) | 155).toString()] = 'e';
+		chars[((196 << 6) | 156).toString()] = 'G';
+		chars[((196 << 6) | 157).toString()] = 'g';
+		chars[((196 << 6) | 158).toString()] = 'G';
+		chars[((196 << 6) | 159).toString()] = 'g';
+		chars[((196 << 6) | 160).toString()] = 'G';
+		chars[((196 << 6) | 161).toString()] = 'g';
+		chars[((196 << 6) | 162).toString()] = 'G';
+		chars[((196 << 6) | 163).toString()] = 'g';
+		chars[((196 << 6) | 164).toString()] = 'H';
+		chars[((196 << 6) | 165).toString()] = 'h';
+		chars[((196 << 6) | 166).toString()] = 'H';
+		chars[((196 << 6) | 167).toString()] = 'h';
+		chars[((196 << 6) | 168).toString()] = 'I';
+		chars[((196 << 6) | 169).toString()] = 'i';
+		chars[((196 << 6) | 170).toString()] = 'I';
+		chars[((196 << 6) | 171).toString()] = 'i';
+		chars[((196 << 6) | 172).toString()] = 'I';
+		chars[((196 << 6) | 173).toString()] = 'i';
+		chars[((196 << 6) | 174).toString()] = 'I';
+		chars[((196 << 6) | 175).toString()] = 'i';
+		chars[((196 << 6) | 176).toString()] = 'I';
+		chars[((196 << 6) | 177).toString()] = 'i';
+		chars[((196 << 6) | 178).toString()] = 'IJ';
+		chars[((196 << 6) | 179).toString()] = 'ij';
+		chars[((196 << 6) | 180).toString()] = 'J';
+		chars[((196 << 6) | 181).toString()] = 'j';
+		chars[((196 << 6) | 182).toString()] = 'K';
+		chars[((196 << 6) | 183).toString()] = 'k';
+		chars[((196 << 6) | 184).toString()] = 'k';
+		chars[((196 << 6) | 185).toString()] = 'L';
+		chars[((196 << 6) | 186).toString()] = 'l';
+		chars[((196 << 6) | 187).toString()] = 'L';
+		chars[((196 << 6) | 188).toString()] = 'l';
+		chars[((196 << 6) | 189).toString()] = 'L';
+		chars[((196 << 6) | 190).toString()] = 'l';
+		chars[((196 << 6) | 191).toString()] = 'L';
+		chars[((197 << 6) | 128).toString()] = 'l';
+		chars[((197 << 6) | 129).toString()] = 'L';
+		chars[((197 << 6) | 130).toString()] = 'l';
+		chars[((197 << 6) | 131).toString()] = 'N';
+		chars[((197 << 6) | 132).toString()] = 'n';
+		chars[((197 << 6) | 133).toString()] = 'N';
+		chars[((197 << 6) | 134).toString()] = 'n';
+		chars[((197 << 6) | 135).toString()] = 'N';
+		chars[((197 << 6) | 136).toString()] = 'n';
+		chars[((197 << 6) | 137).toString()] = 'N';
+		chars[((197 << 6) | 138).toString()] = 'n';
+		chars[((197 << 6) | 139).toString()] = 'N';
+		chars[((197 << 6) | 140).toString()] = 'O';
+		chars[((197 << 6) | 141).toString()] = 'o';
+		chars[((197 << 6) | 142).toString()] = 'O';
+		chars[((197 << 6) | 143).toString()] = 'o';
+		chars[((197 << 6) | 144).toString()] = 'O';
+		chars[((197 << 6) | 145).toString()] = 'o';
+		chars[((197 << 6) | 146).toString()] = 'OE';
+		chars[((197 << 6) | 147).toString()] = 'oe';
+		chars[((197 << 6) | 148).toString()] = 'R';
+		chars[((197 << 6) | 149).toString()] = 'r';
+		chars[((197 << 6) | 150).toString()] = 'R';
+		chars[((197 << 6) | 151).toString()] = 'r';
+		chars[((197 << 6) | 152).toString()] = 'R';
+		chars[((197 << 6) | 153).toString()] = 'r';
+		chars[((197 << 6) | 154).toString()] = 'S';
+		chars[((197 << 6) | 155).toString()] = 's';
+		chars[((197 << 6) | 156).toString()] = 'S';
+		chars[((197 << 6) | 157).toString()] = 's';
+		chars[((197 << 6) | 158).toString()] = 'S';
+		chars[((197 << 6) | 159).toString()] = 's';
+		chars[((197 << 6) | 160).toString()] = 'S';
+		chars[((197 << 6) | 161).toString()] = 's';
+		chars[((197 << 6) | 162).toString()] = 'T';
+		chars[((197 << 6) | 163).toString()] = 't';
+		chars[((197 << 6) | 164).toString()] = 'T';
+		chars[((197 << 6) | 165).toString()] = 't';
+		chars[((197 << 6) | 166).toString()] = 'T';
+		chars[((197 << 6) | 167).toString()] = 't';
+		chars[((197 << 6) | 168).toString()] = 'U';
+		chars[((197 << 6) | 169).toString()] = 'u';
+		chars[((197 << 6) | 170).toString()] = 'U';
+		chars[((197 << 6) | 171).toString()] = 'u';
+		chars[((197 << 6) | 172).toString()] = 'U';
+		chars[((197 << 6) | 173).toString()] = 'u';
+		chars[((197 << 6) | 174).toString()] = 'U';
+		chars[((197 << 6) | 175).toString()] = 'u';
+		chars[((197 << 6) | 176).toString()] = 'U';
+		chars[((197 << 6) | 177).toString()] = 'u';
+		chars[((197 << 6) | 178).toString()] = 'U';
+		chars[((197 << 6) | 179).toString()] = 'u';
+		chars[((197 << 6) | 180).toString()] = 'W';
+		chars[((197 << 6) | 181).toString()] = 'w';
+		chars[((197 << 6) | 182).toString()] = 'Y';
+		chars[((197 << 6) | 183).toString()] = 'y';
+		chars[((197 << 6) | 184).toString()] = 'Y';
+		chars[((197 << 6) | 185).toString()] = 'Z';
+		chars[((197 << 6) | 186).toString()] = 'z';
+		chars[((197 << 6) | 187).toString()] = 'Z';
+		chars[((197 << 6) | 188).toString()] = 'z';
+		chars[((197 << 6) | 189).toString()] = 'Z';
+		chars[((197 << 6) | 190).toString()] = 'z';
+		chars[((197 << 6) | 191).toString()] = 's';
+		chars[((226 << 12) | (130 << 6) | 172).toString()] = 'E';
+		chars[((194 << 6) | 163).toString()] = '';
+		// do the replacements
+		for (var i = 0; i < string.length; i++) {
+			var code = string.charCodeAt(i).toString();
+			var chr = string[i];
+			if (chars[code]) {
+				string[i] = chars[code];
+			}
+		}
+	} else {
+		// assume it is ISO-8859-1 if not UTF-8
+		var chars = {
+			'in' :
+				String.fromCharCode(128) + String.fromCharCode(131) + String.fromCharCode(138) + String.fromCharCode(142) + String.fromCharCode(154) + String.fromCharCode(158) + String.fromCharCode(159) +
+				String.fromCharCode(162) + String.fromCharCode(165) + String.fromCharCode(181) + String.fromCharCode(192) + String.fromCharCode(193) + String.fromCharCode(194) + String.fromCharCode(195) +
+				String.fromCharCode(196) + String.fromCharCode(197) + String.fromCharCode(199) + String.fromCharCode(200) + String.fromCharCode(201) + String.fromCharCode(202) + String.fromCharCode(203) +
+				String.fromCharCode(204) + String.fromCharCode(205) + String.fromCharCode(206) + String.fromCharCode(207) + String.fromCharCode(209) + String.fromCharCode(210) + String.fromCharCode(211) +
+				String.fromCharCode(212) + String.fromCharCode(213) + String.fromCharCode(214) + String.fromCharCode(216) + String.fromCharCode(217) + String.fromCharCode(218) + String.fromCharCode(219) +
+				String.fromCharCode(220) + String.fromCharCode(221) + String.fromCharCode(224) + String.fromCharCode(225) + String.fromCharCode(226) + String.fromCharCode(227) + String.fromCharCode(228) +
+				String.fromCharCode(229) + String.fromCharCode(231) + String.fromCharCode(232) + String.fromCharCode(233) + String.fromCharCode(234) + String.fromCharCode(235) + String.fromCharCode(236) +
+				String.fromCharCode(237) + String.fromCharCode(238) + String.fromCharCode(239) + String.fromCharCode(241) + String.fromCharCode(242) + String.fromCharCode(243) + String.fromCharCode(244) +
+				String.fromCharCode(245) + String.fromCharCode(246) + String.fromCharCode(248) + String.fromCharCode(249) + String.fromCharCode(250) + String.fromCharCode(251) + String.fromCharCode(252) +
+				String.fromCharCode(253) + String.fromCharCode(255),
+			'out' :
+				'EfSZszYcYuAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy',
+			'inin' :
+				[ String.fromCharCode(140), String.fromCharCode(156), String.fromCharCode(198), String.fromCharCode(208), String.fromCharCode(222), String.fromCharCode(223), String.fromCharCode(230), String.fromCharCode(240), String.fromCharCode(254) ],
+			'outout' :
+				[ 'OE', 'oe', 'AE', 'DH', 'TH', 'ss', 'ae', 'dh', 'th' ]
+		};
+		// replace single characters
+		string = ac_str_strtr(string, chars['in'], chars['out']);
+		// replace double characters
+		string = ac_str_replace(chars['inin'], chars['outout'], string);
+	}
+	// return a clean string
+	return string;
+}
+
+function ac_str_file_humansize(size) {
+	var count = 0;
+	var format = new Array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+	while( ( size / 1024 ) > 1 && count < 8 ) {
+		size = size / 1024;
+		count++;
+	}
+	//var decimals = size < 10;
+
+	return Math.round(size) + ' ' + format[count];
+}
+
+// Always pass ac_strings.js vars decimalDelim and commaDelim if default
+function ac_format_number(nStr, dec, grp) {
+	if ( typeof dec == 'undefined' ) dec = typeof decimalDelim == 'undefined' ? '.' : decimalDelim;
+	if ( typeof grp == 'undefined' ) grp = typeof commaDelim   == 'undefined' ? ',' : commaDelim;
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? dec + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + grp + '$2');
+	}
+	return x1 + x2;
+}
+
+function ac_str_strtr(str, list) {
+	if ( arguments[2] ) {
+		var r = arguments[2];
+		for ( var i = 0; i < list.length; i++ ) {
+			str = str.replace( new RegExp(list.charAt(i), "g"), r.charAt(i) );
+		}
+	} else {
+		for ( var c in list ) {
+			str = str.replace( new RegExp(c, "g"), list[c] );
+		}
+	}
+	return str;
+}
+
+function ac_str_replace(search, replace, subject) {
+	if ( typeof(search) == "string" ) return subject.replace(RegExp(search, "g"), replace);
+	for ( var i in search ) {
+		if ( replace[i] && typeof(search[i]) + typeof(replace[i]) == "stringstring" )
+			subject = subject.replace(RegExp(search[i], "g"), replace[i]);
+	}
+	return subject;
+}
+
+function strip_tags(str, trim) {
+	str += '';
+	var r = str.replace(/<\/?[^>]+>/gi, '');
+	r = r.replace(/&nbsp;/g, ' ');
+	if ( trim ) r = ac_str_trim(r);
+	return r;
+}
+
+function ac_str_escapeq(str) {
+	str += '';
+	str = str.replace(/\\/g, '\\\\');
+	str = str.replace(/'/g, "\\'");
+	str = str.replace(/"/g, '\\"');
+	return str;
+}
+
+function ac_str_htmlescape(str) {
+	str += '';
+	str = str.replace(/&/g, "&amp;");
+	str = str.replace(/</g, "&lt;");
+	str = str.replace(/>/g, "&gt;");
+	str = str.replace(/'/g, "&#039;"); //'
+	str = str.replace(/"/g, "&quot;"); //"
+
+	return str;
+}
+
+function ac_str_jsescape(str) {
+	str += '';
+	str = str.replace(/'/g, "\\'"); //"
+	str = str.replace(/"/g, '\\"'); //'
+
+	return str;
+}
+
+function ac_str_email(email) {
+	email += '';
+    return email.match( /^[\+_a-z0-9-'&=]+(\.[\+_a-z0-9-']+)*\.{0,1}@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i );
+}
+
+function ac_str_is_url(url) {
+	//
+	// Regular Expression for URL validation
+	//
+	// Author: Diego Perini
+	// Updated: 2010/12/05
+	// License: MIT
+	//
+	// Copyright (c) 2010-2013 Diego Perini (http://www.iport.it)
+	//
+	// Permission is hereby granted, free of charge, to any person
+	// obtaining a copy of this software and associated documentation
+	// files (the "Software"), to deal in the Software without
+	// restriction, including without limitation the rights to use,
+	// copy, modify, merge, publish, distribute, sublicense, and/or sell
+	// copies of the Software, and to permit persons to whom the
+	// Software is furnished to do so, subject to the following
+	// conditions:
+	//
+	// The above copyright notice and this permission notice shall be
+	// included in all copies or substantial portions of the Software.
+	//
+	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+	// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+	// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+	// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+	// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+	// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+	// OTHER DEALINGS IN THE SOFTWARE.
+	//
+	// the regular expression composed & commented
+	// could be easily tweaked for RFC compliance,
+	// it was expressly modified to fit & satisfy
+	// these test for an URL shortener:
+	//
+	//   http://mathiasbynens.be/demo/url-regex
+	//
+	// Notes on possible differences from a standard/generic validation:
+	//
+	// - utf-8 char class take in consideration the full Unicode range
+	// - TLDs have been made mandatory so single names like "localhost" fails
+	// - protocols have been restricted to ftp, http and https only as requested
+	//
+	// Changes:
+	//
+	// - IP address dotted notation validation, range: 1.0.0.0 - 223.255.255.255
+	//   first and last IP address of each class is considered invalid
+	//   (since they are broadcast/network addresses)
+	//
+	// - Added exclusion of private, reserved and/or local networks ranges
+	//
+	// - Made starting path slash optional (http://example.com?foo=bar)
+	//
+	// - Allow a dot (.) at the end of hostnames (http://example.com.)
+	//
+	// Compressed one-line versions:
+	//
+	// Javascript version
+	//
+	// /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i
+	//
+	// PHP version
+	//
+	// _^(?:(?:https?|ftp)://)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\x{00a1}-\x{ffff}0-9]-*)*[a-z\x{00a1}-\x{ffff}0-9]+)(?:\.(?:[a-z\x{00a1}-\x{ffff}0-9]-*)*[a-z\x{00a1}-\x{ffff}0-9]+)*(?:\.(?:[a-z\x{00a1}-\x{ffff}]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$_iuS
+	//
+	var re_weburl = new RegExp(
+		"^" +
+		// protocol identifier
+		"(?:(?:https?|ftp)://)|(?:www\.)" +
+		// user:pass authentication
+		"(?:\\S+(?::\\S*)?@)?" +
+		"(?:" +
+		// IP address exclusion
+		// private & local networks
+		"(?!(?:10|127)(?:\\.\\d{1,3}){3})" +
+		"(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})" +
+		"(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})" +
+		// IP address dotted notation octets
+		// excludes loopback network 0.0.0.0
+		// excludes reserved space >= 224.0.0.0
+		// excludes network & broacast addresses
+		// (first & last IP address of each class)
+		"(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])" +
+		"(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}" +
+		"(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))" +
+		"|" +
+		// host name
+		"(?:(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)" +
+		// domain name
+		"(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*" +
+		// TLD identifier
+		"(?:\\.(?:[a-z\\u00a1-\\uffff]{2,}))" +
+		// TLD may end with dot
+		"\\.?" +
+		")" +
+		// port number
+		"(?::\\d{2,5})?" +
+		// resource path
+		"(?:[/?#]\\S*)?" +
+		"$", "i"
+	);
+	url += '';
+    return url.match( re_weburl );
+}
+
+// get the byte length of a string (counting individual bytes for utf8-encoded characters)
+// required for checking sms message lengths which are limited by bytes, not characters
+function ac_str_bytelen(str) {
+	return unescape(encodeURI(str)).length;
+}
+/**
+*
+*  Javascript sprintf
+*  http://www.webtoolkit.info/
+*
+*
+**/
+
+sprintfWrapper = {
+
+	init : function () {
+
+		if (typeof arguments == "undefined") { return null; }
+		if (arguments.length < 1) { return null; }
+		if (typeof arguments[0] != "string") { return null; }
+		if (typeof RegExp == "undefined") { return null; }
+
+		var string = arguments[0];
+		var exp = new RegExp(/(%([%]|(\-)?(\+|\x20)?(0)?(\d+)?(\.(\d)?)?([bcdfosxX])))/g);
+		var matches = new Array();
+		var strings = new Array();
+		var convCount = 0;
+		var stringPosStart = 0;
+		var stringPosEnd = 0;
+		var matchPosEnd = 0;
+		var newString = '';
+		var match = null;
+
+		while (match = exp.exec(string)) {
+			if (match[9]) { convCount += 1; }
+
+			stringPosStart = matchPosEnd;
+			stringPosEnd = exp.lastIndex - match[0].length;
+			strings[strings.length] = string.substring(stringPosStart, stringPosEnd);
+
+			matchPosEnd = exp.lastIndex;
+			matches[matches.length] = {
+				match: match[0],
+				left: match[3] ? true : false,
+				sign: match[4] || '',
+				pad: match[5] || ' ',
+				min: match[6] || 0,
+				precision: match[8],
+				code: match[9] || '%',
+				negative: parseInt(arguments[convCount]) < 0 ? true : false,
+				argument: String(arguments[convCount])
+			};
+		}
+		strings[strings.length] = string.substring(matchPosEnd);
+
+		if (matches.length == 0) { return string; }
+		if ((arguments.length - 1) < convCount) { return null; }
+
+		var code = null;
+		var match = null;
+		var i = null;
+
+		for (i=0; i<matches.length; i++) {
+
+			if (matches[i].code == '%') { substitution = '%' }
+			else if (matches[i].code == 'b') {
+				matches[i].argument = String(Math.abs(parseInt(matches[i].argument)).toString(2));
+				substitution = sprintfWrapper.convert(matches[i], true);
+			}
+			else if (matches[i].code == 'c') {
+				matches[i].argument = String(String.fromCharCode(parseInt(Math.abs(parseInt(matches[i].argument)))));
+				substitution = sprintfWrapper.convert(matches[i], true);
+			}
+			else if (matches[i].code == 'd') {
+				matches[i].argument = String(Math.abs(parseInt(matches[i].argument)));
+				substitution = sprintfWrapper.convert(matches[i]);
+			}
+			else if (matches[i].code == 'f') {
+				matches[i].argument = String(Math.abs(parseFloat(matches[i].argument)).toFixed(matches[i].precision ? matches[i].precision : 6));
+				substitution = sprintfWrapper.convert(matches[i]);
+			}
+			else if (matches[i].code == 'o') {
+				matches[i].argument = String(Math.abs(parseInt(matches[i].argument)).toString(8));
+				substitution = sprintfWrapper.convert(matches[i]);
+			}
+			else if (matches[i].code == 's') {
+				matches[i].argument = matches[i].argument.substring(0, matches[i].precision ? matches[i].precision : matches[i].argument.length)
+				substitution = sprintfWrapper.convert(matches[i], true);
+			}
+			else if (matches[i].code == 'x') {
+				matches[i].argument = String(Math.abs(parseInt(matches[i].argument)).toString(16));
+				substitution = sprintfWrapper.convert(matches[i]);
+			}
+			else if (matches[i].code == 'X') {
+				matches[i].argument = String(Math.abs(parseInt(matches[i].argument)).toString(16));
+				substitution = sprintfWrapper.convert(matches[i]).toUpperCase();
+			}
+			else {
+				substitution = matches[i].match;
+			}
+
+			newString += strings[i];
+			newString += substitution;
+
+		}
+		newString += strings[i];
+
+		return newString;
+
+	},
+
+	convert : function(match, nosign){
+		if (nosign) {
+			match.sign = '';
+		} else {
+			match.sign = match.negative ? '-' : match.sign;
+		}
+		var l = match.min - match.argument.length + 1 - match.sign.length;
+		var pad = new Array(l < 0 ? 0 : l).join(match.pad);
+		if (!match.left) {
+			if (match.pad == "0" || nosign) {
+				return match.sign + pad + match.argument;
+			} else {
+				return pad + match.sign + match.argument;
+			}
+		} else {
+			if (match.pad == "0" || nosign) {
+				return match.sign + match.argument + pad.replace(/0/g, ' ');
+			} else {
+				return match.sign + match.argument + pad;
+			}
+		}
+	}
+}
+
+sprintf = sprintfWrapper.init;
+// array.js
+
+function ac_array_keys( input, search_value, strict ) {
+    // Return all the keys of an array
+    //
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_keys/
+    // +       version: 801.3120
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
+    // *     returns 1: {0: 'firstname', 1: 'surname'}
+
+    var tmp_arr = new Array(), strict = !!strict, include = true, cnt = 0;
+
+    for ( key in input ) {
+        include = true;
+        if ( search_value != undefined ) {
+            if ( strict && input[key] !== search_value ) {
+                include = false;
+            } else if ( input[key] != search_value ) {
+                include = false;
+            }
+        }
+
+        if ( include ) {
+            tmp_arr[cnt] = key;
+            cnt++;
+        }
+    }
+
+    return tmp_arr;
+}
+
+function ac_array_indexof(ary, val) {
+	var i;
+
+	for (i = 0; i < ary.length; i++) {
+		if (ary[i] == val)
+			return i;
+	}
+
+	return -1;
+}
+
+function ac_array_values( input ) {
+    // Return all the values of an array
+    //
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_values/
+    // +       version: 801.3120
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );
+    // *     returns 1: {0: 'Kevin', 1: 'van Zonneveld'}
+
+    var tmp_arr = new Array(), cnt = 0;
+
+    for ( key in input ){
+        tmp_arr[cnt] = input[key];
+        cnt++;
+    }
+
+    return tmp_arr;
+}
+
+
+function ac_array_remove(node, arr, renum) {
+	var newArr = new Array();
+	for ( var i = 0; i < arr.length; i++ ) {
+		if ( arr[i] != node ) {
+			var j = ( renum ? newArr.length : i );
+			newArr[j] = arr[i];
+		}
+	}
+	return newArr;
+}
+
+function ac_array_remove_key(k, arr) {
+	var newArr = { };
+	for ( var i in arr ) {
+		if ( i != k ) {
+			newArr[i] = arr[i];
+		}
+	}
+	return newArr;
+}
+
+function ac_array_combine(ary, copula) {
+	if ( !ary.length ) return '';
+	if ( ary.length == 1 ) return ary[0];
+	copula = copula || jsAnd;
+	var last = ary.splice(ary.length-1, 1);
+	return ary.join(', ') + ' ' + copula + ' ' + last;
+}
+
+// gets the first value in the array
+function ac_array_first( input ) {
+	if (input == null) {
+		return null;
+	}
+
+	if (typeof input[0] != "undefined") {
+		return input[0];
+	}
+
+	for(var i in input) {
+		if (input.hasOwnProperty(i)) {
+			return input[i];
+		}
+	}
+	return null;
+}
+// utf.js
+
+function ac_utf_unescape(str) {
+	return str.replace(/&#([0-9]+);/g, function(str, mat) { return String.fromCharCode(parseInt(mat, 10)); });
+}
+
+function ac_utf_check(str) {
+	for ( var i = 0; i < str.length; i++ ) {
+		if ( str.charCodeAt(i) < 0x80 ) {
+			// do nothing if 0bbbbbbb
+			continue;
+		} else if ( ( str.charCodeAt(i) & 0xE0 ) == 0xC0 ) {
+			// 110bbbbb
+			n = 1;
+		} else if ( ( str.charCodeAt(i) & 0xF0 ) == 0xE0 ) {
+			// 1110bbbb
+			n = 2;
+		} else if ( ( str.charCodeAt(i) & 0xF8 ) == 0xF0 ) {
+			// 11110bbb
+			n = 3;
+		} else if ( ( str.charCodeAt(i) & 0xFC ) == 0xF8 ) {
+			// 111110bb
+			n = 4;
+		} else if ( ( str.charCodeAt(i) & 0xFE ) == 0xFC ) {
+			// 1111110b
+			n = 5;
+		} else {
+			// it does not match any model
+			return false;
+		}
+		// loop through found bytes offset
+		for ( var j = 0; j < n; j++ ) {
+			if ( ( ++i == str.length ) || ( ( str.charCodeAt(i) & 0xC0 ) != 0x80 ) ) {
+				return false;
+			}
+		}
+	}
+	// it is utf8 string, nothing bad found
+	return true;
+}
+
+function ac_utf_reinterpret(str) {
+	// If we have a UTF-8 string which we don't recognize as UTF-8 (each byte is interpreted
+	// separately), put it back together.
+	
+	var _out = "";
+	var a, b, c, d;
+
+	for (var i = 0; i < str.length; i++) {
+		a = str.charCodeAt(i);
+
+		switch (ac_utf_codelen(a)) {
+			case 1:
+			default:
+				_out += str.charAt(i);
+				break;
+
+			case 2:
+				a = a & 31;
+				b = str.charCodeAt(++i) & 63;
+				_out += String.fromCharCode((a << 6) | b);
+				break;
+
+			case 3:
+				a = a & 15;
+				b = str.charCodeAt(++i) & 63;
+				c = str.charCodeAt(++i) & 63;
+				_out += String.fromCharCode((a << 12) | (b << 6) | c);
+				break;
+
+			case 4:
+				a = a & 7;
+				b = str.charCodeAt(++i) & 63;
+				c = str.charCodeAt(++i) & 63;
+				d = str.charCodeAt(++i) & 63;
+				_out += String.fromCharCode((a << 18) | (b << 12) | (c << 6) | d);
+				break;
+		}
+	}
+
+	return _out;
+}
+
+function ac_utf_codelen(b) {
+	if ((b & 240) == 240)
+		return 4;
+	if ((b & 224) == 224)
+		return 3;
+	if ((b & 192) == 192)
+		return 2;
+	return 1;
+}
+
+function ac_utf_uri_encode(str, length) {
+	// define needed vars
+	if ( !length ) length = 0;
+	var unicode = '';
+	var values = new Array();
+	var octets = 1;
+	// loop through string
+	for ( i = 0; i < str.length; i++ ) {
+		var value = str.charCodeAt(i);
+		if ( value < 128 ) {
+			// if regular char
+			if ( length && ( unicode.length + 1 > length ) ) {
+				break;
+			}
+			unicode = unicode + String.fromCharCode(value);
+		} else {
+			// where is it?
+			if ( values.length == 0 ) octets = ( value < 224 ? 2 : 3 );
+			values.push(value);
+			if ( length && ( unicode.length + octets * 3 > length ) ) {
+				break;
+			}
+			// when found all parts, combine them
+			if ( values.length == octets ) {
+				unicode = unicode + '%' . values[0].toString(16) + '%' + values[1].toString(16);
+				if ( octets == 3 ) unicode = unicode + '%' + values[2].toString(16);
+				var values = new Array();
+				var octets = 1;
+			}
+		}
+	}
+	return unicode;
+}
+// editor.js
+
+
+/*
+	TINY MCE
+*/
+
+
+function ac_editor_toggle(id, settings) {
+	// if adding an editor, and settings object is provided
+	if ( !ac_editor_is(id) && typeof settings == 'object' ) {
+		// assign it
+		if ( typeof settings.language == 'undefined' && typeof _locale_tinymce != 'undefined' ) {
+			settings.language = _locale_tinymce;
+		}
+		tinyMCE.init(settings);
+	}
+
+	tinyMCE.execCommand( /*'mceToggleEditor'*/ ( !ac_editor_is(id) ? 'mceAddControl' : 'mceRemoveControl' ), false, id);
+}
+
+function ac_editor_switchtabs(inst) {
+	var id = inst.editorId;
+
+	// If they're both zero, we'll just be swapping zeros -- harmless...
+	if (!$(id)) return;
+	if ($(id).tabIndex == 0) {
+		$(id).tabIndex = $(id + "_ifr").tabIndex;
+		$(id + "_ifr").tabIndex = 0;
+	} else if ($(id).tabIndex > 0) {
+		$(id + "_ifr").tabIndex = $(id).tabIndex;
+		$(id).tabIndex = 0;
+	}
+}
+
+function ac_editor_is(id) {
+	if ( typeof tinyMCE == 'undefined' ) return false;
+	return tinyMCE.getInstanceById(id) != null;
+}
+
+function ac_editor_is_ck(id) {
+	if ( typeof CKEDITOR == 'undefined' ) return false;
+	return CKEDITOR.instances[id] != null;
+}
+
+function ac_editor_is_ace(id) {
+	//just a single instance for now, we can upgrade this if needed
+	return (typeof use_ace_editor != 'undefined' && use_ace_editor);
+}
+
+var ac_editor_init_blockedit_object = {
+		mode                            : "none",
+		theme                           : "advanced",
+		convert_urls                    : false,
+		width							: "100%",
+		//height                          : "200",
+		plugins                         : "inlinepopups,safari,spellchecker,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,pagebreak,autoresize,fullpage",
+		tab_focus                       : ":prev,:next",
+		tabfocus_elements               : ":prev,:next",
+		theme_advanced_buttons1         : "fullscreen,bold,italic,underline,bullist,numlist,link,image",
+		theme_advanced_buttons2         : "",
+		theme_advanced_buttons3         : "",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align    : "left",
+		theme_advanced_resize_horizontal   : false,
+		theme_advanced_resizing            : false,
+		entity_encoding					: "raw",
+		gecko_spellcheck                : true,
+		remove_linebreaks               : false,
+		forced_root_block : false,
+		remove_instance_callback		   : "ac_editor_switchtabs",
+		file_browser_callback              : "ac_editor_imageman",
+		init_instance_callback			   : "ac_editor_switchtabs",
+		autoresize_min_height			   : 100,
+		autoresize_max_height			   : 600,
+		fullscreen_new_window: true,
+		fullscreen_settings: {
+			theme_advanced_buttons1: "bold,italic,underline,strikethrough,justifyleft,justifycenter,justifyright,justifyfull",
+			theme_advanced_buttons2: "bulllist,numlist,outdent,indent,undo,redo,link,unlink,anchor,image",
+			theme_advanced_buttons3: "removeformat,sub,sup,charmap",
+			theme_advanced_buttons1_add_before : "fullscreen, code,",
+			theme_advanced_buttons1_add        : "styleselect,fontselect,fontsizeselect",
+			theme_advanced_buttons2_add        : "separator,forecolor,backcolor",
+			theme_advanced_buttons2_add_before : "paste,pastetext,pasteword,separator,search,separator",
+			theme_advanced_buttons3_add_before : "tablecontrols,separator",
+			theme_advanced_buttons3_add        : "advhr,fullpage",
+			theme_advanced_buttons4            : "",
+			theme_advanced_disable 	           : "styleselect,help,hr,cleanup,visualaid",
+			theme_advanced_toolbar_location    : "top",
+			theme_advanced_toolbar_align       : "left",
+			theme_advanced_statusbar_location  : "bottom"
+		},
+		setup: function(ed) {
+			ed.addButton('personalize', {
+				title: 'Personalize',
+				image: 'images/asc.gif',
+				onclick: function() {
+					ed.focus();
+					designer.perstag.openmodal(ed.id);
+				}
+			});
+		},
+		accessibility_warnings : false
+};
+
+var ac_editor_init_blockedit_table_object = {
+		mode                            : "none",
+		theme                           : "advanced",
+		convert_urls                    : false,
+		width							: "100%",
+		height                          : "100",
+		plugins                            : "inlinepopups,safari,spellchecker,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,pagebreak,autoresize",
+		tab_focus                       : ":prev,:next",
+		tabfocus_elements               : ":prev,:next",
+		theme_advanced_buttons1         : "fullscreen,bold,italic,underline,bullist,numlist,link,image",
+		theme_advanced_buttons2         : "",
+		theme_advanced_buttons3         : "",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align    : "left",
+		theme_advanced_resize_horizontal   : false,
+		theme_advanced_resizing            : false,
+		entity_encoding					: "raw",
+		gecko_spellcheck                : true,
+		remove_linebreaks               : false,
+		forced_root_block : false,
+		remove_instance_callback		   : "ac_editor_switchtabs",
+		file_browser_callback              : "ac_editor_imageman",
+		init_instance_callback			   : "ac_editor_switchtabs",
+		fullscreen_new_window: true,
+		fullscreen_settings: {
+			theme_advanced_buttons1: "bold,italic,underline,strikethrough,justifyleft,justifycenter,justifyright,justifyfull",
+			theme_advanced_buttons2: "bulllist,numlist,outdent,indent,undo,redo,link,unlink,anchor,image",
+			theme_advanced_buttons3: "removeformat,sub,sup,charmap",
+			theme_advanced_buttons1_add_before : "fullscreen, code,",
+			theme_advanced_buttons1_add        : "styleselect,fontselect,fontsizeselect",
+			theme_advanced_buttons2_add        : "separator,forecolor,backcolor",
+			theme_advanced_buttons2_add_before : "paste,pastetext,pasteword,separator,search,separator",
+			theme_advanced_buttons3_add_before : "tablecontrols,separator",
+			theme_advanced_buttons3_add        : "advhr,fullpage",
+			theme_advanced_buttons4            : "",
+			theme_advanced_disable 	           : "styleselect,help,hr,cleanup,visualaid",
+			theme_advanced_toolbar_location    : "top",
+			theme_advanced_toolbar_align       : "left",
+			theme_advanced_statusbar_location  : "bottom"
+		},
+		setup: function(ed) {
+			ed.addButton('personalize', {
+				title: 'Personalize',
+				image: 'images/asc.gif',
+				onclick: function() {
+					ed.focus();
+					designer.perstag.openmodal(ed.id);
+				}
+			});
+		},
+		accessibility_warnings : false
+};
+
+var ac_editor_init_freeform_object = {
+		mode                            : "none",
+		theme                           : "advanced",
+		convert_urls                    : false,
+		plugins                            : "safari,spellchecker,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,pagebreak",
+		tab_focus                       : ":prev,:next",
+		tabfocus_elements               : ":prev,:next",
+		theme_advanced_buttons1_add_before : "code,",
+		theme_advanced_buttons1         : "bold,italic,underline,strikethrough,separator,undo,redo,separator,cleanup,separator,bullist,numlist,link,|,image",
+		theme_advanced_buttons2         : "",
+		theme_advanced_buttons3         : "",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align    : "left",
+		theme_advanced_resize_horizontal   : false,
+		theme_advanced_resizing            : false,
+		entity_encoding					: "raw",
+		gecko_spellcheck                : true,
+		remove_linebreaks               : false,
+		forced_root_block : false,
+		remove_instance_callback		   : "ac_editor_switchtabs",
+		file_browser_callback              : "ac_editor_imageman",
+		init_instance_callback			   : "ac_editor_switchtabs",
+		accessibility_warnings : false
+
+
+};
+
+var ac_editor_init_normal_object = {
+		mode                            : "none",
+		theme                           : "advanced",
+		convert_urls                    : false,
+		plugins                            : "safari,spellchecker,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,pagebreak",
+		tab_focus                       : ":prev,:next",
+		tabfocus_elements               : ":prev,:next",
+		theme_advanced_buttons1         : "bold,italic,underline,strikethrough,separator,undo,redo,separator,cleanup,separator,bullist,numlist,link,|,image",
+		theme_advanced_buttons2         : "",
+		theme_advanced_buttons3         : "",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align    : "left",
+		theme_advanced_resize_horizontal   : false,
+		theme_advanced_resizing            : false,
+		entity_encoding					: "raw",
+		gecko_spellcheck                : true,
+		remove_linebreaks               : false,
+		forced_root_block : false,
+		remove_instance_callback		   : "ac_editor_switchtabs",
+		file_browser_callback              : "ac_editor_imageman",
+		init_instance_callback			   : "ac_editor_switchtabs",
+		accessibility_warnings : false
+
+	};
+
+var ac_editor_init_word_object = {
+		mode                               : "none",
+		theme                              : "advanced",
+		plugins                            : "safari,spellchecker,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,pagebreak",
+		convert_urls                       : false,
+		theme_advanced_buttons1_add_before : "fullscreen, code,",
+		theme_advanced_buttons1_add        : "fontselect,fontsizeselect",
+		theme_advanced_buttons2_add        : "separator,forecolor,backcolor",
+		theme_advanced_buttons2_add_before : "paste,pastetext,pasteword,separator,search,separator",
+		theme_advanced_buttons3_add_before : "tablecontrols,separator",
+		theme_advanced_buttons3_add        : "advhr,fullpage",
+		theme_advanced_buttons4            : "",
+		theme_advanced_disable 	           : "styleselect,help,hr,cleanup,visualaid",
+		theme_advanced_toolbar_location    : "top",
+		theme_advanced_toolbar_align       : "left",
+		theme_advanced_statusbar_location  : "bottom",
+		convert_fonts_to_spans             : false,
+		font_size_style_values             : "8pt,10pt,12pt,14pt,18pt,24pt,36pt",
+	    plugin_insertdate_dateFormat       : "%Y-%m-%d",
+	    plugin_insertdate_timeFormat       : "%H:%M:%S",
+		theme_advanced_resize_horizontal   : false,
+		theme_advanced_resizing            : false,
+		remove_instance_callback		   : "ac_editor_switchtabs",
+		init_instance_callback			   : "ac_editor_switchtabs",
+		file_browser_callback              : "ac_editor_imageman",
+
+		entity_encoding					: "raw",
+		theme_advanced_blockformats        : "p,div,address,pre,h1,h2,h3,h4,h5,h6",
+		spellchecker_languages             : "+English=en,Danish=da,Dutch=nl,Finnish=fi,French=fr,German=de,Italian=it,Polish=pl,Portuguese=pt,Spanish=es,Swedish=sv",
+		fullpage_fontsizes : '13px,14px,15px,18pt,xx-large',
+		fullpage_default_xml_pi : false,
+		fullpage_default_langcode : 'en',
+		fullpage_default_title : "My document title",
+		gecko_spellcheck                : true,
+		accessibility_warnings : false,
+		forced_root_block : false,
+		/*
+		
+		NEVER
+			EVER
+				MODIFY THE FOLLOWING CODE. (jfv)
+					
+		START ================================================== */
+			apply_source_formatting            : true, /*true*/
+			remove_linebreaks               : false,  /*false*/
+			element_format : "html",  /*html*/
+			force_hex_style_colors : false,  /*false*/
+			inline_styles : true,  /*true*/
+			preformatted : true, /*true*/
+			verify_css_classes : false,  /*false*/
+			verify_html : false /*false*/
+		/* ================================================== END */
+};
+
+var ac_editor_init_mid_object = {
+		mode                               : "none",
+		theme                              : "advanced",
+		plugins                            : "safari,spellchecker,advimage,advlink,emotions,iespell,inlinepopups,contextmenu,tabfocus",
+		tab_focus                          : ":prev,:next",
+		tabfocus_elements                  : ":prev,:next",
+		convert_urls                       : false,
+		theme_advanced_buttons1            : "fontselect,fontsizeselect,forecolor,backcolor,bold,italic,underline,strikethrough,removeformat,separator,undo,redo,separator,bullist,numlist,separator,outdent,indent,separator,link,insertimage",
+		theme_advanced_buttons2            : "",
+
+		theme_advanced_buttons3            : "",
+		theme_advanced_toolbar_location    : "top",
+		theme_advanced_toolbar_align       : "left",
+		convert_fonts_to_spans             : true,
+
+		theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px",
+		font_size_style_values : "10px,12px,13px,14px,16px,18px,20px",
+		remove_instance_callback		   : "ac_editor_switchtabs",
+		init_instance_callback			   : "ac_editor_switchtabs",
+		file_browser_callback              : "ac_editor_imageman",
+
+	    plugin_insertdate_dateFormat       : "%Y-%m-%d",
+	    plugin_insertdate_timeFormat       : "%H:%M:%S",
+
+		content_css 					   : "/ac_global/editor_tiny/themes/advanced/skins/default/defaultcontent.css",
+		theme_advanced_resize_horizontal   : false,
+		theme_advanced_resizing            : false,
+		apply_source_formatting            : false,
+		cleanup                            : false,
+		theme_advanced_blockformats        : "p,div,address,pre,h1,h2,h3,h4,h5,h6",
+		spellchecker_languages             : "+English=en,Danish=da,Dutch=nl,Finnish=fi,French=fr,German=de,Italian=it,Polish=pl,Portuguese=pt,Spanish=es,Swedish=sv",
+		entity_encoding					: "raw",
+		gecko_spellcheck                : true,
+		remove_linebreaks               : false,
+		forced_root_block : false,
+		accessibility_warnings : false
+};
+
+function ac_editor_init_normal() {
+	tinyMCE.init(ac_editor_init_normal_object);
+}
+
+function ac_editor_init_word() {
+	tinyMCE.init(ac_editor_init_word_object);
+}
+
+function ac_editor_init_mid() {
+	tinyMCE.init(ac_editor_init_mid_object);
+}
+
+function ac_editor_resize(editor) {
+    // Have this function executed via TinyMCE's init_instance_callback option!
+    // requires TinyMCE3.x
+    var container = editor.contentAreaContainer, /* new in TinyMCE3.x -
+        for TinyMCE2.x you need to retrieve the element differently! */
+        formObj = document.forms[0], // this might need some adaptation to your site
+        dimensions = {
+            x: 0,
+            y: 0,
+            maxX: 0,
+            maxY: 0
+        }, doc, docFrame;
+
+    dimensions.x = formObj.offsetLeft; // get left space in front of editor
+    dimensions.y = formObj.offsetTop; // get top space in front of editor
+
+    dimensions.x += formObj.offsetWidth; // add horizontal space used by editor
+    dimensions.y += formObj.offsetHeight; // add vertical space used by editor
+
+    // get available width and height
+    if (window.innerHeight) {
+        dimensions.maxX = window.innerWidth;
+        dimensions.maxY = window.innerHeight;
+    } else {
+		// check if IE for CSS1 compatible mode
+        doc = (document.compatMode && document.compatMode == "CSS1Compat")
+            ? document.documentElement
+            : document.body || null;
+        dimensions.maxX = doc.offsetWidth - 4;
+        dimensions.maxY = doc.offsetHeight - 4;
+    }
+
+    // extend container by the difference between available width/height and used width/height
+    docFrame = container.children [0] // doesn't seem right : was .style.height;
+    docFrame.style.width = container.style.width = (container.offsetWidth + dimensions.maxX - dimensions.x - 2) + "px";
+    docFrame.style.height = container.style.height = (container.offsetHeight + dimensions.maxY - dimensions.y - 2) + "px";
+}
+
+
+function ac_editor_adjust_height(editorID) {
+	var frame, doc, docHeight, frameHeight;
+
+	frame = document.getElementById(editorID+"_ifr");
+	if ( frame != null ) {
+		//get the document object
+		if (frame.contentDocument) {
+			doc = frame.contentDocument;
+		} else if (frame.contentWindow) {
+			doc = frame.contentWindow.document;
+		} else if (frame.document) {
+			doc = frame.document;
+		}
+
+		if ( doc == null )
+			return;
+
+		//prevent the scrollbar from showing
+		doc.body.style.overflow = "hidden";
+
+		docHeight;
+		frameHeight = parseInt(frame.style.height);
+
+		//Firefox
+		if ( doc.height ) { docHeight = doc.height; }
+		//MSIE
+		else { docHeight = parseInt(doc.body.scrollHeight); }
+
+		//MAKE BIGGER
+		if ( docHeight > frameHeight-20 ) { frame.style.height = (docHeight+20) + "px"; }
+		//MAKE SMALLER
+		else if ( docHeight < frameHeight-20 ) { frame.style.height = Math.max((docHeight+20), 100) + "px"; }
+
+		//only repeat while editor is visible
+		setTimeout("ac_editor_adjust_height('" + editorID + "')", 1);
+	}
+}
+
+var ac_editor_mime_state = {};
+
+function new_ac_editor_mime_prompt(prfx, val) {
+	// if setting changed
+	if (typeof ac_editor_mime_state[prfx] == "undefined")
+		ac_editor_mime_state[prfx] = "text";
+
+	if ( val != ac_editor_mime_state[prfx] ) {
+		// it was text, and had no text -> stop
+		if ( ac_editor_mime_state[prfx] == 'text' && $(prfx + 'textField').value == '' ) {
+			new_ac_editor_mime_switch(prfx, val);
+			return false;
+		}
+		// it was html, and had no text -> stop
+		if ( ac_editor_mime_state[prfx] == 'html' && ac_str_trim(strip_tags(ac_form_value_get($(prfx + 'Editor')))) == '' ) {
+			new_ac_editor_mime_switch(prfx, val);
+			return false;
+		}
+		// ask to confirm change
+		if ( confirm(editorConfirmSwitch) ) {
+			if ( ac_editor_mime_state[prfx] == 'text' ) {
+				// it was text, copy it into HTML, add BRs
+				ac_form_value_set($(prfx + 'Editor'), nl2br($(prfx + 'textField').value));
+			} else if ( ac_editor_mime_state[prfx] == 'html' ) {
+				// it was HTML, copy it as text, strip tags
+				var html = ac_form_value_get($(prfx + 'Editor'));
+				html = html.replace(/<title>[^<]+<\/title>/, "");
+				$(prfx + 'textField').value = ac_str_trim(strip_tags(html));
+			} else if ( ac_editor_mime_state[prfx] == 'mime' ) {
+				// nothing here?
+			}
+		//} else {
+			// why would we get out here? just "convert" was declined, not the switch!
+			//return false;
+		}
+		// remove "convert html" from text box if text-only
+		var rel = $(prfx + '_conv_html2text');
+		if ( rel ) {
+			ac_dom_hideif($(rel), val == 'text');
+		}
+		// do the actual change of editors now
+		new_ac_editor_mime_switch(prfx, val);
+	}
+	return false;
+}
+
+function new_ac_editor_mime_switch(prfx, val) {
+	ac_dom_hideif($(prfx + 'text'), !val || val == 'html');
+	ac_dom_hideif($(prfx + 'html'), !val || val == 'text');
+
+	ac_editor_mime_state[prfx] = val;
+}
+
+
+function new_ac_editor_mime_toggle(prfx, show) {
+	var type = $(prfx + 'formatField').value;
+	ac_dom_hideif($(prfx + 'table'), !show);
+	if ( $(prfx + 'attachments') ) {
+		ac_dom_hideif($(prfx + 'attachments'), !show);
+	}
+	new_ac_editor_mime_switch(prfx, ( show ? type : false ));
+}
+
+function ac_editor_mime_prompt(prfx, val) {
+	// if setting changed
+	if (typeof ac_editor_mime_state[prfx] == "undefined")
+		ac_editor_mime_state[prfx] = "text";
+
+	if ( val != ac_editor_mime_state[prfx] ) {
+		// it was text, and had no text -> stop
+		if ( ac_editor_mime_state[prfx] == 'text' && $(prfx + 'textField').value == '' ) {
+			ac_editor_mime_switch(prfx, val);
+			return false;
+		}
+		// it was html, and had no text -> stop
+		if ( ac_editor_mime_state[prfx] == 'html' && ac_str_trim(strip_tags(ac_form_value_get($(prfx + 'Editor')))) == '' ) {
+			ac_editor_mime_switch(prfx, val);
+			return false;
+		}
+		// ask to confirm change
+		if ( confirm(editorConfirmSwitch) ) {
+			if ( ac_editor_mime_state[prfx] == 'text' ) {
+				// it was text, copy it into HTML, add BRs
+				ac_form_value_set($(prfx + 'Editor'), nl2br($(prfx + 'textField').value));
+			} else if ( ac_editor_mime_state[prfx] == 'html' ) {
+				// it was HTML, copy it as text, strip tags
+				var html = ac_form_value_get($(prfx + 'Editor'));
+				html = html.replace(/<title>[^<]+<\/title>/, "");
+				$(prfx + 'textField').value = ac_str_trim(strip_tags(html));
+			} else if ( ac_editor_mime_state[prfx] == 'mime' ) {
+				// nothing here?
+			}
+		} else {
+			return false;
+		}
+		// remove "convert html" from text box if text-only
+		var rel = $(prfx + '_conv_html2text');
+		if ( rel ) {
+			rel.className = ( val == 'text' ? 'ac_hidden' : 'ac_inline' );
+		}
+		// do the actual change of editors now
+		ac_editor_mime_switch(prfx, val);
+	}
+	return false;
+}
+
+function ac_editor_mime_switch(prfx, val) {
+	$(prfx + 'text').className = ( !val || val == 'html' ? 'ac_hidden' : 'ac_block' );
+	$(prfx + 'html').className = ( !val || val == 'text' ? 'ac_hidden' : 'ac_block' );
+
+	ac_editor_mime_state[prfx] = val;
+}
+
+
+function ac_editor_mime_toggle(prfx, show) {
+	var type = $(prfx + 'formatField').value;
+	$(prfx + 'table').className = ( !show ? 'ac_hidden' : 'ac_table_rowgroup' );
+	if ( $(prfx + 'attachments') ) {
+		$(prfx + 'attachments').className = ( !show ? 'ac_hidden' : 'ac_block' );
+	}
+	ac_editor_mime_switch(prfx, ( show ? type : false ));
+}
+
+
+// uses variable ACCustomFieldsResult
+function ac_editor_personalize_render(c, m) {
+	//ACCustomFieldsResult
+	var sub;
+	m.add({
+		title : 'Some item 1',
+		onclick : function() {
+			tinyMCE.activeEditor.execCommand('mceInsertContent', false, 'Some item 1');
+		}
+	});
+	m.add({
+		title : 'Some item 2',
+		onclick : function() {
+			tinyMCE.activeEditor.execCommand('mceInsertContent', false, 'Some item 2');
+		}
+	});
+	//m.add({title : 'Some title', 'class' : 'mceMenuItemTitle'}).setDisabled(1);
+	sub = m.addMenu({
+		title : 'Some item 3'
+	});
+	sub.add({
+		title : 'Some item 3.1',
+		onclick : function() {
+			tinyMCE.activeEditor.execCommand('mceInsertContent', false, 'Some item 3.1');
+		}
+	});
+	sub.add({
+		title : 'Some item 3.2',
+		onclick : function() {
+			tinyMCE.activeEditor.execCommand('mceInsertContent', false, 'Some item 3.2');
+		}
+	});
+}
+
+var editorTemplates = [];
+function ac_editor_template_render(c, m) {
+	var sub;
+	var tpl = { html: [], text: [] };
+	var globals = { html: 0, text: 0 };
+	for ( var i in editorTemplates ) {
+		var t = editorTemplates[i];
+		if ( typeof t != 'function' ) {
+if ( typeof t.content == 'undefined' ) continue;
+			if ( typeof t.global == 'undefined' ) {
+				if ( typeof t.is_global != 'undefined' ) {
+					t.global = t.is_global;
+				} else {
+					t.global = 0;
+				}
+			}
+			if ( t.global == 1 ) {
+				globals[t.format]++;
+			}
+			tpl[t.format].push(t);
+		}
+	}
+	if ( tpl.html.length > 0 ) {
+		//m.add({title : strPersSubscriberTags, 'class' : 'mceMenuItemTitle'}).setDisabled(1);
+		if ( globals.html > 0 ) sub1 = m.addMenu({ title : strPersGlobalTemplates });
+		if ( tpl.html.length != globals.html ) sub2 = m.addMenu({ title : strPersListTemplates });
+		for ( var i = 0; i < tpl.html.length; i++ ) {
+			if ( tpl.html[i].global == 1 ) {
+				var html = tpl.html[i].content;
+				html = html.replace(/<title>[^<]+<\/title>/, "");
+				sub1.add({
+					title : tpl.html[i].name,
+					onclick : function(val) {
+						return function() {
+							tinyMCE.activeEditor.execCommand('mceInsertContent', false, val);
+						}
+					}(html)
+				});
+			} else {
+				var html = tpl.html[i].content;
+				html = html.replace(/<title>[^<]+<\/title>/, "");
+				sub2.add({
+					title : tpl.html[i].name,
+					onclick : function(val) {
+						return function() {
+							tinyMCE.activeEditor.execCommand('mceInsertContent', false, val);
+						}
+					}(html)
+				});
+			}
+		}
+	} else {
+		alert('There are no templates in the system.');
+	}
+}
+
+function ac_editor_activerss_click() {
+	alert('clicked!');
+}
+
+function ac_editor_conditional_click() {
+	alert('clicked!');
+}
+
+function ac_editor_insert(editorID, value) {
+	if ( ac_editor_is(editorID) ) {
+		var editor = tinyMCE.get(editorID);
+		/*
+		try {
+			editor.execCommand('mceInsertContent', false, value);
+		} catch (e) {
+			ac_editor_cursor_move2end(editorID);
+			editor.execCommand('mceInsertContent', false, value);
+		}
+		*/
+		editor.execCommand('mceInsertContent', false, value);
+	} else if ( ac_editor_is_ck(editorID) ) {
+		ac.ck.insertHtml(editorID, value);
+	} else if ( ac_editor_is_ace(editorID) ) {
+		ace_editor.insert(value);
+	} else {
+		ac_form_insert_cursor($(editorID), value);
+	}
+}
+
+// This is the function that moves the cursor to the end of content
+function ac_editor_cursor_move2end(editorID) {
+    inst = tinyMCE.getInstanceById(editorID);
+    tinyMCE.execInstanceCommand(editorID, "selectall", false, null);
+    if (tinyMCE.isMSIE) {
+        rng = inst.getRng();
+        rng.collapse(false);
+        rng.select();
+    } else {
+        sel = inst.getSel();
+        sel.collapseToEnd();
+    }
+}
+
+function ac_editor_syntaxhighlighter(obj, menuvar) {
+	if ( !obj.plugins ) return obj;
+	if ( obj.plugins.match('codehighlighting') ) return obj;
+	if ( !menuvar ) menuvar = 'theme_advanced_buttons3_add_before';
+	obj.plugins += ",codehighlighting";
+	obj[menuvar] += ",separator,codehighlighting";
+	obj.extended_valid_elements = "textarea[name|class|cols|rows]";
+    obj.remove_linebreaks = false;
+	return obj;
+}
+
+function ac_editor_imageman(field, url, type, win) {
+	const iframe = document.querySelector('.html-editor-cmm-iframe');
+	if (iframe) {
+		iframe.classList.add('show');
+		var iframeBody = iframe.contentWindow.document.body
+		iframeBody.style.display = "block";
+	} else {
+		tinyMCE.activeEditor.windowManager.open({
+			file: "imageman.php?type=" + type,
+			title: "Image Manager",
+			width: 940,
+			height: 600,
+			resizable: "yes",
+			inline: "yes",
+			close_previous: "no"
+		}, {
+			window: win,
+			input: field
+		});
+	}
+
+	return false;
+}
+// ui.js
+
+var ac_ui_prompt_width 	= "300px";
+var ac_ui_prompt_top	= "0px";
+var ac_ui_prompt_left	= "0px";
+
+// Create an input box for our "prompt".  Label is what you want the box to say above the
+// input element.  Cb is the callback function.
+//
+// Builder has some problems with parsing functions or javascript for its events.
+// Particularly, I've noticed, it has some problems with strings in cb.  The safest method
+// I've experienced is make cb look like "func()", where func() is the actual callback.
+
+function ac_ui_prompt_make(label, vbl) {
+	// need to clear out vbl
+
+	if (!ac_ui_prompt_echeck(vbl))
+		return;
+
+	eval(sprintf("%s = null;", vbl));
+
+	var elab = Builder._text(label);
+	var einp = Builder.node("input", { style: "border: 1px solid black; font-size: 10px", id: "ac_ui_prompt_input" });
+	var esub = Builder.node("input", { type: "button", onclick: sprintf("%s = $J('#ac_ui_prompt_input').val(); ac_ui_prompt_free()", vbl), value: "Submit", style: "font-size: 10px" });
+
+	var ediv = Builder.node("div", { id: "ac_ui_prompt_div", style: sprintf("font-family: Verdana, San-Serif; text-align: center; border: 1px solid #cccccc; background: #eeeeee; padding: 5px; font-size: 10px; position: absolute; width: %s; top: %s; left: %s", ac_ui_prompt_width, ac_ui_prompt_top, ac_ui_prompt_left) });
+
+	ediv.appendChild(elab);
+	ediv.appendChild(Builder.node("br"));
+	ediv.appendChild(einp);
+	ediv.appendChild(Builder._text(" "));
+	ediv.appendChild(esub);
+
+	document.body.appendChild(ediv);
+}
+
+function ac_ui_prompt_free() {
+	$J("#ac_ui_prompt_div").remove();
+}
+
+function ac_ui_prompt_echeck(str) {
+	return str.match(/^[a-zA-Z_][a-zA-Z0-9_]*$/);
+}
+
+function ac_ui_prompt(label, vbl, waitfor) {
+	var val;
+
+	if (waitfor == "" || !ac_ui_prompt_echeck(waitfor))
+		val = "ok";		// anything will do
+	else
+		val = eval(waitfor);
+
+	if (val !== null)
+		ac_ui_prompt_make(label, vbl);
+	else {
+		window.setTimeout(function() { ac_ui_prompt(label, vbl, waitfor); }, 500);
+	}
+}
+
+function ac_ui_prompt_waitdo(vars, func) {
+	for (var i = 0; i < vars.length; i++) {
+		if (!ac_ui_prompt_echeck(vars[i]))
+			return;
+
+		var val = eval(vars[i]);
+
+		if (val === null) {
+			window.setTimeout(function() { ac_ui_prompt_waitdo(vars, func); }, 500);
+			return;
+		}
+	}
+
+	func();
+}
+
+/*
+var _a = null;
+var _b = null;
+var _c = null;
+
+ac_ui_prompt("a", "_a", "");
+ac_ui_prompt("b", "_b", "_a");
+ac_ui_prompt("c", "_c", "_b");
+ac_ui_prompt_waitdo(["_a", "_b", "_c"], function() { alert("done!"); });
+*/
+
+
+/*
+	ANCHORS
+*/
+
+function ac_ui_anchor_set(newAnchor, data) {
+	ac_anchor_old = newAnchor;
+	window.location.hash = newAnchor;
+}
+function ac_ui_anchor_get() {
+	return window.location.hash.substr(1);
+}
+function ac_ui_anchor_changed() {
+	var newAnchor = ac_ui_anchor_get();
+	if ( newAnchor != ac_anchor_old ) {
+		if ( typeof(runPage) == 'function' )
+			runPage();
+	}
+}
+function ac_ui_anchor_init() {
+	historyTimer = setInterval(ac_ui_anchor_changed, 200);
+}
+var ac_anchor_old = ac_ui_anchor_get();
+var historyTimer = null;
+
+
+/*
+	REAL SIMPLE HISTORY
+*/
+var ac_rsh = null;
+var ac_rsh_enabled = true;
+
+function ac_rsh_listener(newLocation, historyData) {
+	// do something
+	var msg = 'A history change has occurred!\n\n\nNew Location:\n' + newLocation + '\n\nHistory Data:\n' + historyData;
+	alert(msg);
+	//ac_loader_show(nl2br(msg));
+}
+
+function ac_ui_rsh_listenwrapper(func) {
+	return function(loc, hist) {
+		if (ac_rsh_enabled)
+			func(loc, hist);
+	};
+}
+
+function ac_ui_rsh_init(listenerFunction, firstTimeRun) {
+	// initialize rsh
+	ac_rsh = window.dhtmlHistory.create(
+		{
+			toJSON: function(o) {
+				return Object.toJSON(o);
+			},
+			fromJSON: function(s) {
+				return s.evalJSON();
+			}
+		}
+	);
+	// set fallback function in case function ain't provided
+	if ( typeof(listenerFunction) != 'function' ) {
+		listenerFunction = ac_rsh_listener;
+	}
+
+	listenerFunction = ac_ui_rsh_listenwrapper(listenerFunction);
+
+	// prototype-style adding envent observers
+	Event.observe(
+		window,
+		'load',
+		function() {
+			dhtmlHistory.initialize();
+			dhtmlHistory.addListener(listenerFunction);
+			if ( firstTimeRun && dhtmlHistory.isFirstLoad() ) {
+				listenerFunction(dhtmlHistory.currentLocation, null);
+			}
+		}
+	);
+}
+
+function ac_ui_rsh_stop() {
+	ac_rsh_enabled = false;
+}
+
+function ac_ui_rsh_save(newLocation, historyData) {
+	dhtmlHistory.add(newLocation, historyData);
+}
+
+
+/*
+	AJAX API CALLS SUPPORTING FUNCTIONS
+	(needs standardization, naming at least)
+*/
+
+// define default english strings if translatables are not provided
+var jsAreYouSure = 'Are You Sure?';
+var jsAPIfailed = 'Server call failed for unknown reason. Please try your action again...';
+var jsLoading = 'Loading...';
+var jsResult = 'Changes Saved.';
+var jsResult = 'Error Occurred!';
+
+// define vars used
+var resultTimer = false; // used in API call functions
+var processingDelay = 60; // seconds! used in API call functions (how long to wait?)
+var printAPIerrors = false; // if false, will do alert(!), if {} it will discard, if function it will pass message as param or true DOM ref to print there (innerHTML)
+
+// this function notifies about droppedd api call (after time interval has passed)
+// it will stop the loading bar and print out the error if listed
+function ac_ui_api_stop() {
+	if ( resultTimer ) {
+		window.clearTimeout(resultTimer); // we don't need this, done elsewhere
+		resultTimer = false;
+	} else {
+		return;
+	}
+	if ( typeof(printAPIerrors) == 'function' ) {
+		printAPIerrors(jsAPIfailed);
+	} else if ( typeof(printAPIerrors) == 'object' ) {
+		printAPIerrors.innerHTML = jsAPIfailed;
+	} else {
+		alert(jsAPIfailed);
+	}
+	ac_loader_hide();
+}
+
+// this function should be called right prior to ac_ajax_*
+function ac_ui_api_call(customMessage, delay) {
+	if ( !delay && typeof(delay) != 'number' ) delay = processingDelay;
+	if ( delay == 0 ) delay = 60 * 60 * 24; // 24hrs in seconds
+	resultTimer = window.setTimeout(ac_ui_api_stop, delay * 1000);
+	ac_loader_show(customMessage);
+}
+
+// this function should be called right at the end of ajax callback function
+function ac_ui_api_callback() {
+	// reset the timer
+	if ( resultTimer ) {
+		window.clearTimeout(resultTimer);
+		resultTimer = false;
+	}
+	// if processing is shown, hide it, since we got our response back
+	ac_loader_hide();
+}
+
+
+
+/*
+	RESULT/ERROR MESSAGES (THE SAME AS LOADER BAR FROM loader.js)
+*/
+
+function ac_result_show(txt) {
+	// cleanup previous
+	if ( ac_loader_visible() ) ac_loader_hide();
+	if ( ac_error_visible() ) ac_error_hide();
+	if ( txt == '' ) {
+		if ( ac_result_visible() ) ac_result_hide();
+		return;
+	} else if ( !txt ) {
+		$J('#ac_result_text').html(nl2br(jsResult));
+	} else {
+		$J('#ac_result_text').html(nl2br(ac.str.escape_html(txt)));
+	}
+	$J('#ac_result_bar').slideDown('fast');
+	window.setTimeout(ac_result_hide, 6 * 1000);
+}
+
+function ac_result_hide() {
+	$J('#ac_result_bar').slideUp('slow');
+}
+
+function ac_result_visible() {
+	return $J('#ac_result_bar').is(':visible');
+}
+
+function ac_result_flip() {
+	$J('#ac_result_bar').toggle();
+}
+
+
+
+function ac_error_show(txt) {
+	// cleanup previous
+	if ( ac_loader_visible() ) ac_loader_hide();
+	if ( ac_result_visible() ) ac_result_hide();
+	if ( txt == '' ) {
+		if ( ac_error_visible() ) ac_error_hide();
+		return;
+	} else if ( !txt ) {
+		$J('#ac_error_text').html(nl2br(jsError));
+	} else {
+		$J('#ac_error_text').html(nl2br(ac.str.escape_html(txt)));
+	}
+	$J('#ac_error_bar').slideDown('fast');
+	window.setTimeout(ac_error_hide, 6 * 1000);
+}
+
+function ac_error_hide() {
+	$J('#ac_error_bar').slideUp('slow');
+}
+
+function ac_error_visible() {
+	return $J('#ac_error_bar').is(':visible');
+}
+
+function ac_error_flip() {
+	$J('#ac_error_bar').toggle();
+}
+
+
+// menu init
+function ac_ui_menu_init() {
+	//if ( document.getElementsByClassName('trapperr').length == 0 )
+		initjsDOMenu();
+}
+
+
+/* KEY STOPPERS */
+// usage: $J('#inputID').keypress(ac_ui_stopkey_enter);
+
+function ac_ui_stopkey_enter(evt) {
+	var evt = ( evt ? evt : ( event ? event : null ) );
+	if ( !evt ) return true;
+	var node = ( evt.target ? evt.target : ( evt.srcElement ? evt.srcElement : null ) );
+	// 13 == ENTER
+	if ( evt.keyCode == 13 && node.type == "text" )  {
+		// nope, don't submit
+		return false;
+	}
+}
+
+
+
+function ac_ui_tab_reset(ul) {
+	var li = $J('#' + ul + ' li');
+	if ( !li.length ) return;
+	for ( var i = 0; i < li.length; i++ ) {
+		if ( li[i].id && li[i].id.substr(0, 9) == 'main_tab_' ) {
+			$J(li[i]).removeClass().addClass("othertab");
+			var tabname = li[i].id.substr(9);
+			$J('#' + tabname).hide();
+		}
+	}
+}
+
+// can call it onkeyup
+function ac_ui_isnumber(obj) {
+	return obj.value.match(/^\d+$/);
+}
+function ac_ui_numbersonly(obj, allowBlank) {
+	if ( obj.value == '' ) return allowBlank;
+	// isn't a number
+	if ( !ac_ui_isnumber(obj) ) {
+		// cutoff the last digit
+		obj.value = obj.value.replace(/[^\d]/g, '');
+		if ( obj.value == '' ) return allowBlank;
+		return ac_ui_isnumber(obj);
+	}
+	return true;
+}
+
+function ac_ui_openwindow(url) {
+	var rand = Math.floor(Math.random() * 1000.0);
+	var winname = "ac_ui_openwindow_" + rand.toString();
+	var w = window.open(url, winname, "width=600,height=500,menubar=yes,toolbar=yes,scrollbars=yes,resizable=yes");
+	if ( !w ) return false;
+	if ( w.focus ) {
+		w.focus();
+	}
+	return winname;
+}
+
+function ac_ui_error_mailer(txt, modal2close) {
+	ac_ui_api_callback();
+	if ( jsErrorMailerBarMessage != '' ) ac_error_show(jsErrorMailerBarMessage);
+	// first close the modal
+	if ( modal2close ) ac_dom_toggle_display(modal2close, 'block');
+
+	var msg = '';
+	// try trapperr error
+	var matches = txt.match(/<i>Message:<\/i> <b>(.*)<\/b><br \/>/);
+	if ( matches && matches[1] ) {
+		var err = matches[1].split(/<br \/>/);
+		if ( err && err[1] ) {
+			// use err[1] to populate the error
+			msg = err[1];
+		}
+	// try default php error
+	} else if ( matches = txt.match(/<b>Fatal error<\/b>:  <br \/>(.*)/) ) {
+		var err = matches[1].split(/<br \/>/);
+		if ( err && err[0] ) {
+			// use err[1] to populate the error
+			msg = err[0];
+		}
+	// try other default php error
+	} else if ( matches = txt.match(/Fatal error: <br \/>(.*)/) ) {
+		var err = matches[1].split(/<br \/>/);
+		if ( err && err[0] ) {
+			// use err[1] to populate the error
+			msg = err[0];
+		}
+	} else {
+		msg = nl2br(txt);
+	}
+
+	$J('#error_mailer_message').html(msg);
+	$J('#error_mailer_message_box').toggle( msg != '' );
+
+	// show the error screen
+	ac_dom_toggle_display('error_mailer', 'block');
+	// now reset the text handler
+	ac_ajax_handle_text = null;
+}
+// loader.js
+
+function ac_loader_add(id, base) {
+    var elem = document.getElementById(id);
+
+
+    if (elem !== null) {
+        var img = document.createElement("img");
+        img.src = base + "media/loader.gif";
+        img.id  = id + "_loader";
+
+        ac_dom_remove_children(elem);
+        elem.appendChild(img);
+    }
+}
+
+function ac_loader_rem(id) {
+    var elem = document.getElementById(id);
+    var img  = document.getElementById(id + "_loader");
+
+    if (elem !== null && img !== null) {
+        elem.removeChild(img);
+    }
+}
+
+function ac_loader_show(txt) {
+	// cleanup previous
+	if ( ac_error_visible() ) ac_error_hide();
+	if ( ac_result_visible() ) ac_result_hide();
+	if ( txt == '' ) {
+		if ( ac_loader_visible() ) ac_loader_hide();
+		return;
+	} else if ( !txt ) {
+		$J('#ac_loading_text').html(nl2br(jsLoading));
+	} else {
+		$J('#ac_loading_text').html(nl2br(txt));
+	}
+	$J('#ac_loading_bar').slideDown('fast');
+	if ( typeof(ismobile) != "undefined" && ismobile ) {
+		$J('#ac_admin_container').hide();
+	}
+}
+
+function ac_loader_hide() {
+	$J('#ac_loading_bar').slideUp('slow');
+	if ( typeof(ismobile) != "undefined" && ismobile ) {
+		$J('#ac_admin_container').show().css({ display: 'inline'});
+	}
+}
+
+function ac_loader_visible() {
+	return $J('#ac_loading_bar').is(':visible');
+}
+
+function ac_loader_flip() {
+	$J('#ac_loading_bar').toggle();
+}

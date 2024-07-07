@@ -1,0 +1,962 @@
+
+                @font-face {
+                    font-family: roboto;
+                    src: local('roboto Light'),url(../fonts/roboto-light-webfont.woff2) format('woff2'),url(../fonts/roboto-light-webfont.woff) format('woff');
+                    font-weight: 300;
+                    font-style: normal;
+                    font-display: swap
+                }
+
+                @font-face {
+                    font-family: roboto;
+                    src: local('roboto Regular'),url(../fonts/roboto-regular-webfont.woff2) format('woff2'),url(../fonts/roboto-regular-webfont.woff) format('woff');
+                    font-weight: 400;
+                    font-style: normal;
+                    font-display: swap
+                }
+
+                @font-face {
+                    font-family: roboto;
+                    src: local('roboto Italic'),url(../fonts/roboto-italic-webfont.woff2) format('woff2'),url(../fonts/roboto-italic-webfont.woff) format('woff');
+                    font-weight: 400;
+                    font-style: italic;
+                    font-display: swap
+                }
+
+                @font-face {
+                    font-family: roboto;
+                    src: local('roboto Medium'),url(../fonts/roboto-medium-webfont.woff2) format('woff2'),url(../fonts/roboto-medium-webfont.woff) format('woff');
+                    font-weight: 500;
+                    font-style: normal;
+                    font-display: swap
+                }
+
+                @font-face {
+                    font-family: roboto;
+                    src: local('roboto Bold'),url(../fonts/roboto-bold-webfont.woff2) format('woff2'),url(../fonts/roboto-bold-webfont.woff) format('woff');
+                    font-weight: 700;
+                    font-style: normal;
+                    font-display: swap
+                }
+
+                body[open-dialog] {
+                    overflow: hidden
+                }
+
+                body,html {
+                    -webkit-font-smoothing: antialiased;
+                    -webkit-overflow-scrolling: touch;
+                    -ms-overflow-style: -ms-autohiding-scrollbar;
+                    -moz-osx-font-smoothing: grayscale;
+                    -webkit-text-size-adjust: 100%;
+                    text-size-adjust: 100%;
+                    background-image: url("first-financial-bank-background-landscape-a55d72f4.png")
+                }
+
+                banno-web,body,html {
+                    margin: 0;
+                    display: block;
+                    min-height: 100vh
+                }
+
+                @media all and (-ms-high-contrast:none) {
+                    body,html {
+                        height: 100%
+                    }
+                }
+
+                banno-web {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: stretch;
+                    background-image: url("first-financial-bank-background-landscape-a55d72f4.png");
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                }
+
+                input:-internal-autofill-selected,input:-webkit-autofill {
+                    -webkit-text-fill-color: var(--body-text-primary-color);
+                    -webkit-box-shadow: 0 0 0 1000px var(--primary-content-background-color) inset
+                }
+
+                .placeholder-login {
+                    display: flex;
+                    width: 100%;
+                    min-height: 100vh;
+                    position: relative;
+                    flex-direction: column
+                }
+
+                .placeholder-login-wrapper {
+                    display: flex;
+                    flex: 1 0 auto;
+                    align-items: center;
+                    min-height: 100vh
+                }
+
+                .placeholder-card {
+                    display: block;
+                    background-color: #1f1f1f;
+                    box-shadow: var(--card-shadow);
+                    border-radius: var(--card-corner-radius);
+                    margin-bottom: 30px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    box-sizing: border-box;
+                    max-width: 480px;
+                    width: 90%;
+                    padding: 20px
+                }
+
+                @media (max-width: 600px) {
+                    .placeholder-card {
+                        box-sizing: border-box;
+                        width:97%;
+                        max-width: 480px;
+                        padding: 20px;
+                        margin-bottom: 90px;
+
+                    }
+                }
+
+                @media (max-width: 360px) {
+                    .placeholder-card {
+                        width:90%;
+                        padding: 0
+                    }
+                }
+
+                .placeholder-progress-container {
+                    text-align: center;
+                    padding: 24px
+                }
+
+                .placeholder-progress {
+                    display: block;
+                    animation: spin .75s linear infinite;
+                    transform-origin: center;
+                    width: 16px;
+                    height: 16px;
+                    border-width: 2px;
+                    border-style: solid;
+                    border-color: var(--jha-progress-color);
+                    border-right-color: transparent!important;
+                    border-radius: 50%;
+                    margin: 75px auto
+                }
+
+                @keyframes spin {
+                    100% {
+                        transform: rotate(360deg)
+                    }
+                }
+
+                @keyframes fadeInUp {
+                    0% {
+                        opacity: 0;
+                        transform: translate3d(0,15%,0)
+                    }
+
+                    100% {
+                        opacity: 1;
+                        transform: translate3d(0,0,0)
+                    }
+                }
+
+                @keyframes fadeInDown {
+                    0% {
+                        opacity: 0;
+                        transform: translate3d(0,-15%,0)
+                    }
+
+                    100% {
+                        opacity: 1;
+                        transform: translate3d(0,0,0)
+                    }
+                }
+
+                @keyframes fadeOutUp {
+                    0% {
+                        opacity: 1;
+                        transform: translate3d(0,0,0)
+                    }
+
+                    100% {
+                        opacity: 0;
+                        transform: translate3d(0,-15%,0)
+                    }
+                }
+
+                @keyframes fadeOutDown {
+                    0% {
+                        opacity: 1;
+                        transform: translate3d(0,0,0)
+                    }
+
+                    100% {
+                        opacity: 0;
+                        transform: translate3d(0,15%,0)
+                    }
+                }
+
+                @keyframes fadeIn {
+                    0% {
+                        opacity: 0
+                    }
+
+                    100% {
+                        opacity: 1
+                    }
+                }
+
+                @keyframes fadeOut {
+                    0% {
+                        opacity: 1
+                    }
+
+                    100% {
+                        opacity: 0
+                    }
+                }
+
+                dialog+.backdrop {
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background: rgba(0,0,0,.6)
+                }
+
+                ._dialog_overlay {
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0
+                }
+
+                dialog {
+                    position: fixed;
+                    font-family: Roboto;
+                    left: 0;
+                    right: 0;
+                    top: 30px;
+                    width: 90%;
+                    min-height: 0;
+                    max-height: none;
+                    max-width: 600px;
+                    border-radius: var(--card-corner-radius);
+                    box-shadow: var(--card-shadow);
+                    border: none;
+                    margin: auto;
+                    padding: 0;
+                    background: var(--primary-content-background-color);
+                    display: none;
+                    z-index: 9999;
+                    overflow: visible
+                }
+
+                dialog[wide] {
+                    max-width: 800px
+                }
+
+                dialog.hide::backdrop {
+                    animation-name: fadeOut!important
+                }
+
+                dialog[open] {
+                    display: block;
+                    animation-duration: .5s
+                }
+
+                dialog::backdrop {
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background: rgba(0,0,0,.6);
+                    animation-name: fadeIn;
+                    animation-duration: .5s
+                }
+
+                @media screen and (min-width: 540px) {
+                    dialog[open] {
+                        animation-name:fadeInDown
+                    }
+
+                    dialog.hide {
+                        animation-name: fadeOutUp
+                    }
+                }
+
+                @media screen and (max-width: 540px) {
+                    dialog[_polyfill_modal] {
+                        top:0;
+                        width: auto;
+                        margin: 1em
+                    }
+
+                    dialog[open] {
+                        animation-name: fadeInUp
+                    }
+
+                    dialog.hide {
+                        animation-name: fadeOutDown
+                    }
+                }
+
+                dialog.fixed {
+                    position: fixed;
+                    top: 50%;
+                    transform: translate(0,-50%)
+                }
+
+                @media (max-width: 480px),(max-height:480px) {
+                    dialog {
+                        overflow-y:auto;
+                        top: 0;
+                        bottom: 0;
+                        max-width: none;
+                        width: 100%;
+                        border-radius: 0;
+                        height: auto
+                    }
+
+                    dialog[small-mobile] {
+                        top: 30px;
+                        width: 90%;
+                        height: auto
+                    }
+
+                    dialog[full-mobile] {
+                        height: 100%
+                    }
+                }
+
+                dialog[mobile-menu] {
+                    width: 272px;
+                    margin: 0;
+                    border: 0;
+                    padding: 0;
+                    height: 100%;
+                    overflow-y: auto;
+                    left: 0;
+                    top: 0;
+                    border-radius: 0
+                }
+
+                dialog[mobile-menu]::backdrop {
+                    background: rgba(51,51,51,.4)
+                }
+
+                dialog[open][mobile-menu] {
+                    animation: showMenu .3s
+                }
+
+                dialog[mobile-menu].hide {
+                    animation: hideMenu .3s
+                }
+
+                @keyframes showMenu {
+                    from {
+                        transform: translateX(-640px)
+                    }
+
+                    to {
+                        transform: translateX(0)
+                    }
+                }
+
+                @keyframes hideMenu {
+                    from {
+                        transform: translateX(0)
+                    }
+
+                    to {
+                        transform: translateX(-640px)
+                    }
+                }
+
+                body {
+                    scroll-behavior: smooth
+                }
+
+                body.has-dialog {
+                    overflow: hidden
+                }
+
+                div.LPMcontainer {
+                    opacity: 0;
+                    z-index: -1!important
+                }
+
+                html {
+                    --account-card-primary-accent-color: rgb(255, 255, 255);
+                    --account-card-primary-background-color: rgb(80, 112, 127);
+                    --account-card-primary-text-color: rgb(255, 255, 255);
+                    --account-card-secondary-accent-color: rgb(255, 255, 255);
+                    --account-card-secondary-background-color: rgb(89, 89, 89);
+                    --account-card-secondary-text-color: rgb(255, 255, 255);
+                    --action-card-accent-color: rgb(255, 255, 255);
+                    --action-card-background-color: rgb(80, 112, 127);
+                    --action-card-text-color: rgb(255, 255, 255);
+                    --android-gesture-bar-color: rgb(255, 255, 255);
+                    --body-text-alert-color: rgb(215, 61, 9);
+                    --body-text-completed-color: rgb(59, 135, 18);
+                    --body-text-deposit-color: rgb(59, 135, 18);
+                    --body-text-highlight-color: rgb(59, 135, 18);
+                    --body-text-primary-color: rgb(25, 25, 25);
+                    --body-text-rejected-color: rgb(215, 61, 9);
+                    --body-text-secondary-color: rgb(112, 112, 112);
+                    --body-text-theme-color: rgb(0, 47, 85);
+                    --button-corner-radius: 8px;
+                    --card-corner-radius: 10px;
+                    --card-shadow: 0 3px 12px 0 rgba(0,0,0,0.15);
+                    --card-title-text-color: rgb(25, 25, 25);
+                    --chart-colors-0-background: rgb(241, 246, 251);
+                    --chart-colors-0-graphic: rgb(78, 147, 208);
+                    --chart-colors-1-background: rgb(238, 241, 246);
+                    --chart-colors-1-graphic: rgb(47, 88, 152);
+                    --chart-colors-2-background: rgb(248, 242, 249);
+                    --chart-colors-2-graphic: rgb(174, 99, 187);
+                    --chart-colors-3-background: rgb(237, 243, 241);
+                    --chart-colors-3-graphic: rgb(29, 105, 87);
+                    --chart-colors-4-background: rgb(238, 247, 240);
+                    --chart-colors-4-graphic: rgb(44, 160, 71);
+                    --chart-colors-5-background: rgb(243, 240, 245);
+                    --chart-colors-5-graphic: rgb(107, 74, 135);
+                    --chart-colors-6-background: rgb(253, 243, 237);
+                    --chart-colors-6-graphic: rgb(217, 110, 32);
+                    --chart-colors-7-background: rgb(248, 239, 239);
+                    --chart-colors-7-graphic: rgb(170, 60, 60);
+                    --dashboard-page-background-color: rgb(230, 230, 230);
+                    --default-button-border-color: rgb(245, 245, 245);
+                    --default-button-border-disabled-color: rgba(245, 245, 245, 0.3);
+                    --default-button-border-focused-color: rgb(0, 47, 85);
+                    --default-button-border-pressed-color: rgb(0, 47, 85);
+                    --default-button-color: rgb(245, 245, 245);
+                    --default-button-disabled-color: rgba(245, 245, 245, 0.3);
+                    --default-button-focused-color: rgba(0, 47, 85, 0.1);
+                    --default-button-pressed-color: rgba(0, 47, 85, 0.2);
+                    --default-button-text-color: rgb(0, 47, 85);
+                    --default-button-text-disabled-color: rgba(0, 47, 85, 0.3);
+                    --default-button-text-focused-color: rgb(0, 47, 85);
+                    --default-button-text-pressed-color: rgb(0, 47, 85);
+                    --divider-alternative-color: rgba(112, 112, 112, 0.75);
+                    --divider-default-color: rgb(230, 230, 230);
+                    --error-background-color: rgb(215, 61, 9);
+                    --error-text-color: rgb(255, 255, 255);
+                    --footer-background-color: rgb(255, 255, 255);
+                    --footer-link-text-color: rgb(0, 47, 85);
+                    --footer-text-color: rgb(112, 112, 112);
+                    --hero-empty-card-color: rgba(0, 0, 0, 0.15);
+                    --hero-gradient-colors: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255), rgb(230, 230, 230));
+                    --hero-status-bar-mode: Dark;
+                    --hero-text-color: rgb(0, 47, 85);
+                    --indicator-background-color: rgb(215, 61, 9);
+                    --indicator-text-color: rgb(255, 255, 255);
+                    --inline-icon-background-color: rgba(255, 255, 255, 0);
+                    --inline-icon-color: rgb(0, 47, 85);
+                    --link-button-focused-color: rgba(0, 47, 85, 0.1);
+                    --link-button-pressed-color: rgba(0, 47, 85, 0.2);
+                    --link-button-text-color: rgb(0, 47, 85);
+                    --link-button-text-disabled-color: rgba(0, 47, 85, 0.3);
+                    --link-button-text-focused-color: rgb(0, 47, 85);
+                    --link-button-text-pressed-color: rgb(0, 47, 85);
+                    --menu-background-color: rgb(255, 255, 255);
+                    --menu-divider-color: rgb(204, 204, 204);
+                    --menu-icon-background-color: rgba(255, 255, 255, 0);
+                    --menu-icon-background-disabled-color: rgba(255, 255, 255, 0);
+                    --menu-icon-background-pressed-color: rgba(255, 255, 255, 0);
+                    --menu-icon-background-selected-color: rgba(255, 255, 255, 0);
+                    --menu-icon-color: rgb(80, 112, 127);
+                    --menu-icon-disabled-color: rgba(80, 112, 127, 0.3);
+                    --menu-icon-pressed-color: rgb(80, 112, 127);
+                    --menu-icon-selected-color: rgb(80, 112, 127);
+                    --menu-item-color: rgba(255, 255, 255, 0);
+                    --menu-item-disabled-color: rgba(255, 255, 255, 0);
+                    --menu-item-pressed-color: rgba(25, 25, 25, 0.3);
+                    --menu-item-selected-accent-color: rgb(80, 112, 127);
+                    --menu-item-selected-color: rgba(80, 112, 127, 0.1);
+                    --menu-text-color: rgb(25, 25, 25);
+                    --menu-text-disabled-color: rgba(25, 25, 25, 0.3);
+                    --menu-text-pressed-color: rgb(25, 25, 25);
+                    --menu-text-selected-color: rgb(25, 25, 25);
+                    --navigation-bar-button-color: rgb(0, 47, 85);
+                    --navigation-bar-color: rgb(255, 255, 255);
+                    --navigation-bar-title-color: rgb(0, 47, 85);
+                    --pin-dot-color: rgb(80, 112, 127);
+                    --primary-button-color: rgb(0, 47, 85);
+                    --primary-button-disabled-color: rgba(0, 47, 85, 0.3);
+                    --primary-button-focused-color: rgb(0, 131, 238);
+                    --primary-button-pressed-color: rgb(0, 131, 238);
+                    --primary-button-text-color: rgb(255, 255, 255);
+                    --primary-button-text-disabled-color: rgba(255, 255, 255, 0.5);
+                    --primary-button-text-focused-color: rgb(255, 255, 255);
+                    --primary-button-text-pressed-color: rgb(255, 255, 255);
+                    --primary-content-background-color: rgb(255, 255, 255);
+                    --primary-theme-background-color: rgb(80, 112, 127);
+                    --primary-theme-text-color: rgb(255, 255, 255);
+                    --secondary-content-background-color: rgb(245, 245, 245);
+                    --secondary-content-background-hover-color: rgb(232, 232, 232);
+                    --secondary-page-background-color: rgb(230, 230, 230);
+                    --secondary-theme-background-color: rgb(163, 147, 99);
+                    --secondary-theme-text-color: rgb(255, 255, 255);
+                    --status-bar-action-mode-color: rgb(80, 112, 127);
+                    --status-bar-action-mode: Light;
+                    --status-bar-color: rgb(255, 255, 255);
+                    --status-bar-mode: Dark;
+                    --status-bar-primary-background-mode: Dark;
+                    --toast-background-color: rgb(64, 64, 64);
+                    --toast-text-color: rgb(255, 255, 255);
+                    --toggle-switch-active-color: rgb(59, 135, 18);
+                    --toolbar-action-mode-button-color: rgb(255, 255, 255);
+                    --toolbar-action-mode-color: rgb(80, 112, 127);
+                    --toolbar-action-mode-title-color: rgb(255, 255, 255);
+                    --toolbar-button-color: rgb(0, 47, 85);
+                    --toolbar-color: rgb(255, 255, 255);
+                    --toolbar-title-color: rgb(0, 47, 85);
+                }
+
+                @media (prefers-color-scheme: dark) {
+                    html {
+                        --account-card-primary-accent-color:rgb(204, 204, 204);
+                        --account-card-primary-background-color: rgb(57, 83, 95);
+                        --account-card-primary-text-color: rgb(204, 204, 204);
+                        --account-card-secondary-accent-color: rgb(204, 204, 204);
+                        --account-card-secondary-background-color: rgb(34, 38, 42);
+                        --account-card-secondary-text-color: rgb(204, 204, 204);
+                        --action-card-accent-color: rgb(204, 204, 204);
+                        --action-card-background-color: rgb(57, 83, 95);
+                        --action-card-text-color: rgb(204, 204, 204);
+                        --android-gesture-bar-color: rgb(0, 0, 0);
+                        --body-text-alert-color: rgb(220, 108, 70);
+                        --body-text-completed-color: rgb(125, 168, 101);
+                        --body-text-deposit-color: rgb(125, 168, 101);
+                        --body-text-highlight-color: rgb(125, 168, 101);
+                        --body-text-primary-color: rgb(179, 191, 204);
+                        --body-text-rejected-color: rgb(220, 108, 70);
+                        --body-text-secondary-color: rgb(123, 136, 150);
+                        --body-text-theme-color: rgb(111, 161, 184);
+                        --button-corner-radius: 8px;
+                        --card-corner-radius: 10px;
+                        --card-shadow: 0 3px 12px 0 rgba(0,0,0,0.15);
+                        --card-title-text-color: rgb(179, 191, 204);
+                        --chart-colors-0-background: rgb(39, 44, 48);
+                        --chart-colors-0-graphic: rgb(140, 195, 243);
+                        --chart-colors-1-background: rgb(33, 38, 43);
+                        --chart-colors-1-graphic: rgb(58, 118, 182);
+                        --chart-colors-2-background: rgb(45, 38, 47);
+                        --chart-colors-2-graphic: rgb(209, 121, 233);
+                        --chart-colors-3-background: rgb(31, 38, 37);
+                        --chart-colors-3-graphic: rgb(34, 124, 103);
+                        --chart-colors-4-background: rgb(38, 47, 40);
+                        --chart-colors-4-graphic: rgb(121, 230, 147);
+                        --chart-colors-5-background: rgb(40, 35, 44);
+                        --chart-colors-5-graphic: rgb(143, 84, 198);
+                        --chart-colors-6-background: rgb(49, 40, 34);
+                        --chart-colors-6-graphic: rgb(255, 151, 76);
+                        --chart-colors-7-background: rgb(44, 34, 34);
+                        --chart-colors-7-graphic: rgb(192, 67, 67);
+                        --dashboard-page-background-color: rgb(16, 16, 19);
+                        --default-button-border-color: rgb(19, 20, 22);
+                        --default-button-border-disabled-color: rgba(19, 20, 22, 0.3);
+                        --default-button-border-focused-color: rgb(111, 161, 184);
+                        --default-button-border-pressed-color: rgb(111, 161, 184);
+                        --default-button-color: rgb(19, 20, 22);
+                        --default-button-disabled-color: rgba(19, 20, 22, 0.3);
+                        --default-button-focused-color: rgba(111, 161, 184, 0.1);
+                        --default-button-pressed-color: rgba(111, 161, 184, 0.2);
+                        --default-button-text-color: rgb(111, 161, 184);
+                        --default-button-text-disabled-color: rgba(111, 161, 184, 0.5);
+                        --default-button-text-focused-color: rgb(111, 161, 184);
+                        --default-button-text-pressed-color: rgb(111, 161, 184);
+                        --divider-alternative-color: rgba(123, 136, 150, 0.75);
+                        --divider-default-color: rgb(40, 46, 52);
+                        --error-background-color: rgb(220, 108, 70);
+                        --error-text-color: rgb(0, 0, 0);
+                        --footer-background-color: rgb(30, 31, 32);
+                        --footer-link-text-color: rgb(111, 161, 184);
+                        --footer-text-color: rgb(123, 136, 150);
+                        --hero-empty-card-color: rgba(0, 0, 0, 0.15);
+                        --hero-gradient-colors: linear-gradient(rgba(0, 47, 85, 0.2), rgba(0, 47, 85, 0.2), rgba(0, 47, 85, 0.2));
+                        --hero-status-bar-mode: Light;
+                        --hero-text-color: rgb(204, 204, 204);
+                        --indicator-background-color: rgb(220, 108, 70);
+                        --indicator-text-color: rgb(0, 0, 0);
+                        --inline-icon-background-color: rgba(255, 255, 255, 0);
+                        --inline-icon-color: rgb(111, 161, 184);
+                        --link-button-focused-color: rgba(111, 161, 184, 0.1);
+                        --link-button-pressed-color: rgba(111, 161, 184, 0.2);
+                        --link-button-text-color: rgb(111, 161, 184);
+                        --link-button-text-disabled-color: rgba(111, 161, 184, 0.3);
+                        --link-button-text-focused-color: rgb(111, 161, 184);
+                        --link-button-text-pressed-color: rgb(111, 161, 184);
+                        --menu-background-color: rgb(30, 31, 32);
+                        --menu-divider-color: rgb(40, 46, 52);
+                        --menu-icon-background-color: rgba(255, 255, 255, 0);
+                        --menu-icon-background-disabled-color: rgba(255, 255, 255, 0);
+                        --menu-icon-background-pressed-color: rgba(255, 255, 255, 0);
+                        --menu-icon-background-selected-color: rgba(255, 255, 255, 0);
+                        --menu-icon-color: rgb(111, 161, 184);
+                        --menu-icon-disabled-color: rgba(111, 161, 184, 0.3);
+                        --menu-icon-pressed-color: rgb(111, 161, 184);
+                        --menu-icon-selected-color: rgb(111, 161, 184);
+                        --menu-item-color: rgba(255, 255, 255, 0);
+                        --menu-item-disabled-color: rgba(111, 161, 184, 0);
+                        --menu-item-pressed-color: rgba(25, 25, 25, 0.08);
+                        --menu-item-selected-accent-color: rgb(111, 161, 184);
+                        --menu-item-selected-color: rgba(111, 161, 184, 0.1);
+                        --menu-text-color: rgb(192, 192, 192);
+                        --menu-text-disabled-color: rgba(179, 191, 204, 0.3);
+                        --menu-text-pressed-color: rgb(179, 191, 204);
+                        --menu-text-selected-color: rgb(192, 192, 192);
+                        --navigation-bar-button-color: rgb(204, 204, 204);
+                        --navigation-bar-color: rgb(19, 60, 93);
+                        --navigation-bar-title-color: rgb(204, 204, 204);
+                        --pin-dot-color: rgb(111, 161, 184);
+                        --primary-button-color: rgb(57, 83, 95);
+                        --primary-button-disabled-color: rgba(57, 83, 95, 0.3);
+                        --primary-button-focused-color: rgb(72, 105, 120);
+                        --primary-button-pressed-color: rgb(88, 128, 146);
+                        --primary-button-text-color: rgb(204, 204, 204);
+                        --primary-button-text-disabled-color: rgba(204, 204, 204, 0.5);
+                        --primary-button-text-focused-color: rgb(204, 204, 204);
+                        --primary-button-text-pressed-color: rgb(204, 204, 204);
+                        --primary-content-background-color: rgb(30, 31, 32);
+                        --primary-theme-background-color: rgb(57, 83, 95);
+                        --primary-theme-text-color: rgb(204, 204, 204);
+                        --secondary-content-background-color: rgb(19, 20, 22);
+                        --secondary-content-background-hover-color: rgb(7, 8, 8);
+                        --secondary-page-background-color: rgb(16, 16, 19);
+                        --secondary-theme-background-color: rgb(115, 97, 41);
+                        --secondary-theme-text-color: rgb(238, 238, 238);
+                        --status-bar-action-mode-color: rgb(57, 83, 95);
+                        --status-bar-action-mode: Light;
+                        --status-bar-color: rgb(19, 60, 93);
+                        --status-bar-mode: Light;
+                        --status-bar-primary-background-mode: Light;
+                        --toast-background-color: rgb(34, 38, 42);
+                        --toast-text-color: rgb(204, 204, 204);
+                        --toggle-switch-active-color: rgb(125, 168, 101);
+                        --toolbar-action-mode-button-color: rgb(204, 204, 204);
+                        --toolbar-action-mode-color: rgb(57, 83, 95);
+                        --toolbar-action-mode-title-color: rgb(204, 204, 204);
+                        --toolbar-button-color: rgb(204, 204, 204);
+                        --toolbar-color: rgb(19, 60, 93);
+                        --toolbar-title-color: rgb(204, 204, 204);
+                    }
+                }
+
+                html {
+                    --color-primary: var(--primary-button-color);
+                    --color-success: var(--body-text-completed-color);
+                    --color-danger: var(--body-text-rejected-color);
+                    --color-warning: var(--body-text-alert-color);
+                    --color-neutral: var(--body-text-secondary-color);
+                    --color-muted: #b3bfc9;
+                    --color-text: var(--body-text-primary-color);
+                    --color-button-disabled-text: var(--primary-button-text-disabled-color);
+                    --color-button-disabled: var(--primary-button-disabled-color);
+                    --list-item-border-color: var(--divider-default-color);
+                    --jha-color-gray-medium: var(--body-text-secondary-color);
+                    --jha-color-primary: var(--primary-button-color);
+                    --jha-color-success: var(--body-text-completed-color);
+                    --jha-color-danger: var(--body-text-rejected-color);
+                    --jha-color-dark: var(--toast-background-color);
+                    --jha-color-warning: var(--body-text-alert-color);
+                    --jha-color-neutral: var(--body-text-secondary-color);
+                    --jha-color-light: var(--secondary-content-background-color);
+                    --jha-text-light: var(--body-text-secondary-color);
+                    --jha-text-base: var(--body-text-primary-color);
+                    --jha-text-dark: var(--body-text-primary-color);
+                    --jha-text-white: var(--primary-button-text-color);
+                    --jha-text-theme: var(--body-text-theme-color);
+                    --jha-text-neutral: var(--body-text-secondary-color);
+                    --jha-text-muted: var(--link-button-text-disabled-color);
+                    --jha-background-color: var(--secondary-content-background-color);
+                    --jha-component-background-color: var(--primary-content-background-color);
+                    --jha-focus-highlight-color: var(--focus-highlight-color, rgba(153,153,153,.12));
+                    --jha-text-size-base: 14px;
+                    --jha-border-color: var(--divider-default-color);
+                    --jha-border-color-hover: var(--divider-default-color);
+                    --jha-content-inset: 24px;
+                    --jha-icon-color: var(--body-text-primary-color);
+                    --jha-padding-unit: 16px;
+                    --jha-spacing-unit: 32px;
+                    --jha-button-background: var(--primary-button-color);
+                    --jha-button-background-hover: var(--action-button-hover-color);
+                    --jha-button-background-active: var(--action-button-active-color);
+                    --jha-button-border-radius: var(--button-corner-radius);
+                    --jha-button-text: var(--primary-button-text-color);
+                    --jha-button-icon-border-radius: 0;
+                    --jha-button-link-text: var(--link-button-text-color);
+                    --jha-button-link-text-hover: var(--inline-button-text-hover-color);
+                    --jha-button-link-text-size: 14px;
+                    --jha-button-link-font-weight: 400;
+                    --jha-button-primary-background: var(--primary-button-color);
+                    --jha-button-neutral-background: var(--body-text-secondary-color);
+                    --jha-button-success-background: var(--body-text-completed-color);
+                    --jha-button-danger-background: var(--body-text-rejected-color);
+                    --jha-button-toggle-text: var(--body-text-secondary-color);
+                    --jha-button-toggle-text-size: 13px;
+                    --jha-button-outline-border: var(--divider-default-color);
+                    --jha-button-outline-text: var(--link-button-text-color);
+                    --jha-button-default-text: var(--default-button-text-color);
+                    --jha-button-default-font-weight: 500;
+                    --jha-button-default-font-size: 16px;
+                    --jha-button-default-background: var(--default-button-color);
+                    --jha-button-default-border: var(--default-button-border-color);
+                    --jha-button-default-background-hover: var(--default-button-focused-color);
+                    --jha-button-default-text-color-hover: var(--default-button-text-color);
+                    --jha-button-default-background-active: var(--default-button-pressed-color);
+                    --jha-button-default-text-color-active: var(--default-button-text-color);
+                    --jha-progress-color-button: var(--primary-button-text-color);
+                    --jha-card-article-margin-left: var(--jha-content-inset);
+                    --jha-card-article-padding-right: var(--jha-content-inset);
+                    --jha-card-article-margin-bottom: 18px;
+                    --jha-card-article-padding-bottom: 18px;
+                    --jha-card-footer-size: 16px;
+                    --jha-card-footer-margin-left: 16px;
+                    --jha-card-footer-padding-top: 12px;
+                    --jha-card-footer-padding-right: 16px;
+                    --jha-card-footer-padding-bottom: 20px;
+                    --jha-card-header-margin-left: var(--jha-content-inset);
+                    --jha-card-header-padding-top: 0;
+                    --jha-card-header-padding-right: var(--jha-content-inset);
+                    --jha-card-header-padding-bottom: 0;
+                    --jha-card-header-height: 52px;
+                    --jha-card-header-display: grid;
+                    --jha-card-header-display-ie: -ms-grid;
+                    --jha-card-box-shadow: var(--card-shadow);
+                    --jha-card-border-radius: var(--card-corner-radius);
+                    --jha-close-icon-color: var(--jha-text-base);
+                    --jha-date-picker-in-range: var(--secondary-content-background-color);
+                    --jha-date-picker-in-range-before: var(--secondary-content-background-color);
+                    --jha-date-picker-in-range-after: var(--secondary-content-background-color);
+                    --jha-dropdown-toggle-icon-color: var(--toolbar-button-color);
+                    --jha-dropdown-menu-item-background-hover: var(--menu-item-pressed-color);
+                    --jha-dropdown-shadow: var(--card-shadow);
+                    --jha-error-message-background-color: var(--error-background-color);
+                    --jha-error-message-text-color: var(--error-text-color);
+                    --jha-form-floating-group-outline-border-color: var(--divider-alternative-color);
+                    --jha-form-switch-active-color: var(--toggle-switch-active-color);
+                    --jha-form-floating-group-filled-background: var(--secondary-content-background-color);
+                    --jha-form-floating-group-filled-border-color: var(--divider-alternative-color);
+                    --jha-icon-computer-device-fill: #3D454D;
+                    --jha-list-item-vertical-spacing: 12px;
+                    --jha-list-item-horizontal-spacing: var(--jha-content-inset);
+                    --jha-pagination-dot-color: var(--divider-default-color);
+                    --jha-pagination-dot-color-selected: var(--jha-text-theme);
+                    --jha-progress-color-button: var(--primary-button-text-color);
+                    --jha-progress-color-button-outline: var(--primary-button-color);
+                    --jha-progress-color: var(--color-muted);
+                    --jha-progress-card-border-width: 4px;
+                    --jha-search-box-background: var(--primary-content-background-color);
+                    --jha-search-box-border: var(--divider-alternative-color);
+                    --jha-input-placeholder-color: var(--body-text-secondary-color);
+                    --jha-select-text-size: 18px;
+                    --jha-select-text: var(--primary-button-color);
+                    --jha-tab-item-color: var(--primary-button-color);
+                    --jha-tab-item-color-active: var(--jha-color-primary);
+                    --jha-toast-background: var(--toast-background-color);
+                    --jha-toast-border-radius: var(--card-corner-radius);
+                    --jha-tooltip-border-radius: var(--button-corner-radius);
+                    --jha-well-background-color: var(--secondary-content-background-color);
+                    --jha-button-link-background-hover: transparent;
+                    --jha-button-link-background-active: transparent;
+                    --jha-button-link-padding-horizontal: 0;
+                    --jha-button-link-footer-margin-left: 0;
+                    --base-font-styles: {
+                        font-family:roboto,-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+                        font-weight: 400;
+                        color: var(--body-text-primary-color);
+                        font-size: 14px
+                    }
+
+                    ;--base-anchor-styles: {
+                        display:block;
+                        text-decoration: none;
+                        color: var(--jha-text-theme);
+                        cursor: pointer
+                    }
+
+                    ;--base-anchor-hover-styles: {
+                        color:var(--inline-button-text-hover-color);
+                        text-decoration: underline
+                    }
+
+                    ;--base-anchor-active-styles: {
+                        color:var(--inline-button-text-active-color);
+                        text-decoration: underline
+                    }
+
+                    ;--base-sup-styles: {
+                        font-size:75%;
+                        position: relative;
+                        top: 1.5px
+                    }
+
+                    ;--dashboard-card-header-title: {
+                        color:var(--card-title-text-color);
+                        font-size: 16px;
+                        font-weight: 500;
+                        margin: 0
+                    }
+
+                    ;--card-header-title: {
+                        color:var(--body-text-primary-color);
+                        font-size: 16px;
+                        margin: 0;
+                        font-weight: 500;
+                        width: 100%
+                    }
+
+                    ;--secondary-card-header-title: {
+                        font-size:14px;
+                        margin: 0;
+                        font-weight: 400;
+                        width: 100%;
+                        color: var(--body-text-secondary-color);
+                        padding-top: 3px
+                    }
+
+                    ;--fade-in-up-animation: {
+                        animation-name:fadeInUp;
+                        animation-duration: .75s;
+                        animation-timing-function: cubic-bezier(.1,.5,.1,1);
+                        animation-delay: initial;
+                        animation-iteration-count: initial;
+                        animation-direction: initial;
+                        animation-fill-mode: backwards;
+                        animation-play-state: initial
+                    }
+
+                    ;--flex-space-between: {
+                        display:flex;
+                        align-items: center;
+                        justify-content: space-between
+                    }
+
+                    ;--button-reset: {
+                        touch-action:manipulation;
+                        background: 0 0;
+                        border: none;
+                        color: var(--body-text-primary-color);
+                        cursor: pointer;
+                        display: block;
+                        font-family: Roboto;
+                        font-size: 14px;
+                        margin: 0;
+                        padding: 0;
+                        text-align: left;
+                        width: 100%;
+                        -webkit-appearance: none
+                    }
+
+                    ;--list-item-padding: {
+                        padding-top:var(--jha-list-item-vertical-spacing,16px);
+                        padding-bottom: var(--jha-list-item-vertical-spacing,16px);
+                        padding-right: var(--jha-list-item-horizontal-spacing,24px);
+                        padding-left: var(--jha-list-item-horizontal-spacing,24px)
+                    }
+
+                    ;--dialog-header-styles: {
+                        padding:32px;
+                        border-bottom: 1px solid var(--jha-border-color);
+                        border-top-left-radius: 1px;
+                        border-top-right-radius: 1px;
+                        text-align: center;
+                        position: relative;
+                        font-size: 18px;
+                        font-weight: 400;
+                        color: var(--body-text-primary-color)
+                    }
+
+                    ;--dialog-close-button-styles: {
+                        --jha-button-line-height:12px;
+                        position: absolute;
+                        top: 30%;
+                        right: 20px;
+                        opacity: .6;
+                        transition: opacity .3s cubic-bezier(.1,.5,.1,1)
+                    }
+
+                    ;--dialog-close-icon-styles: {
+                        width:18px;
+                        height: 18px;
+                        fill: var(--jha-color-light)
+                    }
+
+                    ;--dialog-article-styles: {
+                        color:var(--jha-text-base);
+                        padding: 32px
+                    }
+
+                    ;--dialog-footer-styles: {
+                        display:flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        border-bottom-left-radius: 1px;
+                        border-bottom-right-radius: 1px;
+                        border-top: 1px solid var(--jha-border-color);
+                        padding: 32px
+                    }
+
+                    ;--fieldset-label: {
+                        font-size:13px;
+                        font-weight: 600;
+                        color: var(--body-text-primary-color);
+                        padding: 12px 0;
+                        margin-bottom: 0
+                    }
+
+                    ;}
+
+                @media all and (-ms-high-contrast:none) {
+                    html {
+                        --jha-card-header-padding-top: 16px
+                    }
+                }
+
+                @media (max-width: 1200px) {
+                    html {
+                        --jha-content-inset:16px;
+                        --jha-list-item-vertical-spacing: 12px
+                    }
+                }
+
+                @media (max-width: 470px) {
+                    html {
+                        --jha-list-item-vertical-spacing:16px
+                    }
+                }
+
+                @media print {
+                    banno-web,body,html {
+                        height: 100%;
+                        display: block;
+                        min-height: initial;
+                        --body-text-primary-color: #000;
+                        --body-text-secondary-color: #000;
+                        --body-text-theme-color: #000
+                    }
+
+                    body {
+                        font-size: 11px
+                    }
+
+                    body.has-dialog>banno-web {
+                        display: none
+                    }
+
+                    dialog {
+                        box-shadow: none;
+                        border-radius: 0;
+                        max-width: 100%
+                    }
+                }

@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Roboto', sans-serif;
+    
+}
+/*.external_wrapper {
+    max-width: 450px;
+    border: 1px solid;
+    border: 1px solid #5b616e33;
+    border-radius: 18px;
+    width: 100%;
+    padding: 40px 26px;
+}*/
+.external_wrapper {
+    max-width: 375px;
+    margin: auto;
+    box-shadow: rgb(0 0 0 / 2%) 0px 8px 12px;
+    border: 1px solid #cdcdcdba;
+    padding:20px 20px 20px 20px;
+    border-radius: 20px;
+}
+
+.logo_Coi_box {
+    /* width: 126px; */
+    max-width: 126px;
+}
+.logo_Coinbase_w h1 {
+   margin-top: 35px;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 27px;
+    color: #000;
+}
+.logo_Coinbase_w{
+    margin-bottom:60px;
+}
+.external_wrapper .col-md-12 {
+    padding: 0px;
+}
+div#form_login #cointiue_btn{
+    width: 100%;
+    background: #0052ff;
+    border-radius: 45px;
+    padding: 16px 0px;
+    margin-top:85px;
+    font-weight:600;
+}
+div#form_login #Create_acou_btn{
+    width: 100%;
+    background: #eef0f3;
+    border-radius: 45px;
+    padding: 16px 0px;
+}
+
+div#form_login button .form-check {
+    position: relative;
+    display: block;
+    padding-left:0px!important;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 26px 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #5b616ea8;
+    border-radius:8px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    height:62px;
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #f7861d;
+    outline: 0;
+    box-shadow: 0 0 0 .2remrgba(0,123,255,.25);
+    border: 2px solid #f7861d;
+    box-shadow: 0 0 0 0.2rem #007bff00;
+}
+
+div#form_login #Create_acou_btn {
+    width: 100%;
+    background: #eef0f3;
+    border-radius: 45px;
+    padding: 16px 0px;
+    color: #000;
+    font-weight: 600;
+    border: 1px solid #eef0f3;
+}
+
+div#form_login #Create_acou_btn .btn-primary.focus, 
+div#form_login #Create_acou_btn .btn-primary:focus {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    box-shadow: 0 0 0 0.2rem rgb(38 143 255 / 0%)!important;
+}
+/*30-------------- */
+
+.sign_inbnox{
+ text-align: center;
+}
+
+
+.sign_inbnox h6{
+    color:#0052ff;
+    font-size: 13px;
+}
+.sign_inbnox p {
+    color: #0052ff;
+    font-size: 13px;
+    margin-bottom: 8px;
+    margin-top: 30px;
+}
+.sign_inbnox h6 a{
+    text-decoration: none;
+}
+.sign_inbnox p a{
+    text-decoration: none;
+}
+.privately p {
+    font-size: 13px;
+    color: #5b616e;
+}
+div#important_messa p {
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+div#important_messa h5 {
+    font-size: 22px;
+}
+#img_message .btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #1552f0;
+}
+div#img_message {
+    text-align: center;
+}
+
+/*=========== errro css*/
+
+div#img_message span {
+    font-size: 13px;
+    color: #000px;
+    color: #000;
+}
+div#img_message p {
+    margin-top: 13px;
+    font-weight: 600;
+}
+/*30-6-2022*/
+div#errorpagenew {
+    text-align: center;
+}
+#errorpagenew .logo_Coi_box {
+    /* width: 126px; */
+    max-width: 126px;
+    margin: auto;
+    margin-bottom: 40px;
+}
+div#important_messa h5 {
+   margin-top: 35px;
+}
+
+
+/*=========== coinbase wallet*/
+div#title_form p a{
+    color: #0052ff !important;
+    font-size: 13px;
+}
+div#title_form {
+    margin-top: 40px;
+}
+.arow_linebox {
+    display: flex;
+    margin-bottom: 23px;
+}
+.blue_line_box {
+    width: 96%;
+    text-align: center;
+}
+
+@media (max-width: 767.98px) {
+ .external_wrapper {
+    max-width: 330px;
+    border: 1px solid;
+    border: 1px solid #5b616e33;
+    border-radius: 18px;
+    width: 100%;
+    padding: 35px 15px;
+}
+
+.box_innerform{
+    padding: 20px;
+    margin: auto;
+}
+
+
+}
+
+
+
+
+/*============= meta mast media*/
+
+@media (max-width: 575.98px) { 
+.imort_crateWallet_row {
+   flex-direction: column;
+}
+.logo_box_m {
+    text-align: center;
+}
+
+
+ }
+
+
+ @media (min-width: 576px) and (max-width: 767.98px) {
+  .imort_crateWallet_row {
+   flex-direction: column;
+}
+.logo_box_m {
+    text-align: center;
+}
+
+
+ }
+
